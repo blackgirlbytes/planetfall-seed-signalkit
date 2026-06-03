@@ -1,0 +1,46 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "49ff8cc5672e",
+  "session_id": "99fd37cf-9dfa-4a2d-b1f8-17dc7da61d9d",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-03T05:47:15.396071Z",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "signalkit/client.py",
+    "signalkit/__init__.py",
+    "signalkit/__main__.py",
+    "tests/test_client.py"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "cfda00876833",
+  "token_usage": {
+    "input_tokens": 11,
+    "cache_creation_tokens": 11353,
+    "cache_read_tokens": 190837,
+    "output_tokens": 2691,
+    "api_call_count": 9
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-03T05:47:15.392274Z",
+    "agent_lines": 73,
+    "agent_removed": 3,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 73,
+    "total_lines_changed": 76,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}
