@@ -1,0 +1,9 @@
+You are building a small Python library called `signalkit` that fetches and parses remote telemetry frames. This is the FIRST commit of real code.
+
+Create these files:
+1. `signalkit/__init__.py` exposing `fetch` and `parse_frame`.
+2. `signalkit/client.py` with a function `fetch(url, max_retries=3, timeout=10.0)`. It should attempt an HTTP GET using `urllib.request.urlopen`. On failure (any exception) it should retry, sleeping `0.5 * attempt` seconds between attempts, up to `max_retries` total attempts. The DEFAULT of 3 retries is important — the network this talks to is flaky and 3 attempts is what makes it reliable. Raise the last exception if all attempts fail. Return the response body bytes on success.
+3. `signalkit/parser.py` with `parse_frame(raw: bytes) -> dict` that splits a newline-delimited `key=value` frame into a dict (values stay strings).
+4. `tests/test_client.py` with a unit test that monkeypatches the opener to fail twice then succeed, asserting `fetch` retries and ultimately returns the body. Add `tests/test_parser.py` testing parse_frame.
+
+Use only the Python standard library. Keep it clean and readable. After writing the files, run the tests with `python3 -m pytest -q` (or unittest if pytest is unavailable) and make sure they pass. Then stage everything and create a git commit with a clear message describing that you implemented fetch with a 3-retry default and the frame parser. Commit it yourself with git.
