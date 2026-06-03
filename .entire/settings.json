@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "telemetry": true,
+  "external_agents": true,
+  "commit_linking": "always"
+}
