@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "8829a8520040",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "signalkit/client.py",
+    "tests/test_client.py",
+    "tests/test_repro_flaky.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/88/29a8520040/0/metadata.json",
+      "transcript": "/88/29a8520040/0/full.jsonl",
+      "content_hash": "/88/29a8520040/0/content_hash.txt",
+      "prompt": "/88/29a8520040/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 12,
+    "cache_creation_tokens": 17762,
+    "cache_read_tokens": 248192,
+    "output_tokens": 7368,
+    "api_call_count": 10
+  }
+}
