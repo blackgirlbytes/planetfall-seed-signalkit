@@ -1,0 +1,47 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "2b5219a6e872",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 10,
+  "files_touched": [
+    ".gitignore",
+    "PLAN.md",
+    "README.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "signalkit/__init__.py",
+    "signalkit/__main__.py",
+    "signalkit/client.py",
+    "signalkit/config.py",
+    "signalkit/parser.py",
+    "src/atmosphere.js",
+    "src/debris.js",
+    "src/main.js",
+    "src/noise.js",
+    "src/planet.js",
+    "src/ring.js",
+    "src/style.css",
+    "tests/__init__.py",
+    "tests/test_client.py",
+    "tests/test_config.py",
+    "tests/test_parser.py",
+    "tests/test_repro_flaky.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/2b/5219a6e872/0/metadata.json",
+      "transcript": "/2b/5219a6e872/0/full.jsonl",
+      "content_hash": "/2b/5219a6e872/0/content_hash.txt",
+      "prompt": "/2b/5219a6e872/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 4551,
+    "cache_creation_tokens": 118081,
+    "cache_read_tokens": 8383247,
+    "output_tokens": 94012,
+    "api_call_count": 106
+  }
+}

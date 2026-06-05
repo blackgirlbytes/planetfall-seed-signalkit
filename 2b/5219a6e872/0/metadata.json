@@ -1,0 +1,165 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "2b5219a6e872",
+  "session_id": "2980f52a-559e-4818-ae7a-914fe32aae7c",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-05T09:46:00.013953Z",
+  "branch": "main",
+  "checkpoints_count": 10,
+  "files_touched": [
+    ".gitignore",
+    "PLAN.md",
+    "README.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "signalkit/__init__.py",
+    "signalkit/__main__.py",
+    "signalkit/client.py",
+    "signalkit/config.py",
+    "signalkit/parser.py",
+    "src/atmosphere.js",
+    "src/debris.js",
+    "src/main.js",
+    "src/noise.js",
+    "src/planet.js",
+    "src/ring.js",
+    "src/style.css",
+    "tests/__init__.py",
+    "tests/test_client.py",
+    "tests/test_config.py",
+    "tests/test_parser.py",
+    "tests/test_repro_flaky.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8[1m]",
+  "turn_id": "8470164b7e7a",
+  "token_usage": {
+    "input_tokens": 4551,
+    "cache_creation_tokens": 118081,
+    "cache_read_tokens": 8383247,
+    "output_tokens": 94012,
+    "api_call_count": 106
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01P5XWKy7EazvijxxB5K3sXq",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "verify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "8470164b7e7a",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 111,
+        "end": 112,
+        "entry_ids": [
+          "ff4709c7-f17f-4724-bd0d-bcea5a47c1a3"
+        ],
+        "tool_use_id": "toolu_01P5XWKy7EazvijxxB5K3sXq"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01P5XWKy7EazvijxxB5K3sXq"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: verify",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 10
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-05T09:45:59.972715Z",
+    "agent_lines": 2248,
+    "agent_removed": 288,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 2248,
+    "total_lines_changed": 2536,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2024,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2024,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2072,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2072,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2120,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2143,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2144,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2144,
+      "agent_lines_removed": 288
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2144,
+      "agent_lines_removed": 288
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+i think what we ended up building here..and the plan is not really what i wanted..i think we have to rethink this midway..here's more what i was thinking I’m thinking the scene is a planet. 3D. You click parts of it like I don’t know scroll, a left behind astronaut hat..random things..you open it..there’s some kind of simple challenge and it teaches you choose like oh I need to do entire explain or entire recap or whatever to solve the problem..idkkkk and then some how u get to the end..winner loser..somehow ur creating checkpoints. And it’s actually related to how real checkpoints are idk ..."You're an astronaut whose ship crashed on a strange planet. The ship's AI lost its memory. To escape, you need to reconstruct what happened."
+
+Now every Entire feature becomes a tool for recovering context. I think the reconstucting context problems should be fairly easy ..nothing really hard..maybe we should review them together, but first we should scratch everything we built and really create a nice 3d planet world. dont worry about timelines
+
+---
+
+this looks so good. i dont want the planet to be earth though. let's brainstorm. i want it to be an imaginary planet..more fantastical..thoughts
+
+---
+
+i wanted like purple
+
+---
+
+right now it looks itchy..there's like the dark marks of land underneath..and then the purple veins..letstalk about what we want first...its not what i wanted
+
+---
+
+lavendar ocean world..and put a ring around the planet..kinda like how saturn has
+
+---
+
+okay nice..the gold is not gold enough..it looks dull..i want like real gold looking ..do you get me almost shimmery..this gold is like dullish yellow
+
+---
+
+i like the islands..but the planet got a little more white than it used to be
+
+---
+
+it really doesnt look like it got to a deeper lavendar..it looks pretty white
+
+---
+
+yes this is good.
+
+---
+
+lets leave a plan.md of what we're building and where we left off
