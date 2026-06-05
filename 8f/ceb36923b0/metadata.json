@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "8fceb36923b0",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "PLAN.md",
+    "index.html",
+    "src/debris.js",
+    "src/firstPerson.js",
+    "src/islandView.js",
+    "src/main.js",
+    "src/planet.js",
+    "src/planetView.js",
+    "src/style.css",
+    "src/terrain.js"
+  ],
+  "sessions": [
+    {
+      "metadata": "/8f/ceb36923b0/0/metadata.json",
+      "transcript": "/8f/ceb36923b0/0/full.jsonl",
+      "content_hash": "/8f/ceb36923b0/0/content_hash.txt",
+      "prompt": "/8f/ceb36923b0/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 3808,
+    "cache_creation_tokens": 156696,
+    "cache_read_tokens": 6141950,
+    "output_tokens": 74034,
+    "api_call_count": 84
+  }
+}

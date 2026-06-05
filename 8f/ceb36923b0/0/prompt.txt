@@ -1,0 +1,13 @@
+okay so far we have a planet..and we have things that people can find on top of the planet..but my goal is really for eahc user to start..see the planet from birds eye as we're doing now..and click into an island to play a game..i dont want the elements to be on top of the planet like that..they need to click into the land..so they can see the landscape..and whats around them..and then there will be the artifacts that they can find
+
+---
+
+i dont like the thing that indicates it's the island you should click on..like that glow thing..any other way of doing this..and we should start with and island that's immediately in view when you land on the page
+
+---
+
+what about hover with outline and a map pin that exists there as well
+
+---
+
+remove the word landing site and remove the pin once you get on the island..that should only be there to indicate thats what you need to click
