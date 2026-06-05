@@ -28,6 +28,14 @@ Each puzzle teaches a real `entire` command.
     white if over-lit.
 - **Build order:** get the world feeling right **first** (done), then puzzles,
   then the command engine + win/lose.
+- **Two-level structure (approved 2026-06-05):** the game is two views, not one.
+  - **Orbit view** — bird's-eye planet; click a marked **island hotspot** to land.
+  - **Island view** — a **walkable, first-person** landscape (WASD + mouse-look);
+    artifacts are embedded **in the terrain**, not floating on the globe. Walk up
+    to one and press **E** to inspect; **B** leaves back to orbit.
+  - Transition is a **crossfade cut** into a dedicated island scene (not a
+    seamless dive onto the sphere).
+  - Starting with **one island holding all the artifacts/puzzles**; more later.
 
 ## Status
 
@@ -38,17 +46,33 @@ Each puzzle teaches a real `entire` command.
 - Saturn-style banded ring (tilted, two gaps, transparent).
 - Soft lavender fresnel atmosphere, violet-tinted starfield.
 - Orbit + zoom controls; slow auto-rotation.
-- 4 clickable debris on the surface with hover highlight; clicking opens a
-  **stub** fragment panel (lore text + the command it will teach).
 - Verified rendering in headless Chrome (WebGL2), no console errors.
 
+### Done ✅ — the two-level flow (2026-06-05)
+- **Orbit view** (`planetView.js`): the planet plus a clean **HTML map pin**
+  ("LANDING SITE") that tracks the island in screen space — no glow/beam. On
+  hover a thin **outline ring** fades in on the surface and the pin lifts; click
+  (pin or island) → crossfade → island. The island is found via a shared
+  elevation sampler, and the **camera frames it front-and-centre on load**. Pin
+  hides when the island rotates to the far side.
+- **Island view** (`islandView.js`): a procedural **walkable terrain** island
+  (radial-falloff heightmap, gold highlands, surrounded by lavender sea),
+  lavender-dusk sky, soft warm sun. **First-person** controller (`firstPerson.js`,
+  PointerLockControls + WASD, glued to the terrain, clamped to the island).
+- The 4 artifacts (reusing the `debris.js` prop builders) sit **in the terrain**
+  with tall findable light-beams; walk within range → "Press E to inspect" →
+  opens the shared fragment panel. **B** returns to orbit.
+- Verified both views render in headless Chrome (WebGL2), no console errors.
+
 ### Not built yet ⏳
-- Puzzle mechanics (panels are lore stubs only).
+- Puzzle mechanics (panels are still lore stubs only).
 - The command engine (see open questions).
 - Win/lose + checkpoint-collection state.
-- Polish backlog: bloom on gold glints, ring shadow cast on planet, recolor
-  debris halos from cyan → warm gold/white to match the palette, spread the
-  islands out a bit.
+- More islands (only one is built; orbit view shows a single pin).
+- Polish backlog: bloom on gold glints, ring shadow cast on planet; island
+  pass — props/landmarks so the terrain reads less like empty dunes, water
+  shader, a proper skybox, third-person option if wanted; tune the in-terrain
+  artifact beam tint (reads pink over the lavender sky).
 
 ## Puzzle design (PROPOSED — not yet reviewed/built)
 
@@ -84,20 +108,30 @@ clone the pattern to the other three.
 ## Architecture / where things live
 
 ```
-index.html         # canvas + HUD + stub inspection panel + loader
-src/style.css      # HUD / panel / loader styling
-src/main.js        # scene, camera, lighting, env (IBL), starfield, planet,
-                   #   clouds, atmosphere, ring, debris, raycast hover/click,
-                   #   render loop. Tuning knobs live here (light/env levels).
-src/noise.js       # seedable 3D simplex + fBm (sampled on the sphere → seamless)
-src/planet.js      # bakes color / bump / roughness / metalness maps + clouds.
-                   #   Palette constants (DEEP/SHALLOW/SNOW, LAND_STOPS) here.
-src/atmosphere.js  # fresnel limb-glow shell shader
+index.html         # canvas + HUD + crossfade overlay + FP prompt + panel + loader
+src/style.css      # HUD / panel / loader / fade / crosshair / FP-prompt styling
+src/main.js        # VIEW MANAGER: owns renderer + resize + shared panel + the
+                   #   render loop; crossfades between the two views.
+                   #   ?view=island jumps straight onto the island (dev aid).
+src/planetView.js  # orbit view: scene/lighting/stars/planet/clouds/atmo/ring +
+                   #   the clickable gold landing hotspot. onIslandClick callback.
+src/islandView.js  # island level: sky/light, terrain+water, the artifacts, the
+                   #   proximity "press E" interaction. enter()/exit()/onExit.
+src/terrain.js     # procedural island heightmap mesh + water + heightAt(x,z)
+src/firstPerson.js # PointerLockControls + WASD walker, glued to the terrain
+src/noise.js       # seedable 3D simplex + fBm (sphere-sampled → seamless)
+src/planet.js      # bakes planet maps; createElevationSampler() finds land for
+                   #   the hotspot. Palette constants (DEEP/SHALLOW/SNOW) here.
+src/atmosphere.js  # fresnel limb-glow shell shader (orbit view)
 src/ring.js        # procedural banded ring (radial-remapped UVs)
-src/debris.js      # surface-anchored fragments; FRAGMENTS[] = lore + command
+src/debris.js      # FRAGMENTS[] (lore + command) + exported prop BUILDERS,
+                   #   reused as the island artifacts. createDebris() is now
+                   #   unused (kept for reference / git history).
 ```
 
 Run: `npm install` then `npm run dev` → http://localhost:5173
+Controls: orbit = drag/scroll, click the gold marker to land. Island = click to
+capture mouse, WASD to walk, E to inspect a glowing artifact, B to leave.
 
 ## History
 Repo started as `signalkit` (a Python telemetry CLI), then pivoted to Planetfall

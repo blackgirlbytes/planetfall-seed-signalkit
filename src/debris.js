@@ -92,7 +92,8 @@ function buildBeacon() {
   return g;
 }
 
-const BUILDERS = {
+// Exported so the island view can reuse the same little props on the ground.
+export const BUILDERS = {
   helmet: buildHelmet,
   logbook: buildLogbook,
   panel: buildPanel,

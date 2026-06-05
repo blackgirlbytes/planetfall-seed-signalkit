@@ -137,6 +137,79 @@ html, body {
   border-color: var(--accent);
 }
 
+/* Map pin marking the landable island */
+#island-pin {
+  position: fixed;
+  top: 0; left: 0;
+  transform: translate(-50%, -100%);
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 15;
+  transition: filter 0.2s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: bottom center;
+}
+#island-pin .pin-svg { display: block; }
+#island-pin .pin-svg path {
+  fill: var(--accent-warm);
+  stroke: rgba(255, 244, 232, 0.85);
+  stroke-width: 1.2;
+}
+#island-pin .pin-svg circle {
+  fill: rgba(20, 12, 6, 0.85);
+}
+/* Hover (or keyboard focus, or synced from the 3D region) lifts the pin. */
+#island-pin:hover,
+#island-pin:focus-visible,
+#island-pin.is-hot {
+  transform: translate(-50%, -100%) scale(1.12);
+  filter: drop-shadow(0 0 10px rgba(255, 184, 107, 0.6));
+  outline: none;
+}
+
+/* Crossfade overlay between views */
+#fade {
+  position: fixed;
+  inset: 0;
+  background: #07050f;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+  transition: opacity 0.65s ease;
+}
+#fade.show { opacity: 1; }
+
+/* First-person island HUD */
+#crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border: 1.5px solid rgba(255, 244, 232, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 210, 122, 0.6);
+}
+
+#fp-prompt {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  background: rgba(8, 14, 26, 0.7);
+  border: 1px solid rgba(255, 210, 122, 0.4);
+  border-radius: 6px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  white-space: nowrap;
+  text-shadow: 0 0 12px rgba(255, 210, 122, 0.4);
+}
+
 /* Loader */
 #loader {
   position: fixed;

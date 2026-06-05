@@ -15,8 +15,25 @@
         <div class="hud-sub">// signal lost · reconstructing memory</div>
       </header>
 
-      <div id="hint">Drag to look around · Scroll to zoom · Click the glowing debris</div>
+      <div id="hint">Drag to orbit · Scroll to zoom · Click the pin to land</div>
+
+      <!-- Map pin marking the landable island (positioned in JS) -->
+      <button id="island-pin" class="hidden" aria-label="Land on the island">
+        <svg class="pin-svg" viewBox="0 0 24 32" width="24" height="32">
+          <path d="M12 1C6.2 1 1.5 5.7 1.5 11.5C1.5 19 12 31 12 31S22.5 19 22.5 11.5C22.5 5.7 17.8 1 12 1Z"/>
+          <circle cx="12" cy="11.5" r="4"/>
+        </svg>
+      </button>
+
+      <!-- First-person island HUD -->
+      <div id="island-hud" class="hidden">
+        <div id="crosshair" class="hidden"></div>
+        <div id="fp-prompt" class="hidden"></div>
+      </div>
     </div>
+
+    <!-- Crossfade between the orbit view and the island -->
+    <div id="fade"></div>
 
     <!-- Debris inspection panel (stub for the future challenge UI) -->
     <div id="panel" class="hidden">

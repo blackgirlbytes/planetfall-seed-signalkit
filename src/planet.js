@@ -39,6 +39,55 @@ const DEEP = [64, 46, 130];      // deep saturated lavender
 const SHALLOW = [112, 92, 178];   // mid lilac shallows
 const SNOW = [232, 224, 244];     // cream-lilac frost
 
+// Shared landform constants so the texture bake and the elevation sampler below
+// agree on exactly where land is.
+const CONTINENT_FREQ = 1.5; // continent scale (lower = larger, calmer landforms)
+const DEFAULT_SEA_LEVEL = 0.64;
+
+/**
+ * Build a sampler that returns the planet's surface elevation (0..1) for a
+ * lat/lon, using the *same* fbm field and frequency as the baked texture — so a
+ * hotspot placed where `isLand` is true lands on visible gold, not the sea.
+ */
+export function createElevationSampler({ seed = 7 } = {}) {
+  const noise = makeNoise3D(seed);
+  const fbm = makeFbm(noise, { octaves: 4, lacunarity: 2.0, gain: 0.45 });
+
+  function elevationAt(latDeg, lonDeg) {
+    const lat = (latDeg * Math.PI) / 180;
+    const lon = (lonDeg * Math.PI) / 180;
+    const cosLat = Math.cos(lat);
+    const sx = cosLat * Math.cos(lon);
+    const sy = Math.sin(lat);
+    const sz = cosLat * Math.sin(lon);
+    const h = fbm(sx * CONTINENT_FREQ, sy * CONTINENT_FREQ, sz * CONTINENT_FREQ);
+    return h * 0.5 + 0.5;
+  }
+
+  return {
+    elevationAt,
+    isLand(latDeg, lonDeg, seaLevel = DEFAULT_SEA_LEVEL) {
+      return elevationAt(latDeg, lonDeg) >= seaLevel;
+    },
+    /**
+     * Scan a coarse lat/lon grid (avoiding the icy poles) and return land spots
+     * sorted by elevation, highest first — a good pick for an island that reads
+     * clearly above the sea.
+     */
+    findLandSpots({ seaLevel = DEFAULT_SEA_LEVEL, latLimit = 60, step = 4 } = {}) {
+      const spots = [];
+      for (let lat = -latLimit; lat <= latLimit; lat += step) {
+        for (let lon = -180; lon < 180; lon += step) {
+          const h = elevationAt(lat, lon);
+          if (h >= seaLevel) spots.push({ lat, lon, h });
+        }
+      }
+      spots.sort((a, b) => b.h - a.h);
+      return spots;
+    },
+  };
+}
+
 /**
  * Bake equirectangular color / bump / roughness maps for the planet, plus a
  * separate cloud alpha map. Heavy-ish loop (~2M px) — run behind the loader.
@@ -47,7 +96,7 @@ export function generatePlanetTextures({
   seed = 7,
   width = 2048,
   height = 1024,
-  seaLevel = 0.64, // high → mostly ocean, just a few islands
+  seaLevel = DEFAULT_SEA_LEVEL, // high → mostly ocean, just a few islands
 } = {}) {
   const noise = makeNoise3D(seed);
   // Few octaves + gentle gain → large, smooth landforms (no busy speckle).
@@ -77,7 +126,7 @@ export function generatePlanetTextures({
     sinLon[x] = Math.sin(lon);
   }
 
-  const freq = 1.5; // continent scale (lower = larger, calmer landforms)
+  const freq = CONTINENT_FREQ; // continent scale (lower = larger, calmer landforms)
 
   for (let y = 0; y < height; y++) {
     const lat = Math.PI / 2 - (y / height) * Math.PI;
