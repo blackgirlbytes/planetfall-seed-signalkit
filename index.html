@@ -17,6 +17,30 @@
 
       <div id="hint">Drag to orbit · Scroll to zoom · Click the pin to land</div>
 
+      <div id="audio-panel" aria-label="Background music controls">
+        <audio id="bgm" src="/audio/asteroid-circuit.mp3" loop autoplay preload="auto"></audio>
+        <div class="audio-mark" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M9 18.2A3.2 3.2 0 1 1 7.6 15.5V5.2L18 3v11.2a3.2 3.2 0 1 1-1.4-2.7V6.1L9 7.7v10.5Z"/>
+          </svg>
+        </div>
+        <button id="audio-toggle" class="icon-button is-playing" type="button" aria-label="Pause music" title="Pause music">
+          <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5.5v13l11-6.5-11-6.5Z"/>
+          </svg>
+          <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 5h3.5v14H7V5Zm6.5 0H17v14h-3.5V5Z"/>
+          </svg>
+        </button>
+        <button id="audio-mute" class="icon-button" type="button" aria-label="Mute music" title="Mute music">
+          <svg class="icon icon-speaker" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9.3v5.4h4.2l5.3 4.3V5L8.2 9.3H4Z"/>
+            <path class="mute-mark" d="M18 9l3 3m0-3-3 3"/>
+          </svg>
+        </button>
+        <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.55" aria-label="Music volume" title="Music volume" />
+      </div>
+
       <!-- Map pin marking the landable island (positioned in JS) -->
       <button id="island-pin" class="hidden" aria-label="Land on the island">
         <svg class="pin-svg" viewBox="0 0 24 32" width="24" height="32">
@@ -29,6 +53,7 @@
       <div id="island-hud" class="hidden">
         <div id="crosshair" class="hidden"></div>
         <div id="fp-prompt" class="hidden"></div>
+        <div id="fp-controls" class="hidden"></div>
       </div>
     </div>
 

@@ -108,16 +108,59 @@ export function createIslandView(renderer, { openPanel, onExit } = {}) {
 
   // ---------- HUD elements ----------
   const promptEl = document.getElementById("fp-prompt");
+  const controlsEl = document.getElementById("fp-controls");
   const crosshair = document.getElementById("crosshair");
   const islandHud = document.getElementById("island-hud");
 
   let target = null;     // nearest artifact in range
   let active = false;    // is this view the one being shown?
+  let promptText = null;
+  let controlsLocked = null;
 
   function setPrompt(text) {
     if (!promptEl) return;
+    if (text === promptText) return;
+    promptText = text;
     if (text) { promptEl.textContent = text; promptEl.classList.remove("hidden"); }
     else promptEl.classList.add("hidden");
+  }
+  function setControls(locked) {
+    if (!controlsEl) return;
+    if (locked === controlsLocked && !controlsEl.classList.contains("hidden")) return;
+    controlsLocked = locked;
+    controlsEl.innerHTML = `
+      <span class="control-item">
+        <span class="control-label">To move</span>
+        <span class="arrow-keys" aria-label="Arrow keys">
+          <span class="key key-up">↑</span>
+          <span class="key key-left">←</span>
+          <span class="key key-down">↓</span>
+          <span class="key key-right">→</span>
+        </span>
+      </span>
+      ${locked ? `
+        <span class="control-item">
+          <span class="control-label">To look around</span>
+          <span class="mouse-hint">
+            <span class="mouse-icon" aria-hidden="true"></span>
+            <span>move mouse</span>
+          </span>
+        </span>
+        <span class="control-item">
+          <span class="control-label">Free cursor</span>
+          <span class="key key-wide">Esc</span>
+        </span>
+      ` : ""}
+      <span class="control-item">
+        <span class="control-label">Return to orbit</span>
+        <span class="key">B</span>
+      </span>
+    `;
+    controlsEl.classList.remove("hidden");
+  }
+  function hideControls() {
+    controlsLocked = null;
+    controlsEl?.classList.add("hidden");
   }
 
   // ---------- input ----------
@@ -126,6 +169,7 @@ export function createIslandView(renderer, { openPanel, onExit } = {}) {
   }
   function onKeyDown(e) {
     if (!active) return;
+    if (e.code === "Escape" && fp.isLocked) fp.unlock();
     if (e.code === "KeyE" && target) {
       fp.unlock();              // free the mouse for the panel
       openPanel?.(target.fragment);
@@ -157,11 +201,12 @@ export function createIslandView(renderer, { openPanel, onExit } = {}) {
     target = nearestD <= INTERACT_DIST ? nearest : null;
 
     if (active) {
-      if (!fp.isLocked) setPrompt("Click to look around · WASD to walk · B to leave");
+      setControls(fp.isLocked);
+      if (!fp.isLocked) setPrompt("Click to look around");
       else if (target) {
         setPrompt(`Press E to inspect · ${target.fragment.title}` +
           (target.collected ? "  (recovered)" : ""));
-      } else setPrompt("WASD to walk · find the glowing artifacts · B to leave");
+      } else setPrompt("Find the glowing artifacts");
     }
   }
 
@@ -175,6 +220,7 @@ export function createIslandView(renderer, { openPanel, onExit } = {}) {
     canvas.addEventListener("click", onCanvasClick);
     window.addEventListener("keydown", onKeyDown);
     islandHud?.classList.remove("hidden");
+    setControls(false);
     crosshair?.classList.add("hidden");
   }
   function exit() {
@@ -184,6 +230,7 @@ export function createIslandView(renderer, { openPanel, onExit } = {}) {
     canvas.removeEventListener("click", onCanvasClick);
     window.removeEventListener("keydown", onKeyDown);
     setPrompt(null);
+    hideControls();
     islandHud?.classList.add("hidden");
     crosshair?.classList.add("hidden");
   }

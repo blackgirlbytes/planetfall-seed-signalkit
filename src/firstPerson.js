@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
 
-// First-person walker: PointerLockControls for mouse-look + WASD movement that
-// hugs the terrain. Click the canvas to look around; Escape releases the mouse.
+// First-person walker: PointerLockControls for mouse-look + keyboard movement
+// that hugs the terrain. Click the canvas to look around; Escape releases the mouse.
 
 export function createFirstPerson(camera, domElement, {
   heightAt,
