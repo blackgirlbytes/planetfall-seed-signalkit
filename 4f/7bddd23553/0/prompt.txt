@@ -1,0 +1,5 @@
+on that initial modal with the instructions we should also include instructions on how to move etc
+
+---
+
+i think show the arrows instead of wasd..that should more be the alternative where we say or wasd
