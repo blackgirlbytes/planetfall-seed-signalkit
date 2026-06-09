@@ -1,0 +1,29 @@
+push the changes
+
+---
+
+i think we should have a modal before we fully start..like you click the island a modal pops up..gives you quick instructions of what you should do..and whats happening..some kind of story mode..like oh you landed etc etc and then you press start..then you can start navigating around and the clock can start running
+
+---
+
+im wondering if the signage overall is kinda like not evident..from like the time countdown to even the area where it tells you to type git commit etc every time you go close to an element..i feel like the colors are not as obvious and the legibility isnt great either..idkkk
+
+---
+
+does this even make sense..my ships AI? Your ship's AI woke with no memory of the mission —
+
+---
+
+well what do you think makes the most sense..i guess you crashed and now you dont remember anything..im not really sure
+
+---
+
+eh okay so we're rebuilding the ships power..but maybe we can take this at a different angle that makes more sense..idkkkk
+
+---
+
+ok sure
+
+---
+
+okay both the timer and the memory power bar are covering the words planet fall..i think they can move underneath..and the ship memory could possibly be a vertical bar..that changes colors as it gets more filled and it could thicker..doesnt have to be that skinny blue line
