@@ -1,0 +1,87 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "a8d5fde0be94",
+  "session_id": "43c7fbd3-f5f2-4ded-b973-01819a051dfd",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T05:39:13.039722Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "index.html",
+    "src/islandView.js",
+    "src/main.js",
+    "src/style.css"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8[1m]",
+  "turn_id": "adac7ee55939",
+  "token_usage": {
+    "input_tokens": 4377,
+    "cache_creation_tokens": 144769,
+    "cache_read_tokens": 3850161,
+    "output_tokens": 44968,
+    "api_call_count": 56
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_017c4KqshSaDXuJiXRgd9GgX",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "verify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "adac7ee55939",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 171,
+        "end": 172,
+        "entry_ids": [
+          "e0036d45-7a73-458d-acaa-28b17e4e5278"
+        ],
+        "tool_use_id": "toolu_017c4KqshSaDXuJiXRgd9GgX"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_017c4KqshSaDXuJiXRgd9GgX"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: verify",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T05:39:13.014353Z",
+    "agent_lines": 998,
+    "agent_removed": 123,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 998,
+    "total_lines_changed": 1121,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+learn about this project
+
+---
+
+it's looking good..im wondering if this first level can be about checkpoints..idk how they would win though..or how someone would beat someone else or get higher points than someone else..like have them creating checkpoints and understanding it or something??? a idk dont implement anything but do some research..go look at 
+
+Documents/work/cli to understand what checkpoints are and when someone would use them..and then look at this doc.. Documents/work/entire-docs and find the Your first checkpoint..quickstart tutorial to understand a little more.
+
+We want to gamify it in some way..this is just a brainstorming session
+
+---
+
+no rwind or anything in my opinion..just creating checkpoints
+
+---
+
+the analogy seems too complicated
+
+---
+
+which do you think..automatic or manual
+
+---
+
+lets try implementing your idea for now as is..i think should ask..like hey you just did something..do you want to create a checkpoint..and then it can say like creating a checkpoint is saving a core memory of all the steps you took or something idkkk
