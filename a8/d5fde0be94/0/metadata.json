@@ -1,0 +1,61 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "a8d5fde0be94",
+  "session_id": "019ea8fa-feb1-7f93-ac74-4c3373a82d7f",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-09T05:39:12.815779Z",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "PLAN.md",
+    "index.html",
+    "src/islandView.js",
+    "src/main.js",
+    "src/style.css"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "8493b52a4144",
+  "token_usage": {
+    "input_tokens": 685458,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 9818496,
+    "output_tokens": 72139,
+    "api_call_count": 93
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-09T05:39:12.772873Z",
+    "agent_lines": 22,
+    "agent_removed": 60,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 63,
+    "total_committed": 22,
+    "total_lines_changed": 145,
+    "agent_percentage": 56.55172413793104,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1081,
+      "user_lines_removed": 63,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        "index.html": 110,
+        "src/islandView.js": 71,
+        "src/main.js": 188,
+        "src/style.css": 625
+      },
+      "user_removed_per_file": {
+        "index.html": 6,
+        "src/islandView.js": 15,
+        "src/main.js": 5,
+        "src/style.css": 37
+      }
+    }
+  ]
+}

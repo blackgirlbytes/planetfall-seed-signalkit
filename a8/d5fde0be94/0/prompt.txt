@@ -1,0 +1,68 @@
+can you recap what we built here and how the project evolved?
+
+---
+
+how can we make this as parallel to coding with entire as possible..cuz what with entire when u make a checkpoint it's this:
+
+- you make a code change
+- you  make a commit
+- that commit gets tied to a checkpoint
+- you a record/transcript of that..
+
+take a look at entire cli real quick
+
+---
+
+okay we dont need to do like activity and dispatch and all that..this is just the first level but im trying to say..in the first level..i want to follow the real flow..but it will just like teaching people how to create checkpoitns or how checkpoints are created. i just wnat it to be parallel
+
+---
+
+how are they going to do repairs..why repairs..remember their spaceship crashed
+
+---
+
+ok so what does that literally look like in the game
+
+---
+
+will the user know what to do? like is it too easy or too hard for the user
+
+---
+
+what would make it a game..like how do they win or lose or something
+
+---
+
+so there's like a time limit or something?
+
+---
+
+okay try implementing this..lets see..i would make it as graphic heavy as we possibly can i think..what do you think
+
+---
+
+i played the game. i do not get it. like when i had to reconstruct the memory. i had no understanding of why that would be the memory reconstruction. it was super confusing. can you brainstorm with me before you make any changes
+
+---
+
+why would ladning site confirmed be the answer..like i dont know am i missing some kind of intuition
+
+---
+
+thats not how i use checkpoints either this isnt my workflow. to restore missing chexkpoints.. look at Documents/work/docs and look at the quick start..thats like creating your first checkpoint..
+
+---
+
+but we dont want it to be literal adding files and stuff..like thats why i said make it as graphic heavy as possible..the layer you added on top had a lot of words. game dont have that really
+
+---
+
+we want the elements like the lost stuff to act more as the files and files changed maybe..you know what i mean
+
+---
+
+but how does that change the helmet..what does that have to do with the story
+
+---
+
+uh i think revert any changes you have
