@@ -3,7 +3,7 @@
   "checkpoint_id": "a8d5fde0be94",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 1,
+  "checkpoints_count": 28,
   "files_touched": [
     "PLAN.md",
     "index.html",
@@ -23,13 +23,19 @@
       "transcript": "/a8/d5fde0be94/1/full.jsonl",
       "content_hash": "/a8/d5fde0be94/1/content_hash.txt",
       "prompt": "/a8/d5fde0be94/1/prompt.txt"
+    },
+    {
+      "metadata": "/a8/d5fde0be94/2/metadata.json",
+      "transcript": "/a8/d5fde0be94/2/full.jsonl",
+      "content_hash": "/a8/d5fde0be94/2/content_hash.txt",
+      "prompt": "/a8/d5fde0be94/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 689835,
-    "cache_creation_tokens": 144769,
-    "cache_read_tokens": 13668657,
-    "output_tokens": 117107,
-    "api_call_count": 149
+    "input_tokens": 746961,
+    "cache_creation_tokens": 571647,
+    "cache_read_tokens": 40878897,
+    "output_tokens": 364877,
+    "api_call_count": 380
   }
 }

@@ -1,0 +1,108 @@
+okay learn about my project..you can use entire commands like to understand whats going on..look at the checkpoint data and git data..look at the project evolution
+
+---
+
+i think the game is starting to look cool but it doesnt really reflect how the checkpoints and commits and stuff happen. this is supposed to be an educational game so people learn how to use entire..like my workflow is..i make a code change, i make a commit, i link it to a checkpoint..im trying to figure out how in the game i can make it make sense without it being like im literally changing lines of code..or it being like oh man the user has to have a lot of intuition..lets brainstorm before we make any changes
+
+---
+
+freeze..we can do something with ice..to represent commits. this is level 1 so we dont need to go beyond do commit, checkpoint right now..lets not get ahead of ourselves
+
+---
+
+it doesnt have to be liquid. we alraedy have these helmets and stuff..we can put them in ice
+
+---
+
+idk im still confused on how this could be a game and what we're doing..i think we should keep it simple but when im hearing you say stuff it sounds complicated
+
+---
+
+what will make it feel like a game..maybe a timer??
+
+---
+
+how are you feeling about the whole idea of this level
+
+---
+
+okay how do we teach checkpoint
+
+---
+
+i dont feel like checkpoint does all that. it just records the conversation that i had when i made the commit with my agent..so like this analogy you have for it..doesnt really work to me
+
+---
+
+well it doesnt have to be conversation..but let me share with you what a checkpoint is What's a Checkpoint?
+A Checkpoint is a single, addressable unit that bundles everything behind a change: the code state, the agent's full transcript, your prompts, token usage, and line-level attribution showing how much the agent wrote versus what you edited. Each Checkpoint gets a 12-character ID, stored in git and included in your commit via a trailer, so you can trace any change back to the exact session that produced it.
+
+Anatomy of a Checkpoint
+
+---
+
+it doesnt have to be super detailed..i feel like it should have a middle ground..you know
+
+---
+
+how does the user checkpoint something
+
+---
+
+how does this save them on their journey..like what does it contribute
+
+---
+
+i like games where there's purpose like diner dash
+
+---
+
+okay lets try that
+
+---
+
+just rework the whole thing. dont ask me
+
+---
+
+okay i tried it. that worked really well. i think what i want is ..instead of typing e or c or f..we should say to add do git add..and they have to type that in ..git commit ..and then for checkpointing they have to type in entire checkpoint..of course there has to be some kind of input that they can see what theyre typing
+
+---
+
+oh wait thats not right..in real life typing entire checkpoint doesnt save it..we should just ask a yes no if they want to link it to a checkpoint. right..and then in the end when theyve captured all..we tell them to entire checkpoint list and they can see a list of all the things theyve collected
+
+---
+
+okay cool. entire checkpoints..the label is not accurate..it wouldnt be ck-numbers..can we get a real looking ones
+
+---
+
+and i thought the trailer usually says something like Entire-checkpoint
+
+---
+
+i think overall you should just be timed for how fast you gather all them..there should be a countdown that is fairly difficult to beat..not impossible..if youre fast..doable..but should add some pressure..if not all of them items will fade or melt..but i dont think it should be individual fading or melting..and i think we should see a countdown type of clock
+
+---
+
+i think it doesnt match the trailer for real..it needs to have the preface of Entire-Checkpoint ..it looks like this Entire-Checkpoint: 68d6759acfe5
+
+---
+
+wait writing the entire checkpoint list should also be part of the countdown
+
+---
+
+the sky needs to start showing some kind of panic ..i wonder at what time that would be appropriate
+
+---
+
+you still neglected to properly attribute the entire checkpoint trailres..right now it just has the number has but it should say Entire-Checkpoint: numberhash
+
+---
+
+wait so do the memories still melt..if so when do they..you dont have to change anything..i just see it saying like before 0:00 or before it melts
+
+---
+
+okay so lets remove that copy
