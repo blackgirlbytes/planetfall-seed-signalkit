@@ -10,22 +10,6 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 0.92;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-// ---------- shared inspection panel ----------
-const panel = document.getElementById("panel");
-const panelTitle = document.getElementById("panel-title");
-const panelBody = document.getElementById("panel-body");
-const panelFoot = document.getElementById("panel-foot");
-
-function openPanel(frag) {
-  panelTitle.textContent = frag.title;
-  panelBody.textContent = frag.body;
-  panelFoot.textContent = `recover with · ${frag.hint}`;
-  panel.classList.remove("hidden");
-}
-function closePanel() { panel.classList.add("hidden"); }
-document.getElementById("panel-close").addEventListener("click", closePanel);
-window.addEventListener("keydown", (e) => { if (e.key === "Escape") closePanel(); });
-
 // ---------- background music ----------
 const bgm = document.getElementById("bgm");
 const audioPanel = document.getElementById("audio-panel");
@@ -107,8 +91,7 @@ const planetView = createPlanetView(renderer, {
   onIslandClick: () => switchTo(islandView),
 });
 const islandView = createIslandView(renderer, {
-  openPanel,
-  onExit: () => { closePanel(); switchTo(planetView); },
+  onExit: () => switchTo(planetView),
 });
 
 // Default to the orbit view; ?view=island jumps straight onto the island

@@ -105,6 +105,87 @@ command → read the recovered context → use one detail from it.
 Fully design **#1 (EVA Helmet / `recap`)** end-to-end as the template, then
 clone the pattern to the other three.
 
+## Level 1 design — "First Memories" (agreed 2026-06-09)
+
+Framing inspiration: **Diner Dash**. The fun isn't the task, it's that every
+action feeds a clear goal, each task is a short chain, a timer pushes you, and
+you juggle toward a target. The three workflow beats map onto a Diner Dash
+table:
+
+- **Do (recover/fix)** = take the order + cook
+- **Freeze (commit)** = serve the food — locked in, but not scored yet
+- **Checkpoint** = collect the check — *this is the step that banks progress*
+
+Key teaching point: in Diner Dash you can serve every table and score nothing if
+you never collect. Same here — a frozen-but-not-checkpointed fix is a served
+plate you never got paid for. **Freeze keeps it; checkpoint banks it.** The ship
+rebuilds from checkpoints, not bare commits, so checkpoints literally ARE
+forward progress.
+
+What a checkpoint shows (middle-ground detail — not the full real anatomy): a
+real **12-char hex ID** (e.g. `711044b1fe29`, like real Entire checkpoints),
+the commit **trailer** it's stamped with (`Entire-Checkpoint: <id>`), a
+**one-line summary** of the fix, and a tiny
+**who-did-what bar** (ship % / you %). Stands in for the real
+transcript/prompts/token-usage/line-attribution without a spreadsheet. The ID
+also appears stamped on the commit (ice block) so the link is visible.
+
+### Pressure: one level countdown (not per-memory)
+A single **countdown clock** (top-left HUD, `TIME m:ss`) runs for the whole run
+— tuned **scary-tight** (`TOTAL_TIME`, currently **45s** for 3 memories;
+one-line tune in `islandView.js`). Bank every memory before it hits `0:00` or
+the run **fails**: every un-banked memory **melts away** (sinks + fades, ice
+included) and a "MEMORIES MELTED" screen offers **press R to try again** (full
+reset). The clock escalates: **urgent** (red, pulsing) under 22s → **critical**
+(frantic fast pulse + shake + glowing red digits) under 8s; it pauses while
+you're in orbit. The **whole sky panics** too — starting at `PANIC_TIME` (22s)
+the lavender dusk, fog, dome and sun lerp toward an angry **crimson**, eased so
+it's barely perceptible at first and only fully reads in the last ~10s, with a
+**throb** once critical (and held full-red behind the fail screen). One knob
+(`PANIC_TIME` in `islandView.js`) moves the sky independently of the clock. The clock keeps running through the **final
+`entire checkpoint list`** — that command is the real finish line, so banking
+the last memory does NOT stop the clock; you still have to type the list before
+`0:00` (and you can't Esc out of that final prompt). Time out there and the
+whole run melts. This replaced the old per-memory ~14s fade — the user wanted
+ONE clock and real pressure across the whole level, not individual items melting.
+
+### The loop (one memory at a time — calm tutorial, no juggling yet)
+The player types the **real commands** into the ship's terminal (not abstract
+keys). Walking up to a memory auto-opens an in-world command line (movement
+freezes; keystrokes feed the terminal; Esc backs out; B returns to orbit).
+Each step shows the exact command to type as a scaffold.
+
+1. A memory **surfaces** — light beam on the terrain.
+2. Walk up → the **ship terminal opens** (`crashlog:~$`), hinting `git add`.
+3. Type **`git add`** → memory is staged/recovered.
+4. Type **`git commit`** → encased in **ice** (commit).
+5. Entire then **offers to link a checkpoint** — `Link this commit to a
+   checkpoint? [y/n]`. Press **`y`** → ice lights up, a floating real
+   **12-char hex ID** (e.g. `711044b1fe29`) appears, the record card pops,
+   **ship power ticks up**. (Decline with `n`
+   and it stays an un-tracked commit — re-approach to link it later.)
+6. Walk to the next memory.
+7. When all are linked → **the clock is still ticking** → race to type
+   **`entire checkpoint list`** before `0:00` to see every checkpoint you
+   collected → ship fully restored (win). Miss it and the whole run melts.
+
+IMPORTANT accuracy note (user corrected this): you do NOT type `entire
+checkpoint` to save — in real Entire, linking a checkpoint is a yes/no offer
+made after a commit. `entire checkpoint list` is the real command, used at the
+end to review what you've banked.
+
+~3 memories; tutorial scaffolds the first of each action, near-silent after.
+Wrong commands get a "command not recognized — try: <cmd>" nudge.
+
+The make-it-click beats, taught via the countdown + the meter:
+- the level **clock** is the pressure — anything not banked before `0:00` melts.
+- `git commit` freezes it but **doesn't move the meter** — only linking the
+  checkpoint (`y`) banks it. Teaches commit-vs-checkpoint, no "go back" mechanic.
+
+### Out of scope for L1 (later levels)
+Juggling multiple memories / tighter timers; the "go back / reapply a checkpoint"
+payoff; recap / activity / dispatch; win/lose beyond the power meter.
+
 ## Architecture / where things live
 
 ```

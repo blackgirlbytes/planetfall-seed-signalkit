@@ -52,22 +52,63 @@
       <!-- First-person island HUD -->
       <div id="island-hud" class="hidden">
         <div id="crosshair" class="hidden"></div>
+
+        <!-- Level countdown — one clock for the whole run; bank all before 0:00 -->
+        <div id="countdown">
+          <span class="cd-label">TIME</span>
+          <span id="countdown-time">0:45</span>
+        </div>
+
+        <!-- Ship power meter — the level goal; only checkpoints fill it -->
+        <div id="ship-meter">
+          <span class="meter-label">SHIP POWER</span>
+          <span class="meter-track"><span id="ship-meter-fill"></span></span>
+          <span id="ship-meter-pct">0%</span>
+        </div>
+
+        <!-- Teaching line; scaffolds the first of each action, then goes quiet -->
+        <div id="tutorial" class="hidden"></div>
+
+        <!-- Center action prompt + progress (fade countdown) -->
         <div id="fp-prompt" class="hidden"></div>
+        <div id="action-bar" class="hidden"><span id="action-bar-fill"></span></div>
+
+        <!-- Ship terminal: type the real commands to recover a memory -->
+        <div id="terminal" class="hidden">
+          <div id="term-hint"></div>
+          <div id="term-line">
+            <span class="term-prompt">crashlog:~$</span>
+            <span id="term-input"></span><span class="term-cursor"></span>
+          </div>
+          <div id="term-list" class="hidden"></div>
+          <div id="term-msg"></div>
+        </div>
+
+        <!-- Checkpoint record card (the middle-ground "anatomy") -->
+        <div id="ckpt-card" class="hidden">
+          <div class="cc-head">CHECKPOINT LINKED</div>
+          <div class="cc-summary" id="cc-summary"></div>
+          <div class="cc-attr">
+            <span class="cc-attr-bar"><span id="cc-attr-fill"></span></span>
+            <span id="cc-attr-text"></span>
+          </div>
+          <div class="cc-trailer">commit trailer&nbsp;·&nbsp;Entire-Checkpoint: <span id="cc-id"></span></div>
+          <div class="cc-foot">+ banked to ship power</div>
+        </div>
+
+        <!-- Time-out fail screen -->
+        <div id="level-fail" class="hidden">
+          <div class="lf-title">MEMORIES MELTED</div>
+          <div class="lf-sub">The clock ran out before you banked them all.</div>
+          <div class="lf-hint">press <span class="lf-key">R</span> to try again</div>
+        </div>
+
         <div id="fp-controls" class="hidden"></div>
       </div>
     </div>
 
     <!-- Crossfade between the orbit view and the island -->
     <div id="fade"></div>
-
-    <!-- Debris inspection panel (stub for the future challenge UI) -->
-    <div id="panel" class="hidden">
-      <button id="panel-close" aria-label="close">&times;</button>
-      <div id="panel-tag">FRAGMENT</div>
-      <h2 id="panel-title"></h2>
-      <p id="panel-body"></p>
-      <div id="panel-foot">memory fragment · challenge coming soon</div>
-    </div>
 
     <div id="loader">
       <div class="loader-ring"></div>
