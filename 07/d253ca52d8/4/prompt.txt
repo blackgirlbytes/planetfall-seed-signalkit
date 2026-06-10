@@ -1,0 +1,161 @@
+lets pick back up and start thinking about what level 2 should look like..use entire checkpoints to learn about the repo and you can learn about entire cli here : Documents/work/cli
+
+---
+
+lets pick back up and start thinking about what level 2 should look like..use entire checkpoints to learn about the repo and you can learn about entire cli here : Documents/work/cli
+
+---
+
+lets try it!
+
+---
+
+no need to run tests browser test. I'll run them. Also this idea sucks for level 2. let's go back to the drawing board. My issue is that it's too much to understand or consume. The goal is make this simple enough to grasp the idea of entire cli, and to have some kind of tension but we dont want to introduce way too many variables. In the first level we just collect and checkpoint things..we just to add another command for level 2 that will show the value.
+
+---
+
+dont make any changes yet. what is the point of the rewind if it's being used in this way?
+
+---
+
+i dont like the idea of using rewind. let's look at some other commands for ideas or even some skills..we have entire search, recap, resume, dispatch..that we can explore..dont implement anything
+
+---
+
+okay but what would we do that warrants needing a recap..so far level 1 we just collected 3 items.
+
+---
+
+maybe entire search would fit a little better..let's explore that
+
+---
+
+are you saying that ship asks for a specific thing..player types a keyword..the item lights up..and the player runs over and grabs it??
+
+---
+
+okay and for level 2..we can have multiple items in our checkpoint list that we didnt grab in level 1 . that's totally okay..just so we can have more options.
+
+---
+
+okay let's implement our idea for entire search and do not do any browser testing
+
+---
+
+i wrote in the word that I should search for..im confused on like how to actually find the iteem. dont make any changes just explain to me what's going on
+
+---
+
+so the story here is level 1..you land on a planet..you find all these things that fell out your ship..you grab them..and save them essentially with entire checkpoint..and then whats the story for level 2
+
+---
+
+meh ..it just feels like too much..lets take a step back and think about the day to day agentic workflow..problems people have and how entire solves it
+
+---
+
+umm dont make any changes..what about the idea of you get a drone..you have it upgrading stuff..somehow u might earn options to add more drones...fixing stuff in tandem..and then there's some reason why you need an explanation of what each drone did..and you will have to run entire checkpoint explain..idk what would be the reason..and how you would get to that end point..but like you need to explanation to complete the parts of the game..any ideas for refinement
+
+---
+
+uh its a little too complicated
+
+---
+
+no i want to be able to get the earning drones. like i can send out multiple..i just thought the parts of entire checkpoint explain were too complicated
+
+---
+
+i think this you start with okay you can send out a drone..you tell it to go to something..there's a countdown happening so you can send out as many drones as you want an assign them to different fixes/upgrades..when each one is done..you run over to it..and get an explanation of what was fixed ..once you get the explanation you get a button that it's safe to add to the ship and you press add to ship..u can make the choice to do one drone at a time or send out many drones..i also dont want to type out the checkpoint id when i do entire checkpoint explain
+
+---
+
+i like entire checkpoint list..unlimited drones..well like the number of drones available should be the number of elements we're going to have..how many elements will we do
+
+---
+
+what are they going to upgrade to? like what will the different ship systems upgrade to..for some i was thinking it could be like a bow turns into a sword type of thing
+
+---
+
+yes and execute
+
+---
+
+we need an overhead birds eye view option sometimes so i can navigate things easier
+
+---
+
+it doesnt stay in birds eye view when im doing entire checkpoint
+
+---
+
+i cannot find the gold beam at the end ..where am i supposed to be going..maybe theres a better place..lets brainstorm
+
+---
+
+yeah i like option 2 also i was curious if instead of entire checkpoint list..maybe we run entire dispatch?? thoughts
+
+---
+
+okay lets commit these changes and push ..i want a checkpoint to be attached to it
+
+---
+
+how would you summarize the two levels that we currently have
+
+---
+
+for level 2 does it teach delegate review accept..i feel like it's more showing you can have multiple agents working in parallel..see what work they did..and then get a summary in the end
+
+---
+
+commit now
+
+---
+
+now i need to think of level 3. ideally this would be our last level..we have lots of unused commands..entire search..entire review..entire recap..entire attach..idk what would make sense yet
+
+---
+
+oh we also have skills Documents/work/skills
+
+---
+
+eh
+
+---
+
+keep trying ideas with skills..maybe uncovering a mystery
+
+---
+
+i mean its a good story but far too many details..like think about this..github made a game called bug bash and all they do is literally have the user squash bugs..and pick up lifepoints that fall from the sky. simplicity
+
+---
+
+whats the game play
+
+---
+
+maybe this part could be more of a matching game???
+
+---
+
+its hard to match the symptom though like how would they know
+
+---
+
+yeah im just like that description though is where its hard..how would you know that the air scrubber is now a garden pod
+
+---
+
+For level 2..the drones should be referred to as subagents
+
+---
+
+any other naming ideas..dont change anything just yet
+
+---
+
+maybe we do that later..but my idea for using subagents ..is to make it clear that these are agents working in parallel or even sequentially whatever..and we get insight into their work

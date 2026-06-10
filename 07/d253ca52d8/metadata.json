@@ -31,6 +31,12 @@
       "transcript": "/07/d253ca52d8/3/full.jsonl",
       "content_hash": "/07/d253ca52d8/3/content_hash.txt",
       "prompt": "/07/d253ca52d8/3/prompt.txt"
+    },
+    {
+      "metadata": "/07/d253ca52d8/4/metadata.json",
+      "transcript": "/07/d253ca52d8/4/full.jsonl",
+      "content_hash": "/07/d253ca52d8/4/content_hash.txt",
+      "prompt": "/07/d253ca52d8/4/prompt.txt"
     }
   ],
   "token_usage": {
