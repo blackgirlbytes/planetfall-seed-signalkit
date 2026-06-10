@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { createPlanetView } from "./planetView.js";
 import { createIslandView } from "./islandView.js";
+import { createDroneBayView } from "./droneBayView.js";
+import { createArchiveView } from "./archiveView.js";
 
 const canvas = document.getElementById("scene");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -86,25 +88,52 @@ if (bgm && audioPanel && audioToggle && audioMute && audioVolume) {
   updateAudioUi();
 }
 
+const params = new URLSearchParams(location.search);
+const requestedView = params.get("view");
+const jumpToLevel2 = requestedView === "level2" || params.get("level") === "2";
+
 // ---------- views ----------
+// After Level 1's `entire checkpoint list`, the ship wakes its drone bay:
+// the orbit pin glitches and landing again enters Level 2 ("The Drone Bay").
+// The shelved search level ("The Archive") stays reachable at ?view=archive.
+let level1Done = jumpToLevel2;
+
 const planetView = createPlanetView(renderer, {
-  onIslandClick: () => switchTo(islandView),
+  onIslandClick: () => switchTo(level1Done ? droneBayView : islandView),
 });
 const islandView = createIslandView(renderer, {
   onExit: () => switchTo(planetView),
+  onComplete: () => { level1Done = true; },
+});
+const droneBayView = createDroneBayView(renderer, {
+  onExit: () => switchTo(planetView),
+});
+const archiveView = createArchiveView(renderer, {
+  onExit: () => switchTo(planetView),
 });
 
-// Default to the orbit view; ?view=island jumps straight onto the island
-// (handy for development — pointer-lock still needs a real click).
-let current = new URLSearchParams(location.search).get("view") === "island"
-  ? islandView : planetView;
+// Default to the orbit view; ?view=island jumps straight to Level 1,
+// ?view=level2 (or ?level=2) to Level 2, ?view=archive to the shelved
+// search level — handy for development.
+let current = requestedView === "island" ? islandView
+  : requestedView === "archive" ? archiveView
+  : jumpToLevel2 ? droneBayView : planetView;
 current.enter();
 
 // ---------- fade transition ----------
 const fade = document.getElementById("fade");
 const hint = document.getElementById("hint");
+const pin = document.getElementById("island-pin");
 let transitioning = false;
-hint.classList.toggle("hidden", current !== planetView);
+
+function refreshOrbitHud() {
+  hint.classList.toggle("hidden", current !== planetView);
+  hint.textContent = level1Done
+    ? "A new signal — the ship's drone bay just woke up. Click the pin to land"
+    : "Drag to orbit · Scroll to zoom · Click the pin to land";
+  pin?.classList.toggle("is-corrupted", level1Done);
+}
+refreshOrbitHud();
 
 function switchTo(view) {
   if (transitioning || view === current) return;
@@ -114,7 +143,7 @@ function switchTo(view) {
     current.exit();
     current = view;
     current.enter();
-    hint.classList.toggle("hidden", current !== planetView);
+    refreshOrbitHud();
     fade.classList.remove("show");
     transitioning = false;
   }, 650); // match #fade CSS transition
@@ -125,6 +154,8 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   planetView.resize();
   islandView.resize();
+  droneBayView.resize();
+  archiveView.resize();
 });
 
 // ---------- loop ----------

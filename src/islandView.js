@@ -1,7 +1,9 @@
 import * as THREE from "three";
 import { createTerrain } from "./terrain.js";
 import { createFirstPerson } from "./firstPerson.js";
+import { createOverhead } from "./overhead.js";
 import { FRAGMENTS, BUILDERS } from "./debris.js";
+import { makeBeamTexture, makeIceBlock, makeIdSprite, genCheckpointId } from "./memoryProps.js";
 
 // The walkable island level — LEVEL 1 ("First Memories").
 //
@@ -43,6 +45,7 @@ const PLACEMENTS = [
   { x: 28, z: 38 },
   { x: -30, z: 36 },
 ];
+const DEV_LEVEL2_CHECKPOINTS = ["31f0cafe4d12", "7e11a2b09c44", "b0a7ded51a6e"];
 
 // What the terminal asks for at each stage of a memory's recovery.
 const STEPS = {
@@ -65,79 +68,9 @@ function cmdMatches(input, accepts) {
   return accepts.some((a) => n === a || n.startsWith(a + " "));
 }
 
-function makeBeamTexture() {
-  const c = document.createElement("canvas");
-  c.width = 8; c.height = 128;
-  const ctx = c.getContext("2d");
-  const g = ctx.createLinearGradient(0, 0, 0, 128);
-  g.addColorStop(0, "rgba(255,210,122,0)");
-  g.addColorStop(1, "rgba(255,210,122,0.9)");
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, 8, 128);
-  const t = new THREE.CanvasTexture(c);
-  t.colorSpace = THREE.SRGBColorSpace;
-  return t;
-}
-
-// Translucent crystal that encases a memory once it's committed.
-function makeIceBlock() {
-  const geo = new THREE.IcosahedronGeometry(3.4, 0);
-  const mat = new THREE.MeshPhysicalMaterial({
-    color: 0xbfe9ff,
-    metalness: 0,
-    roughness: 0.06,
-    transmission: 0.5,
-    thickness: 2.6,
-    ior: 1.3,
-    transparent: true,
-    opacity: 0.62,
-    emissive: 0x0a2230,
-    emissiveIntensity: 0.35,
-    flatShading: true,
-  });
-  return new THREE.Mesh(geo, mat);
-}
-
-// Floating label above a frozen block — the commit trailer Entire stamps on:
-//   "Entire-Checkpoint: <12-char hash>" (dim key + bright hash).
-function makeIdSprite(id) {
-  const c = document.createElement("canvas");
-  c.width = 768; c.height = 64;
-  const ctx = c.getContext("2d");
-  ctx.font = "bold 28px ui-monospace, monospace";
-  ctx.textBaseline = "middle";
-  ctx.shadowColor = "rgba(111,227,255,0.9)";
-  ctx.shadowBlur = 14;
-
-  const key = "Entire-Checkpoint: ";
-  const keyW = ctx.measureText(key).width;
-  const idW = ctx.measureText(id).width;
-  let x = (c.width - (keyW + idW)) / 2;       // center the whole trailer
-  ctx.textAlign = "left";
-  ctx.fillStyle = "#8fc4dc";                    // dim trailer key
-  ctx.fillText(key, x, 34);
-  ctx.fillStyle = "#dff3ff";                    // bright hash
-  ctx.fillText(id, x + keyW, 34);
-
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  const spr = new THREE.Sprite(new THREE.SpriteMaterial({
-    map: tex, transparent: true, depthWrite: false, fog: false,
-  }));
-  spr.scale.set(30, 2.5, 1);                    // 12:1 canvas → keep text height
-  return spr;
-}
-
-// Entire checkpoints get a 12-character hex id (e.g. 711044b1fe29).
-function genCheckpointId() {
-  const hex = "0123456789abcdef";
-  let s = "";
-  for (let i = 0; i < 12; i++) s += hex[Math.floor(Math.random() * 16)];
-  return s;
-}
-
-export function createIslandView(renderer, { onExit } = {}) {
+export function createIslandView(renderer, { onExit, onComplete, devStartLevel = 1 } = {}) {
   const canvas = renderer.domElement;
+  const devLevel2 = devStartLevel === 2;
 
   // ---------- scene & sky ----------
   const scene = new THREE.Scene();
@@ -214,6 +147,17 @@ export function createIslandView(renderer, { onExit } = {}) {
   });
   scene.add(fp.controls.object);
 
+  // Bird's-eye map (M) — spot the memory beams from above, keep walking.
+  const overhead = createOverhead(scene, terrain, camera);
+  function setMap(on) {
+    if (overhead.on === on) return;
+    overhead.set(on);
+    fp.setAlwaysMove(on);                       // arrows work without pointer lock
+    scene.fog.near = on ? 500 : 90;             // don't fog the map out
+    scene.fog.far = on ? 1400 : 320;
+    crosshair?.classList.toggle("hidden", on || !fp.isLocked);
+  }
+
   // ---------- HUD elements ----------
   const promptEl = document.getElementById("fp-prompt");
   const controlsEl = document.getElementById("fp-controls");
@@ -241,6 +185,8 @@ export function createIslandView(renderer, { onExit } = {}) {
   const levelFail = document.getElementById("level-fail");
   const briefingEl = document.getElementById("briefing");
   const briefingStartBtn = document.getElementById("briefing-start");
+  const devLevelBadge = document.getElementById("dev-level-badge");
+  const fpShared = document.getElementById("fp-shared");
 
   let target = null;            // nearest memory in range
   let active = false;           // is this view being shown?
@@ -312,6 +258,7 @@ export function createIslandView(renderer, { onExit } = {}) {
     if (failed) return;
     failed = true;
     timerRunning = false;
+    setMap(false);
     closeTerminal(false);
     fp.detach();                  // freeze the player behind the fail screen
     // Un-banked memories always melt; if they ran out the clock on the final
@@ -346,6 +293,61 @@ export function createIslandView(renderer, { onExit } = {}) {
     timerRunning = true;
     updateClock();
     showTutorial("New attempt — bank all three memories before the clock hits zero.", 4500);
+  }
+
+  // Dev-only Level 2 entry point: pretend Level 1 has already been completed so
+  // the next level can be built/tested without replaying the timed tutorial.
+  function seedLevel2DevState() {
+    started = true;
+    failed = false;
+    timerRunning = false;
+    reviewMode = false;
+    listShown = true;
+    dismissedMemory = null;
+    levelFail?.classList.add("hidden");
+    briefingEl?.classList.add("hidden");
+    termEl?.classList.add("hidden");
+
+    artifacts.forEach((a, idx) => {
+      a.state = "checkpointed";
+      a.id = DEV_LEVEL2_CHECKPOINTS[idx % DEV_LEVEL2_CHECKPOINTS.length];
+      a.melting = false;
+      a.meltT = 0;
+      a.model.position.y = 1.4;
+      setModelOpacity(a.model, 1);
+
+      if (!a.ice) {
+        const ice = makeIceBlock();
+        ice.position.y = a.model.position.y + 0.6;
+        a.iceY = ice.position.y;
+        a.anchor.add(ice);
+        a.ice = ice;
+      }
+      a.ice.material.opacity = 0.62;
+      a.ice.material.emissive.setHex(0x2a6c8a);
+      a.ice.material.emissiveIntensity = 1.1;
+
+      if (!a.core) {
+        const core = new THREE.PointLight(0x8fe3ff, 6, 26, 2);
+        core.position.copy(a.ice.position);
+        a.anchor.add(core);
+        a.core = core;
+      }
+      if (!a.idSprite) {
+        const spr = makeIdSprite(a.id);
+        spr.position.y = a.iceY + 5;
+        a.anchor.add(spr);
+        a.idSprite = spr;
+      }
+
+      a.beam.visible = false;
+      a.glow.visible = false;
+    });
+
+    shipMeter?.classList.add("is-full");
+    setPower();
+    updateClock();
+    applyPanicSky();
   }
 
   // Landing briefing — the level is frozen (no clock, no movement) until START.
@@ -425,6 +427,10 @@ export function createIslandView(renderer, { onExit } = {}) {
           </span>
         </span>
       ` : ""}
+      <span class="control-item">
+        <span class="control-label">Bird's-eye view</span>
+        <span class="key">M</span>
+      </span>
       <span class="control-item">
         <span class="control-label">Return to orbit</span>
         <span class="key">B</span>
@@ -537,6 +543,7 @@ export function createIslandView(renderer, { onExit } = {}) {
     flashTerminal(`${artifacts.length} checkpoints linked · ship memory restored`, true);
     showTutorial("Memory restored — the ship knows the way home. Press Esc to close the terminal, then B to return to orbit.", 0);
     renderTerminal();
+    onComplete?.();                  // Level 1 cleared — unlocks Level 2 in orbit
   }
 
   // ---------- state transitions ----------
@@ -650,6 +657,7 @@ export function createIslandView(renderer, { onExit } = {}) {
     }
 
     // Walking around (terminal closed).
+    if (e.code === "KeyM") { setMap(!overhead.on); e.preventDefault(); return; }
     if (e.code === "Escape" && fp.isLocked) fp.unlock();
     if (e.code === "KeyB") onExit?.();
   }
@@ -666,6 +674,11 @@ export function createIslandView(renderer, { onExit } = {}) {
     }
     setControls(fp.isLocked);
     hideActionBar();
+    if (overhead.on) { setPrompt("Bird's-eye view — ↑↓←→ to move · M to return"); return; }
+    if (devLevel2) {
+      setPrompt(fp.isLocked ? "Level 2 dev start — press B to return to orbit" : "Click to look around");
+      return;
+    }
     if (!fp.isLocked) { setPrompt("Click to look around"); return; }
     if (listShown) { setPrompt("Memory restored — press B to return to orbit"); return; }
     setPrompt("Find the surfacing memory");
@@ -695,7 +708,7 @@ export function createIslandView(renderer, { onExit } = {}) {
 
     // Auto open/close the ship's terminal as you reach a memory.
     // (In review mode the terminal is driven manually, so leave it alone.)
-    if (active && started && !reviewMode && !failed) {
+    if (active && started && !reviewMode && !failed && !devLevel2) {
       if (dismissedMemory && target !== dismissedMemory) dismissedMemory = null;
       const canOpen = target && target.state !== "checkpointed" && target !== dismissedMemory;
       if (canOpen && !terminalOpen) openTerminal(target);
@@ -734,6 +747,7 @@ export function createIslandView(renderer, { onExit } = {}) {
       a.glow.visible = lit;
     }
 
+    overhead.update(t);
     if (terminalOpen) renderTerminal(); // reflect fade-driven state changes
     if (active) refreshHud();
   }
@@ -746,10 +760,17 @@ export function createIslandView(renderer, { onExit } = {}) {
     canvas.addEventListener("click", onCanvasClick);
     window.addEventListener("keydown", onKeyDown);
     islandHud?.classList.remove("hidden");
+    islandHud?.classList.toggle("is-level2-dev", devLevel2);
+    devLevelBadge?.classList.toggle("hidden", !devLevel2);
+    fpShared?.classList.remove("hidden");
     setControls(false);
     crosshair?.classList.add("hidden");
     setPower();
-    if (!started) {                 // fresh landing — read the briefing, then START
+    if (devLevel2) {
+      seedLevel2DevState();
+      fp.attach();
+      showTutorial("Level 2 dev mode — Level 1 checkpoints are preloaded.", 0);
+    } else if (!started) {          // fresh landing — read the briefing, then START
       showBriefing();
     } else if (listShown) {         // truly done — the list has been run
       fp.attach();
@@ -773,6 +794,7 @@ export function createIslandView(renderer, { onExit } = {}) {
   function exit() {
     active = false;
     timerRunning = false;           // pause the clock while in orbit
+    setMap(false);
     closeTerminal(false);
     fp.unlock();
     fp.detach();
@@ -787,12 +809,20 @@ export function createIslandView(renderer, { onExit } = {}) {
     levelFail?.classList.add("hidden");
     briefingEl?.classList.add("hidden");
     islandHud?.classList.add("hidden");
+    islandHud?.classList.remove("is-level2-dev");
+    devLevelBadge?.classList.add("hidden");
+    fpShared?.classList.add("hidden");
     crosshair?.classList.add("hidden");
   }
   function resize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+    overhead.resize();
   }
 
-  return { scene, camera, update, enter, exit, resize };
+  return {
+    scene,
+    get camera() { return overhead.on ? overhead.camera : camera; },
+    update, enter, exit, resize,
+  };
 }

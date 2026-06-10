@@ -1,6 +1,6 @@
 # Planetfall — Plan & Status
 
-_Last updated: 2026-06-05_
+_Last updated: 2026-06-10_
 
 ## The pitch
 
@@ -186,6 +186,189 @@ The make-it-click beats, taught via the countdown + the meter:
 Juggling multiple memories / tighter timers; the "go back / reapply a checkpoint"
 payoff; recap / activity / dispatch; win/lose beyond the power meter.
 
+## Level 2 design — "The Drone Bay" (agreed 2026-06-10, built 2026-06-10)
+
+**Design rule (user, 2026-06-09): one new command per level, and it must
+visibly show the value of checkpoints.** Level 2's command is
+**`entire checkpoint explain`**. Nothing else is new.
+
+After playtesting the built Archive level (below), Rizel stepped back to first
+principles: ground each level in the day-to-day agentic workflow. The daily
+arc is **delegate → review → accept**, and the game had no agent in it. So
+Level 2 puts the player on the review side of delegation — the one part of
+the loop only the human does.
+
+### The fiction
+The ship is broken into **5 systems**, each a damaged work site scattered
+across the island: ignition coils, nav core, long-range antenna, life support
+scrubbers, landing struts. The ship gives you a **drone bay with 5 drones**
+(one per job — no economy, no earning). Drones fix things fast, but the ship
+won't power up work nobody can account for.
+
+### The loop (one countdown for the whole level)
+1. **Assign**: walk to a broken site, press E → a drone flies out and works
+   on it (visible work beam / sparks). You're free immediately.
+2. **Player's choice**: babysit one drone at a time, or sprint site-to-site
+   launching the whole fleet. Nothing forces parallelism — the clock makes it
+   the obviously rational move (same principle as search: the tool isn't a
+   gate, it's the rational choice). Five beams running at once while you do
+   nothing is the level's money shot.
+3. **Drone finishes** → the site seals under a checkpoint id. You weren't
+   there; you don't know what it did.
+4. **Review**: walk up to a finished site → the terminal opens **pre-filled**
+   with `entire checkpoint explain <id>` — press Enter (no typing ids; you
+   still SEE that real explain takes an id). A story card shows what was
+   actually done: "replaced coolant pump · 3 attempts · 2 parts scavenged".
+5. **Accept**: an **ADD TO SHIP** confirm appears (Y, matching L1's confirm
+   beat) → that system comes online, ship meter +20%.
+6. **Finish line**: the FIFTH accept keeps the terminal open — the next
+   command happens at the prompt you're already at, like the real CLI. Type
+   `entire dispatch` ("generate a dispatch summarizing recent agent work" —
+   five drones just worked; the report writes itself from the checkpoints).
+   `entire checkpoint list` still works there as an optional L1 callback and
+   nudges you to dispatch. (Changed 2026-06-10 from "walk back to the console
+   and run `list`" — Rizel couldn't find the console at the end; a final
+   fetch-quest was friction, not tension, and dispatch is the truer end-of-day
+   command. If the player wanders off, any online system or the bay console
+   reopens the report prompt.)
+
+Fail = clock hits 0:00 before all five are accepted → R to retry.
+
+### Deliberately NOT in Level 2
+No bad/botched drone work (no deduction, nothing to compare — explain is the
+gate to the ADD TO SHIP button, not a puzzle), no drone management or upgrade
+mechanics (more drones = parallelism, never new mechanics), no typing
+checkpoint ids, no values to extract from explanations. The "one drone did it
+wrong — find it" twist is reserved as a possible later level once this loop
+is proven.
+
+### The upgrade table (drones don't repair — they IMPROVISE)
+The transformation is what makes you *need* the explanation: you left a bent
+dish, you come back to a lance pointed at the sky — "what did you DO?" is the
+urge `explain` exists to satisfy.
+
+| System (broken) | Becomes | Explain card flavor |
+|---|---|---|
+| Ignition coils (charred leaning stack) | **Plasma Ring** — floating gold torus | "coils beyond saving — rebuilt as a plasma ring from salvaged hull plate · 2 attempts" |
+| Nav core (cracked dark gyro) | **Star Dome** — projected starfield + orbiting ring | "core unrecoverable — remapped from scratch; starfield calibrated to the lavender belt" |
+| Long-range antenna (dish face-down in the dirt) | **Signal Spire** — lance firing a beam to orbit | "dish unsalvageable — respun the mast into a spire · 3 attempts · the first two fell over" |
+| Life support scrubbers (rusty vent box) | **Garden Pod** — glass dome, glowing plants | "filters dead — replaced with a living filter; two vines scavenged from the crash" |
+| Landing struts (collapsed leg) | **Grav Skid** — hover pad bobbing over a glow ring | "strut seized solid — swapped for grav skids; technically the ship floats now" |
+
+Visual grammar (status readable from across the island via beam color):
+amber beam = broken (blinking red warn bulb up close) → cyan pulsing beam +
+hovering drone + work beam = drone at work → ice-blue beam + L1-style ice
+seal + floating checkpoint id = finished, review me → no beam = accepted
+(the upgrade itself is the landmark; ice melts, animations wake up).
+
+### The teaching, felt not told
+Delegation is cheap and parallel; review is the human bottleneck — and every
+checkpoint carries the story of work you didn't watch. Arc: L1 — bank it.
+L2 — delegate & review it, then dispatch the day (explain is the level's one
+taught mechanic; dispatch is a ceremonial closer with nothing to learn, the
+same role `list` played in L1). Search/rewind/recap reserved for later
+levels, by which point the checkpoint history will have grown naturally.
+
+### Implementation (2026-06-10)
+Lives in `src/droneBayView.js`; HUD block `#db-hud` in `index.html`; styles
+share L1's countdown/briefing/fail selectors. The shelved Archive level stays
+fully playable at `?view=archive`; `?view=level2` / `?level=2` and the
+post-L1 glitching pin now route to the Drone Bay. Specifics:
+- 5 sites + 5 parked drones by the console (bay row at z=50, heights
+  node-verified). Drones arc to the site (~26 u/s), hover-orbit while
+  working (`WORK_TIME` 18s), then fly home. Work continues while the player
+  is elsewhere — that's the point.
+- One 150s clock (`TOTAL_TIME`); serial play (~35s/system × 5) can't beat it,
+  the fleet can. Same panic-sky as L1.
+- Fleet status panel (top-left): BROKEN / DRONE AT WORK / READY TO REVIEW /
+  ONLINE per system.
+- Review terminal auto-opens at a sealed site, pre-filled with
+  `entire checkpoint explain <id>` — Enter runs it (no id typing), card rows
+  print, then a green **ADD TO SHIP** button (clickable; Y also works).
+- Finish line: the fifth accept rolls the same terminal into report mode;
+  typed `entire dispatch` prints the day report (5 upgrades, "crew: 1 human,
+  5 drones"), then the win screen. `entire checkpoint list` optional there.
+- Fail at 0:00 → R resets everything (sites, drones, clock).
+- Bird's-eye map (M, `src/overhead.js`) on all island levels — top-down
+  camera + you-are-here arrow, walking still works, terminals open over it.
+
+## Level ? design — "The Archive" (built 2026-06-09, SHELVED for a later level)
+
+Built as Level 2, then shelved 2026-06-10 after a playtest: the story carried
+too much weight ("meh, it just feels like too much") and search is a
+weeks-later pain, not a day-to-day one. The implementation is kept intact in
+`src/archiveView.js`, playable at `?view=archive` — it should return as a
+later search level, by which point the player's checkpoint history (incl.
+drone work) will have grown enough that search needs no lore-dump. Its
+command was **`entire checkpoint search`**.
+
+Rejected on the way here (kept for the record so we don't re-tread):
+- An elaborate "corruption" level teaching search + explain + rewind with
+  clue-hunting, decoy checkpoints, and a spreading corruption zone — **too many
+  variables to consume at once**.
+- `rewind` as the L2 command — in the simple framings it kept mis-modeling the
+  tool (reading as "restore from backup" when real rewind means "take my
+  *current* state back to a save point; the bank itself is never at risk").
+- `recap` — L1's three collected items don't warrant a recap; manufacturing the
+  need (more items, mixed states, a blackout) was creeping back toward
+  variable-overload.
+
+### The fiction
+Level 1's win restored the ship's memory — side effect: the ship's **entire
+pre-crash checkpoint archive surfaces**. The island is now dotted with ~20
+identical dark frozen memories (ice blocks, no beams, unreadable from a
+distance). Most were never grabbed by the player — the corpus is deliberately
+**bigger than your head**, because that's the situation search exists for.
+The player's 3 L1 checkpoints can appear in the archive as a continuity touch.
+
+### The loop (×3, one countdown clock for tension)
+1. **The ship asks** for a memory in a plain sentence that contains the
+   keyword: *"I need the memory of the **ignition sequence**."* (No clue
+   hunting — the search word is right there in the request.)
+2. **Player types** `entire checkpoint search "ignition"` at the terminal.
+3. **The matching block's beam lights up** across the island — the money shot:
+   a dark field, one typed word, one light. (In L1 the game lit the beams for
+   you; in L2 nothing lights until YOU search.)
+4. **Sprint over, press E** → memory transmits to the ship, power meter
+   climbs, next request.
+
+Wrong/misspelled word → 0 results, no penalty except the ticking clock (which
+is exactly the real-world cost of bad search terms). Searching by walking the
+field and inspecting blocks one-by-one stays *possible* but ruinously slow —
+the tool isn't a gate, it's the obviously rational move.
+
+The teaching, felt not told: **your history quickly outgrows your memory;
+you remember a *word*, not a place — search turns the word into the moment.**
+Arc so far: L1 — bank it. L2 — search it. (recap / dispatch / resume / rewind
+reserved for later levels.)
+
+### Deliberately NOT in Level 2
+No clue collection, no decoy results, no timestamps, no `explain`, no rewind
+browser, no new artifact states. The ~20 archive blocks are set dressing, not
+state to track. Retrieval is a plain E-grab — the level's typing effort lives
+in the search command itself (leaning: keep it that simple rather than rerun
+L1's add/commit beat per item; revisit after a playtest).
+
+### Implementation (2026-06-09)
+Lives in `src/archiveView.js` (the abandoned corruption level was stripped;
+kept from that work: `src/memoryProps.js`, the `onComplete` hook in
+`islandView.js`, the `#fp-shared` HUD split, the glitching-pin entry after L1
+completes, and the `?view=level2` / `?level=2` dev shortcuts). Specifics:
+- **21 archive blocks** (3 targets + 15 old-crew checkpoints + the 3 L1
+  recoveries with the dev-scaffold ids), scattered deterministically on dry
+  land (seeded RNG, min spacing, never in the sea or on the console).
+- Blocks are dark and anonymous; an id sprite appears only when lit, grabbed,
+  or walked up close (~18u) — browsing on foot stays possible but slow.
+- The ship's request panel (top-left, under the clock) holds the keyword in a
+  plain sentence. Terminal (gold beam, auto-opens like L1) accepts
+  `entire checkpoint search "<word>"` and `entire checkpoint list` (prints all
+  21 — "too many to read" — the why-search-exists beat).
+- Search lights every match's cyan beam (previous search goes dark); E on the
+  requested block transmits it (warm gold); E on a lit-but-wrong block costs
+  only the re-read. 0 results cost only clock.
+- One 90s countdown (tunable `TOTAL_TIME`), same panic-sky as L1, fail = R to
+  retry, win = "ARCHIVE LINKED" + B to orbit.
+
 ## Architecture / where things live
 
 ```
@@ -196,8 +379,16 @@ src/main.js        # VIEW MANAGER: owns renderer + resize + shared panel + the
                    #   ?view=island jumps straight onto the island (dev aid).
 src/planetView.js  # orbit view: scene/lighting/stars/planet/clouds/atmo/ring +
                    #   the clickable gold landing hotspot. onIslandClick callback.
-src/islandView.js  # island level: sky/light, terrain+water, the artifacts, the
-                   #   proximity "press E" interaction. enter()/exit()/onExit.
+src/islandView.js  # LEVEL 1: sky/light, terrain+water, the memories, terminal
+                   #   loop, countdown. enter()/exit()/onExit/onComplete.
+src/droneBayView.js# LEVEL 2 ("The Drone Bay"): 5 broken systems, 5 drones,
+                   #   pre-filled `entire checkpoint explain` + ADD TO SHIP.
+src/archiveView.js # SHELVED search level ("The Archive"), at ?view=archive:
+                   #   ~21 dark blocks, ship requests, checkpoint search beat.
+src/memoryProps.js # shared props: beam texture, ice block, id sprite, id gen
+src/overhead.js    # bird's-eye map toggle (M) for all island levels: fixed
+                   #   top-down camera + gold you-are-here arrow; walking
+                   #   still works while overhead (fp alwaysMove flag)
 src/terrain.js     # procedural island heightmap mesh + water + heightAt(x,z)
 src/firstPerson.js # PointerLockControls + WASD walker, glued to the terrain
 src/noise.js       # seedable 3D simplex + fBm (sphere-sampled → seamless)

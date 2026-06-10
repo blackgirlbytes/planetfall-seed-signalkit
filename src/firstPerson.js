@@ -34,8 +34,11 @@ export function createFirstPerson(camera, domElement, {
     camera.position.set(x, heightAt(x, z) + eyeHeight, z);
   }
 
+  // The bird's-eye map lets you keep walking without pointer lock.
+  let alwaysMove = false;
+
   function update(dt) {
-    if (controls.isLocked) {
+    if (controls.isLocked || alwaysMove) {
       const d = speed * dt;
       // Forward/back and strafe are horizontal; height is re-applied below.
       if (keys.f) controls.moveForward(d);
@@ -75,5 +78,6 @@ export function createFirstPerson(camera, domElement, {
     lock: () => controls.lock(),
     unlock: () => controls.unlock(),
     get isLocked() { return controls.isLocked; },
+    setAlwaysMove(v) { alwaysMove = v; },
   };
 }
