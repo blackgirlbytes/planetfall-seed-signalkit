@@ -298,6 +298,89 @@ post-L1 glitching pin now route to the Drone Bay. Specifics:
 - Bird's-eye map (M, `src/overhead.js`) on all island levels — top-down
   camera + you-are-here arrow, walking still works, terminals open over it.
 
+## Level 3 design — "Launch Clearance" (agreed 2026-06-10, NOT built — name TBD)
+
+The final level. Designed across two sessions on 2026-06-10 (the morning
+session's "anomaly squashing" draft evolved into this; rejected on the way:
+"The Other Ship" dead-crew mystery — "good story but far too many details",
+raw search box-checking — "eh", and symptom-matching — "how would they know").
+Simplicity bar (Rizel): GitHub's Bug Bash — "all they do is squash bugs and
+pick up lifepoints. simplicity."
+
+**The aha to deliver** (modeled on a real moment: Claude answered "what were
+the level 3 plans?" from this repo's own checkpoint transcripts): you're asked
+a question you provably can't answer from memory, and the record answers it.
+L2 already manufactured the situation — the subagents worked while you weren't
+watching. **Arc: L1 — bank your work. L2 — subagents work while you don't
+watch. L3 — someone asks about that work; you weren't there, the record was.**
+
+### The fiction
+The ship is repaired — now it has to fly. The player is **inside the ship,
+in the pilot's chair** (first time aboard; alone signals "finale"). The launch
+computer won't arm on work nobody can account for — the same rule the ship
+enforced in L2, escalated to takeoff. The questioner is the **ship's AI: the
+amnesiac from Level 1**, verifying against the memory the player banked for
+it. First scene and last scene are the same character, before and after.
+Briefing line (approved verbatim, keep it):
+
+> "I can read the record. Protocol says you have to be the one to confirm it."
+
+### The loop (whole level at one console — no walking)
+~5 questions under one clock, constant shape, two clicks each:
+1. A question appears in plain words — answerable **only from the record**:
+   "The antenna repair — how many attempts did it take?"
+2. The terminal offers **~3 tools as multiple choice** (click / number key) —
+   e.g. `entire checkpoint explain <id>` / Skill: *what-happened* /
+   `entire dispatch`.
+3. It runs **visibly**, answering in that tool's voice: raw command → the full
+   record card; a skill → visibly runs the command, then one plain sentence
+   (the skills pitch, demonstrated not explained).
+4. **Answer chips** ([2] [3] [5]) — the answer is on screen in the output.
+   Zero typing, zero keyword guessing, zero memory.
+5. Correct → a **launch-code segment locks** (▣ ▣ □ □ □), the system audibly
+   arms in the cabin, the matching upgrade flares out on the island. Wrong →
+   the card stays up, the clock keeps eating, click again.
+6. 5/5 → code complete → countdown → **liftoff = the game's ending** (planet
+   falls away, the labeled upgrades shrinking below). Win screen carries
+   `npx skills add https://github.com/entireio/skills`.
+
+Fail = launch window missed at 0:00 → R to retry.
+
+### Tool-menu rules (Rizel's locked preferences)
+- **Mostly ALL VALID, occasional dead end.** Usually 2 of 3 options genuinely
+  answer it in different voices; one is a polite dead end that prints
+  real-but-unhelpful output and costs only clock seconds (e.g. picking
+  `explain` when you don't know *which* checkpoint — the fizzle teaches the
+  search-vs-explain boundary). Never a fail state at the menu.
+- **Menus ROTATE by question type** (never the same trio twice): what
+  happened at one site → `explain` / Skill: *what-happened*; don't-know-where
+  → `search` (the keyword comes from the question, never guessed — redeems
+  the shelved Archive); order/when → `list` / `activity`; handoff flavor →
+  Skill: *session-handoff* / *teach*; finale → `dispatch` (ceremonial closer,
+  maybe no menu at all).
+- **Small cast:** ~2–3 skills + 3–4 commands across the whole level — "we
+  dont have to use every skill"; 11 skills would be a product tour.
+- Possible easing: auto-run the tool on Q1–2, introduce the menu on Q3–5.
+
+### Deliberately NOT in Level 3
+No typed search words, no free-text answers, no remembering things seen once
+(every answer is on screen at the moment of choice), no fault-finding/blame
+mechanic, no new mechanics past the two-click beat. Skills repo lives at
+`~/Documents/work/skills` (11 skills) — only a few appear.
+
+### Open knobs (decide at build/playtest)
+- Level name ("Launch Clearance" is a placeholder).
+- Question count (~5) and which question types make the cut.
+- The "discrepancy" question — one answer that surprises the player (grav
+  skids: "torque spec: vibes") — safe cousin of the reserved "one drone did
+  it wrong" twist. In or out?
+- Trade-off to playtest: this is the least game-bodied level (terminal +
+  cabin, island as backdrop) — fits the operator→delegator graduation, but
+  compare against a variant with one short walk per question if it feels flat
+  after the Drone Bay.
+- How the cabin/console is staged in 3D (new interior view vs. dressed-up
+  terminal overlay).
+
 ## Level ? design — "The Archive" (built 2026-06-09, SHELVED for a later level)
 
 Built as Level 2, then shelved 2026-06-10 after a playtest: the story carried
