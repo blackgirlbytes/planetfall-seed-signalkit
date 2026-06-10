@@ -1,0 +1,302 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "b7dd9d7616ea",
+  "session_id": "d43002f0-2256-4a4e-8abe-ae97243b5906",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-10T06:12:02.149203Z",
+  "branch": "main",
+  "checkpoints_count": 23,
+  "files_touched": [
+    "PLAN.md",
+    "index.html",
+    "src/archiveView.js",
+    "src/droneBayView.js",
+    "src/firstPerson.js",
+    "src/islandView.js",
+    "src/main.js",
+    "src/memoryProps.js",
+    "src/overhead.js",
+    "src/style.css"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5[1m]",
+  "turn_id": "b513216bc134",
+  "token_usage": {
+    "input_tokens": 21564,
+    "cache_creation_tokens": 1085341,
+    "cache_read_tokens": 22254534,
+    "output_tokens": 255999,
+    "api_call_count": 133
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01Q7zMsrBg4zKLSB5qdLxCdr",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "verify"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "b513216bc134",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 268,
+        "end": 269,
+        "entry_ids": [
+          "60e73280-abc9-4af8-9605-d72d2094f7ca"
+        ],
+        "tool_use_id": "toolu_01Q7zMsrBg4zKLSB5qdLxCdr"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01Q7zMsrBg4zKLSB5qdLxCdr"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: verify",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 23
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-10T06:12:02.105005Z",
+    "agent_lines": 1654,
+    "agent_removed": 18,
+    "human_added": 1024,
+    "human_modified": 109,
+    "human_removed": 0,
+    "total_committed": 2787,
+    "total_lines_changed": 2805,
+    "agent_percentage": 59.6078431372549,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 184,
+      "user_lines_removed": 20,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        "README.md": 97
+      },
+      "user_removed_per_file": {
+        "README.md": 20
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 1632,
+      "user_lines_removed": 111,
+      "agent_lines_added": 184,
+      "agent_lines_removed": 20,
+      "user_added_per_file": {
+        "README.md": 3,
+        "index.html": 117,
+        "src/corruptionView.js": 1028,
+        "src/islandView.js": 78,
+        "src/main.js": 30,
+        "src/memoryProps.js": 76,
+        "src/style.css": 300
+      },
+      "user_removed_per_file": {
+        "README.md": 2,
+        "index.html": 22,
+        "src/islandView.js": 74,
+        "src/main.js": 7,
+        "src/style.css": 6
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 1104,
+      "user_lines_removed": 0,
+      "agent_lines_added": 710,
+      "agent_lines_removed": 129,
+      "user_added_per_file": {
+        "src/corruptionView.js": 1028,
+        "src/memoryProps.js": 76
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 1104,
+      "user_lines_removed": 0,
+      "agent_lines_added": 710,
+      "agent_lines_removed": 129,
+      "user_added_per_file": {
+        "src/corruptionView.js": 1028,
+        "src/memoryProps.js": 76
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 1104,
+      "user_lines_removed": 0,
+      "agent_lines_added": 710,
+      "agent_lines_removed": 129,
+      "user_added_per_file": {
+        "src/corruptionView.js": 1028,
+        "src/memoryProps.js": 76
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 1104,
+      "user_lines_removed": 0,
+      "agent_lines_added": 710,
+      "agent_lines_removed": 129,
+      "user_added_per_file": {
+        "src/corruptionView.js": 1028,
+        "src/memoryProps.js": 76
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 1104,
+      "user_lines_removed": 0,
+      "agent_lines_added": 710,
+      "agent_lines_removed": 129,
+      "user_added_per_file": {
+        "src/corruptionView.js": 1028,
+        "src/memoryProps.js": 76
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 1104,
+      "user_lines_removed": 0,
+      "agent_lines_added": 710,
+      "agent_lines_removed": 129,
+      "user_added_per_file": {
+        "src/corruptionView.js": 1028,
+        "src/memoryProps.js": 76
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 1104,
+      "user_lines_removed": 0,
+      "agent_lines_added": 773,
+      "agent_lines_removed": 130,
+      "user_added_per_file": {
+        "src/corruptionView.js": 1028,
+        "src/memoryProps.js": 76
+      }
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 11,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 12,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 13,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 14,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 15,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 16,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 17,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1486,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 18,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1546,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 19,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 1546,
+      "agent_lines_removed": 144
+    },
+    {
+      "checkpoint_number": 20,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2877,
+      "agent_lines_removed": 145
+    },
+    {
+      "checkpoint_number": 21,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 3037,
+      "agent_lines_removed": 147
+    },
+    {
+      "checkpoint_number": 22,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 3034,
+      "agent_lines_removed": 147
+    },
+    {
+      "checkpoint_number": 23,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 3034,
+      "agent_lines_removed": 147
+    },
+    {
+      "checkpoint_number": 24,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 3081,
+      "agent_lines_removed": 147
+    }
+  ]
+}
