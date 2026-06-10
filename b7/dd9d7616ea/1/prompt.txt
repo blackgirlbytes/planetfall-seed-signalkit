@@ -1,0 +1,55 @@
+lets pick back up and start thinking about what level 2 should look like..use entire checkpoints to learn about the repo and you can learn about entire cli here : Documents/work/cli
+
+---
+
+can you add a developer mode where i can just skip to the second level ?
+
+---
+
+why are they going to run entire checkpoint explain in the flow? whats the point of that
+
+---
+
+how does the player know when a memory is corrupted
+
+---
+
+i just feel like it's kinda confusing how did it even get corrupted. i dont like the idea of using rewind. let's look at some other commands for ideas or even some skills..we have entire search, recap, resume, dispatch..that we can explore..dont implement anything
+
+---
+
+what does that mean here..how does that fit into the story. it's okay if we do use this..i just want a better understanding
+
+---
+
+maybe we can use entire checkpoint explain and entire search in some way ..maybe the user gets a mission or something for each of the items..and then uses explain and search..but we need to keep it simple..where it's not intuiting that the player knows something..everything should be explicit. ideas for flow?
+
+---
+
+separate question..any ideas around upgrading the items or some kind of relationship between them
+
+---
+
+give me what the flow would look like step by step
+
+---
+
+when i said upgrades..i meant like bow to sword type of upgrade
+
+---
+
+umm dont make any changes..what about the idea of you get a drone..you have it upgrading stuff..somehow u might earn options to add more drones...fixing stuff in tandem..and then there's some reason why you need an explanation of what each drone did..and you will have to run entire checkpoint explain..idk what would be the reason..and how you would get to that end point..but like you need to explanation to complete the parts of the game..any ideas for refinement
+
+---
+
+but whats the goal if they do entire checkpoint explain..just to get an explanation?
+
+---
+
+what do you think
+
+i think this you start with okay you can send out a drone..you tell it to go to something..there's a countdown happening so you can send out as many drones as you want an assign them to different fixes/upgrades..when each one is done..you run over to it..and get an explanation of what was fixed ..once you get the explanation you get a button that it's safe to add to the ship and you press add to ship..u can make the choice to do one drone at a time or send out many drones..i also dont want to type out the checkpoint id when i do entire checkpoint explain
+
+---
+
+take a look at how the project has evolved now
