@@ -3,6 +3,7 @@ import { createPlanetView } from "./planetView.js";
 import { createIslandView } from "./islandView.js";
 import { createDroneBayView } from "./droneBayView.js";
 import { createArchiveView } from "./archiveView.js";
+import { createLaunchView } from "./launchView.js";
 
 const canvas = document.getElementById("scene");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -91,15 +92,21 @@ if (bgm && audioPanel && audioToggle && audioMute && audioVolume) {
 const params = new URLSearchParams(location.search);
 const requestedView = params.get("view");
 const jumpToLevel2 = requestedView === "level2" || params.get("level") === "2";
+const jumpToLevel3 = requestedView === "level3" || params.get("level") === "3";
 
 // ---------- views ----------
 // After Level 1's `entire checkpoint list`, the ship wakes its drone bay:
 // the orbit pin glitches and landing again enters Level 2 ("The Drone Bay").
+// After Level 2's `entire dispatch`, the launch window opens: landing again
+// enters Level 3 ("Launch Clearance") — the finale.
 // The shelved search level ("The Archive") stays reachable at ?view=archive.
-let level1Done = jumpToLevel2;
+let level1Done = jumpToLevel2 || jumpToLevel3;
+let level2Done = jumpToLevel3;
 
 const planetView = createPlanetView(renderer, {
-  onIslandClick: () => switchTo(level1Done ? droneBayView : islandView),
+  onIslandClick: () => switchTo(
+    level2Done ? launchView : level1Done ? droneBayView : islandView
+  ),
 });
 const islandView = createIslandView(renderer, {
   onExit: () => switchTo(planetView),
@@ -107,16 +114,21 @@ const islandView = createIslandView(renderer, {
 });
 const droneBayView = createDroneBayView(renderer, {
   onExit: () => switchTo(planetView),
+  onComplete: () => { level2Done = true; },
 });
 const archiveView = createArchiveView(renderer, {
   onExit: () => switchTo(planetView),
 });
+const launchView = createLaunchView(renderer, {
+  onExit: () => switchTo(planetView),
+});
 
 // Default to the orbit view; ?view=island jumps straight to Level 1,
-// ?view=level2 (or ?level=2) to Level 2, ?view=archive to the shelved
-// search level — handy for development.
+// ?view=level2 (or ?level=2) to Level 2, ?view=level3 (or ?level=3) to the
+// finale, ?view=archive to the shelved search level — handy for development.
 let current = requestedView === "island" ? islandView
   : requestedView === "archive" ? archiveView
+  : jumpToLevel3 ? launchView
   : jumpToLevel2 ? droneBayView : planetView;
 current.enter();
 
@@ -128,10 +140,12 @@ let transitioning = false;
 
 function refreshOrbitHud() {
   hint.classList.toggle("hidden", current !== planetView);
-  hint.textContent = level1Done
+  hint.textContent = level2Done
+    ? "The launch window is open — the ship is asking for you. Click the pin to board"
+    : level1Done
     ? "A new signal — the ship's drone bay just woke up. Click the pin to land"
     : "Drag to orbit · Scroll to zoom · Click the pin to land";
-  pin?.classList.toggle("is-corrupted", level1Done);
+  pin?.classList.toggle("is-corrupted", level1Done && !level2Done);
 }
 refreshOrbitHud();
 
@@ -156,6 +170,7 @@ window.addEventListener("resize", () => {
   islandView.resize();
   droneBayView.resize();
   archiveView.resize();
+  launchView.resize();
 });
 
 // ---------- loop ----------

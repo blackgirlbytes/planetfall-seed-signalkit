@@ -298,7 +298,7 @@ post-L1 glitching pin now route to the Drone Bay. Specifics:
 - Bird's-eye map (M, `src/overhead.js`) on all island levels — top-down
   camera + you-are-here arrow, walking still works, terminals open over it.
 
-## Level 3 design — "Launch Clearance" (agreed 2026-06-10, NOT built — name TBD)
+## Level 3 design — "Launch Clearance" (agreed + built 2026-06-10 — name TBD, pending playtest)
 
 The final level. Designed across two sessions on 2026-06-10 (the morning
 session's "anomaly squashing" draft evolved into this; rejected on the way:
@@ -380,6 +380,28 @@ mechanic, no new mechanics past the two-click beat. Skills repo lives at
   after the Drone Bay.
 - How the cabin/console is staged in 3D (new interior view vs. dressed-up
   terminal overlay).
+
+### Implementation (2026-06-10)
+Lives in `src/launchView.js`; HUD block `#lc-hud` in `index.html`; styles
+share the countdown/briefing/win/fail selector groups. `?view=level3` /
+`?level=3` dev shortcut; L2's `entire dispatch` (onComplete) opens the launch
+window — the orbit pin then boards the ship. Build decisions on the knobs:
+- **Staging:** fixed cockpit rig above the bay (eye height 19, node-verified
+  sightlines to all five upgrades), simple slab window frame + glowing dash
+  glued to the camera, idle sway. The L2 upgrades stand on the island, alive
+  (exported `SYSTEMS` + `UPGRADE_BUILDERS` from droneBayView).
+- **5 questions:** antenna attempts (explain / what-happened / dispatch dead
+  end), hull plate (search / recall / explain dead end), record count (list /
+  recall / search dead end), why-the-ship-floats — the discrepancy question
+  IS in (explain / what-happened / list dead end), then `entire dispatch`
+  files the flight log (single pre-filled Enter, ceremonial).
+- Confirm → gold beam flare at that system + a launch-code segment locks
+  (shows the checkpoint's first hex). Wrong chip: dimmed, clock keeps eating.
+  Dead-end tool: output prints, option struck through, try another.
+- Liftoff: ~9s climb-out — island falls away, sky lerps to space, stars fade
+  in — then the LIFTOFF win screen with the `npx skills add` line.
+- One 150s window (`TOTAL_TIME`), same low/critical/panic-sky grammar as
+  L1/L2; fail = LAUNCH WINDOW MISSED → R resets everything.
 
 ## Level ? design — "The Archive" (built 2026-06-09, SHELVED for a later level)
 
@@ -472,6 +494,10 @@ src/islandView.js  # LEVEL 1: sky/light, terrain+water, the memories, terminal
                    #   loop, countdown. enter()/exit()/onExit/onComplete.
 src/droneBayView.js# LEVEL 2 ("The Drone Bay"): 5 broken systems, 5 drones,
                    #   pre-filled `entire checkpoint explain` + ADD TO SHIP.
+                   #   Exports SYSTEMS + UPGRADE_BUILDERS for Level 3.
+src/launchView.js  # LEVEL 3 ("Launch Clearance"): cockpit finale at one
+                   #   console — ship AI asks, pick the tool (1/2/3), confirm
+                   #   the answer, launch code fills, liftoff = the ending.
 src/archiveView.js # SHELVED search level ("The Archive"), at ?view=archive:
                    #   ~21 dark blocks, ship requests, checkpoint search beat.
 src/memoryProps.js # shared props: beam texture, ice block, id sprite, id gen

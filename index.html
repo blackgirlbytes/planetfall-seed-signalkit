@@ -313,6 +313,91 @@
           <div class="lf-hint">press <span class="lf-key">R</span> to try again</div>
         </div>
       </div>
+
+      <!-- Level 3 HUD ("Launch Clearance") -->
+      <div id="lc-hud" class="hidden">
+        <!-- Briefing — the window opens when you take the chair -->
+        <div id="lc-briefing" class="hidden">
+          <div class="bf-card">
+            <div class="bf-tag">LAUNCH WINDOW OPEN · LEVEL 3</div>
+            <h1 class="bf-title">Launch Clearance</h1>
+            <p class="bf-story">
+              The ship is rebuilt. For the first time, you're inside — pilot's
+              chair, island in the window. But the launch computer won't arm on
+              work nobody can account for, and most of today's work you never
+              watched. The ship has questions only the record can answer.
+            </p>
+            <p class="bf-story bf-quote">
+              "I can read the record. Protocol says you have to be the one to
+              confirm it."
+            </p>
+            <div class="bf-mission">
+              <div class="bf-mission-head">YOUR MISSION</div>
+              <ol class="bf-steps">
+                <li>The ship asks a question. You weren't there — the record was.</li>
+                <li>Pick a way to look it up (<code>1</code>–<code>3</code>): a command, or a skill that runs it for you.</li>
+                <li>The answer lands on screen. Confirm it for the launch computer.</li>
+                <li>Five confirms complete the <strong>launch code</strong> — before the window closes at <strong>0:00</strong>.</li>
+              </ol>
+            </div>
+            <div class="bf-controls">
+              <div class="bf-mission-head">CONTROLS</div>
+              <div class="bf-ctrl-grid">
+                <span class="bf-ctrl">
+                  <span class="bf-keys"><span class="bf-key">1</span><span class="bf-key">2</span><span class="bf-key">3</span></span>
+                  choose <span class="bf-dim">(or click)</span>
+                </span>
+                <span class="bf-ctrl">
+                  <span class="bf-key">Enter</span> file the flight log
+                </span>
+                <span class="bf-ctrl">
+                  <span class="bf-key">B</span> return to orbit
+                </span>
+              </div>
+            </div>
+            <p class="bf-warn">A wrong tool costs seconds, never the ship. Trust the record — fast.</p>
+            <button id="lc-briefing-start" type="button">TAKE THE PILOT'S SEAT</button>
+            <div class="bf-hint">or press <span class="bf-key">Enter</span></div>
+          </div>
+        </div>
+
+        <!-- The launch window — one clock for the whole pre-flight -->
+        <div id="lc-countdown">
+          <span class="cd-label">WINDOW</span>
+          <span id="lc-countdown-time">2:30</span>
+        </div>
+
+        <!-- The launch code — one segment per confirmed answer -->
+        <div id="lc-code">
+          <div class="lc-code-head">LAUNCH CODE</div>
+          <div id="lc-code-segs"></div>
+        </div>
+
+        <!-- The pre-flight console: question → tools → output → confirm -->
+        <div id="lc-console" class="hidden">
+          <div id="lc-speaker"></div>
+          <div id="lc-question"></div>
+          <div id="lc-menu" class="hidden"></div>
+          <div id="lc-output" class="hidden"></div>
+          <div id="lc-answers" class="hidden"></div>
+          <div id="lc-msg"></div>
+        </div>
+
+        <!-- Liftoff — the game's ending -->
+        <div id="lc-win" class="hidden">
+          <div class="lw-title">LIFTOFF</div>
+          <div class="lw-sub" id="lc-win-sub"></div>
+          <div class="lw-reveal">Every question had an answer in the record. You weren't there — your checkpoints were. Take the workflow home: <code>npx skills add https://github.com/entireio/skills</code></div>
+          <div class="lf-hint">press <span class="lf-key">B</span> to return to orbit</div>
+        </div>
+
+        <!-- The window closed -->
+        <div id="lc-fail" class="hidden">
+          <div class="lf-title">LAUNCH WINDOW MISSED</div>
+          <div class="lf-sub">The window closed before every system was confirmed. Every answer was already in the record — trust it faster.</div>
+          <div class="lf-hint">press <span class="lf-key">R</span> to try again</div>
+        </div>
+      </div>
     </div>
 
     <!-- Crossfade between the orbit view and the island -->

@@ -47,7 +47,9 @@ const BAY_ROW = { x0: -16, dx: 4, z: 50 };   // five parked drones by the consol
 
 // The five dark systems, what the drones improvise them into, and the story
 // each checkpoint carries. Ids are fixed so the fiction is stable across runs.
-const SYSTEMS = [
+// Exported: Level 3 quizzes the player on this exact record, and rebuilds the
+// upgrades on its island as the things the questions are about.
+export const SYSTEMS = [
   {
     ckpt: "a1c9e4f72b05", name: "IGNITION COILS",
     pos: { x: -34, z: -28 },
@@ -296,6 +298,13 @@ function buildGravSkid() {
   return g;
 }
 
+// Level 3 places the finished upgrades on its own island (already online —
+// the questions are about how they got that way). buildSignalSpire takes the
+// shared beam texture; the rest take no args.
+export const UPGRADE_BUILDERS = {
+  buildPlasmaRing, buildStarDome, buildSignalSpire, buildGardenPod, buildGravSkid,
+};
+
 // ---------- the little worker drone ----------
 function buildDrone() {
   const g = new THREE.Group();
@@ -333,7 +342,7 @@ function makeConsole() {
   return g;
 }
 
-export function createDroneBayView(renderer, { onExit } = {}) {
+export function createDroneBayView(renderer, { onExit, onComplete } = {}) {
   const canvas = renderer.domElement;
 
   // ---------- scene & sky ----------
@@ -870,6 +879,7 @@ export function createDroneBayView(renderer, { onExit } = {}) {
       tutorialEl?.classList.add("hidden");
       winEl?.classList.remove("hidden");
     }, 4000);
+    onComplete?.();               // Level 2 cleared — opens the launch window
   }
   function submitCommand() {
     const n = normalizeCmd(buffer);
