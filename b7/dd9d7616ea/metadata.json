@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "b7dd9d7616ea",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "PLAN.md",
+    "index.html",
+    "src/archiveView.js",
+    "src/droneBayView.js",
+    "src/firstPerson.js",
+    "src/islandView.js",
+    "src/main.js",
+    "src/memoryProps.js",
+    "src/overhead.js",
+    "src/style.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/b7/dd9d7616ea/0/metadata.json",
+      "transcript": "/b7/dd9d7616ea/0/full.jsonl",
+      "content_hash": "/b7/dd9d7616ea/0/content_hash.txt",
+      "prompt": "/b7/dd9d7616ea/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 241802,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1305216,
+    "output_tokens": 10966,
+    "api_call_count": 24
+  }
+}
