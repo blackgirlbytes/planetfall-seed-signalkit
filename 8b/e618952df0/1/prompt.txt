@@ -1,0 +1,67 @@
+where did we leave off
+
+---
+
+what about level 3 plans
+
+---
+
+do you have access to past conversations about it
+
+---
+
+i did entire login..can you try again..i should have some temporary checkpoints
+
+---
+
+even in our conversation right now where you used entire search to find these..we could've used a skill that does search or explaining..isnt that cool
+
+---
+
+oh so we didnt use skills for this
+
+---
+
+are the skills installed..could you try some of the skills with those similar questions and see if we get the same results
+
+---
+
+okay you see how this was..i want this level of an ah ha moment so people understand why and how to use entire..or like the value of it..but at the same time..we dont have to use every skill. also dont want complex because most games are just like jump on something..collect something..shoot something..i want the ability to help us uncover some kind of mystery btu for fast game play that can be frustrating for the player..especially if its like what key words should they be looking for..theres a lot that doesnt make sense
+
+Im thinking something as simple as..and it doesnt have to be this..im just giving an example so that people will be like able answer it.
+
+the session transcript talks about like primary colors or something and then the user chooses the proof of red and blue..because the session transcript mentioned purple..idk this is a bad example but it should be something where you dont have to think hard other ideas...skill and then it would give a summary of what a drone/subagent discussed about something it found
+
+and then you would choose the right answer..maybe even there's multiple choice on what command to run..but it's still super simple..whats your ideas..dont implement
+
+---
+
+i like this but some of it sounds a little complicated..write out the flow for me step by step so i can critique
+
+---
+
+is it that you always have to run entire explain
+
+---
+
+i think instead of walking there..we should have different options that are multiple choice of like which command or skill should you run..and it will give you the answer in different ways..does that make sense..idkkkkk. like it's like do u wanna run entire explain Skill: what happened..stuff like that..you choose it..and then it gives you the number answer ..and then you enter the number answer..with multiple choice as well..idk
+
+---
+
+it doesnt always have to be skill what happened..explain and dispatch..do you agree
+
+---
+
+and i like the most all valid..occassional dead end
+
+---
+
+why the rescue ship if i've already fixed my ship..maybe it's like we're inside the ship and we need to confirm that we can take off..like this part of the pass code or something like that..
+
+---
+
+that works "I can read the record. Protocol says you have to be the one to confirm it."
+
+---
+
+i think you can go for it
