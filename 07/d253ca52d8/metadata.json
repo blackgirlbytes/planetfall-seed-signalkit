@@ -3,7 +3,7 @@
   "checkpoint_id": "07d253ca52d8",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 3,
+  "checkpoints_count": 4,
   "files_touched": [
     "README.md"
   ],
@@ -25,13 +25,19 @@
       "transcript": "/07/d253ca52d8/2/full.jsonl",
       "content_hash": "/07/d253ca52d8/2/content_hash.txt",
       "prompt": "/07/d253ca52d8/2/prompt.txt"
+    },
+    {
+      "metadata": "/07/d253ca52d8/3/metadata.json",
+      "transcript": "/07/d253ca52d8/3/full.jsonl",
+      "content_hash": "/07/d253ca52d8/3/content_hash.txt",
+      "prompt": "/07/d253ca52d8/3/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 1892598,
-    "cache_creation_tokens": 5089,
-    "cache_read_tokens": 19737630,
-    "output_tokens": 147573,
-    "api_call_count": 212
+    "input_tokens": 1895878,
+    "cache_creation_tokens": 40701,
+    "cache_read_tokens": 19997644,
+    "output_tokens": 154115,
+    "api_call_count": 222
   }
 }
