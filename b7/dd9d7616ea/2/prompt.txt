@@ -95,3 +95,7 @@ i cannot find the gold beam at the end ..where am i supposed to be going..maybe 
 ---
 
 yeah i like option 2 also i was curious if instead of entire checkpoint list..maybe we run entire dispatch?? thoughts
+
+---
+
+okay lets commit these changes and push ..i want a checkpoint to be attached to it
