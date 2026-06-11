@@ -1,0 +1,13 @@
+thoughts on the game that we built here?
+
+---
+
+yes when you make your first checkpoint..it does ask if you want to link to a checkpoint ..are you sure? please check Documents/work/cli
+
+---
+
+Are you able to identify areas where the threejs graphics could be greatly improved? dont act yet
+
+---
+
+lets create a branch and implement all of these

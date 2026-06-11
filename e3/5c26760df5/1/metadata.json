@@ -1,0 +1,93 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "e35c26760df5",
+  "session_id": "e5b21660-f162-4071-97c3-8ce5c73c7857",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-11T10:35:47.161658Z",
+  "branch": "graphics-overhaul",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/main.js",
+    "src/sky.js",
+    "src/lighting.js",
+    "src/terrain.js",
+    "src/islandView.js",
+    "src/droneBayView.js",
+    "src/launchView.js",
+    "src/ring.js",
+    "src/planetView.js",
+    "src/planet.js"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-fable-5[1m]",
+  "turn_id": "9b7d205b66d9",
+  "token_usage": {
+    "input_tokens": 13144,
+    "cache_creation_tokens": 279386,
+    "cache_read_tokens": 8936774,
+    "output_tokens": 67780,
+    "api_call_count": 71
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "claude-skill-toolu_01MqJZFZGQtFtJk4MyiaWifd",
+      "event_type": "tool_invocation",
+      "skill": {
+        "name": "run"
+      },
+      "source": {
+        "agent": "claude-code",
+        "signal": "skill_tool_use",
+        "confidence": "explicit"
+      },
+      "turn_id": "9b7d205b66d9",
+      "transcript_anchor": {
+        "unit": "line",
+        "start": 325,
+        "end": 326,
+        "entry_ids": [
+          "79c48315-a775-4e63-8b11-bde3b5a49500"
+        ],
+        "tool_use_id": "toolu_01MqJZFZGQtFtJk4MyiaWifd"
+      },
+      "native": {
+        "tool_name": "Skill",
+        "tool_use_id": "toolu_01MqJZFZGQtFtJk4MyiaWifd"
+      },
+      "collapse": {
+        "target": "tool_pair",
+        "label": "Skill: run",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 3
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-11T10:35:47.106131Z",
+    "agent_lines": 458,
+    "agent_removed": 79,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 458,
+    "total_lines_changed": 537,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    }
+  ]
+}
