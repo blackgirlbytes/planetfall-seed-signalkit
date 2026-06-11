@@ -1,0 +1,27 @@
+can you check out this project? learn about it
+
+---
+
+okay can you take a look at this game http://bug-bash.github.com/ like visually the user experience..when you land..how the instructions are..the arcade like tv feel
+
+---
+
+I think there's some things we can learn or implement into our game. Any ideas of what you think amay work best? for me, I'm thinking how they show the stories and how they have instructions..and then the tv framing thing ..like i  think wif we saw story goals onboarding at the landing page and the beginning of each level..that could help alot..
+
+---
+
+lets start with the landing page. we want a start game, options > controls, sound (this would just be for the volume of the background music and if we want to start or stop it) . i think thats it for now
+
+---
+
+people can use their mouse to click so we dont need to show the map at the bottom.
+
+---
+
+<task-notification>
+<task-id>bcpy80q1o</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-goose-guest-Documents-work-planetfall-seed-signalkit/ed80b65d-9ba6-42c1-bcf1-89ed4c4519f3/tasks/bcpy80q1o.output</output-file>
+<status>completed</status>
+<summary>Background command "Restart Vite dev server on port 5199" completed (exit code 0)</summary>
+</task-notification>
