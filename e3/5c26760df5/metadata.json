@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "e35c26760df5",
+  "strategy": "manual-commit",
+  "branch": "graphics-overhaul",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/droneBayView.js",
+    "src/islandView.js",
+    "src/launchView.js",
+    "src/lighting.js",
+    "src/main.js",
+    "src/planet.js",
+    "src/planetView.js",
+    "src/ring.js",
+    "src/sky.js",
+    "src/terrain.js"
+  ],
+  "sessions": [
+    {
+      "metadata": "/e3/5c26760df5/0/metadata.json",
+      "transcript": "/e3/5c26760df5/0/full.jsonl",
+      "content_hash": "/e3/5c26760df5/0/content_hash.txt",
+      "prompt": "/e3/5c26760df5/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 203188,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 290304,
+    "output_tokens": 12162,
+    "api_call_count": 12
+  }
+}

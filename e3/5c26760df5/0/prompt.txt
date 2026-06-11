@@ -1,0 +1,75 @@
+im trying to think of what level 3 would be..im thinking of using skills from Documents/work/skills..we dont have to use every skill. also dont want complex because most games are just like jump on something..collect something..shoot something..i want the ability to help us uncover some kind of mystery btu for fast game play that can be frustrating for the player..especially if its like what key words should they be looking for..theres a lot that doesnt make sense..but i still want to show the value or lesson entire cli in a way
+
+
+Level 1: First Memories
+Implemented in src/islandView.js.
+The player lands on the island and finds three memory artifacts. For each one, they use a terminal flow:
+text
+
+
+
+git add -> git commit -> y to link Entire checkpoint
+
+A committed memory freezes in ice. A checkpointed memory becomes safely banked. After all three are linked, the player must run:
+bash
+
+
+
+entire checkpoint list
+
+before the countdown hits 0:00. This teaches: commits freeze work, checkpoints preserve/recover the context behind it.
+Level 2: The Drone Bay
+Implemented in src/droneBayView.js.
+After Level 1, the ship’s drone bay wakes up. There are five broken ship systems and five drones. The player can send drones to different systems while one countdown runs.
+Loop:
+text
+
+
+
+send drone -> drone works in parallel -> checkpoint appears -> explain checkpoint -> ADD TO SHIP
+
+At a finished site, the terminal is prefilled with:
+bash
+
+
+
+entire checkpoint explain <id>
+
+The player only presses Enter; they do not manually type checkpoint IDs. The explanation reveals what the drone actually did, then ADD TO SHIP/Y integrates the upgrade. After all five systems are online, the player types:
+bash
+
+
+
+entire dispatch
+
+to generate the final day report.
+The real lesson is not exactly “delegate review accept.” It is more like:
+text
+
+
+
+parallel agents can work while you do other things;
+checkpoints let you understand work you did not watch;
+dispatch summarizes the burst of work afterward.
+
+---
+
+level 3 is our last level..i dont want to use entire activity
+
+---
+
+these arent e skills and thats not how the skills or review work
+
+---
+
+we dont have to use every skill. also dont want complex because most games are just like jump on something..collect something..shoot something..i want the ability to help us uncover some kind of mystery btu for fast game play that can be frustrating for the player..especially if its like what key words should they be looking for..theres a lot that doesnt make sense
+
+Im thinking something as simple as..and it doesnt have to be this..im just giving an example so that people will be like able answer it.
+
+the session transcript talks about like primary colors or something and then the user chooses the proof of red and blue..because the session transcript mentioned purple..idk this is a bad example but it should be something where you dont have to think hard
+
+---
+
+i wish you would run a skill and then it would give a summary of what a drone/subagent discussed about something it found
+
+and then you would choose the right answer..maybe even there's multiple choice on what command to run..but it's still super simple
