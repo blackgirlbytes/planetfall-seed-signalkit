@@ -1,0 +1,13 @@
+the story should be bigger..like horizontal space taken up on the screen..bigger font..better color scheme..like https://bug-bash.github.com/
+
+---
+
+it didnt need the height to be so increased..but i want the width to be full from end to end of the screen
+
+---
+
+the words space pulsating is kinda weird and too small
+
+---
+
+its also a little too faded
