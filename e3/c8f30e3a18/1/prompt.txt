@@ -1,0 +1,71 @@
+okay let me talk to you about the story i have in my mind. it's more like in the beginning was the software development lifecycle or like some kind of planet that supported the software development lifecycle..but the world has evolved and now the world has agents and humans collaborating. before it was just humans..but the old planet doesnt have enough support for agent collaboration..so youre moving to a new planet where things just work..you fly away in a spaceship but your spaceship breaks down. you need to bring items back on board, get system piece working again, and put your spaceship back in the mode to be able to fly..then fly away..okay so this story is not that good..but that's kinda like what im getting at..because entire is a cli tool meant to replace github ..we dont want to say that cuz all the features arent implemented yet but thats our ultimate goal..can you help me with the story a bit more
+
+---
+
+why is it the ships ai voice?
+
+---
+
+idk i feel like you the user who is playing the game crashed with their ship so how is it narrating..i want a narrator..im just like why is it that..who does the narration for the mona bug bash game
+
+---
+
+and we should say that the player is a fan of agent human collaboration..and you left with your subagent friends
+
+---
+
+The jump went wrong..what does that even mean..i think some of the language isnt great for non native english speakers
+
+---
+
+why dont we just say wee left with our spaceship..youre still really stuck on ship's AI..and should it be that you lost your memory??
+
+---
+
+But the old world doesnt have enough space or something likethat..instead of only saves the code
+
+---
+
+idk if the crash wiped the ships memories and if we're finding lost memories..these are just things that fell out theship that help it to run
+
+---
+
+lets add the story that will show after you press start
+
+---
+
+i kinda want to see what the tv look would be like
+
+---
+
+<task-notification>
+<task-id>bb192c847</task-id>
+<tool-use-id>REDACTED</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-goose-guest-Documents-work-planetfall-seed-signalkit/ed80b65d-9ba6-42c1-bcf1-89ed4c4519f3/tasks/bb192c847.output</output-file>
+<status>completed</status>
+<summary>Background command "Start Vite dev server on port 5199" completed (exit code 0)</summary>
+</task-notification>
+
+---
+
+what about the tv border
+
+---
+
+i dont think we did the tv border correctly
+
+---
+
+i dont think i like the border but what do you think about the tv vibe
+
+---
+
+lets remove the border
+
+---
+
+okay i like the tv lines and vignette ..what do you think of it
+
+---
+
+yeah so intstead of having the ?tv=1 flag..lets remove that..and inside of options..have display and then we can enable turning off TV effect
