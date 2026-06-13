@@ -230,13 +230,23 @@ body.title-up #island-pin { display: none !important; }
 .ts-story-box {
   width: 100%;
   padding: clamp(20px, 2.4vw, 30px) clamp(28px, 5vw, 84px);
-  background: linear-gradient(0deg, rgba(28, 20, 58, 0.94), rgba(8, 12, 30, 0.9));
+  background: rgba(0, 0, 0, 0.9);
   border: none;
-  border-top: 2px solid rgba(111, 227, 255, 0.5);
+  /* shiny metallic gold edge — a bright highlight streak across the centre,
+     matching the planet's gold islands */
+  border-top: 3px solid;
+  border-image: linear-gradient(
+    90deg,
+    rgba(214, 158, 58, 0.3),
+    #ffde8c 32%,
+    #fff3cf 50%,
+    #ffde8c 68%,
+    rgba(214, 158, 58, 0.3)
+  ) 1;
   border-radius: 0;
   box-shadow:
-    0 -20px 64px rgba(2, 4, 10, 0.68),
-    0 0 56px rgba(111, 227, 255, 0.14);
+    0 -20px 64px rgba(0, 0, 0, 0.7),
+    0 0 56px rgba(248, 200, 96, 0.18);
   backdrop-filter: blur(8px);
 }
 
@@ -246,8 +256,8 @@ body.title-up #island-pin { display: none !important; }
   font-weight: 600;
   line-height: 1.45;
   letter-spacing: 0.005em;
-  color: #f3f9ff;
-  text-shadow: 0 2px 20px rgba(2, 4, 10, 0.8);
+  color: #ffffff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.85);
 }
 #ts-story-text.beat-in { animation: ts-beat-in 0.45s ease both; }
 @keyframes ts-beat-in {
@@ -263,12 +273,21 @@ body.title-up #island-pin { display: none !important; }
   gap: 10px;
   font-size: clamp(13px, 1.3vw, 16px);
   letter-spacing: 0.08em;
-  color: var(--accent-warm);
+  color: #f6c763;
+}
+/* shiny gold text for the key + label — a top-lit metallic gradient */
+.ts-story-cue .bf-key,
+.ts-story-cue #ts-story-next {
+  background: linear-gradient(180deg, #ffe9b3 0%, #f6c763 52%, #d69e3a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 .ts-story-cue .bf-key {
   font-size: clamp(13px, 1.3vw, 16px);
   padding: 4px 13px;
-  border-color: rgba(255, 244, 232, 0.6);
+  border-color: rgba(248, 200, 96, 0.7);
 }
 
 @media (max-width: 680px) {
