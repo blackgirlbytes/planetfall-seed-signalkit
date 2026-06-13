@@ -191,9 +191,11 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
     }
   }
 
-  function enter() {
-    active = true;
-    // Frame the island so it's front-and-centre the moment you land here.
+  // Swing the camera so the island sits front-and-centre. Called on enter, and
+  // again when the story ends — the planet drifts the whole time the title +
+  // story are up, so without this the island has rotated away by the time you
+  // arrive in orbit.
+  function reframe() {
     scene.updateMatrixWorld(true);
     anchor.getWorldPosition(tmpWorld);
     const dir = tmpWorld.clone().normalize();
@@ -201,6 +203,11 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
     camera.position.y += 0.7; // tip the island slightly below centre
     controls.target.set(0, 0, 0);
     controls.update();
+  }
+
+  function enter() {
+    active = true;
+    reframe();
 
     canvas.addEventListener("pointermove", onPointerMove);
     canvas.addEventListener("pointerdown", onPointerDown);
@@ -226,7 +233,7 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
     camera.updateProjectionMatrix();
   }
 
-  return { scene, camera, update, enter, exit, resize };
+  return { scene, camera, update, enter, exit, resize, reframe };
 }
 
 // ---- helpers ----

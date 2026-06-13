@@ -142,7 +142,9 @@ export function createTitleScreen({ onStart } = {}) {
   function finishStory() {
     storyBeat = -1;
     story.classList.add("hidden");
-    root.classList.remove("is-story");
+    // keep .is-story on through the leaving fade so the logo/tagline stay
+    // hidden — otherwise they flash back in during the 650ms fade-out.
+    // show() clears it on the next boot.
     hide();
     onStart?.();
   }

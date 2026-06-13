@@ -138,7 +138,9 @@ current.enter();
 
 // Title screen on a clean boot only — the dev shortcuts skip straight in.
 // While it's up the orbit view runs behind it as the attract backdrop.
-const titleScreen = createTitleScreen();
+// When the story ends, re-frame the island so it's facing you and clickable —
+// the planet has been drifting behind the title + story the whole time.
+const titleScreen = createTitleScreen({ onStart: () => planetView.reframe() });
 if (!requestedView && !params.get("level")) titleScreen.show();
 
 // ---------- fade transition ----------
