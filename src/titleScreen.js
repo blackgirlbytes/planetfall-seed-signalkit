@@ -132,7 +132,7 @@ export function createTitleScreen({ onStart } = {}) {
       return;
     }
     storyText.textContent = STORY_BEATS[storyBeat];
-    storyNext.textContent = storyBeat === STORY_BEATS.length - 1 ? "▸ BEGIN" : "▸";
+    storyNext.textContent = storyBeat === STORY_BEATS.length - 1 ? "to begin" : "to continue";
     // retrigger the fade-in for each beat
     storyText.classList.remove("beat-in");
     void storyText.offsetWidth;

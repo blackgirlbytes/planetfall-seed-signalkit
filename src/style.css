@@ -223,52 +223,59 @@ body.title-up #island-pin { display: none !important; }
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 0 20px 88px;
+  padding: 0;
 }
 #ts-story.hidden { display: none; }
 
 .ts-story-box {
-  width: min(620px, 100%);
-  padding: 18px 22px 13px;
-  background: rgba(8, 14, 26, 0.88);
-  border: 1px solid rgba(111, 227, 255, 0.32);
-  border-radius: 10px;
-  box-shadow: 0 18px 60px rgba(2, 4, 10, 0.6), 0 0 30px rgba(111, 227, 255, 0.1);
-  backdrop-filter: blur(6px);
+  width: 100%;
+  padding: clamp(20px, 2.4vw, 30px) clamp(28px, 5vw, 84px);
+  background: linear-gradient(0deg, rgba(28, 20, 58, 0.94), rgba(8, 12, 30, 0.9));
+  border: none;
+  border-top: 2px solid rgba(111, 227, 255, 0.5);
+  border-radius: 0;
+  box-shadow:
+    0 -20px 64px rgba(2, 4, 10, 0.68),
+    0 0 56px rgba(111, 227, 255, 0.14);
+  backdrop-filter: blur(8px);
 }
 
 #ts-story-text {
-  min-height: 3.4em;
-  font-size: 14.5px;
-  line-height: 1.7;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  opacity: 0.92;
+  min-height: 2.6em;
+  font-size: clamp(21px, 2.7vw, 32px);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+  color: #f3f9ff;
+  text-shadow: 0 2px 20px rgba(2, 4, 10, 0.8);
 }
 #ts-story-text.beat-in { animation: ts-beat-in 0.45s ease both; }
 @keyframes ts-beat-in {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 0.92; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .ts-story-cue {
-  margin-top: 10px;
+  margin-top: clamp(14px, 2vw, 22px);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 7px;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  color: var(--accent);
-  animation: ts-cue-blink 1.4s ease-in-out infinite;
+  gap: 10px;
+  font-size: clamp(13px, 1.3vw, 16px);
+  letter-spacing: 0.08em;
+  color: var(--accent-warm);
 }
-@keyframes ts-cue-blink { 50% { opacity: 0.45; } }
+.ts-story-cue .bf-key {
+  font-size: clamp(13px, 1.3vw, 16px);
+  padding: 4px 13px;
+  border-color: rgba(255, 244, 232, 0.6);
+}
 
 @media (max-width: 680px) {
   .ts-menu { margin-top: 38px; }
   .ts-panel { max-height: 54vh; padding: 16px 18px 12px; }
-  #ts-story { padding-bottom: 64px; }
-  #ts-story-text { font-size: 13px; }
+  #ts-story { padding-bottom: 8vh; }
+  #ts-story-text { font-size: 19px; }
 }
 
 /* Background music controls */
