@@ -1,0 +1,9 @@
+ok i noticed when i go through the story after pressing start game..then the title stuff appears really quickly and disappears..that shouldnt happen
+
+---
+
+what is the readme pending about
+
+---
+
+we can do the readme later. okay next thing is ..when youre done with the story..i feel like the location on the map shouldn't rotate away for you to click it...like the planet should still move but it should still be in your view that you can click it. does that make sense
