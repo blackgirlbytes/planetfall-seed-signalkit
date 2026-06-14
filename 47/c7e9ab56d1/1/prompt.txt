@@ -1,0 +1,105 @@
+why are we doing the dark blue, light blue, orange scheme
+
+---
+
+lets see. idk if thats the right colors either
+
+---
+
+okay heres what i dont want a visual test or anything..lets do black background...white text..lavendar accents/highlights
+
+---
+
+wait let me see gold accents..make it like shiny like how it looks on the surface of the planet..this would be instead of lavendar
+
+---
+
+yeah i like that commit and push
+
+---
+
+the beginning story while it captures what i want..it's not really interesting for the player..it should be like Oh no! You were traveling to something something then your plane crashed..you blah blah ..idk..something that is more like how a game would be..dont add it yet..lets talk about it
+
+---
+
+just show me your write ups
+
+---
+
+are these how you will tell the story..they seem staccatto..no writing style
+
+---
+
+for the first level can you quickly change it to 1:30 instead of 40 something seconds
+
+---
+
+change it to just 1 minute
+
+---
+
+so initially the story that existed was just the context that i was giving my agent..and it wrote it all out..i need ideas of how to make it more game like..usually a person or npc or something like that would be addressing the user..asking for help in some kind of way.. i dont have an npc but we need to make it known that we're sending the user on some kind of mission
+
+maybe also their  leaving their world and joining the rebellion..their world was idk..maybe not as accessible to agent-human collaboration?? idkk i dont want to make it sound like race wars..but then when they were leaving they crashed on a random planet..and need to fix their ship back up..idk but overall..my issue is..it's a story that just isnt good talking to the user so the user knows why theyre playing
+
+---
+
+so initially the story that existed was just the context that i was giving my agent..and it wrote it all out..i need ideas of how to make it more game like..usually a person or npc or something like that would be addressing the user..asking for help in some kind of way.. i dont have an npc but we need to make it known that we're sending the user on some kind of mission
+
+maybe also their  leaving their world and joining the rebellion..their world was idk..maybe not as accessible to agent-human collaboration?? idkk i dont want to make it sound like race wars..but then when they were leaving they crashed on a random planet..and need to fix their ship back up..idk but overall..my issue is..it's a story that just isnt good talking to the user so the user knows why theyre playing.
+
+idea is closer to
+
+Pilot, if you can read this, the ship survived.
+You were carrying five subagents to the Free Build rebellion, far past the old world’s borders.
+Then the ship went down. Memory cores are scattered across the island. Your friends are still offline.
+Recover the cores. Wake your crew. Repair the ship.
+The rebellion is still waiting.
+
+maybe in the end we refer to the user as a rebel..like see ya rebel ..or something idkk
+
+---
+
+i dont really want to mention the subagents..or refer too hard to the game play because we may change how some of the levels go a bit. 
+
+i love this part.
+Pilot, if you can read this, the ship survived.
+
+We're not calling it free build rebellion..we're just saying you joined the rebelling or making a cta to join the rebellion.
+
+maybe we're saying we'll go through your ship's agent session history to repair and get back to flying..idk if that makes sense and is good? we need to look through 
+
+Documents/work/cli to understand and we need to look through this current directory with the game to understand..but keep in mind how the levels are setup may change
+
+---
+
+Pilot, if you can read this, the ship survived.  
+You left the old world to join the rebellion. We were building a new one, with room for every kind of builder both agents and humans.
+Then your ship went down. Its record broke apart across this planet. Without the record, the ship cannot fly. Find it. Repair what broke. Come back to the rebellion, rebel.
+
+idk maybe the record part is still a little confusing like what idkk
+
+---
+
+Pilot, if you can read this, the ship survived, but it needs repairs.  
+You left your home planet to join the rebellion. We are building a place where humans and agents work together.  
+Your ship runs on mission records: flight paths, system checks, repair logs, and pilot commands. When the ship went down, those records broke apart and scattered across this planet.  
+Without them, your ship cannot run.  
+Your mission: fix your ship, so you can join us. See you soon, rebel.
+
+---
+
+should our tag line change from this - 
+REBUILD YOUR SPACESHIP WITH AGENT MEMORY
+
+---
+
+nah elts just say The Rebellion is waiting or something..okay we can commit and push this change..let me know also if this connects to an entire checkpoint
+
+---
+
+how do you plan to update the PLAN.md
+
+---
+
+okay sure.
