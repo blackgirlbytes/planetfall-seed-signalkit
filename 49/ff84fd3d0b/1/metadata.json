@@ -1,0 +1,144 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "49ff84fd3d0b",
+  "session_id": "233712ad-9679-40e0-bc3a-3cafadc74605",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-14T22:46:07.548735Z",
+  "branch": "main",
+  "checkpoints_count": 9,
+  "files_touched": [
+    "index.html",
+    "src/islandView.js",
+    "src/titleScreen.js"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8[1m]",
+  "turn_id": "4cdf3ae2e875",
+  "token_usage": {
+    "input_tokens": 8683,
+    "cache_creation_tokens": 650059,
+    "cache_read_tokens": 7202479,
+    "output_tokens": 74688,
+    "api_call_count": 101
+  },
+  "session_metrics": {
+    "turn_count": 34
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-14T22:46:07.530533Z",
+    "agent_lines": 1,
+    "agent_removed": 4,
+    "human_added": 0,
+    "human_modified": 6,
+    "human_removed": 0,
+    "total_committed": 7,
+    "total_lines_changed": 11,
+    "agent_percentage": 45.45454545454545,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 92,
+      "user_lines_removed": 5,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        "src/titleScreen.js": 5
+      },
+      "user_removed_per_file": {
+        "src/titleScreen.js": 5
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 6,
+      "agent_lines_removed": 6,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 6,
+      "agent_lines_removed": 6,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 6,
+      "agent_lines_removed": 6,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 6,
+      "agent_lines_removed": 6,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 6,
+      "agent_lines_removed": 6,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 6,
+      "agent_lines_removed": 6,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 12,
+      "agent_lines_removed": 9,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 12,
+      "agent_lines_removed": 9,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    }
+  ]
+}
