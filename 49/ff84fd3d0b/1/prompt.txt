@@ -91,3 +91,7 @@ Your mission: fix your ship, so you can join us. See you soon, rebel.
 
 should our tag line change from this - 
 REBUILD YOUR SPACESHIP WITH AGENT MEMORY
+
+---
+
+nah elts just say The Rebellion is waiting or something..okay we can commit and push this change..let me know also if this connects to an entire checkpoint
