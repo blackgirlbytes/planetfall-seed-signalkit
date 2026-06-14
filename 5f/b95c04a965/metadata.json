@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.7.3",
+  "checkpoint_id": "5fb95c04a965",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/main.js",
+    "src/planetView.js",
+    "src/style.css",
+    "src/titleScreen.js"
+  ],
+  "sessions": [
+    {
+      "metadata": "/5f/b95c04a965/0/metadata.json",
+      "transcript": "/5f/b95c04a965/0/full.jsonl",
+      "content_hash": "/5f/b95c04a965/0/content_hash.txt",
+      "prompt": "/5f/b95c04a965/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 86136,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 5766912,
+    "output_tokens": 17995,
+    "api_call_count": 34
+  }
+}

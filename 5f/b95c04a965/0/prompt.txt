@@ -1,0 +1,24 @@
+oh another thing..at the end of the story..we should probably tell users that they will need to click the
+  landmark on the planet to get started..hmm..how would we write that out?
+
+---
+
+Your mission: recover the records, repair the ship, and join us. Click the landing marker on the planet to begin. See you soon, rebel.
+
+---
+
+no. i choose the one i want. do this
+
+separate put this in its own section Your mission: recover the records, repair the ship, and join us.
+
+then the last section do this Click the landing marker on the planet to begin. See you soon, rebel.
+
+(also this is when the marker should spin into view for the user. they will press space and be able to click on the marker)
+
+---
+
+no i feel like it should be in view during the story..you feel me? it shouldnt need to spin that much..like you start the opener story and you already see the pin in view..it doesnt spin away too much
+
+---
+
+commit and push changes..then tell me if this got connected to a checkpoint
