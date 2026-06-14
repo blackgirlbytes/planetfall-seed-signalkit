@@ -1,0 +1,85 @@
+i dont really like the prose for the opening story in this game
+
+---
+
+i didnt ask you to rewrite it
+
+---
+
+so initially the story that existed was just the context that i was giving my agent..and it wrote it all out..i need ideas of how to make it more game like..usually a person or npc or something like that would be addressing the user..asking for help in some kind of way.. i dont have an npc but we need to make it known that we're sending the user on some kind of mission
+
+maybe also their  leaving their world and joining the rebellion..their world was idk..maybe not as accessible to agent-human collaboration?? idkk i dont want to make it sound like race wars..but then when they were leaving they crashed on a random planet..and need to fix their ship back up..idk but overall..my issue is..it's a story that just isnt good talking to the user so the user knows why theyre playing
+
+---
+
+i dont really want to mention the subagents..or refer too hard to the game play because we may change how some of the levels go a bit. 
+
+i love this part.
+Pilot, if you can read this, the ship survived.
+
+We're not calling it free build rebellion..we're just saying you joined the rebelling or making a cta to join the rebellion.
+
+maybe we're saying we'll go through your ship's agent session history to repair and get back to flying..idk if that makes sense and is good? we need to look through 
+
+Documents/work/cli to understand and we need to look through this current directory with the game to understand..but keep in mind how the levels are setup may change
+
+---
+
+and we've been calling people rebels..or users..so maybe in the end we say something something rebel
+
+---
+
+Pilot, if you can read this, the ship survived.
+You answered the rebellion’s call and left the old world behind. The old world was big enough for human work, but not big enough for agent and human work..something something good way to make agent work visible, trusted, and remembered. The rebellion is building something else: a place where every session leaves a record, and no work has to disappear.
+
+Then your ship went down. The hull can be fixed, but the repair record is scattered across this planet.  
+Find the record. Repair the ship. The rebellion is waiting, rebel.
+
+idkkk
+
+---
+
+i think its like too specific ish..idkkkkk
+
+---
+
+Pilot, if you can read this, the ship survived.  
+You left the old world to join the rebellion. We were building a new one, with room for every kind of builder both agents and humans.
+Then your ship went down. Its record broke apart across this planet. Without the record, the ship cannot fly. Find it. Repair what broke. Come back to the rebellion, rebel.
+
+idk maybe the record part is still a little confusing like what idkk
+
+and maybe using the word old world and new world idk
+
+---
+
+maybe we have to say your ship runs on..something something..and the session records nto working messed it up
+
+---
+
+Pilot, if you can read this, the ship survived, but it needs some repairs,
+You left your home planet to join the rebellion. The rebellion is building a place for humans and agents working together.
+Your ship runs on records: [the description of the type of records shouldnt be just about the repairs what about like the . It's the only way it flies. When your ship went down, the records
+
+---
+
+i like plainer..and we may not need that many options ..like idky it's listing hand off or anything. keep it simple
+
+---
+
+i think it needs to be every mission, [what changed is too vague], repairs.. think more like what would happen with a spaceship..and less about what would happen in entire cli
+
+---
+
+Pilot, if you can read this, the ship survived, but it needs repairs.
+You left your home planet to join the rebellion. The rebellion is building a place where humans and agents work together.
+Your ship runs on mission records: flight paths, system checks, repair logs, and pilot commands. When the ship went down, those records broke  and were scattered across this planet.
+
+Without them, your ship cannot run.
+
+Your mission: fix your ship, so you can join the rebellion. See you soon, rebel
+
+---
+
+should our tagline change from this 
+REBUILD YOUR SPACESHIP WITH AGENT MEMORY
