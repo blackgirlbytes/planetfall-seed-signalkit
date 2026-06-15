@@ -1,0 +1,99 @@
+{
+  "cli_version": "0.7.6",
+  "checkpoint_id": "f56e78756183",
+  "session_id": "233712ad-9679-40e0-bc3a-3cafadc74605",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-15T18:13:22.767125Z",
+  "branch": "main",
+  "checkpoints_count": 80,
+  "save_step_count": 5,
+  "files_touched": [
+    "index.html",
+    "src/islandView.js",
+    "src/main.js",
+    "src/sfx.js",
+    "src/titleScreen.js"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8[1m]",
+  "turn_id": "dd8603f813b1",
+  "token_usage": {
+    "input_tokens": 70175,
+    "cache_creation_tokens": 1420354,
+    "cache_read_tokens": 45242114,
+    "output_tokens": 350829,
+    "api_call_count": 372
+  },
+  "session_metrics": {
+    "turn_count": 80
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-15T18:13:22.692181Z",
+    "agent_lines": 144,
+    "agent_removed": 1,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 144,
+    "total_lines_changed": 145,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 127,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 91,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 119,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 144,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    }
+  ]
+}

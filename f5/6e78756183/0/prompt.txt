@@ -1,0 +1,165 @@
+okay when we get to the first level..i think it should be a shooting game instead..things are falling from the sky..you gotta shoot the right thing..then do the whole git add, git commit, entire checkpoint explain..idkkkk how that would work out or if that makes any sense
+
+---
+
+what do records look like vs crap
+
+---
+
+lets be very very clear and distinct about what they will look like..kep talking..cuz i feel like ur just like looks like it's made on purpose. name real objects..that you know you can create well in threejs..that wont look slightly confusing to the user
+
+---
+
+it can be three different things..floppy disks..what else can you make really well?
+
+---
+
+i mean we can do modern things too..floppy disc and what else
+
+---
+
+i mean are these things records you would find on a spaceship
+
+---
+
+but are you able to draw these well and will a user be able to identify them
+
+---
+
+im thinking things like a compass
+
+---
+
+yeah let's do those. so those are falling from the sky..i have to shoot them..i have some kind of way to shoot..is the laser gun visible or am i just shooting lasers idk..when i shoot it..im prompted to type in the git add..etc etc
+
+---
+
+why dont i see it in level 1
+
+---
+
+oh tell me more about your idea for swapping the location
+
+---
+
+well i dont have to build it..you do..so i dont care if it's less or more to build..my thing is..the user still on the planet if that's rebuilt
+
+---
+
+yeah lets just do A..but okay make a quick little plan of what youre going to be creating so that i can compact this conversation
+
+---
+
+ok lets rebuild level 1..not a mockup..
+
+---
+
+we need to do how level 1...linking it..not explain..and it shouldnt be after waves..it should be after u shoot the correct one...and then at the end u do entire checkpoint list
+
+---
+
+whats the black thing on the island..its not falling from the sky..just some random thing?
+
+---
+
+remove it
+
+---
+
+it seems like it stops when u get 5 of the items..idk if thats enough game play..what do you think..it's liek timed..and then you get 5 items within that time..what raises the stakes..give ideas
+
+---
+
+i think it should be how much items can you collect within that time..and have a minimum amount that you can collect
+
+---
+
+end of clock. we should put the clock down to 40 seconds..how many items do we think they should collect at minimum within that time? it needs to be kinda hard to reach the minimum but not impossible
+
+---
+
+i think we should try at least 6
+
+---
+
+maybe we remove the ship memory bar thing cuz thats covering the minimum thing or we repurpose it..like it should say 0/6 but if youre over it should say 7/6 or something what do you think..and okay maybe 6 in 40 seconds was a force..maybe do 5
+
+---
+
+i wish it would show a visual though like something filling up..or no
+
+---
+
+okay okay make the minimum be 4 items..it is a little bit hard lol
+
+---
+
+can we try to see what happens if other things keep falling except the thing you shot? maybe the thing you shot gets encapsulated in ice
+
+---
+
+my only thing is i want it to stop mid air but i dont want it to turn into ice until you do either link to commit or git commit..not sure which one
+
+---
+
+you know how the story in the beginning is nice and readable..i feel like this level 1 needs something like that for the instructions rather than how the instructions show up now..dont implement it. lets chat
+
+---
+
+my issue is that it's too much for them to read up front..and then there's all the random words popping up throughout the game that they cant focus on ..i think for the beginning it should be like telling they hey there's gonna be some records falling through the sky. we need to catch them. of course keep the pilot voice..and then say shoot at them to target the actual records something like that. if you shoot at the wrong one you lose points. then when you shoot at it the first time..it gives you info that you need to add commit..link..and it kinda explains why..and it shows up in that same design as the story..with the big words..goald banner..type of thing..what do you think?
+
+---
+
+okay i addedd something but idk how i feel about the steps for staging and the the place you type in git add..git commit..it's getting overlaid..maybe we gotta rethink how this shows up and when
+
+---
+
+if we went with a..how does it look after the first shot though..like second shot..third shot?
+
+---
+
+looks like we have a solution for level 1 a bit..we have the story + tutorial..which looks pretty good imo..can you read the code to check it out
+
+---
+
+oh we should probably commit and push those changes
+
+---
+
+lets get rid of the mockup records
+
+---
+
+okay dont make any changes but lets look at how level 2 should improve
+
+---
+
+oh actually before we even get to that..the switch from level 1 to level 2 is too hard. any ideas? like i mean to go to the next level you have to press esc then enter
+
+---
+
+i think after you type in entire checkpoint list..which is important..not just a payoff..its part of entire to teach people..then we see that screen..similar to the tutorial screen or the start game screen that says start level 2 or something like that
+
+---
+
+hmm if its a big haul ..it almost can get overlaid a bit
+
+---
+
+okay you can commit and push that change
+
+---
+
+actually for level 1..im wondering if we can add sound effects for the shooting and stuff idkkk.
+
+---
+
+i think i only wanted it for the shooting..good hits vs bad hits..i cant hear it over the music though
+
+---
+
+what does it sound like if we duck music briefly..so far it sounds pretty good..but i just wanna see what it's like if we duck music
+
+---
+
+should we give users the ability to control sound effects volume in the options section
