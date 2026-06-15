@@ -119,3 +119,7 @@ if we went with a..how does it look after the first shot though..like second sho
 ---
 
 looks like we have a solution for level 1 a bit..we have the story + tutorial..which looks pretty good imo..can you read the code to check it out
+
+---
+
+oh we should probably commit and push those changes
