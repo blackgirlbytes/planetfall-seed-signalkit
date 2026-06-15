@@ -1,0 +1,62 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "324b830e4f61",
+  "session_id": "019ec66b-5210-7711-a71e-86632c398f1f",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-15T05:25:10.093143Z",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "index.html",
+    "src/fallingProps.js",
+    "src/islandView.js",
+    "src/style.css"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "ab197da8aedc",
+  "checkpoint_transcript_start": 657,
+  "transcript_lines_at_start": 657,
+  "token_usage": {
+    "input_tokens": 1189719,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 28052352,
+    "output_tokens": 125059,
+    "api_call_count": 263
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-15T05:25:09.947126Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 188,
+    "human_removed": 617,
+    "total_committed": 0,
+    "total_lines_changed": 805,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1581,
+      "user_lines_removed": 710,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        ".mockup-records.html": 130,
+        "index.html": 39,
+        "src/fallingProps.js": 253,
+        "src/islandView.js": 746,
+        "src/style.css": 326
+      },
+      "user_removed_per_file": {
+        "index.html": 61,
+        "src/islandView.js": 562,
+        "src/style.css": 87
+      }
+    }
+  ]
+}

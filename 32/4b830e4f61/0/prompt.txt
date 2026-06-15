@@ -1,0 +1,136 @@
+okay when we get to the first level..i think it should be a shooting game instead..things are falling from
+  the sky..you gotta shoot the right thing..then do the whole git add, git commit, entire checkpoint
+  explain..idkkkk how that would work out or if that makes any sense
+
+---
+
+what does a record look like though..vs crap from the sky
+
+---
+
+okay i tried something out with things that are falling from the sky..i dont know how i feel about it
+
+---
+
+i think u can just look at the code
+
+---
+
+im just concerned you wont be able to create those in a way that's visible/obvious to the user..like a repair log..flight path..like how would you design it in three js you know what i mean
+
+---
+
+i dont want it to only be by color though idk..but let me see what your idea is..try implementing it
+
+---
+
+what does chd stand for
+
+---
+
+it seems like it stops when u get 5 of the items..idk if thats enough game play..what do you think..it's
+  liek timed..and then you get 5 items within that time..what raises the stakes..give ideas
+
+---
+
+i think it should be how much items can you collect within that time..and have a minimum amount that you can collect
+
+---
+
+you know how the story in the beginning is nice and readable..i feel like this level 1 needs something like
+  that for the instructions rather than how the instructions show up now..dont implement it. lets chat
+
+---
+
+yeah something like what youre saying...
+
+ my issue is that it's too much for them to read up front..and then there's all the random words popping up
+  throughout the game that they cant focus on ..i think for the beginning it should be like telling they hey
+  there's gonna be some records falling through the sky. we need to catch them. of course keep the pilot
+  voice..and then say shoot at them to target the actual records something like that. if you shoot at the
+  wrong one you lose points. then when you shoot at it the first time..it gives you info that you need to add
+  commit..link..and it kinda explains why..and it shows up in that same design as the story..with the big
+  words..goald banner..type of thing..what do you think?
+
+---
+
+but it should always even before the gameplay have that big text gold banner
+
+---
+
+STAGE IT · git add
+▎ Pull the record out of the wreckage and set it on the recovery clamp.
+▎
+▎ FREEZE IT · git commit
+▎ Lock it in — now it can't be lost. (ice forms here)
+▎
+▎ REMEMBER IT · press y
+▎ File it into the ship's memory as a checkpoint. That's what makes it recoverable later.
+
+After that first one, the big card never shows again — subsequent records just open the terminal with at most a tiny one-word nudge, or nothing. They already learned it.
+
+The clock. That first teaching card should pause the timer — it's the lesson, not part of the 40-second race. the git add..git commit stuff should be stepped..not just showing it all in one..dont use emdashes. also the minimum is 4 ..not 5 items
+
+---
+
+okay try implementing this
+
+---
+
+first of all it says continue twice..we only need it to say continue once..it doesnt neeed it it in the border..press space to continue..you can leave space in the border..same with begin recovery
+
+---
+
+lets remove the checkpoint linked box
+
+---
+
+idk how i feel about the steps for staging and the the place you type in git add..git commit..it's getting overlaid..maybe we gotta rethink how this shows up and when
+
+---
+
+whats the other version
+
+---
+
+lets try that second version
+
+---
+
+okay can you put the gold banner story thing lower
+
+---
+
+okay can you put the gold banner story thing lower where the rest of the other story cards are please and thank you
+
+---
+
+okay that first one..no time goes lol..it's a freebie..time just starts at the second one..i also think the heirarchy and spacing of the cards with the git add it commit is bad..its too cluttered
+
+---
+
+it shouldnt say remember this record..it should say link this record to a checkpoint
+
+---
+
+and it should still have a no option..if you pick no..it doesnt link and u dont get the point ...you know
+
+---
+
+i think for level 1 we need to let the user know theyre going to start a tutorial..like start tutorial and then they press okay or something..
+
+---
+
+idk maybe the start tutorial needs to be a different card from the story card..and then play game for real or something needs to be a different card than the story card
+
+---
+
+i think start tutorial and play level 1 or something like htat..can look like how it says start game in the beginning of the game..you know..how that looks on the landing page..maybe something like that??
+
+---
+
+okay try that
+
+---
+
+okay now lets take a look at level 2..it can be improved
