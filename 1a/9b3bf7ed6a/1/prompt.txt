@@ -143,3 +143,7 @@ i think after you type in entire checkpoint list..which is important..not just a
 ---
 
 hmm if its a big haul ..it almost can get overlaid a bit
+
+---
+
+okay you can commit and push that change
