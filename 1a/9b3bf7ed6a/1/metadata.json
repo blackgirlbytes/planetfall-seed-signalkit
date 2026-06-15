@@ -1,0 +1,74 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "1a9b3bf7ed6a",
+  "session_id": "233712ad-9679-40e0-bc3a-3cafadc74605",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-15T05:51:12.540151Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "index.html",
+    "src/islandView.js",
+    "src/style.css"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8[1m]",
+  "turn_id": "f6a2041a9391",
+  "token_usage": {
+    "input_tokens": 69232,
+    "cache_creation_tokens": 1252090,
+    "cache_read_tokens": 38469431,
+    "output_tokens": 312090,
+    "api_call_count": 327
+  },
+  "session_metrics": {
+    "turn_count": 75
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-15T05:51:12.466615Z",
+    "agent_lines": 51,
+    "agent_removed": 3,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 51,
+    "total_lines_changed": 54,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 32,
+      "agent_lines_removed": 3,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 51,
+      "agent_lines_removed": 3,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    }
+  ]
+}
