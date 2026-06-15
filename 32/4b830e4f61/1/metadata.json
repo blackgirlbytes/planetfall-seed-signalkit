@@ -1,0 +1,296 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "324b830e4f61",
+  "session_id": "233712ad-9679-40e0-bc3a-3cafadc74605",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-15T05:25:14.033011Z",
+  "branch": "main",
+  "checkpoints_count": 18,
+  "files_touched": [
+    "index.html",
+    "src/fallingProps.js",
+    "src/islandView.js",
+    "src/style.css"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8[1m]",
+  "turn_id": "e5f4a266ff71",
+  "checkpoint_transcript_start": 572,
+  "transcript_lines_at_start": 572,
+  "token_usage": {
+    "input_tokens": 59965,
+    "cache_creation_tokens": 536636,
+    "cache_read_tokens": 27379348,
+    "output_tokens": 194329,
+    "api_call_count": 192
+  },
+  "session_metrics": {
+    "turn_count": 69
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-15T05:25:13.967096Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 2002,
+    "human_modified": 1967,
+    "human_removed": 0,
+    "total_committed": 2002,
+    "total_lines_changed": 3969,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 87,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 217,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 206,
+      "user_lines_removed": 100,
+      "agent_lines_added": 920,
+      "agent_lines_removed": 561,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188,
+        "src/islandView.js": 18
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95,
+        "src/islandView.js": 5
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 933,
+      "agent_lines_removed": 561,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 888,
+      "agent_lines_removed": 561,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 888,
+      "agent_lines_removed": 561,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 888,
+      "agent_lines_removed": 561,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 993,
+      "agent_lines_removed": 565,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 993,
+      "agent_lines_removed": 565,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 981,
+      "agent_lines_removed": 574,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 11,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 1019,
+      "agent_lines_removed": 574,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 12,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 1019,
+      "agent_lines_removed": 574,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 13,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 1029,
+      "agent_lines_removed": 573,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 14,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 1035,
+      "agent_lines_removed": 572,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 15,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 1035,
+      "agent_lines_removed": 572,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 16,
+      "user_lines_added": 473,
+      "user_lines_removed": 300,
+      "agent_lines_added": 1035,
+      "agent_lines_removed": 572,
+      "user_added_per_file": {
+        "index.html": 18,
+        "src/fallingProps.js": 188,
+        "src/islandView.js": 128,
+        "src/style.css": 139
+      },
+      "user_removed_per_file": {
+        "index.html": 48,
+        "src/fallingProps.js": 95,
+        "src/islandView.js": 70,
+        "src/style.css": 87
+      }
+    },
+    {
+      "checkpoint_number": 17,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 1255,
+      "agent_lines_removed": 712,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    },
+    {
+      "checkpoint_number": 18,
+      "user_lines_added": 470,
+      "user_lines_removed": 142,
+      "agent_lines_added": 1255,
+      "agent_lines_removed": 712,
+      "user_added_per_file": {
+        "index.html": 9,
+        "src/fallingProps.js": 188,
+        "src/islandView.js": 188,
+        "src/style.css": 85
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95,
+        "src/islandView.js": 31,
+        "src/style.css": 16
+      }
+    },
+    {
+      "checkpoint_number": 19,
+      "user_lines_added": 188,
+      "user_lines_removed": 95,
+      "agent_lines_added": 1488,
+      "agent_lines_removed": 710,
+      "user_added_per_file": {
+        "src/fallingProps.js": 188
+      },
+      "user_removed_per_file": {
+        "src/fallingProps.js": 95
+      }
+    }
+  ]
+}
