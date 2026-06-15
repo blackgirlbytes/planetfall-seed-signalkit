@@ -810,6 +810,22 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 }
 .level-mode-prompt.hidden { display: none; }
 
+/* Level-complete handoff: card up top, dim clears downward so the recovered
+   records list stays readable in its own band at the bottom. */
+.level-mode-prompt.is-handoff {
+  align-items: flex-start;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 4, 10, 0.76) 0%,
+    rgba(2, 4, 10, 0.44) 46%,
+    rgba(2, 4, 10, 0.1) 100%
+  );
+}
+.level-mode-prompt.is-handoff .level-mode-menu {
+  transform: none;
+  margin-top: clamp(48px, 12vh, 150px);
+}
+
 .level-mode-menu {
   display: flex;
   flex-direction: column;
@@ -818,6 +834,17 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   transform: translateY(-5vh);
   text-align: center;
 }
+
+.level-mode-head {
+  margin-bottom: 4px;
+  font-size: clamp(12px, 1.3vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  margin-right: -0.3em;
+  color: #f6c763;
+  text-shadow: 0 0 18px rgba(248, 200, 96, 0.32);
+}
+.level-mode-head.hidden { display: none; }
 
 .level-mode-menu .ts-item {
   font-size: clamp(19px, 3vw, 30px);

@@ -75,6 +75,14 @@ const MODE_PROMPTS = {
     action: "PLAY LEVEL 1",
     note: "Clock starts now. Recover at least 4 records.",
   },
+  // The level-complete handoff — shown after `entire checkpoint list`. Keeps the
+  // recovered-records list visible behind it instead of closing the terminal.
+  next: {
+    head: "LEVEL 1 COMPLETE",
+    action: "START LEVEL 2",
+    note: "Ship memory restored — the drone bay just woke up.",
+    keepTerminal: true,
+  },
 };
 
 const BANK_LESSONS = {
@@ -200,6 +208,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
   const briefingText = document.getElementById("briefing-text");
   const briefingNext = document.getElementById("briefing-next");
   const modePrompt = document.getElementById("level-mode-prompt");
+  const modeHead = document.getElementById("level-mode-head");
   const modeAction = document.getElementById("level-mode-action");
   const modeNote = document.getElementById("level-mode-note");
   const missionLesson = document.getElementById("mission-lesson");
@@ -286,11 +295,17 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
     timerRunning = false;
     tutorialEl?.classList.add("hidden");
     hideBankLesson();
-    closeTerminal();
+    if (!prompt.keepTerminal) closeTerminal();   // "next" keeps the haul list up
     briefingEl?.classList.add("hidden");
+    if (modeHead) {
+      modeHead.textContent = prompt.head || "";
+      modeHead.classList.toggle("hidden", !prompt.head);
+    }
     if (modeAction) modeAction.textContent = prompt.action;
     if (modeNote) modeNote.textContent = prompt.note;
     modePrompt.dataset.mode = kind;
+    // Handoff keeps the haul list up, so top-anchor the card to clear it.
+    modePrompt.classList.toggle("is-handoff", !!prompt.keepTerminal);
     modePrompt.classList.remove("hidden");
   }
   function visibleModePromptKind() {
@@ -304,6 +319,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
   function hideModePrompt() {
     if (modePrompt) {
       modePrompt.classList.add("hidden");
+      modePrompt.classList.remove("is-handoff");
       delete modePrompt.dataset.mode;
     }
     modePromptState = null;
@@ -317,6 +333,8 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
       startLevel();
     } else if (acceptedMode === "level") {
       startTimedRun();
+    } else if (acceptedMode === "next") {
+      onNext?.();
     }
   }
   function renderBankLesson() {
@@ -671,9 +689,10 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
       ).join("");
     }
     flashTerminal(`${banked} checkpoints linked · ship memory restored`, true);
-    showTutorial("Memory restored. The drone bay just woke up. Press Enter to investigate · B for orbit.", 0);
     renderTerminal();
     onComplete?.();
+    // The haul is on screen — hand off with a title-screen-style card.
+    showModePrompt("next");
   }
 
   // ---------- end of run ----------
