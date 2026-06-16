@@ -1,0 +1,13 @@
+what do you think of the time set for 4 records in 40 seconds..too long? too short?
+
+---
+
+what about 48 seconds?
+
+---
+
+okay put that then
+
+---
+
+commit and push
