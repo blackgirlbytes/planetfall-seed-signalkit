@@ -1,0 +1,17 @@
+at the end if you fail the level..i dont think the error makes sense cuz it's not about memory anymore
+
+---
+
+the clue doesnt make sense..why are we saying Link 5 before the clock hits 0:00...the context is we already hit 0:00 and they failed
+
+---
+
+noo it should say Time's Up. You only captured x of 5 records. and then it has that R to try again thing
+
+---
+
+okay it needs to be a little bigger
+
+---
+
+okay go ahead and commit and push these changes
