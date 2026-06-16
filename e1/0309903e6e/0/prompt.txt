@@ -1,0 +1,25 @@
+lets take a look at level 2. no one likes the walking up to the items because the board is hard to navigate. but i do want to send out subagents...its supposed to reflect when you have subagents do work for you in coding..but u dontknow what they did behind the scenes until entire recovers it for you..but idk. anyways..what ideas do you have
+
+---
+
+pivoting really quickly the terminal in level 1 where you type in git add..git commit..etc font is too small..and maybe even crowded with too many characters..lets think about how we can change that
+
+---
+
+oh actually for the CLI it doesnt tell the user what to type. instead it should say underneath type git add and make the git add be like in back ticks well not really but something that it would stand out..and that line type git add..should increase in font size
+
+---
+
+17px is too small still
+
+---
+
+there's text overflow for link this record to a checkpoint yn so maybe we should do something for that..make the container bigger or something else idk
+
+---
+
+press y link to a checkpoint is too small too
+
+---
+
+17px? arent the others 21px? also where there's the green ok ..we can rremove that
