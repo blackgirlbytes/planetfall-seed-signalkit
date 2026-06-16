@@ -1,0 +1,67 @@
+okay i probably can shorten the beginning of level 1 as well..how would i do that..cuz then after that there's a tutorial..give me ideas..people told me it's too much to read. dont implement yet
+
+---
+
+Recover at least 4 records before time runs out by shooting the gold records and avoiding the wreckage.
+
+what you think of that being the first thing.
+
+---
+
+no i think it's fine..put that in one card.
+
+---
+
+ideas for shortening the words on the tutorial.
+
+We should say like Type git add or something like that idkk
+
+---
+
+we dont need the stage it..freeze it remember it headlines..it can just say press y to link to a checkpoint Type git commit to something about a snapshot. type git add to stage
+
+---
+
+lets do second set
+
+---
+
+i think the press space to ..free etc..should just copy how it was in the past briefings..including design and position..press space to continue
+
+---
+
+i wonder if people will be confused and think they need to type git add right then and there....but it's that they have to do it in the terminal..how can i change the wording
+
+---
+
+do the first one
+When the terminal prompts for step 3
+
+---
+
+can we put the commands in something that makes them stand out a little..like back ticks or something idkk..maybe not back ticks but you know
+
+---
+
+i think in the tutorial and start screen it says press space to select..but we may mean to say press space  to start..but im thinking we shouldnt even add that message..like it should start if they press any key or click on the mouse..and dont even put that message..you know what i mean..not in the story cards
+
+---
+
+where it says aim with mouse..click to fire..remove the b for orbit
+
+---
+
+in the story card for level 1..lets remove recover at least four records.
+
+instead of Recover at least 4 records before time runs out by shooting the gold records and avoiding the wreckage.
+
+we should say
+Shoot the gold records and avoid the wreckage.
+
+---
+
+you know where it says click to fire. Click should have an uppercase C
+
+---
+
+commit and push
