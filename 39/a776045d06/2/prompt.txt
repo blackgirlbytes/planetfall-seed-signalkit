@@ -1,0 +1,44 @@
+when the user presses no to link to a checkpoint during the tutorial AND during the regular game play what
+  happens
+
+it looks like during tutorial it moves forward..and during gameplay..u just dont get the point but there's no feedback or information for the user to know that either way
+
+---
+
+so what can we do..any ideas
+
+---
+
+Checkpoint declined, no points received. Try again. in tutorial
+
+
+
+Checkpoint declined, no points received. in gameplay??
+
+---
+
+okay..the only thing is during the tutorial when they press y..it gives them points..if theyre getting a freebie..should we make the records required be 5??
+
+---
+
+Recover at least 4 more records.
+
+---
+
+when the user press no to link a checkpoint should there be a noise added
+
+---
+
+when linked..we should have a noise too
+
+---
+
+during the tutorial..shouldnt the items keep falling from the sky? why does it stop?
+
+---
+
+should shooting the wrong thing make you lose points? do we have that anywhere in the instructions?
+
+---
+
+okay let's commit and push what we do have and let me know if it got connected to an entire checkpoint
