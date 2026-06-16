@@ -118,7 +118,7 @@ function makeConsole() {
   return g;
 }
 
-export function createArchiveView(renderer, { onExit } = {}) {
+export function createArchiveView(renderer, { onExit, onNewGame } = {}) {
   const canvas = renderer.domElement;
 
   // ---------- scene & sky (Level 1's calm lavender, healed) ----------
@@ -614,9 +614,10 @@ export function createArchiveView(renderer, { onExit } = {}) {
       return;
     }
 
-    // The clock ran out — only R (retry) does anything.
+    // The clock ran out — R retries this level; N returns to the true beginning.
     if (failed) {
       if (e.code === "KeyR") { resetLevel(); e.preventDefault(); }
+      if (e.code === "KeyN") { onNewGame?.(); e.preventDefault(); }
       return;
     }
 

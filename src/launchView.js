@@ -213,7 +213,7 @@ const QUESTIONS = [
   },
 ];
 
-export function createLaunchView(renderer, { onExit } = {}) {
+export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   // ---------- scene & sky ----------
   const scene = new THREE.Scene();
   scene.background = SKY_CALM.clone();
@@ -708,6 +708,7 @@ export function createLaunchView(renderer, { onExit } = {}) {
     }
     if (failed) {
       if (e.code === "KeyR") { resetLevel(); e.preventDefault(); }
+      if (e.code === "KeyN") { onNewGame?.(); e.preventDefault(); }
       return;
     }
     if (won || launched || igniting) {

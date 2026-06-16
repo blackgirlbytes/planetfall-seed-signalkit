@@ -113,7 +113,7 @@ function cmdMatches(input, accepts) {
   return accepts.some((a) => n === a || n.startsWith(a + " "));
 }
 
-export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) {
+export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGame } = {}) {
   const canvas = renderer.domElement;
 
   // ---------- scene & sky ----------
@@ -834,6 +834,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
     }
     if (failed) {
       if (e.code === "KeyR") { resetLevel(); e.preventDefault(); }
+      if (e.code === "KeyN") { onNewGame?.(); e.preventDefault(); }
       return;
     }
     if (lessonPaused && lessonNarrating) {

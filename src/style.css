@@ -1177,6 +1177,9 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   color: var(--ink);
   opacity: 0.75;
 }
+.lf-hint + .lf-hint {
+  margin-top: 8px;
+}
 .lf-key {
   display: inline-block;
   min-width: 20px;

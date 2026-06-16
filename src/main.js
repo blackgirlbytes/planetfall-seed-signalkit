@@ -124,6 +124,13 @@ const jumpToLevel3 = requestedView === "level3" || params.get("level") === "3";
 let level1Done = jumpToLevel2 || jumpToLevel3;
 let level2Done = jumpToLevel3;
 
+function startNewGame() {
+  const cleanUrl = new URL(window.location.href);
+  cleanUrl.search = "";
+  cleanUrl.hash = "";
+  window.location.assign(cleanUrl.href);
+}
+
 const planetView = createPlanetView(renderer, {
   onIslandClick: () => switchTo(
     level2Done ? launchView : level1Done ? droneBayView : islandView
@@ -134,17 +141,21 @@ const islandView = createIslandView(renderer, {
   onExit: () => switchTo(planetView),
   onComplete: () => { level1Done = true; },
   onNext: () => switchTo(droneBayView),
+  onNewGame: startNewGame,
 });
 const droneBayView = createDroneBayView(renderer, {
   onExit: () => switchTo(planetView),
   onComplete: () => { level2Done = true; },
   onNext: () => switchTo(launchView),
+  onNewGame: startNewGame,
 });
 const archiveView = createArchiveView(renderer, {
   onExit: () => switchTo(planetView),
+  onNewGame: startNewGame,
 });
 const launchView = createLaunchView(renderer, {
   onExit: () => switchTo(planetView),
+  onNewGame: startNewGame,
 });
 
 // Default to the orbit view; ?view=island jumps straight to Level 1,
