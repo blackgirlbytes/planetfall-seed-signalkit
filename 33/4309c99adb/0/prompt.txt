@@ -1,0 +1,23 @@
+i got feedback that the story in the beginning is too long..i wonder how we can shorten it. maybe 2-3 cards??
+
+---
+
+whoa can you tell me how you trimmed it before making these decisions..we need to discuss first
+
+---
+
+"Pilot, if you can read this, your ship survived the crash, but it needs repairs.",
+
+---
+
+“Pilot, if you can read this, your ship survived the crash, but it needs repairs.”
+“Your ship's records are scattered across the planet. Your mission: Recover the records and repair the ship.”
+"Click the landing marker to begin. See you soon, rebel."
+
+---
+
+ok update
+
+---
+
+okay commit and push
