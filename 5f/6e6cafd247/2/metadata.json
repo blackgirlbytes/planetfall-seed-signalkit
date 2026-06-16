@@ -1,0 +1,68 @@
+{
+  "cli_version": "0.7.6",
+  "checkpoint_id": "5f6e6cafd247",
+  "session_id": "019ed0f2-4373-7820-a3b8-d51bac5e7d6d",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-16T20:05:47.18185Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "index.html",
+    "src/archiveView.js",
+    "src/droneBayView.js",
+    "src/islandView.js",
+    "src/launchView.js",
+    "src/main.js",
+    "src/style.css"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "aa817af57a9f",
+  "checkpoint_transcript_start": 838,
+  "transcript_lines_at_start": 838,
+  "token_usage": {
+    "input_tokens": 32944,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1000960,
+    "output_tokens": 3406,
+    "api_call_count": 9
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-16T20:05:47.12744Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 6,
+    "total_committed": 0,
+    "total_lines_changed": 6,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 115,
+      "user_lines_removed": 6,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        "index.html": 4,
+        "src/archiveView.js": 3,
+        "src/droneBayView.js": 3,
+        "src/islandView.js": 2,
+        "src/launchView.js": 2,
+        "src/main.js": 11,
+        "src/style.css": 3
+      },
+      "user_removed_per_file": {
+        "src/archiveView.js": 2,
+        "src/droneBayView.js": 2,
+        "src/islandView.js": 1,
+        "src/launchView.js": 1
+      }
+    }
+  ]
+}
