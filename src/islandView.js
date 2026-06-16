@@ -14,8 +14,8 @@ import { sfx } from "./sfx.js";
 //
 // Each record you recover opens the ship's terminal and you BANK it with the
 // real workflow:  `git add` (stage) → `git commit` (freeze) → press Y to link a
-// CHECKPOINT (what actually restores it to the ship's memory). Recover at least
-// four, then run `entire checkpoint list` to review them after the clock ends.
+// CHECKPOINT (what actually restores it to the ship's memory). The tutorial
+// banks one freebie; recover four more, then run `entire checkpoint list`.
 //
 // Teaching: a commit just freezes the change; linking a checkpoint is what the
 // ship remembers by. One clock for the whole run.
@@ -25,7 +25,7 @@ import { sfx } from "./sfx.js";
 // each record costs the full git add/commit/link loop, so it's a race against
 // your own typing as much as the clock.
 const TOTAL_TIME = 48;       // seconds in the run
-const MIN_TO_PASS = 4;       // recover at least this many or the run fails
+const MIN_TO_PASS = 5;       // tutorial freebie + four timed records
 const WRECK_PENALTY = 4;     // seconds lost for shooting wreckage
 const LOW_TIME = 15;         // clock turns urgent (red, pulsing) under this
 const CRIT_TIME = 6;         // clock goes CRITICAL (fast pulse) under this
@@ -71,7 +71,7 @@ const MODE_PROMPTS = {
   },
   level: {
     action: "PLAY LEVEL 1",
-    note: "Clock starts now. Recover at least 4 records.",
+    note: "Clock starts now. Recover at least 4 more records.",
   },
   // The level-complete handoff — shown after `entire checkpoint list`. Keeps the
   // recovered-records list visible behind it instead of closing the terminal.
@@ -223,6 +223,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
   let reviewMode = false;       // all linked → type `entire checkpoint list`
   let listShown = false;
   let banked = 0;
+  let tutorialBankRecord = null;
   const bankedRecords = [];
 
   // Level countdown — the single source of pressure.
@@ -659,29 +660,36 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
     if (bankState !== "frozen") return;
     const teaching = lessonPaused;
     if (!yes) {
+      if (teaching) {
+        flashTerminal("Checkpoint declined, no points received. Try again.", false);
+        sfx.wrong();
+        return;
+      }
+      if (bankTarget) spawnSpark(bankTarget.position.clone(), 0xff5a3c);
       clearBankPiece();
       banking = false;
       bankState = "done";
       closeTerminal();
-      if (teaching) {
-        finishBankLesson();
-        showModePrompt("level");
-      }
+      showTutorial("Checkpoint declined, no points received.", 2600);
+      sfx.wrong();
       return;
     }
     const frag = FRAGMENTS[banked % FRAGMENTS.length];
     const id = genCheckpointId();
-    bankedRecords.push({ frag, id });
+    const record = { frag, id };
+    bankedRecords.push(record);
     banked += 1;
     updateTally();
 
     // shatter the ice + dismiss the banked record with a little sparkle
     if (bankTarget) spawnSpark(bankTarget.position.clone(), 0x8fe3ff);
+    sfx.checkpoint();
     clearBankPiece();
     banking = false;
     bankState = "done";
     closeTerminal();
     if (teaching) {
+      tutorialBankRecord = record;
       finishBankLesson();
       showModePrompt("level");
     }
@@ -740,8 +748,13 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
     listShown = false;
     bankState = "dormant";
     buffer = "";
-    banked = 0;
     bankedRecords.length = 0;
+    if (bankLessonComplete && tutorialBankRecord) {
+      bankedRecords.push(tutorialBankRecord);
+      banked = 1;
+    } else {
+      banked = 0;
+    }
     updateTally();
     spawnTimer = 0;
     timeLeft = TOTAL_TIME;
@@ -894,7 +907,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
     // Spawn + fall (paused while banking or after the run ends).
     // The rain keeps falling even while you bank — that's the cost of stopping
     // to type. (Only pause it once the run is over.)
-    const raining = started && !reviewMode && !failed && !listShown && !lessonPaused && !visibleModePromptKind();
+    const raining = started && !reviewMode && !failed && !listShown && !visibleModePromptKind();
     if (raining) {
       spawnTimer -= dt;
       if (spawnTimer <= 0) {

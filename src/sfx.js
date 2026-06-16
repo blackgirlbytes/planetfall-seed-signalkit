@@ -85,6 +85,14 @@ export const sfx = {
     tone({ freq: 1020, type: "triangle", dur: 0.18, vol: 0.55, delay: 0.08 });
     duck(0.4, 380);
   },
+  // Checkpoint linked — a clean upward confirmation, distinct from pickup.
+  checkpoint() {
+    tone({ freq: 520, type: "triangle", dur: 0.1, vol: 0.45 });
+    tone({ freq: 780, type: "triangle", dur: 0.12, vol: 0.5, delay: 0.07 });
+    tone({ freq: 1170, type: "sine", dur: 0.22, vol: 0.42, delay: 0.14 });
+    noise({ dur: 0.12, vol: 0.08, type: "highpass", freq: 2400, delay: 0.12 });
+    duck(0.35, 460);
+  },
   // Bad hit — wreckage: harsh low detuned buzzer.
   wrong() {
     tone({ freq: 150, to: 80, type: "square", dur: 0.24, vol: 0.5 });
