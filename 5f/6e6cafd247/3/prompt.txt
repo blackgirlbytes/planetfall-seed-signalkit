@@ -1,0 +1,14 @@
+at the end of level 1 you press r to try again..do you see that? but im wondering what do you press if you just want to start the game from the very beginning where it gives you the run down of of the story and the planet
+
+---
+
+i want something super simple..nothing crazy for the user..come up with more ideas
+
+---
+
+press R to try again
+press N to start over
+
+---
+
+okay lets commit and push
