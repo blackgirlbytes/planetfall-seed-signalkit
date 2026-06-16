@@ -97,13 +97,12 @@ const BANK_LESSONS = {
 
 // What the terminal asks for at each stage of banking a record.
 const STEPS = {
-  dormant:   { type: "command", cmd: "git add",    accept: ["git add"],    hint: "ADD" },
-  recovered: { type: "command", cmd: "git commit", accept: ["git commit"], hint: "COMMIT" },
-  frozen:    { type: "confirm", question: "Link this record to a checkpoint?", hint: "LINK CHECKPOINT" },
+  dormant:   { type: "command", cmd: "git add",    accept: ["git add"] },
+  recovered: { type: "command", cmd: "git commit", accept: ["git commit"] },
+  frozen:    { type: "confirm", question: "Link this record to a checkpoint?" },
 };
 const REVIEW_STEP = {
   type: "command", cmd: "entire checkpoint list", accept: ["entire checkpoint list"],
-  hint: "Review recovered records",
 };
 
 function normalizeCmd(s) {
@@ -179,6 +178,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
   const tutorialEl = document.getElementById("tutorial");
   const actionBar = document.getElementById("action-bar");
   const termEl = document.getElementById("terminal");
+  const termLine = document.getElementById("term-line");
   const termHint = document.getElementById("term-hint");
   const termInput = document.getElementById("term-input");
   const termList = document.getElementById("term-list");
@@ -585,7 +585,8 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
     const step = currentStep();
     if (!step) return;
     if (reviewMode && listShown) {
-      termHint.textContent = "# entire checkpoint list";
+      if (termHint) termHint.textContent = "";
+      termLine?.classList.remove("is-confirm");
       termInput.textContent = "entire checkpoint list";
       termInput.classList.remove("is-dim");
       if (termCta) termCta.innerHTML = "";
@@ -593,9 +594,12 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
       return;
     }
     termList?.classList.add("hidden");
-    termHint.textContent = step.hint ? `# ${step.hint}` : "";
+    if (termHint) termHint.textContent = "";
+    termLine?.classList.toggle("is-confirm", step.type === "confirm");
     if (step.type === "confirm") {
-      termInput.textContent = `${step.question}  [y/n]`;
+      // Not a typed command — show the question as its own wrapping line
+      // (no $ prompt / cursor), and let the Y/N keys be the action.
+      termInput.textContent = step.question;
       termInput.classList.add("is-dim");
       if (termCta) termCta.innerHTML =
         `<span class="cta-label">PRESS</span>` +
@@ -605,7 +609,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
       termInput.textContent = buffer;
       termInput.classList.remove("is-dim");
       if (termCta) termCta.innerHTML =
-        `<span class="cta-label">TYPE</span><span class="cta-cmd">${step.cmd}</span>`;
+        step.cmd ? `<span class="cta-helper">type <code class="cta-helper-cmd">${step.cmd}</code></span>` : "";
     }
   }
   function flashTerminal(text, ok) {
@@ -625,7 +629,6 @@ export function createIslandView(renderer, { onExit, onComplete, onNext } = {}) 
       if (reviewMode) { showCheckpointList(); return; }
       advanceBank();
       if (!teaching) {
-        flashTerminal("ok", true);
         renderTerminal();
       }
     } else {
