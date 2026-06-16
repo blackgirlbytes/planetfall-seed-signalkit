@@ -1,0 +1,11 @@
+words that say things like the rebellion is waiting..need to be bigger. 
+
+start game options needs to be bigger..first record is practice..clock stays off needs to be bigger..and anythign similar to that needs to be bigger as well
+
+---
+
+the error messages in the terminal are a little small as well..need those to be bigger
+
+---
+
+commit and push
