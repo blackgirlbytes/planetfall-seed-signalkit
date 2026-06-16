@@ -1,0 +1,9 @@
+the terminal in level 1 where you type in git add..git commit..etc font is too small..and maybe even crowded with too many characters..lets think about how we can change that
+
+---
+
+im  making some changes to it now..what about the color scheme..do you think it makes sense with the rest of it
+
+---
+
+but why are we using cyan
