@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.7.6",
+  "checkpoint_id": "39a776045d06",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "index.html",
+    "src/islandView.js",
+    "src/sfx.js"
+  ],
+  "sessions": [
+    {
+      "metadata": "/39/a776045d06/0/metadata.json",
+      "transcript": "/39/a776045d06/0/full.jsonl",
+      "content_hash": "/39/a776045d06/0/content_hash.txt",
+      "prompt": "/39/a776045d06/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 181406,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1246848,
+    "output_tokens": 8829,
+    "api_call_count": 20
+  }
+}

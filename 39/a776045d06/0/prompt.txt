@@ -1,0 +1,22 @@
+lets take a look at level 2. no one likes the walking up to the items because the board is hard to navigate. but i do want to send out subagents...its supposed to reflect when you have subagents do work for you in coding..but u dontknow what they did behind the scenes until entire recovers it for you..but idk. anyways..what ideas do you have
+
+---
+
+i think in level 1 people really like the shooting..so im trying to get us to think more like what is a game type of thing that people do
+
+---
+
+Wait i think in level 1..where the words in level 1 at the end say 
+"time..you got this amount of records etc etc"..maybe they are too small..maybe the container is too small too or we shouldnt have that container and style and should use something else
+
+---
+
+do we need to say time? or maybe time's up
+
+---
+
+TIME’S UP
+4 RECORDS RECOVERED
+Run `entire checkpoint list` to review your haul.
+
+yeah we can do this..it doesnt all have to be on new lines you know..but like now what's the design we're using
