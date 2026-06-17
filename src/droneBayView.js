@@ -48,10 +48,12 @@ const ENTRANCE_X = 26;       // where a finished slate slides in from
 const SLATE_ICE_SCALE = 0.52;
 const SLATE_ICE_Y = 2.0;
 
-// Onboarding — two load-bearing beats (problem → action), advanced with Space.
+// Onboarding — short story beats, advanced with Space.
 const BRIEFING_BEATS = [
-  "The ship is breaking down before launch. Dispatch jobs arrive as white pips — if one sits too long, it heats toward red and burns the window faster.",
-  "It comes back sealed in ice — you can't tell what it is. Click it to run explain, read what the subagent did, then deduce its bay and drag it there before the ice melts and the work is lost.",
+  "Pilot, you collected the records, but they need repair.",
+  "We don't have a lot of time. Dispatch the drone bay as subagents to get the work done faster.",
+  ["Use ", { command: "entire checkpoint explain" }, " to see what the subagents did."],
+  "The ship needs you to account for every repair before launch.",
 ];
 
 // Sky panic palette — same dread as Level 1's clock.
@@ -918,8 +920,8 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   const failEl = document.getElementById("db-fail");
 
   let active = false, started = false, failed = false, reportSent = false;
-  let promptText = null; const taught = new Set();
-  let tutorialTimer = null, msgTimer = null, winTimer = null, briefingIndex = 0;
+  let promptText = null;
+  let msgTimer = null, winTimer = null, briefingIndex = 0;
   let timeLeft = TOTAL_TIME, timerRunning = false, elapsed = 0;
   let panelMode = null, reviewPart = null, buffer = "";
   let boardRenderT = 0;
@@ -975,8 +977,6 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
 
   // ---------- HUD helpers ----------
   function setPrompt(t) { if (!promptEl || t === promptText) return; promptText = t; if (t) { promptEl.textContent = t; promptEl.classList.remove("hidden"); } else promptEl.classList.add("hidden"); }
-  function showTutorial(t, ms = 5500) { if (!tutorialEl) return; clearTimeout(tutorialTimer); tutorialEl.textContent = t; tutorialEl.classList.remove("hidden"); if (ms > 0) tutorialTimer = setTimeout(() => tutorialEl.classList.add("hidden"), ms); }
-  function teachOnce(k, t, ms) { if (taught.has(k)) return; taught.add(k); showTutorial(t, ms); }
   function setControls() {
     if (!controlsEl) return;
     controlsEl.innerHTML = `
@@ -1020,7 +1020,22 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   function applyPanicSky() { const p = panicFactor(); scene.background.copy(SKY_CALM).lerp(SKY_PANIC, p); scene.fog.color.copy(SKY_CALM).lerp(FOG_PANIC, p); dome.material.color.copy(DOME_CALM).lerp(DOME_PANIC, p); sun.color.copy(SUN_CALM).lerp(SUN_PANIC, p * 0.85); }
 
   // ---------- briefing ----------
-  function renderBriefingBeat() { if (!briefingTextEl) return; briefingTextEl.textContent = BRIEFING_BEATS[briefingIndex] || ""; briefingTextEl.classList.remove("beat-in"); void briefingTextEl.offsetWidth; briefingTextEl.classList.add("beat-in"); if (briefingNextEl) briefingNextEl.textContent = briefingIndex < BRIEFING_BEATS.length - 1 ? "to continue" : "to begin"; }
+  function renderBriefingBeat() {
+    if (!briefingTextEl) return;
+    const beat = BRIEFING_BEATS[briefingIndex] || "";
+    const parts = Array.isArray(beat) ? beat : [beat];
+    briefingTextEl.replaceChildren(...parts.map((part) => {
+      if (typeof part === "string") return document.createTextNode(part);
+      const command = document.createElement("span");
+      command.className = "mission-briefing-command";
+      command.textContent = part.command;
+      return command;
+    }));
+    briefingTextEl.classList.remove("beat-in");
+    void briefingTextEl.offsetWidth;
+    briefingTextEl.classList.add("beat-in");
+    if (briefingNextEl) briefingNextEl.textContent = briefingIndex < BRIEFING_BEATS.length - 1 ? "to continue" : "to begin";
+  }
   function advanceBriefing() { if (started) return; if (briefingIndex < BRIEFING_BEATS.length - 1) { briefingIndex += 1; renderBriefingBeat(); return; } startLevel(); }
   function showBriefing() { timerRunning = false; boardEl?.classList.add("hidden"); tutorialEl?.classList.add("hidden"); briefingIndex = 0; renderBriefingBeat(); briefingEl?.classList.remove("hidden"); }
   function startLevel() {
@@ -1028,7 +1043,6 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     timeLeft = TOTAL_TIME; timerRunning = true; elapsed = 0; boardRenderT = 0;
     spawnInitialDots();
     updateClock(); updateSystems();
-    showTutorial("White pips are new dispatch jobs. If one sits too long, it heats toward red and drains the window faster.", 9500);
   }
   briefingEl?.addEventListener("click", () => { if (active && !started) advanceBriefing(); });
 
@@ -1039,14 +1053,11 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     if (!jd || !jd.spawned || jd.taken || jd.partIdx == null) return;
     const d = freeDrone(); if (!d) { flashTerminal("every subagent is busy — wait for one to return", false); return; }
     const p = parts[jd.partIdx];
-    const wasUrgent = jd.heat >= DOT_HOT;
     jd.taken = true; jd.group.visible = false;
     p.state = "working";
     d.busy = true; d.part = p; d.phase = "out"; d.flyProg = 0; d.weldAt = jd.pos.clone();
     spawnSpark(jd.pos.clone(), 0x6fe3ff, 12);
     updateSystems();
-    if (wasUrgent) teachOnce("urgent-relief", "Good call — dispatching aged pips slows the launch-window drain before the belt floods.", 7000);
-    teachOnce("dispatched", "Sent — the subagent's flying out to fix it. What it brings back rides up the belt, sealed.", 8000);
   }
   function partToBelt(p) {                 // subagent finished → slate rides the belt
     p.state = "onbelt"; p.explained = false; p.beltX = ENTRANCE_X; p.patience = PATIENCE;
@@ -1058,7 +1069,6 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     p.slateMesh = slate;
     belted.push(p.idx);
     updateSystems();
-    teachOnce("onbelt", "Here it comes on the belt, sealed and silent. Click it to run `entire checkpoint explain`.", 8500);
   }
   // patience ran out — the work SPOILS and is lost: the block leaves the belt and its
   // red dot returns to the dispatch board, so the whole job has to be re-dispatched.
@@ -1075,7 +1085,6 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     }
     updateSystems();
     flashTerminal("✗ a block melted — that work is lost; its pip is back on the board, re-dispatch it", false);
-    teachOnce("spoiled", "Too slow — the ice melted and the work is gone. Its pip comes back white, then starts heating again.", 7000);
   }
 
   // ---------- review (explain) ----------
@@ -1110,7 +1119,6 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
       p.explained = true; p.state = "review";
       spawnSpark(p.slateMesh.position.clone().setY(BELT_Y + 2), 0x8fe3ff, 12);
       flashTerminal(`explained ${p.data.ckpt} — read what it did, then drag it to the bay you reckon it fixes`, true);
-      teachOnce("explained", "The report tells you what the subagent did — work out which ship bay that is, then drag the block there before its ice melts.", 9000);
       updateSystems();
     }
     renderPanel();
@@ -1126,7 +1134,6 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
       p.slateMesh.position.set(p.beltX, BELT_Y, 2);
       spawnSpark(sl.slotPos.clone(), 0xff3b2e, 12);
       flashTerminal(`✗ that's not the ${sl.data.name.toLowerCase()} fix — re-read the report and try the bay it really belongs to`, false);
-      teachOnce("wrongbay", "Wrong bay — the block's still sealed and back on the belt. Click it to re-read what the subagent did, then deduce the right square.", 5500);
       return;
     }
     if (!slotHasRoom(sl.idx)) {
@@ -1149,10 +1156,8 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     if (allPlaced()) {
       panelMode = "report"; buffer = "";
       flashTerminal("all blocks matched — run dispatch to file the day", true);
-      showTutorial("Every block is in its right bay. Type `entire dispatch` — it locks them in and files the day's report.", 0);
+      tutorialEl?.classList.add("hidden");
       renderPanel();
-    } else {
-      showTutorial(`placed (${placedCount()} / ${parts.length}).`, 1800);
     }
   }
 
@@ -1216,7 +1221,6 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     spawnInitialDots();
     failEl?.classList.add("hidden"); winEl?.classList.add("hidden");
     updateSystems(); updateClock();
-    showTutorial("New launch window — white pips arrive over time, then heat toward red if they sit.", 6500);
   }
 
   // ---------- input ----------
@@ -1451,7 +1455,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     if (!started) showBriefing();
     else if (reportSent) winEl?.classList.remove("hidden");
     else if (failed) resetLevel();
-    else { timerRunning = !allOnline(); showTutorial("The subagents kept working while you were in orbit.", 5000); }
+    else { timerRunning = !allOnline(); tutorialEl?.classList.add("hidden"); }
     updateClock(); applyPanicSky();
   }
   function exit() {

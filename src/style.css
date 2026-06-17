@@ -777,6 +777,23 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.mission-briefing-command {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: baseline;
+  margin: 0 0.08em;
+  padding: 0.04em 0.3em 0.1em;
+  border: 1px solid rgba(255, 233, 179, 0.62);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ffe9b3 0%, #f6c763 58%, #d69e3a 100%);
+  color: #160f04;
+  box-shadow: 0 0 18px rgba(248, 200, 96, 0.22);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.86em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
 .mission-banner-cue,
 .mission-lesson-cue {
   margin-top: clamp(14px, 2vw, 22px);
