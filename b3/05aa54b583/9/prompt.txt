@@ -1,0 +1,61 @@
+lets work on the briefing or storyboarding for level 2. first get an understanding of what's happening in level 2.
+
+---
+
+i think we need to work on the briefing based on what you've found. keep it short but clear/direct. see what level 1s briefing says? we need a better briefing..and maybe we can introduce a short tutorial
+
+---
+
+we should discuss before you edit it. im not happy that you edited without me. I think the briefing would be basically saying hey pilot (not this verbatim but this is what my intention is) hey pilot..we collected the items but they need repairing. you dont have a lot of time. Use drone/ subagents to help you repair and use entire explain to learn what they did. Trust me..you will need to know or something like that
+
+---
+
+okay lets try that
+
+---
+
+Pilot, you collected the records, but they need repair. 
+We don't have a lot of time. Dispatch the drone bay as subagents to get the work done faster.
+Use entire checkpoint explain (dont put it back ticks..highlight in gold) to see what they did.  The ship requires all work be accounted for.
+
+something closer to this
+
+---
+
+is this bad grammar or could be worded better The ship requires all work be accounted for.”
+
+---
+
+i like every repair be accounted for..or something like that but i dont like the word be..thats my problem.
+
+---
+
+i liked the word accounted
+
+---
+
+or as the pilot..you need to know all the repairs kinda thing..like the ship needs that from you as the pilot
+
+---
+
+dont say we do not have a lot of time..just say we don't have a lot of time
+
+---
+
+to see what the subagents did.
+
+---
+
+ok try that
+
+---
+
+separate into two Use entire checkpoint explain to see what the subagents did. The ship needs you to account for every repair before launch.”
+
+---
+
+commit and push
+
+---
+
+get that tutorial helper out of here. i didnt want that
