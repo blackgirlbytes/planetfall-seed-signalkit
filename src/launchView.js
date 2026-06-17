@@ -55,6 +55,12 @@ const L1_RECORD = [
 ];
 const RECORD_TOTAL = L1_RECORD.length + SYSTEMS.length; // 8
 
+// Onboarding — short story beats, advanced with Space.
+const BRIEFING_BEATS = [
+  "The ship is rebuilt. You're in the pilot's chair.",
+  "Answer the launch questions from the record. Five correct confirms authorize ignition.",
+];
+
 // ---------- the five pre-flight questions ----------
 // Each tool: label (what the menu shows), echo (what "runs" at the prompt),
 // rows ([key, value] output lines), ok (false = dead end), note (the flash).
@@ -376,7 +382,8 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   // ---------- HUD elements ----------
   const hud = document.getElementById("lc-hud");
   const briefingEl = document.getElementById("lc-briefing");
-  const briefingStartBtn = document.getElementById("lc-briefing-start");
+  const briefingTextEl = document.getElementById("lc-briefing-text");
+  const briefingNextEl = document.getElementById("lc-briefing-next");
   const countdownEl = document.getElementById("lc-countdown");
   const countdownTime = document.getElementById("lc-countdown-time");
   const codeSegsEl = document.getElementById("lc-code-segs");
@@ -404,6 +411,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   let liftT = 0;
   let burstTimer = 0;
   let qIndex = 0;
+  let briefingIndex = 0;
   let phase = "menu";          // menu → chips → done (or "single" on the finale)
   let usedTool = null;         // which menu row ran (for dimming)
   let deadTools = new Set();
@@ -631,8 +639,33 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   }
 
   // ---------- briefing / win / fail / reset ----------
+  function restartTextAnimation(el) {
+    if (!el) return;
+    el.classList.remove("beat-in");
+    void el.offsetWidth;
+    el.classList.add("beat-in");
+  }
+  function renderBriefingBeat() {
+    if (!briefingTextEl) return;
+    briefingTextEl.textContent = BRIEFING_BEATS[briefingIndex] || "";
+    restartTextAnimation(briefingTextEl);
+    if (briefingNextEl) {
+      briefingNextEl.textContent = briefingIndex < BRIEFING_BEATS.length - 1 ? "to continue" : "to begin";
+    }
+  }
+  function advanceBriefing() {
+    if (started) return;
+    if (briefingIndex < BRIEFING_BEATS.length - 1) {
+      briefingIndex += 1;
+      renderBriefingBeat();
+      return;
+    }
+    startLevel();
+  }
   function showBriefing() {
     timerRunning = false;
+    briefingIndex = 0;
+    renderBriefingBeat();
     briefingEl?.classList.remove("hidden");
     consoleEl?.classList.add("hidden");
   }
@@ -647,7 +680,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
     renderCode();
     renderQuestion();
   }
-  briefingStartBtn?.addEventListener("click", startLevel);
+  briefingEl?.addEventListener("click", () => { if (active && !started) advanceBriefing(); });
 
   function failLevel() {
     if (failed || launched) return;
@@ -703,7 +736,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   function onKeyDown(e) {
     if (!active) return;
     if (!started) {
-      if (e.code === "Enter" || e.code === "Space") { startLevel(); e.preventDefault(); }
+      if (e.code === "Enter" || e.code === "Space") { advanceBriefing(); e.preventDefault(); }
       return;
     }
     if (failed) {

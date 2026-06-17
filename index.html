@@ -369,48 +369,15 @@
 
       <!-- Level 3 HUD ("Launch Clearance") -->
       <div id="lc-hud" class="hidden">
-        <!-- Briefing — the window opens when you take the chair -->
-        <div id="lc-briefing" class="hidden">
-          <div class="bf-card">
-            <div class="bf-tag">LAUNCH WINDOW OPEN · LEVEL 3</div>
-            <h1 class="bf-title">Launch Clearance</h1>
-            <p class="bf-story">
-              The ship is rebuilt. For the first time, you're inside — pilot's
-              chair, island in the window. But the launch computer won't arm on
-              work nobody can account for, and most of today's work you never
-              watched. The ship has questions only the record can answer.
-            </p>
-            <p class="bf-story bf-quote">
-              "I can read the record. Protocol says you have to be the one to
-              confirm it."
-            </p>
-            <div class="bf-mission">
-              <div class="bf-mission-head">YOUR MISSION</div>
-              <ol class="bf-steps">
-                <li>The ship asks a question. You weren't there — the record was.</li>
-                <li>Pick a way to look it up (<code>1</code>–<code>3</code>): a command, or a skill that runs it for you.</li>
-                <li>The answer lands on screen. Confirm it for the launch computer.</li>
-                <li>Five confirms complete the <strong>launch code</strong> — before the window closes at <strong>0:00</strong>.</li>
-              </ol>
+        <!-- Launch briefing — short story beats, L1/L2 style; the clock waits. -->
+        <div id="lc-briefing" class="mission-banner hidden">
+          <div class="mission-banner-box">
+            <div class="mission-kicker">LAUNCH WINDOW OPEN · LEVEL 3</div>
+            <div id="lc-briefing-text" class="mission-banner-text"></div>
+            <div class="mission-banner-cue">
+              <span class="bf-key">Space</span>
+              <span id="lc-briefing-next">to continue</span>
             </div>
-            <div class="bf-controls">
-              <div class="bf-mission-head">CONTROLS</div>
-              <div class="bf-ctrl-grid">
-                <span class="bf-ctrl">
-                  <span class="bf-keys"><span class="bf-key">1</span><span class="bf-key">2</span><span class="bf-key">3</span></span>
-                  choose <span class="bf-dim">(or click)</span>
-                </span>
-                <span class="bf-ctrl">
-                  <span class="bf-key">Enter</span> file the flight log
-                </span>
-                <span class="bf-ctrl">
-                  <span class="bf-key">B</span> return to orbit
-                </span>
-              </div>
-            </div>
-            <p class="bf-warn">A wrong tool costs seconds, never the ship. Trust the record — fast.</p>
-            <button id="lc-briefing-start" type="button">TAKE THE PILOT'S SEAT</button>
-            <div class="bf-hint">or press <span class="bf-key">Enter</span></div>
           </div>
         </div>
 

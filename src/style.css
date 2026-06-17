@@ -727,7 +727,8 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 #lc-briefing.hidden { display: none; }
 
 #briefing.mission-banner,
-#db-briefing.mission-banner {
+#db-briefing.mission-banner,
+#lc-briefing.mission-banner {
   align-items: flex-end;
   justify-content: center;
   padding: 0;
@@ -819,6 +820,7 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 .mission-banner-cue .bf-key,
 .mission-banner-cue #briefing-next,
 .mission-banner-cue #db-briefing-next,
+.mission-banner-cue #lc-briefing-next,
 .mission-lesson-cue .bf-key,
 .mission-lesson-cue .mission-lesson-next {
   background: linear-gradient(180deg, #ffe9b3 0%, #f6c763 52%, #d69e3a 100%);
@@ -1123,8 +1125,7 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   margin-bottom: 22px;
 }
 #l2-briefing-start,
-#db-briefing-start,
-#lc-briefing-start {
+#db-briefing-start {
   display: block;
   width: 100%;
   padding: 15px 20px;
@@ -1141,14 +1142,12 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   transition: transform 0.12s ease, box-shadow 0.2s ease;
 }
 #l2-briefing-start:hover,
-#db-briefing-start:hover,
-#lc-briefing-start:hover {
+#db-briefing-start:hover {
   transform: translateY(-1px);
   box-shadow: 0 0 36px rgba(111, 227, 255, 0.5);
 }
 #l2-briefing-start:active,
-#db-briefing-start:active,
-#lc-briefing-start:active { transform: translateY(0); }
+#db-briefing-start:active { transform: translateY(0); }
 .bf-hint {
   margin-top: 12px;
   text-align: center;
@@ -2494,16 +2493,6 @@ body.hit-flash::after {
 .hidden { display: none; }
 
 /* ---------- Level 3 HUD ("Launch Clearance") ---------- */
-
-/* The briefing quotes the ship's AI — set the line apart. */
-.bf-quote {
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 12.5px;
-  color: var(--accent);
-  border-left: 2px solid rgba(111, 227, 255, 0.45);
-  padding-left: 12px;
-  margin-top: 10px;
-}
 
 /* The launch code — one segment per confirmed answer */
 #lc-code {
