@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.7.6",
+  "checkpoint_id": "e16fc6356f0f",
+  "session_id": "019ed6d6-ef92-7bc1-91e1-eb148c3140a6",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-17T22:03:18.776236Z",
+  "branch": "codex/level-2-drone-bay-ui",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/droneBayView.js",
+    "src/droneBayView.js"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "fee52dc3cd8f",
+  "checkpoint_transcript_start": 1365,
+  "transcript_lines_at_start": 1365,
+  "initial_attribution": {
+    "calculated_at": "2026-06-17T22:03:18.661045Z",
+    "agent_lines": 306,
+    "agent_removed": 236,
+    "human_added": 1299,
+    "human_modified": 148,
+    "human_removed": 0,
+    "total_committed": 1753,
+    "total_lines_changed": 2041,
+    "agent_percentage": 26.555609995100443,
+    "metric_version": 2
+  }
+}

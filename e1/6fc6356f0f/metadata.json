@@ -3,7 +3,7 @@
   "checkpoint_id": "e16fc6356f0f",
   "strategy": "manual-commit",
   "branch": "codex/level-2-drone-bay-ui",
-  "checkpoints_count": 2,
+  "checkpoints_count": 3,
   "files_touched": [
     "src/droneBayView.js",
     "src/style.css"
@@ -20,6 +20,12 @@
       "transcript": "/e1/6fc6356f0f/1/full.jsonl",
       "content_hash": "/e1/6fc6356f0f/1/content_hash.txt",
       "prompt": "/e1/6fc6356f0f/1/prompt.txt"
+    },
+    {
+      "metadata": "/e1/6fc6356f0f/2/metadata.json",
+      "transcript": "/e1/6fc6356f0f/2/full.jsonl",
+      "content_hash": "/e1/6fc6356f0f/2/content_hash.txt",
+      "prompt": "/e1/6fc6356f0f/2/prompt.txt"
     }
   ],
   "token_usage": {

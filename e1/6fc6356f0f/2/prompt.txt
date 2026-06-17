@@ -1,0 +1,72 @@
+in level 2 there's some pop ups that say things like the report tells u what the subagents did..etc etc..can we remove those . i hate them
+
+---
+
+did you remove the briefing at the beginning of level 2? I still want that..i dont want these
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-b68a7b18-9080-4369-be05-6938ba9d4e77.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-b68a7b18-9080-4369-be05-6938ba9d4e77.png
+
+## My request for Codex:
+i dont want this
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-e9ca0797-6a6e-421b-8782-3cfcd2cac807.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-e9ca0797-6a6e-421b-8782-3cfcd2cac807.png
+
+## My request for Codex:
+the design of the dispatch board ..i like a little bit..i like how spaced out it is..and that the subagents get small when they got to it..that part is appreciated but overall it's ugly..idek if we need the words dispatch board..you know..idk any ideas for improvement..and then im not a fan of how the squares look that i will drag and drop into. i know i need them but something overall seems unaesthetic and unbalanced
+
+---
+
+it still needs to be clear to players on what to do
+
+---
+
+i think squares are fine..but thought we could redesign or place differently
+
+---
+
+lets see what that would look like
+
+---
+
+this is horrible. put it back to the way it was before..
+
+---
+
+okay i like how they look now but im looking for more balance..i like the idea of having them on one board and maybe like a grid..like a control grid or something that you would see in a spaceship..but i generally want to leave the design as is..does this make senes
+
+---
+
+okay it's looking better..i think the dispatch should be part of the board..and we could move the board up a bit..we dont want the board..overlappign the black space between the sky and the conveyor belt
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-06770328-2e33-4df4-86d7-2a98aad35221.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-06770328-2e33-4df4-86d7-2a98aad35221.png
+
+## My request for Codex:
+ i dont think the dispatch board needs that line at the bottom like there's a line on the left and the horizontally connecting that make it look unpolished and out of place..it can just be the same height as the rest of the board
+
+---
+
+should we remove the word dispatch? how will people know they should click it..i think we should remove it..cuz it's too close to the top border..almost getting overlapped..i think we have more space in the dispatch board ..so we can move everything down a bit..maybe we will have more room for the word dispatch
+
+---
+
+i think this whole board can be centered horizontally in the middle of the page
+
+---
+
+center the green iceblocks in each square better. they dont seem fully in the middle after matching
+
+---
+
+change it from saying subagent bay to drone bay..where the subagents are sitting
