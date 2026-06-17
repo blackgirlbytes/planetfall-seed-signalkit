@@ -1,0 +1,30 @@
+what do you think of the game for level 2 like the game play? like do you think it's fun for people? dont
+  make any changes but just read the code
+
+---
+
+okay lets do like if u put it in the wrong square..it bounces back and tells u that's the wrong square
+
+---
+
+i have a question..the dots show urgency when you take too long to dispatch..should we do the same for the squares that you have to match
+
+---
+
+is the block..the ice block you mean?
+
+---
+
+okay lets try it
+
+---
+
+why does it say what it is? i dont want to open the ice block and know what it is/where it should match to. i think it should be the ice block that shows if u dont match it..it will get red and melt or something..because im supposed to be deducing from the entire explain where it should go
+
+---
+
+what usually happens in things like diner dash and overcooked when a customer is waiting too long..thats what these blocks are? i dont know what maxes out drain even means
+
+---
+
+nooo we dont want u to put the hash..they will get it from clicking explain..and okay then that's what we will do..block is lost..and we have to dispatch a subagent again
