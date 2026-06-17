@@ -1,0 +1,10 @@
+what do you think of the game for level 2 like the game play? like do you think it's fun for people? dont
+  make any changes but just read the code? does the game make sense?
+
+---
+
+what do you think of the sections that say 1/2 or 2/2 ? confusing or no?
+
+---
+
+i think instead it should show all 12..instead of a square sharing two
