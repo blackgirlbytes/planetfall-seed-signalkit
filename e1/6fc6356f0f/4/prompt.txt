@@ -1,0 +1,259 @@
+lets work on the briefing or storyboarding for level 2. first get an understanding of what's happening in level 2.
+
+---
+
+i think we need to work on the briefing based on what you've found. keep it short but clear/direct. see what level 1s briefing says? we need a better briefing..and maybe we can introduce a short tutorial
+
+---
+
+we should discuss before you edit it. im not happy that you edited without me. I think the briefing would be basically saying hey pilot (not this verbatim but this is what my intention is) hey pilot..we collected the items but they need repairing. you dont have a lot of time. Use drone/ subagents to help you repair and use entire explain to learn what they did. Trust me..you will need to know or something like that
+
+---
+
+okay lets try that
+
+---
+
+Pilot, you collected the records, but they need repair. 
+We don't have a lot of time. Dispatch the drone bay as subagents to get the work done faster.
+Use entire checkpoint explain (dont put it back ticks..highlight in gold) to see what they did.  The ship requires all work be accounted for.
+
+something closer to this
+
+---
+
+is this bad grammar or could be worded better The ship requires all work be accounted for.”
+
+---
+
+i like every repair be accounted for..or something like that but i dont like the word be..thats my problem.
+
+---
+
+i liked the word accounted
+
+---
+
+or as the pilot..you need to know all the repairs kinda thing..like the ship needs that from you as the pilot
+
+---
+
+dont say we do not have a lot of time..just say we don't have a lot of time
+
+---
+
+to see what the subagents did.
+
+---
+
+ok try that
+
+---
+
+separate into two Use entire checkpoint explain to see what the subagents did. The ship needs you to account for every repair before launch.”
+
+---
+
+commit and push
+
+---
+
+get that tutorial helper out of here. i didnt want that
+
+---
+
+okay lets compare..level 1 has a really short brief and then jumps into a tutorial..using the terminal UI and the storyboard/briefing UI..maybe we could do something like that instead for level 2..before acting..show me your plan. im thinking one briefing (or two if we must) then jump into tutorial and tutorial does something like tells u dispatch one subagent in the briefiing storyboard ui
+- you click the one dispatch that appears and the subagent flies to it..then the ice block appears on conveyor belt..then storyboard tells u that you have to click the ice block to learn about the repair. and so you click it and it show u the terminal and u read it. then it tells you okay drag it to the right match..wrong matches get sent back..and you try to drag it to the right match..once you do that..the tutorial storyboard briefing says clock starts now..and you start playing..something like that
+
+---
+
+briefing
+
+1. Pilot, you collected the records, but they need repair.
+
+2. Dispatch subagents for help, explain the subagents' work, and account for every repair before launch.
+
+---
+
+okay change it to that pls update
+
+---
+
+wil the start tutorial have a title page thing..like level 1 did..where it stops and says start tutorial and you have to click it
+
+---
+
+you can go forward with the tutorial steps that you've created
+
+---
+
+the problem is i cant read the subagent report from entire explain because the storyboard is covering it..we may need to briefly make the storyboard briefing go away at moments
+
+---
+
+remove the words subagent out. we dont need that
+
+---
+
+the storyboard goes away after entire checkpoint explain ..which i wanted so they can see the terminal..but it needs to come back in some way
+
+---
+
+no not when they start dragging..that's not the right move..let's brainstorm
+
+---
+
+okay lets try option 1
+
+---
+
+remove the gold headings like dispatch, explain in the storyboard..any of those..theyre distracting and make more words that you have to read
+
+---
+
+where it says click the sealed block to run entire checkpoint explain..we need to emphasizing reading it..cuz they have to read it ...or else they will be lost..and it's not clear that they shouldve read it until the next brief..in fact in the next brief..we dont need to write read the report or whatever..we need to say use what you deduced from your report to drag to blah blah blah
+
+---
+
+the terminal has way too much information in it when you run entire checkpoint explain..look at how the transcripts look like for entire..like maybe even this one..do like entire checkpoint explain..and see what u see for like real world
+
+---
+
+btw the border of the terminal and stuff can change from lavendar to cyan
+
+---
+
+what ideas do you have for that..im thinking something like this..
+
+$ entire checkpoint explain number number number
+[User Prompt] Fix the atenna for the radio. 
+[Subagent] I fixed the radio's attenna after 2 attempts
+
+or something like that..
+
+do you have a better idea
+
+---
+
+● Checkpoint a1c9e4f72b05 dont need this..too much noise
+
+---
+
+can we find a middle ground..i just feel like there's too much jargon
+
+[User] Fix the seized ignition coils.
+[Agent] Rebuilt them as a plasma ring. Engine output is stable.
+
+---
+
+Prompt: Radio stopped responding
+Subagent: Radio signal is stable after rebuilding snapped antenna.
+
+---
+
+use my version. make sure the letters are legible. and get rid of any other crap in the terminal. 
+
+for tutorial there should be a legible button or something that tells you space to continue..it should show up after the prompts..that way the user reads it. 
+
+for the game something similar
+
+---
+
+for the terminal..it doesnt need to say space to continue. it only needs that for the tutorial
+
+---
+
+i think for the tutorail when we say click the dispatch pip or the ice block or whatever it is..or drag to the engine..we should probably highlight or circle it..so that people know what we're referring to..like for each step in the tutorial..but dont do that for the actual game
+
+---
+
+first of all the ring does not even look right..the items arent centered or anything..maybe just put a glow behind them when they show up or something..like a gold pulsating glow..cuz the ring looks really bad
+
+---
+
+hmm  the glow shows up before the ice block does..we dont need that..that's weird
+
+---
+
+maybe put a glow around the word engine..inside of the terminal..only choose one..you dont need both.
+
+---
+
+and for the squares there's a glow for both engine squares..only need one
+
+---
+
+i dont see the word engine highlighted in the terminal though..like when they run entire checkpoint explain
+
+---
+
+yes and for the square..i was find with the glow being in the square..i was just saying put it in only one square..not both
+
+---
+
+dont highlight in the terminal when the game starts..that was only for the tutorial
+
+---
+
+# Files mentioned by the user:
+
+## ## blackgirlbytes/planetfall-seed-signalkit ### A Planet Appears, Reluctantly •…: /Users/goose-guest/.codex/attachments/94bc49d7-1675-4b25-a5a9-7aeb17c30313/pasted-text.txt
+
+## My request for Codex:
+after the user writes entire dispatch and gets back a dispatch..it seems like too many words..and it doesnt really encapsulate what entire dispatch tends to look like for example..if i run entire dispatch in real life in this repo..I will get something like the text that I pasted..now this is obviously too long..but I think we can use more legible font and say something like
+
+Beep Boop Marvin here..something sarcastic about the pilots work..mention how many subagent repairs and jobs and that we fixed things....give me an idea of what you would possibly write
+
+---
+
+do you know when the dispatch happens? at the end of level 2 when the user is looking for a summary of their activity
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-7f07f74b-8284-407e-b995-7d01da7771eb.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-7f07f74b-8284-407e-b995-7d01da7771eb.png
+
+## My request for Codex:
+Beep, boop. Marvin
+Against several reasonable projections, the pilot understood the paperwork.
+4 repair jobs dispatched.
+4 subagent fixes explained, matched, and accounted for.
+ 
+lets try that instead of what's in the screenshot..make the words nice and legible..look at how level 1 ends ..as well..i think it has a way that it moves u to the next level
+
+---
+
+words need to be centered in that level 2 section
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-6092bbed-6929-4351-821e-6efe1bcf3386.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-6092bbed-6929-4351-821e-6efe1bcf3386.png
+
+## My request for Codex:
+ words need to be centered..and it should say Marvin here..not just marvin
+
+---
+
+the squares for where you put the ice blocks..they should never have engine engine next to each other or air air up and down from each other or diagnol from each other. it needs to be a little hard to find that match
+
+---
+
+when u lose in level 1..what do the words say..
+
+---
+
+okay level 2 needs to be more like that.. Time's Up ..you've only done something..
+
+press R to try again
+press N to start over
+
+---
+
+and do those keys work..n to start over ..r to try again..where does n lead you
+
+---
+
+commit and push
