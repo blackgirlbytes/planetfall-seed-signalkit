@@ -1,0 +1,139 @@
+when i run a command like entire checkpoint list, i get something like
+
+● 5f6e6cafd247  "at the end of level 1 you press r to try again..do you se..."
+  06-16 16:05 (1ab3d29) Add new game restart from fail screens
+
+● 054d6f471594  "at the end if you fail the level..i dont think the error ..."
+  06-16 14:43 (4d222d4) Clarify Level 1 fail screen
+
+● bf8e29b5ca2e  "words that say things like the rebellion is waiting..need..."
+  06-16 12:17 (bf062e1) Increase UI prompt text size
+
+● 39a776045d06  "when the user presses no to link to a checkpoint during t..."
+  06-16 11:53 (a18a90e) Clarify Level 1 checkpoint feedback
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-7d59619d-388a-42f2-9071-56131c42b9f0.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-7d59619d-388a-42f2-9071-56131c42b9f0.png
+
+## My request for Codex:
+when we do entire checkpoint list in level 1 we get something like this..but im thinking we should change it..one it doesnt match with what we're showing in level 2 and level 3 and then it just looks overall hard to read..im trying to simplify and i want to make it more like what exactly they were catching..the helmet and stuff is from the past
+
+---
+
+youre making the edits without deciding with me..i think the things we could collect are: 
+- atennas and stuff like that..to correlate with the other levels
+
+---
+
+those are too hard..lets go simple..atenna collected..and if they hit a wreckage..we right that..words like hull plate..landing struts..are too much
+
+---
+
+lets decide on the things first..look at level 2 to see what things needed repairs
+
+---
+
+lets decide on the things first..look at level 2 to see what things needed repairs
+
+---
+
+antenna would be part of the radio..so what are parts of steering..instead of saying steeing part
+
+---
+
+yeah we can say that..if they collect like 15..what we doing
+
+---
+
+i dont want tiny..in fact..we can make the checkpoint numbers even shorter
+
+---
+
+so will it just repeat over and over again ..i feel like it should look smarter than that..not just like engine collected air filter collected battery collected..and then repeat that same list..maybe the other mixes up..and we make sure the checkpoint numbers are different
+
+---
+
+okay sounds good
+
+---
+
+i dont think the records from the sky need a visible label for the user
+
+---
+
+wreckage could be like brown boxes..and different things..what other ideas u have..instead of the random black things we cant see
+
+---
+
+you can create those well? i was thinking something simple like cardboard box
+
+---
+
+i dont get the metal panel idea
+
+---
+
+crate is too similar to cardboard box
+
+---
+
+okay and what about the right things falling out the sky
+
+---
+
+i dont want those..i dont want abstract..but i dont like the things u came up with except for gold ring..thing about the objects that we said we collected in the end of entire checkpoint list..what things can you draw
+
+---
+
+okay try those
+
+---
+
+and you drew the wreckages and the ship parts?
+
+---
+
+draw the wreckages
+
+---
+
+get rid of the beams for the records taht we like..whats with the beams
+
+---
+
+is it still correct to say shoot the gold records? dont make a change yet
+
+---
+
+make the things falling from the sky a bit bigger..theyre kinda hard to shoot
+
+---
+
+did u actuall y make them bigger or u just made the ring bigger?
+
+---
+
+yeah keep the ring the same size but make the item bigger
+
+---
+
+Shoot the gold-ringed ship parts and avoid the junk. is the right woridng
+
+---
+
+to go from level 1 to level 2 what keys do you have to press
+
+---
+
+isnt it that u can press any key though and it will go to the next level.im not talking about entire checkpoint list..i mean after that
+
+---
+
+i want the same for level 2 to 3
+
+---
+
+okay commit these changes
