@@ -1,0 +1,5 @@
+take a look at the story briefing in level 1 and level 2..it's nice and short..but the story briefing in level 3 is the big dump of information..it should use the black and gold thing at the bottom..and it really should be only one or two briefs..essentially. Ship is rebuilt and you need to authorize the launch by answering the questions correctly..something like that..what do you think
+
+---
+
+commit and push to main
