@@ -1,0 +1,11 @@
+i find that the terminal is often covering the ice blocks so i cant see them..and the words inside the terminal are overflowing..not wrapping.
+
+I also find that the subagents sometimes hide the little circular things that light up in the dispatch..if theyre too close
+
+---
+
+i was more thinking the terminal would stay below but it would stretch out wider and have less height to accompdate for words..and i was thinking the subagents would still go on the board..but maybe the board would have a bit more spacing plus the subagents would look smaller on the board..so like the white spots could make sure they're spaced out a little more and the subagents wouldnt overlap
+
+---
+
+can we remove the b back to orbit dispatch review section and allow the terminal to be a little longer in height..i basically dont want to scroll..i made it wider/longer horizontally so all the words would fit
