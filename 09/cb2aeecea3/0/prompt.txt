@@ -1,0 +1,103 @@
+any other actions bbesides shooting that make games fun
+
+---
+
+dragging linking or matching i like
+
+---
+
+omg what if u make the subagents race..idkkk how that would even work or u race against the subagents???
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=island
+
+## My request for Codex:
+its more like i want to set the agents off on a track..and control when they start..i dont want to race against them but i wish i had the ability to set them off on a track..and then do some kind of powerups to make them faster at a certain
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=island
+
+## My request for Codex:
+when do the powerups come..how would i earn them..do they just come at random
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=island
+
+## My request for Codex:
+idk if im following too much with these ideas.
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=island
+
+## My request for Codex:
+take a look at what level 2 has now. i think it's good but just kinda boring for game play..but it's kinda what i was thinking a litttle bit
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=level2
+
+## My request for Codex:
+yeah maybe one track problem..maybe we should be dragging the cars to the tracks..idkk it just feels like there's nothing to do
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=level2
+
+## My request for Codex:
+are we able to do parallel or sequential..like i can put as many cars on the track as i want??
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=level2
+
+## My request for Codex:
+kay i think i have that..it's just visually not great i guess
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/?view=level2
+
+## My request for Codex:
+can you make these changes
+
+---
+
+remove the white leave over that happens when they drive..like they dont need to leave back a trail..i also think the point of view isnt great..where we're just seeing overhead
+
+---
+
+idk it still doesnt feel like a game..i guess i want to feel like im on the island
+
+---
+
+ake it a fixed third-person island scene...and hazards as real island projects
+
+---
+
+i need to rewrite the onboarding story with clarity but keeping it short..give me some ideas for level 2 onboarding story
+
+---
+
+Pilot, now you need to repair the records, but you don't have enough time. You can get extra help from your subagents. Drag the subagent cars or something like that to the track and send them off, but figure out what they did when you werent there when you run entire checkpoint explain??? idkkkkk
+
+but i want 2 bullet points
