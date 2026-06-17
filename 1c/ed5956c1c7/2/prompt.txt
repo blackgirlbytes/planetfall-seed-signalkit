@@ -1,0 +1,62 @@
+okay i made a change to level 2..can you read the code for level 2 and let me know what u think
+
+---
+
+i want u to more let me know what you think of the game play by looking at the code. i dont want u to look at the quality of the code..i just want to know what u think of the level
+
+---
+
+yeah my concern is click slate, press y too. i wanted it like overcooked which it is..and i did want to be the player to be the one to send out the subagents
+
+---
+
+give me multiple different ideas/options
+
+---
+
+oh yeah how would we route it..i like that..but how would they know it goes to the right thing..try implemnting it so i can see how it works
+
+---
+
+okay take a look at the code for level 2 and see how it's evolved..what critiques do you have in terms of game play..i kinda miss some parts that the other version had
+
+---
+
+i dont want the pwr sig life hull thing..but yeah lets restore the dispatch queue backlog pressure and explain dependent routing..i just wanted to switch it to some things that were more familiar like battery..and i wanted some kind of matching or something afterwards
+
+---
+
+i liked when there was a dispatch board..do you know what im talking about..in a past moment we had a dispatch board..it just had red dots on it and we would send the drone over there..idk im still thinking about this design..it's kinda close but not quite hitting..i dont think that the checkpoints in the frozen thing should say oh Air or Water or whatever..i think u should have to read the entire explain to know
+
+---
+
+what if it doesnt say anything here Frozen slate says only: SEALED WORK, checkpoint id, maybe subagent id. but i agree with you on everything else
+
+---
+
+ok implement
+
+---
+
+what do you think of the game for level 2 like the game play? like do you think it's fun for people? dont
+  make any changes but just read the code
+
+---
+
+what do you mean Red dots should feel like real dispatch choices, not identical buttons.
+
+---
+
+lets get some urgency choices added there
+
+---
+
+no actually i think the dots should all be the same but the urgency should increase once each one has been sitting there for after some time..do you get me
+
+---
+
+i feel like the dots get red mostly at the same time..like 3 at a time..we dont really want that.. what happens in diner dash..it's usually a little more staggered right?
+
+---
+
+okay so can you do that for level 2..we want 12 dots in total for the full game. .maybe the dots start out white..but as they get bad..they increase to red.
