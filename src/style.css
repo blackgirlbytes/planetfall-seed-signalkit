@@ -644,6 +644,16 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   font-variant-numeric: tabular-nums;
 }
 
+#db-countdown {
+  background: rgba(13, 8, 28, 0.78);
+  border-color: rgba(185, 167, 255, 0.38);
+}
+#db-countdown .cd-label {
+  color: #ffde8c;
+  text-shadow: 0 0 10px rgba(248, 200, 96, 0.45);
+}
+#db-countdown #db-countdown-time { color: #e5ddff; }
+
 /* Urgent state — the clock is running low */
 #countdown.is-low,
 #l2-countdown.is-low,
@@ -775,6 +785,23 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 @keyframes mission-beat-in {
   from { opacity: 0; transform: translateY(7px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+.mission-briefing-command {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: baseline;
+  margin: 0 0.08em;
+  padding: 0.04em 0.3em 0.1em;
+  border: 1px solid rgba(255, 233, 179, 0.62);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ffe9b3 0%, #f6c763 58%, #d69e3a 100%);
+  color: #160f04;
+  box-shadow: 0 0 18px rgba(248, 200, 96, 0.22);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.86em;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .mission-banner-cue,
@@ -1225,24 +1252,15 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 
 /* ---------- Level 2 HUD ("The Drone Bay") ---------- */
 
-/* Fleet status panel — five systems, four states */
+/* Legacy ship-status readout; dispatch is now the pip-only 3D panel. */
 #db-systems {
-  position: absolute;
-  top: 88px;
-  right: 28px;
-  left: auto;
-  width: min(260px, calc(100vw - 56px));
-  padding: 10px 12px;
-  background: rgba(6, 11, 22, 0.68);
-  border: 1px solid rgba(111, 227, 255, 0.32);
-  border-radius: 8px;
-  backdrop-filter: blur(8px);
+  display: none;
 }
 .db-sys-head {
   font-size: 9px;
   letter-spacing: 0.22em;
   font-weight: 700;
-  color: var(--accent);
+  color: #c8b6ff;
   margin-bottom: 7px;
 }
 .db-sys {
@@ -1270,33 +1288,145 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   white-space: nowrap;
 }
 .db-sys.is-broken .db-sys-state,
-.db-sys.is-staged .db-sys-state { color: #ff8a5c; }
+.db-sys.is-staged .db-sys-state { color: #f09aa8; }
 .db-sys.is-armed .db-sys-state { color: #ffd27a; animation: db-work-blink 1.1s ease-in-out infinite; }
 .db-sys.is-working .db-sys-state,
-.db-sys.is-running .db-sys-state { color: var(--accent); animation: db-work-blink 1.1s ease-in-out infinite; }
-.db-sys.is-stalled .db-sys-state { color: #ff5a3c; animation: db-work-blink 0.5s ease-in-out infinite; }
-.db-sys.is-sealed .db-sys-state { color: #bfe9ff; }
-.db-sys.is-added .db-sys-state { color: #7cffb0; }
+.db-sys.is-running .db-sys-state { color: #c8b6ff; animation: db-work-blink 1.1s ease-in-out infinite; }
+.db-sys.is-stalled .db-sys-state { color: #e45572; animation: db-work-blink 0.5s ease-in-out infinite; }
+.db-sys.is-sealed .db-sys-state { color: #d8ccff; }
+.db-sys.is-added .db-sys-state { color: #b9a7ff; }
 .db-sys.is-broken .db-sys-name,
 .db-sys.is-staged .db-sys-name { opacity: 0.6; }
 @keyframes db-work-blink { 50% { opacity: 0.45; } }
 
-/* Aggregate job tally (twelve named rows won't fit, so we summarize) */
+/* Aggregate job tally for the six familiar ship parts */
 .db-jobs {
   display: flex;
   align-items: baseline;
   gap: 8px;
   margin: 8px 0 6px;
 }
-.db-jobs-num { font-size: 18px; font-weight: 700; color: #7cffb0; letter-spacing: 0.04em; }
+.db-jobs-num { font-size: 18px; font-weight: 700; color: #d8ccff; letter-spacing: 0.04em; }
 .db-jobs-lbl { font-size: 10px; letter-spacing: 0.12em; color: var(--ink); opacity: 0.7; text-transform: uppercase; }
 .db-tally { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 10px; letter-spacing: 0.06em; margin-top: 2px; }
 .db-tally-it { white-space: nowrap; opacity: 0.9; }
-.db-tally-it.is-running { color: var(--accent); }
-.db-tally-it.is-sealed { color: #bfe9ff; }
-.db-tally-it.is-stalled { color: #ff5a3c; font-weight: 700; }
+.db-tally-it.is-running { color: #c8b6ff; }
+.db-tally-it.is-sealed { color: #d8ccff; }
+.db-tally-it.is-stalled { color: #e45572; font-weight: 700; }
 .db-tally-it.is-cars { color: #ffd27a; }
+.db-tally-it.is-failing { color: #f09aa8; }
+.db-tally-it.is-urgent { color: #ffd27a; font-weight: 700; }
 
+/* ---- Dispatch board: pale system pips you triage (click to send a drone) ---- */
+#db-board {
+  position: absolute;
+  top: 84px;
+  left: 28px;
+  width: min(278px, calc(100vw - 56px));
+  pointer-events: auto;         /* #ui is pointer-events:none — re-enable so pips are clickable */
+  padding: 12px 14px 14px;
+  background: rgba(17, 11, 34, 0.82);
+  border: 1px solid rgba(255, 222, 140, 0.78);
+  border-radius: 9px;
+  box-shadow: 0 0 0 1px rgba(255, 222, 140, 0.28), 0 0 22px rgba(248, 200, 96, 0.22), 0 8px 26px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+}
+#db-board.attention { animation: db-board-attn 1.05s ease-in-out infinite; }
+@keyframes db-board-attn {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 222, 140, 0.32), 0 0 22px rgba(248,200,96,0.22), 0 8px 26px rgba(0,0,0,0.45); border-color: rgba(255,222,140,0.78); }
+  50%      { box-shadow: 0 0 0 3px rgba(255, 222, 140, 0.56), 0 0 36px rgba(248,200,96,0.48); border-color: rgba(255,243,207,0.98); }
+}
+.db-board-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.db-board-title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  color: #fff3cf;
+  text-shadow: 0 0 10px rgba(248, 200, 96, 0.46);
+}
+.db-board-free { font-size: 9px; letter-spacing: 0.08em; color: var(--ink); opacity: 0.8; white-space: nowrap; }
+.db-board-free span { color: #fff3cf; font-weight: 700; text-shadow: 0 0 8px rgba(248, 200, 96, 0.38); }
+.db-board-sub { font-size: 10px; letter-spacing: 0.04em; color: var(--ink); opacity: 0.65; margin: 2px 0 9px; }
+.db-board-note { margin-top: 8px; font-size: 10px; letter-spacing: 0.04em; text-align: center; color: #ffde8c; opacity: 0.95; }
+.db-board-note.db-board-clear { color: var(--ink); opacity: 0.5; }
+#db-board-rows { min-height: 70px; margin-top: 6px; }
+.db-board-map {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 16px;
+  padding: 8px 6px 2px;
+}
+.db-board-dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 44px;
+  justify-self: center;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  cursor: default;
+  opacity: 1;
+}
+.db-board-dot:disabled { opacity: 1; }
+.db-board-dot.is-broken { cursor: pointer; }
+.db-board-dot.is-broken:hover .db-dot-core {
+  transform: scale(1.12);
+  box-shadow: 0 0 24px rgba(185, 167, 255, 0.72);
+}
+.db-board-dot.is-broken:active .db-dot-core { transform: scale(0.96); }
+.db-dot-core {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #263142;
+  border: 1px solid rgba(216, 204, 255, 0.28);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.55), 0 0 8px rgba(185, 167, 255, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+.db-dot-label {
+  position: absolute;
+  bottom: 0;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: rgba(229, 221, 255, 0.66);
+}
+.db-board-dot.is-broken .db-dot-core {
+  background: #d8ccff;
+  border-color: rgba(216, 204, 255, 0.95);
+  box-shadow: 0 0 18px rgba(185, 167, 255, 0.56), inset 0 0 8px rgba(255, 210, 122, 0.22);
+  animation: db-pip-blink 0.72s ease-in-out infinite;
+}
+.db-board-dot.is-working .db-dot-core,
+.db-board-dot.is-onbelt .db-dot-core {
+  background: #ffde8c;
+  border-color: rgba(255, 243, 207, 0.95);
+  box-shadow: 0 0 18px rgba(248, 200, 96, 0.68);
+}
+.db-board-dot.is-review .db-dot-core {
+  background: #c8b6ff;
+  border-color: rgba(200, 182, 255, 0.95);
+  box-shadow: 0 0 20px rgba(185, 167, 255, 0.62);
+}
+.db-board-dot.is-online .db-dot-core {
+  background: #4e3b80;
+  border-color: rgba(200, 182, 255, 0.62);
+  box-shadow: 0 0 10px rgba(185, 167, 255, 0.28);
+}
+.db-board-dot.is-review .db-dot-label,
+.db-board-dot.is-online .db-dot-label { color: rgba(216, 204, 255, 0.88); }
+@keyframes db-pip-blink {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
 /* Nitro charges — top row of the systems panel */
 .db-nitro {
   display: flex;
@@ -1373,6 +1503,78 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   color: var(--accent);
 }
 
+#db-win {
+  width: min(760px, calc(100vw - 48px));
+  padding: clamp(24px, 4vw, 38px);
+  text-align: center;
+  pointer-events: auto;
+  background:
+    linear-gradient(180deg, rgba(3, 20, 22, 0.96), rgba(3, 12, 18, 0.94));
+  border-color: rgba(92, 255, 176, 0.62);
+}
+
+.db-win-command {
+  margin-bottom: 18px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.2;
+  color: #6fe3ff;
+  opacity: 0.96;
+}
+
+.db-win-report {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+}
+
+.db-win-marvin {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: clamp(25px, 3.8vw, 38px);
+  line-height: 1.1;
+  font-weight: 800;
+  color: #7cffb0;
+  text-shadow: 0 0 22px rgba(92, 255, 176, 0.28);
+}
+
+.db-win-line {
+  max-width: 32ch;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.38;
+  color: #eefbff;
+}
+
+.db-win-next {
+  display: block;
+  margin: 28px auto 14px;
+  padding: 12px 24px;
+  border: 1px solid rgba(92, 255, 176, 0.62);
+  border-radius: 7px;
+  background: rgba(92, 255, 176, 0.12);
+  box-shadow: 0 0 24px rgba(92, 255, 176, 0.16);
+  color: #dfffee;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.db-win-next:hover,
+.db-win-next:focus-visible {
+  background: rgba(92, 255, 176, 0.2);
+  border-color: rgba(177, 255, 219, 0.9);
+  outline: none;
+}
+
+#db-win .lf-hint {
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.82;
+}
+
 /* Teaching line */
 #tutorial {
   position: absolute;
@@ -1425,7 +1627,7 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 }
 
 /* Ship terminal — type the real commands. pointer-events back on so the
-   Drone Bay's ADD TO SHIP button is clickable (#ui is pointer-events:none). */
+   Drone Bay's terminal CTA is clickable (#ui is pointer-events:none). */
 #terminal {
   position: absolute;
   pointer-events: auto;
@@ -1440,6 +1642,26 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   box-shadow: 0 14px 40px rgba(2, 4, 10, 0.55), 0 0 24px rgba(111, 227, 255, 0.12);
   backdrop-filter: blur(6px);
   text-align: left;
+  overflow-wrap: anywhere;
+}
+
+#terminal.is-drone-bay-terminal {
+  top: auto;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1180px, calc(100vw - 32px));
+  max-height: none;
+  overflow-y: visible;
+  padding: 10px 14px;
+  background: rgba(4, 12, 20, 0.91);
+  border-color: rgba(111, 227, 255, 0.42);
+  box-shadow: 0 14px 40px rgba(2, 4, 10, 0.55), 0 0 26px rgba(111, 227, 255, 0.16);
+}
+
+#terminal.is-drone-bay-terminal:not(.hidden) {
+  display: flex;
+  flex-direction: column;
 }
 
 #term-hint {
@@ -1448,14 +1670,18 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   color: var(--ink);
   opacity: 0.68;
   margin-bottom: 10px;
+  line-height: 1.35;
 }
 #term-hint:empty { display: none; }
 
 #term-line {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   font-size: 24px;
+  line-height: 1.3;
   letter-spacing: 0.02em;
+  min-width: 0;
 }
 
 .term-prompt {
@@ -1464,8 +1690,50 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   margin-right: 8px;
 }
 
-#term-input { color: var(--ink); white-space: pre; }
+#term-input {
+  color: var(--ink);
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 #term-input.is-dim { color: var(--accent-warm); opacity: 0.92; }
+
+#terminal.is-drone-bay-terminal #term-hint {
+  font-size: 11.5px;
+  margin-bottom: 6px;
+  color: #d9f7ff;
+}
+
+#terminal.is-drone-bay-terminal #term-line {
+  order: 1;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+#terminal.is-drone-bay-terminal #term-list {
+  order: 2;
+}
+
+#terminal.is-drone-bay-terminal #term-cta {
+  order: 3;
+}
+
+#terminal.is-drone-bay-terminal #term-msg {
+  order: 4;
+}
+
+#terminal.is-drone-bay-terminal .term-prompt,
+#terminal.is-drone-bay-terminal .tl-id,
+#terminal.is-drone-bay-terminal .cta-label,
+#terminal.is-drone-bay-terminal .cta-helper-cmd {
+  color: #6fe3ff;
+}
+
+#terminal.is-drone-bay-terminal #term-input.is-dim {
+  color: #ffd27a;
+}
 
 /* Confirm step (the link-checkpoint Y/N prompt): it's a question, not a typed
    command — drop the $ prompt + cursor and let it wrap instead of overflowing. */
@@ -1476,6 +1744,7 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 /* Call-to-action: the actionable command/keys — the brightest thing here */
 #term-cta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   margin-top: 13px;
@@ -1522,18 +1791,24 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 }
 .cta-note {
   font-size: 21px;
+  line-height: 1.25;
   color: var(--ink);
   opacity: 0.82;
   margin-right: 8px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* Helper under the command line (replaces the old #-hint + "TYPE" label chip).
    Tells you what to type; the command itself stands out as a code chip. */
 .cta-helper {
   font-size: 21px;
+  line-height: 1.25;
   letter-spacing: 0.01em;
   color: var(--ink);
   opacity: 0.72;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .cta-helper-cmd {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
@@ -1546,26 +1821,17 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   border: 1px solid rgba(111, 227, 255, 0.28);
 }
 
-/* ADD TO SHIP — the accept button after an explain (Drone Bay) */
-#db-add-btn {
-  padding: 8px 18px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+#terminal.is-drone-bay-terminal .cta-cmd,
+#terminal.is-drone-bay-terminal .cta-key-yes {
   color: #04121a;
-  cursor: pointer;
-  background: linear-gradient(90deg, #5cffb0, #bfffe0);
-  border: none;
-  border-radius: 7px;
-  box-shadow: 0 0 18px rgba(92, 255, 176, 0.45);
-  transition: transform 0.12s ease, box-shadow 0.2s ease;
+  background: linear-gradient(90deg, #6fe3ff, #9af0ff);
+  box-shadow: 0 0 18px rgba(111, 227, 255, 0.45);
 }
-#db-add-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 26px rgba(92, 255, 176, 0.65);
+
+#terminal.is-drone-bay-terminal .cta-helper-cmd {
+  background: rgba(111, 227, 255, 0.12);
+  border-color: rgba(111, 227, 255, 0.28);
 }
-#db-add-btn:active { transform: translateY(0); }
 
 /* `entire checkpoint list` / search output. Level 2's full archive listing is
    long on purpose — it scrolls, and that's the lesson. */
@@ -1579,20 +1845,148 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   max-height: 168px;
   overflow-y: auto;
 }
+
+#terminal.is-drone-bay-terminal #term-list:not(.hidden) {
+  max-height: none;
+  overflow-y: visible;
+  border-top-color: rgba(111, 227, 255, 0.18);
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 12px;
+}
+
 .term-list-row {
   display: flex;
+  align-items: flex-start;
   gap: 12px;
   font-size: 12.5px;
   line-height: 1.3;
 }
 .tl-id { color: var(--accent); min-width: 300px; white-space: nowrap; }
 .tl-key { color: var(--ink); opacity: 0.55; }
-.tl-title { color: var(--ink); opacity: 0.82; }
+.tl-title {
+  color: var(--ink);
+  opacity: 0.82;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 
 /* Level 2 archive rows: just id + summary, so the id column stays compact. */
 .tl-id.tl-id-short { min-width: 110px; }
 /* Explain output rows: key/value pairs (Drone Bay review cards). */
 .tl-exp-key { min-width: 90px; flex: none; }
+
+#terminal.is-drone-bay-terminal .term-list-row {
+  gap: 8px;
+  font-size: 11.5px;
+}
+
+#terminal.is-drone-bay-terminal .term-report-row {
+  gap: 14px;
+  font-size: 18px;
+  line-height: 1.36;
+}
+
+#terminal.is-drone-bay-terminal .tl-exp-key {
+  min-width: 74px;
+}
+
+#terminal.is-drone-bay-terminal .term-report-row .tl-exp-key {
+  min-width: 104px;
+  color: #6fe3ff;
+  font-weight: 800;
+  opacity: 1;
+}
+
+#terminal.is-drone-bay-terminal .term-report-row .tl-title {
+  color: #eefbff;
+  opacity: 0.96;
+}
+
+#terminal.is-drone-bay-terminal .term-dispatch-report-line {
+  display: block;
+  font-size: 18px;
+  line-height: 1.42;
+}
+
+#terminal.is-drone-bay-terminal .term-dispatch-report-line .tl-title {
+  color: #eefbff;
+  opacity: 0.98;
+}
+
+#terminal.is-drone-bay-terminal .term-dispatch-report-line.is-marvin {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+#terminal.is-drone-bay-terminal .term-dispatch-report-line.is-marvin .tl-title {
+  color: #7cffb0;
+  text-shadow: 0 0 16px rgba(92, 255, 176, 0.28);
+}
+
+#terminal.is-drone-bay-terminal .term-report-keyword {
+  display: inline-block;
+  padding: 0 6px 1px;
+  border-radius: 5px;
+  color: #fff3cf;
+  background: rgba(255, 222, 140, 0.16);
+  box-shadow: 0 0 14px rgba(255, 222, 140, 0.42), inset 0 0 0 1px rgba(255, 243, 207, 0.28);
+  text-shadow: 0 0 10px rgba(255, 222, 140, 0.52);
+}
+
+#terminal.is-drone-bay-terminal .cta-label {
+  font-size: 11px;
+}
+
+#terminal.is-drone-bay-terminal .cta-note {
+  font-size: 14px;
+}
+
+#terminal.is-drone-bay-terminal .term-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 7px 13px;
+  border: 1px solid rgba(111, 227, 255, 0.5);
+  border-radius: 7px;
+  background: rgba(111, 227, 255, 0.12);
+  color: #eefbff;
+  font: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(111, 227, 255, 0.18);
+}
+
+#terminal.is-drone-bay-terminal .term-continue-btn:hover {
+  background: rgba(111, 227, 255, 0.18);
+  border-color: rgba(154, 240, 255, 0.78);
+}
+
+#terminal.is-drone-bay-terminal .term-continue-key {
+  display: inline-grid;
+  place-items: center;
+  min-width: 68px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #6fe3ff, #9af0ff);
+  color: #04121a;
+  font-weight: 800;
+}
+
+#terminal.is-drone-bay-terminal .term-continue-text {
+  font-weight: 700;
+}
+
+#terminal.is-drone-bay-terminal .term-cursor {
+  background: #6fe3ff;
+}
+
+#terminal.is-drone-bay-terminal #term-msg.show-ok { color: #9af0ff; }
+#terminal.is-drone-bay-terminal #term-msg.show-err { color: #f09aa8; }
 
 .term-cursor {
   display: inline-block;
@@ -1805,10 +2199,10 @@ body.hit-flash::after {
 
 #fp-shared.is-drone-bay #fp-prompt {
   bottom: 104px;
-  background: rgba(6, 11, 22, 0.76);
-  border-color: rgba(111, 227, 255, 0.34);
-  color: #e8f4ff;
-  text-shadow: 0 0 12px rgba(111, 227, 255, 0.42);
+  background: rgba(13, 8, 28, 0.78);
+  border-color: rgba(185, 167, 255, 0.36);
+  color: #e5ddff;
+  text-shadow: 0 0 12px rgba(185, 167, 255, 0.38);
 }
 
 #fp-shared.is-drone-bay #fp-controls {
@@ -1819,8 +2213,8 @@ body.hit-flash::after {
   width: min(960px, calc(100vw - 36px));
   transform: translateX(-50%);
   max-width: min(960px, calc(100vw - 36px));
-  background: rgba(6, 11, 22, 0.46);
-  border-color: rgba(111, 227, 255, 0.18);
+  background: rgba(13, 8, 28, 0.5);
+  border-color: rgba(185, 167, 255, 0.2);
   justify-content: center;
 }
 

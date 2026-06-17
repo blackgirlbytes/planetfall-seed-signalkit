@@ -305,10 +305,29 @@
           </div>
         </div>
 
+        <!-- Tutorial/play transition, matching Level 1's title-style pause. -->
+        <div id="db-mode-prompt" class="level-mode-prompt hidden">
+          <div class="level-mode-menu">
+            <div id="db-mode-head" class="level-mode-head hidden"></div>
+            <button id="db-mode-action" class="ts-item is-selected" type="button">START TUTORIAL</button>
+            <div id="db-mode-note" class="level-mode-note">First repair is practice. The clock stays off.</div>
+          </div>
+        </div>
+
+        <!-- One guided repair before the timed rush begins. -->
+        <div id="db-mission-lesson" class="mission-lesson hidden">
+          <div class="mission-banner-box mission-lesson-box">
+            <div id="db-mission-lesson-kicker" class="mission-kicker">DRONE BAY</div>
+            <div id="db-mission-lesson-title" class="mission-lesson-title"></div>
+            <div id="db-mission-lesson-text" class="mission-banner-text"></div>
+            <div id="db-mission-lesson-cue" class="mission-lesson-cue"></div>
+          </div>
+        </div>
+
         <!-- Level countdown — one clock for the whole run -->
         <div id="db-countdown">
           <span class="cd-label">TIME</span>
-          <span id="db-countdown-time">2:30</span>
+          <span id="db-countdown-time">3:15</span>
         </div>
 
         <!-- Fleet status — five systems, four states -->
@@ -317,18 +336,32 @@
           <div id="db-systems-rows"></div>
         </div>
 
+        <!-- Dispatch board — pale pips arrive over time and heat up if they sit too long -->
+        <div id="db-board" class="hidden">
+          <div class="db-board-head">
+            <span class="db-board-title">⚠ DISPATCH</span>
+            <span class="db-board-free">subagents free <span id="db-board-free">6 / 6</span></span>
+          </div>
+          <div id="db-board-rows"></div>
+        </div>
+
         <!-- The fleet's day is on the record -->
         <div id="db-win" class="hidden">
-          <div class="lw-title">DISPATCH SENT</div>
-          <div class="lw-sub" id="db-win-sub"></div>
-          <div class="lw-reveal">Work you didn't watch is never a mystery — <code>entire checkpoint explain</code> shows any moment, and <code>entire dispatch</code> turns the day into a report that writes itself.</div>
-          <div class="lf-hint">press <span class="lf-key">Enter</span> to board the ship · <span class="lf-key">B</span> for orbit</div>
+          <div class="db-win-command">$ entire dispatch</div>
+          <div class="db-win-report">
+            <div class="db-win-marvin">Beep, boop. Marvin here.</div>
+            <div class="db-win-line">Against several reasonable projections, the pilot understood the paperwork.</div>
+            <div class="db-win-line" id="db-win-jobs">4 repair jobs dispatched.</div>
+            <div class="db-win-line" id="db-win-fixes">4 subagent fixes explained, matched, and accounted for.</div>
+          </div>
+          <button id="db-win-next" class="db-win-next" type="button">START LEVEL 3</button>
+          <div class="lf-hint">or press <span class="lf-key">Enter</span> · <span class="lf-key">B</span> for orbit</div>
         </div>
 
         <!-- The clock ran out -->
         <div id="db-fail" class="hidden">
-          <div class="lf-title">SYSTEMS STILL DARK</div>
-          <div class="lf-sub">The launch window closed before every checkpoint was reviewed and added. The pass floods fast — tap a checkpoint the moment it rides up.</div>
+          <div class="lf-title" id="db-lf-title">TIME'S UP</div>
+          <div class="lf-sub" id="db-lf-sub">You've only accounted for 0 of 12 repairs.</div>
           <div class="lf-hint">press <span class="lf-key">R</span> to try again</div>
           <div class="lf-hint">press <span class="lf-key">N</span> to start over</div>
         </div>
