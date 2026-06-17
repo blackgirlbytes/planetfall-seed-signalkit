@@ -1,0 +1,21 @@
+{
+  "cli_version": "0.7.6",
+  "checkpoint_id": "e16fc6356f0f",
+  "session_id": "019ed2e2-c0ba-7551-9a3b-dcad81973311",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-17T22:02:25.635366Z",
+  "branch": "codex/level-2-drone-bay-ui",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "c49b392918d3",
+  "token_usage": {
+    "input_tokens": 2114904,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 41068288,
+    "output_tokens": 158319,
+    "api_call_count": 346
+  }
+}
