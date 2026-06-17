@@ -1,0 +1,21 @@
+lets get into level 3. the quiz questions are good but then terminall..when u have to read and figure out..it's way too hard..we should follow the pattern that we had for level 2
+
+---
+
+okayit should be in line with the answers..and we need to have it like how entire would have it..you know..like if you did checkpoint list..what would we see when we ran that..or entire checkpoint search..like maybe we go through the questions and answers together one by one..for example 
+
+Prompt: Long-range antenna stopped responding.
+Subagent: Rebuilt it as a signal spire after 3 attempts.
+
+Should be
+
+Prompt: Long-range antenna stopped responding.
+Agent: Rebuilt it as a signal spire after 3 attempts.
+
+---
+
+before we make level 3 changes..what did you push to main..or a different branch
+
+---
+
+check out main; pull the latest
