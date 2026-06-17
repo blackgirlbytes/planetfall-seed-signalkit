@@ -1,0 +1,76 @@
+{
+  "cli_version": "0.7.6",
+  "checkpoint_id": "8eda3033e7b0",
+  "session_id": "47f1677e-c6c9-4dba-8e3f-1e3dfe715b26",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-17T18:01:48.140144Z",
+  "branch": "codex/level-2-drone-bay-ui",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [
+    "index.html",
+    "src/droneBayView.js",
+    "src/style.css"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8[1m]",
+  "turn_id": "58902834d6b3",
+  "token_usage": {
+    "input_tokens": 3380,
+    "cache_creation_tokens": 50442,
+    "cache_read_tokens": 161690,
+    "output_tokens": 7743,
+    "api_call_count": 5
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-17T18:01:48.13408Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 42,
+    "human_removed": 818,
+    "total_committed": 0,
+    "total_lines_changed": 860,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1070,
+      "user_lines_removed": 817,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        "README.md": 8,
+        "index.html": 10,
+        "src/droneBayView.js": 857,
+        "src/style.css": 108
+      },
+      "user_removed_per_file": {
+        "README.md": 6,
+        "index.html": 1,
+        "src/droneBayView.js": 787,
+        "src/style.css": 23
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 12,
+      "user_lines_removed": 12,
+      "agent_lines_added": 1070,
+      "agent_lines_removed": 817,
+      "user_added_per_file": {
+        "src/droneBayView.js": 12
+      },
+      "user_removed_per_file": {
+        "src/droneBayView.js": 12
+      }
+    }
+  ]
+}
