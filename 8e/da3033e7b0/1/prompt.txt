@@ -1,0 +1,64 @@
+what do you think of the game for level 2 like the game play? like do you think it's fun for people? dont
+    make any changes but just read the code? does the game make sense?
+
+---
+
+what do you think of the sections that say 1/2 or 2/2
+
+---
+
+i dont think the subagents should be on the conveyor belt with the blocks. the blocks should be on the conveyor belt but idk where the subagents should be
+
+---
+
+why are the squares flashing after they're filled with an item/
+
+---
+
+i think we dont need to make it flash. just stay green no blinking when a match is made
+
+---
+
+lets create a subagent bay/drone rack
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-20746e8c-4c8b-4f4a-b4eb-dbb58b170d70.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-20746e8c-4c8b-4f4a-b4eb-dbb58b170d70.png
+
+## My request for Codex:
+the dispatch board gets covered..and could probably live somewhere else..also the ice blocks are huge..they could probably look smaller..like visually it's hard for the player. what do you think..maybe the dispatch board doesnt have to be a horizontal line..it could be 3x2 or 2x3 and placed somewhere else..do you have any other suggestions for placement. im still not sure about subangent dock placement iether
+
+---
+
+ok try it
+
+---
+
+the squares for steering engine etc..can be smaller..and when u drag the ice blocks in the items..can look small within it
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-c8dc7823-ac06-48e0-abcb-bc12d34494d4.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-c8dc7823-ac06-48e0-abcb-bc12d34494d4.png
+
+## My request for Codex:
+i think the dispatch board can be shorter in height..what do you think..like we can push it up a bit so it's not overlapping the black space . it can be in the purple space..actually we dont even need the ship systems container..maybe the dispatch board goes over there
+
+---
+
+i dont want this at all small status text like Subagents 6/6 · Jobs 2/12 · Waiting 2
+
+---
+
+yes do it
+
+---
+
+lets change the time to be 3:15 seconds
+
+---
+
+let's commit and push
