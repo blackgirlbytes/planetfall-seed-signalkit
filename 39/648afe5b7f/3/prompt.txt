@@ -1,0 +1,96 @@
+I tried to add this to the game..take a look at the code but its not quite hitting..in terms of fun and challenge that real computer video games bring 4. Dispatch Board
+Instead of clicking idle drones directly, jobs appear on a board. Player chooses which job to assign to which subagent.
+Example: “NAV CORE dark,” “COOLANT leaking,” “ANTENNA folded.” You drag/click a drone onto one.
+Why it works: this makes the player feel like the dispatcher. Very strong thematically.
+
+---
+
+ok so how do i do it
+
+---
+
+i dont know how to play its super hard lol. what am i clicking when i first start..i dont see which systems are failing
+
+---
+
+none of the rows are actually clickable..am i crazy
+
+---
+
+my biggest issue is the design..there's a lack of clarity in what's happening. i feel like when you do diner dash or overcooked you know the customer requested soup..and youre able to find the soup. there needs to be ways to have clarity that like its not just going to random things..maybe even letting the user point to the specific place that it needs to be
+
+---
+
+my other issue too is these names are like too unrelatable..nav core..ignition coil..stuff like that..idk thats also an issue
+
+---
+
+i dont think water reclaim and stuff like that is great either..or powercell..i like battery..idk..i think we're overcomplicating the game. we want it to have a challenge..in terms of like something is on the line..but we dont need it to be too many steps.
+
+---
+
+and it will still be overcooked?
+
+---
+
+ok
+
+---
+
+i think i still wanted some kind of matching or dragging after wards..idkk like lets say we send the subagent on the dispatch board..and then it tells us what it fixed with entire explain checkpoints and then we drag something to something for matching..or am i thinking of it wrong..like what we had before we good..i just wanted more clarity with it
+
+---
+
+or i mean to say the conveyor belt was good
+
+---
+
+i dispatch them first
+
+---
+
+what do you think of the gameplay and state of level 2 now
+
+---
+
+take a swing
+
+---
+
+one of the boring parts of this is that the matching will always be in order
+
+---
+
+i think it should be that some things take longer to fix than others
+
+---
+
+what do you think of this..we send the subagents to dispatch board instead..and then once the conveyor belt loads..we send the match items to matching squares..but the dispatch board needs to be simplified..and where both the matching and the dipsatch board exist..needs to be replaced for visuals..do you agree with this or no
+
+---
+
+well i dont want the dispatch board to show what its fixing..it should just be red dots..it doesnt need to say battery or anythign
+
+---
+
+yes
+
+---
+
+no the subagents should fly to the red dots
+
+---
+
+no i wanted little red dots on a board. and i would click the dots on the board..and the subagents would go over to those red dots..and then i would put the items in the squares we have
+
+---
+
+i want the red dots to already be there and not show which block theyre associated with lol
+
+---
+
+i dont like that it lights up when im trying to match ...cuz then it's too obvious that i want to match it there..i think i should just drop it in the spots..and then either in the end or after it's placed it gives me an indicator that the match was correct
+
+---
+
+what do you think of the game for level 2 like the game play? like do you think it's fun for people? dont make any changes
