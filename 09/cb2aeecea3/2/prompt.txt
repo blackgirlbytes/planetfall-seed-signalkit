@@ -1,0 +1,177 @@
+when the user presses no to link to a checkpoint during the tutorial AND during the regular game play what happens
+
+---
+
+i want to throw the record aaway but yeah i dont like how there's no feedback on n and it's still completable..what are your ideas before you make any changes
+
+---
+
+C but thats way too many words in the feedback. We should say something like Try again. You must link a checkpoint for it to be recorded..idk maybe even that's too long
+
+---
+
+during the game when you press no..nothing happens either. I think it should in the tutorial tell you since you decided to not link..it will not be saved or something like that..it didnt get recorded..something like that
+
+---
+
+too much words + i dont like emdashes
+
+---
+
+okay level 2. I want to make some changes. I wish i could do something like its more like i want to set the agents off on a track..and control when they start..i dont want to race against them but i wish i had the ability to set them off on a track..and then do some kind of powerups to make them faster at a certain
+
+---
+
+why are we pressing 1-5 to launch the agent i dont get that
+
+---
+
+i think we just drop the subagent to the track and then press space or something like that for it to go..
+
+---
+
+maybe the subagent is more car like than drone like since we're doing tracks. i dont know the answer to those..im like like i want the user to be able to do sequential or parallel subagent use so they can put all on the track and start them or just do them one by one.any ideas of how to make this functionally work..idk where boost fits..thats what i was trying to ask earlier
+
+---
+
+yes lets see what happens
+
+---
+
+hmm this is kinda good . i dont feel like any tension though..hmm..dont make any changes yet..lets just analyze
+
+---
+
+Yeah, I think you found the actual issue: **the cars are already on their tracks**, so the player is mostly just starting a machine.
+
+Dragging could fix that, but only if dragging means **choosing**, not just moving pieces around.
+
+I’d try this:
+
+**Level 2 = Dispatch Grid**
+Cars start in a bay at the bottom. Tracks are empty. Each track leads to a broken system.
+
+Player loop:
+
+1. **Drag a subagent car onto a track**
+2. **Press Space to launch assigned cars**
+3. **Use one boost/problem moment while they run**
+4. **Review checkpoint, add to ship**
+
+The key is: tracks should have problems.
+
+Example track problems:
+
+- **Static Gate**: opens/closes, launch timing matters.
+- **Corruption Patch**: slows the car unless boosted through it.
+- **Locked Track**: needs the Decoder car.
+- **Broken Track**: needs the Repair car.
+- **Signal Fog**: needs the Scout/Research car.
+- **Firewall Track**: needs the Security car.
+
+So dragging becomes meaningful:
+
+> “This track is locked. I should drag Decoder here.”
+
+My favorite simple version:
+
+**Five cars. Five tracks. One visible problem per track.**
+Each car has a specialty icon. Each track has a matching problem icon. You drag cars into the lanes, then launch them.
+
+During the run, each lane has **one boost pad**. When the car reaches it, click the lane to fire nitro. That gives you something to do after launch without making it chaotic.
+
+So the game has three satisfying verbs:
+
+- **Drag** to assign
+- **Launch** to start
+- **Boost** to help
+
+That feels way better than only “click all cars and wait.” are we able to do parallel or sequential..like i can put as many cars on the track as i want??  Yes, exactly. That should be the choice.
+
+I’d make it:
+
+**Cars start in the bay. Tracks are empty.**  
+You drag as many cars onto tracks as you want, then launch.
+
+So the player can choose:
+
+**Sequential**
+Drag 1 car to 1 track → launch → manage boost/problem → review.  
+Safer, easier, but slow.
+
+**Parallel**
+Drag 3-5 cars onto tracks → launch them all together.  
+Faster, but now you’re juggling boost moments / track problems at the same time.
+
+Best rule: **one car per track**, but you can fill any number of tracks before launching.
+
+That makes the decision interesting:
+
+> “Do I send one car and play it safe, or send all five and try to manage the chaos?”
+
+The current Level 2 already kind of has this idea because you can arm one car or arm all five before pressing Space. But dragging would make that choice feel way more physical and intentional.
+
+The button/prompt could say:
+
+- `1 CAR STAGED`
+- `3 CARS STAGED`
+- `SPACE: LAUNCH 3`
+- `DRAG CARS TO TRACKS`
+
+That’s probably the missing fun: not just watching cars go, but choosing how much parallel work you dare to run at once.
+
+---
+
+lets try true drag and generic hazards
+
+---
+
+how do i get the car..where are they
+
+---
+
+hmm you know how the story board got changed for level 1..like we did less words..and we made them a little bigger. maybe we can do that for level 2..instead of having that long onboarding..like the idea is..you have subagents that can do work for you or that can help you get work done faster..send them on the track to get work done for you...or drag them on the track to get work done for you..when theyre done you wont know what they've done but you can check it out by running entire checkpoint explain
+
+---
+
+lets keep working on it. it needs to show what the problem is..how they solve it..and i dont want it to be long..if it can be like 2 stories that would be great. no emdashes..let's discuss options before you implement
+
+---
+
+the first ones you give for all the options give no value. we dont want to waste time.
+
+---
+
+i fixed the view a little bit but it's still not great..i think i need the island to be bigger..i wanna feel like im on the island for level 2..i feel like i cant really see the beams or the hazards. i feel like there needs to be even more tracks but maybe less cars and maybe the cars can come back and reuse some of them..u get me..like maybe i have like 12 tracks?? and then just 6 cars..idk so theres two things the view/visibility and then amping up the multitasking with more tracks
+
+---
+
+no leave level 3 alone.and why doesnt the review phase scale. it's a friction point on purpose.
+
+---
+
+so are you okay with entire checkpoint explain still being required
+
+---
+
+all twelve
+
+---
+
+go for it
+
+---
+
+i dont know if i like this. i dont want it to be such a huge birds eye view of te island. i think their should be a spot where all the cars are on the island..the car shouldnt be in the water or driving through the water.
+
+---
+
+big island. that's mostly what i should see. no water. the beams shouldnt be in the water. there should be a dock with the cars..my view should start with seeing the tracks.
+
+---
+
+i still am not starting at the tracks..and i think the dock for the cars needs to be off to the side
+
+---
+
+the tracks are not starting at the beginning of the island or closer to the beginning of the island i feel like they should be and it should be like more of a zoom in
