@@ -1,0 +1,1 @@
+make me a short cut so i can get to the end screen of levels ..whether there's a failure or a success..these will be like things i can put in the URL and just skip..like level 2 fail..or level 3 success..things like that
