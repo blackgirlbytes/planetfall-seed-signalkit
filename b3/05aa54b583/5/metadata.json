@@ -1,0 +1,57 @@
+{
+  "cli_version": "0.7.6",
+  "checkpoint_id": "b305aa54b583",
+  "session_id": "019ed44e-4be8-7c33-a28c-229573f5ad26",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-17T19:20:21.462193Z",
+  "branch": "codex/level-2-drone-bay-ui",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/droneBayView.js",
+    "src/style.css"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "a19c910909e5",
+  "token_usage": {
+    "input_tokens": 103690,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 561024,
+    "output_tokens": 8361,
+    "api_call_count": 13
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-17T19:20:21.445535Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 42,
+    "human_removed": 671,
+    "total_committed": 0,
+    "total_lines_changed": 713,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 648,
+      "user_lines_removed": 698,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        "README.md": 6,
+        "index.html": 10,
+        "src/droneBayView.js": 464,
+        "src/style.css": 81
+      },
+      "user_removed_per_file": {
+        "README.md": 6,
+        "src/droneBayView.js": 669,
+        "src/style.css": 23
+      }
+    }
+  ]
+}
