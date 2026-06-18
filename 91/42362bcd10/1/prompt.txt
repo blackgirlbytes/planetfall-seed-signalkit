@@ -1,0 +1,78 @@
+while we are setting up a db in the codebase for a leader board..i think we need to figure out people entering their names on the leaderboard..how are point scored overall..like each has different levels..will we also account for speed.
+
+if someone fails at a level..they should be able to enter their name into a leaderboard..and then if they get to the end successfully of the third level which is the whole game..then they put their name into the leaderboard too..does that make sense..is that right?
+
+---
+
+look at what the api is right now and see how we need to change it..also look at the code for the game and see if your plans make sense
+
+---
+
+you can also use the vercel cli
+
+---
+
+okay change the API..then we need a UI for people to enter their name so they can be added to the leader board..at these specific moments. and then we also need a UI that renders the leaderboard
+
+---
+
+i think i reached the end of level 1 like just lost and the page refrreshed and brought me back to orbit
+
+---
+
+i didnt start typing anything though
+
+---
+
+why does it say local board until api is reachable
+
+---
+
+why cant it use the real api locally
+
+---
+
+i dont like the ui..i think it should just say something normal not like callsign or anything space like or transmit. and then the next page would render the leaderboard
+
+---
+
+how come i saved my score in the last play but when i saved it again..it was no longer on the leaderboard
+
+---
+
+whats the difference between completed all scores recent..i dont want all these i really just want like whatever is in the database..for it to show the top 10 of whoever has played the game overall..not just in my local computer..but the game in general.
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-eb3724db-46e9-4c64-9c9a-5093a4f52a77.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-eb3724db-46e9-4c64-9c9a-5093a4f52a77.png
+
+## My request for Codex:
+also i wanted the leaderboard to look more like this ..kinda like how we have the start level title..here's how it looks in bug bash..kinda like overlaid
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-d9f5284e-011b-401c-aa56-670a41bb5ea5.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-d9f5284e-011b-401c-aa56-670a41bb5ea5.png
+
+## My request for Codex:
+it looks a little offcentered..maybe it's the word name..maybe we should just say like enter ur username or nick name and then we dont have to put the overlaying NAME on top of the input bar
+
+---
+
+are you doing it?
+
+---
+
+oh no it doesnt need to say username or nickname..we gotta pick one..i was just telling u that we need to do username or nickname..put username
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-98d1b42b-1e85-4260-a45e-b9ee9d9b8c0b.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-98d1b42b-1e85-4260-a45e-b9ee9d9b8c0b.png
+
+## My request for Codex:
+i think we can spread out these a little more..feels crowded with the hierachy of words..there's a lot of real estate on the site where we can have level 1 higher..and game over higher etc..like let the words have room to breathe..
