@@ -3,7 +3,7 @@
   "checkpoint_id": "8b3fa12cb611",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 2,
+  "checkpoints_count": 3,
   "files_touched": [
     "README.md",
     "index.html",
@@ -21,6 +21,12 @@
       "metadata": "/8b/3fa12cb611/1/metadata.json",
       "transcript": "/8b/3fa12cb611/1/full.jsonl",
       "content_hash": "/8b/3fa12cb611/1/content_hash.txt",
+      "prompt": ""
+    },
+    {
+      "metadata": "/8b/3fa12cb611/2/metadata.json",
+      "transcript": "/8b/3fa12cb611/2/full.jsonl",
+      "content_hash": "/8b/3fa12cb611/2/content_hash.txt",
       "prompt": ""
     }
   ]
