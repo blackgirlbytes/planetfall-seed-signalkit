@@ -1,0 +1,9 @@
+do you know how to go into the vercel cli and maybe give this an additional domain name..like it would still have .vercel.app at the end of it..but maybe we can have like just planetfall.vercel.app or something rather than planetfall-seed-signalkit.vercel.app
+
+---
+
+play-planetfall.vercel.app
+
+---
+
+am i using webgl in this or is it just three js
