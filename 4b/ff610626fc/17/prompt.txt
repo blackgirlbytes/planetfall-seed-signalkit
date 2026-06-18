@@ -1,0 +1,13 @@
+can you identify issues with this game..here's some things that people have reported:
+- i had some trouble with level 2. there's multiple* boxes for battery, engine, etc and sometimes when i drag to the box, it's the right box but it doesn't register. 
+- ashtom  [3:02 AM]
+It's cool, but stutters a bit on my MacBook Air
+[3:03 AM]Is it using WebGL for rendering?
+Rizèl Scarlett  [3:03 AM]
+oh what does stutters mean ..like it's slow
+ashtom  [3:03 AM]
+When the terminal shows, the falling pieces no longer fall in a fluid motion
+
+---
+
+well i wanted you to find additional issues OUTSIDE of what was already reported
