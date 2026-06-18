@@ -1,0 +1,5 @@
+this leaderboard score seems to be capturing okay if i captured like 3 in the level then it would give me 30 points..but what about if someone typed faster than me or something..are we accounting for that? or if i finished capturing 30 at a specifically different time or if i hit the wrong things
+
+---
+
+yes i dont think it should show that in the level 1 score initially..like the score board where it says oh you got 2/5 but like in the end..i think it should reflect that captured information regarding mistakes and durationSeconds passed
