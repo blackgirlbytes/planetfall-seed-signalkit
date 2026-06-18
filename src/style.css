@@ -428,11 +428,10 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   align-items: baseline;
   gap: 10px;
   padding: 8px 12px;
-  background: rgba(6, 11, 22, 0.78);
+  background: rgba(6, 11, 22, 0.92);
   border: 1px solid rgba(255, 184, 107, 0.45);
   border-radius: 8px;
   color: var(--ink);
-  backdrop-filter: blur(8px);
   box-shadow: 0 0 24px rgba(255, 184, 107, 0.12);
 }
 #dev-level-badge:not(.hidden) {
@@ -465,10 +464,11 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  background: rgba(6, 11, 22, 0.7);
+  /* Opaque fill instead of backdrop blur — this panel sits over the live
+     canvas during Level 1, so blur here also stutters the falling field. */
+  background: rgba(6, 11, 22, 0.92);
   border: 1px solid rgba(111, 227, 255, 0.32);
   border-radius: 12px;
-  backdrop-filter: blur(8px);
 }
 
 .meter-label {
@@ -548,10 +548,11 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   align-items: center;
   gap: 11px;
   padding: 8px 16px;
-  background: rgba(6, 11, 22, 0.78);
+  /* Opaque fill, no backdrop blur — the clock stays over the live canvas
+     throughout the run (incl. while typing at the terminal). */
+  background: rgba(6, 11, 22, 0.94);
   border: 1px solid rgba(111, 227, 255, 0.4);
   border-radius: 9px;
-  backdrop-filter: blur(8px);
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 
@@ -573,10 +574,11 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   flex-direction: column;
   gap: 7px;
   padding: 9px 16px 11px;
-  background: rgba(6, 11, 22, 0.78);
+  /* Opaque fill, no backdrop blur — the records tally sits over the live
+     canvas during the Level 1 run alongside the terminal. */
+  background: rgba(6, 11, 22, 0.94);
   border: 1px solid rgba(255, 210, 122, 0.4);
   border-radius: 9px;
-  backdrop-filter: blur(8px);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 #shooter-tally.hidden { display: none; }
@@ -728,8 +730,7 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: radial-gradient(ellipse at 50% 30%, rgba(20, 16, 44, 0.62), rgba(2, 4, 10, 0.86));
-  backdrop-filter: blur(7px);
+  background: radial-gradient(ellipse at 50% 30%, rgba(20, 16, 44, 0.9), rgba(2, 4, 10, 0.95));
   animation: bf-fade 0.5s ease both;
 }
 #briefing.hidden,
@@ -751,7 +752,7 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 .mission-banner-box {
   width: 100%;
   padding: clamp(20px, 2.4vw, 30px) clamp(28px, 5vw, 84px);
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.94);
   border-top: 3px solid;
   border-image: linear-gradient(
     90deg,
@@ -764,7 +765,6 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   box-shadow:
     0 -20px 64px rgba(0, 0, 0, 0.72),
     0 0 56px rgba(248, 200, 96, 0.18);
-  backdrop-filter: blur(8px);
   animation: mission-banner-in 0.4s ease both;
 }
 
@@ -1189,11 +1189,10 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   width: min(460px, 88vw);
   padding: 34px 36px;
   text-align: center;
-  background: rgba(20, 8, 12, 0.9);
+  background: rgba(20, 8, 12, 0.96);
   border: 1px solid rgba(255, 90, 90, 0.5);
   border-radius: 12px;
   box-shadow: 0 18px 60px rgba(2, 4, 10, 0.6), 0 0 36px rgba(255, 90, 90, 0.2);
-  backdrop-filter: blur(6px);
 }
 
 .lf-title {
@@ -1240,10 +1239,9 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   left: 32px;
   width: min(310px, calc(100vw - 64px));
   padding: 13px 16px;
-  background: rgba(6, 11, 22, 0.78);
+  background: rgba(6, 11, 22, 0.92);
   border: 1px solid rgba(255, 210, 122, 0.4);
   border-radius: 9px;
-  backdrop-filter: blur(8px);
 }
 .rq-head {
   font-size: 10px;
@@ -1335,11 +1333,10 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   width: min(278px, calc(100vw - 56px));
   pointer-events: auto;         /* #ui is pointer-events:none — re-enable so pips are clickable */
   padding: 12px 14px 14px;
-  background: rgba(17, 11, 34, 0.82);
+  background: rgba(17, 11, 34, 0.94);
   border: 1px solid rgba(255, 222, 140, 0.78);
   border-radius: 9px;
   box-shadow: 0 0 0 1px rgba(255, 222, 140, 0.28), 0 0 22px rgba(248, 200, 96, 0.22), 0 8px 26px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(8px);
 }
 #db-board.attention { animation: db-board-attn 1.05s ease-in-out infinite; }
 @keyframes db-board-attn {
@@ -1477,11 +1474,10 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   width: min(440px, 88vw);
   padding: 28px 30px;
   text-align: center;
-  background: rgba(8, 18, 16, 0.92);
+  background: rgba(8, 18, 16, 0.96);
   border: 1px solid rgba(92, 255, 176, 0.5);
   border-radius: 12px;
   box-shadow: 0 18px 60px rgba(2, 4, 10, 0.6), 0 0 40px rgba(92, 255, 176, 0.2);
-  backdrop-filter: blur(6px);
 }
 #island-hud.has-leaderboard #level-fail,
 #db-hud.has-leaderboard #db-fail,
@@ -1666,11 +1662,14 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   transform: translateX(-50%);
   width: min(560px, calc(100vw - 40px));
   padding: 14px 16px;
-  background: rgba(4, 10, 18, 0.88);
-  border: 1px solid rgba(111, 227, 255, 0.42);
+  /* Near-opaque panel — keeps the terminal readable without a per-frame
+     backdrop blur, which is brutally expensive composited over the live
+     WebGL canvas on integrated GPUs (the falling field keeps animating
+     behind it). Solid dark fill + a thin glow border carry the look. */
+  background: rgba(4, 10, 18, 0.97);
+  border: 1px solid rgba(111, 227, 255, 0.5);
   border-radius: 8px;
-  box-shadow: 0 14px 40px rgba(2, 4, 10, 0.55), 0 0 24px rgba(111, 227, 255, 0.12);
-  backdrop-filter: blur(6px);
+  box-shadow: 0 0 0 1px rgba(111, 227, 255, 0.12);
   text-align: left;
   overflow-wrap: anywhere;
 }
@@ -2574,10 +2573,9 @@ body.hit-flash::after {
   top: 136px;
   left: 32px;
   padding: 12px 14px;
-  background: rgba(6, 11, 22, 0.78);
+  background: rgba(6, 11, 22, 0.92);
   border: 1px solid rgba(255, 210, 122, 0.4);
   border-radius: 9px;
-  backdrop-filter: blur(8px);
 }
 .lc-code-head {
   font-size: 10px;
@@ -2623,11 +2621,10 @@ body.hit-flash::after {
   max-height: min(68vh, 560px);
   padding: 20px 22px;
   overflow-y: auto;
-  background: rgba(4, 10, 18, 0.92);
+  background: rgba(4, 10, 18, 0.96);
   border: 1px solid rgba(111, 227, 255, 0.42);
   border-radius: 8px;
   box-shadow: 0 14px 40px rgba(2, 4, 10, 0.55), 0 0 24px rgba(111, 227, 255, 0.12);
-  backdrop-filter: blur(6px);
   text-align: left;
 }
 #lc-console.hidden { display: none; }
