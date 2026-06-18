@@ -1,0 +1,42 @@
+{
+  "cli_version": "0.7.5",
+  "checkpoint_id": "b0012a08f295",
+  "session_id": "019ed44e-4be8-7c33-a28c-229573f5ad26",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-18T06:28:04.215907Z",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".gitignore",
+    "api/leaderboard.js",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "src/droneBayView.js",
+    "src/islandView.js",
+    "src/launchView.js",
+    "src/leaderboard.js",
+    "src/leaderboardPanel.js",
+    "src/main.js",
+    "src/style.css",
+    "src/titleScreen.js",
+    "vite.config.js"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "a19c910909e5",
+  "checkpoint_transcript_start": 98,
+  "transcript_lines_at_start": 98,
+  "initial_attribution": {
+    "calculated_at": "2026-06-18T06:28:04.198583Z",
+    "agent_lines": 1321,
+    "agent_removed": 7,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 1321,
+    "total_lines_changed": 1328,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
