@@ -1625,6 +1625,22 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   transition: opacity 0.4s ease;
 }
 #tutorial:not(.hidden) { opacity: 1; }
+/* Onboarding beat — the one-time "shoot the gold record" pointer. Reads as a
+   warm, gently pulsing gold callout so the objective is obvious on-screen. */
+#tutorial.is-onboarding {
+  border-color: rgba(255, 210, 122, 0.85);
+  background: rgba(20, 16, 10, 0.78);
+  color: #ffe6a6;
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 12px rgba(255, 210, 122, 0.45);
+  box-shadow: 0 0 22px rgba(255, 210, 122, 0.28);
+  animation: l1-onboard-pulse 1.5s ease-in-out infinite;
+}
+@keyframes l1-onboard-pulse {
+  0%, 100% { box-shadow: 0 0 16px rgba(255, 210, 122, 0.2); }
+  50%      { box-shadow: 0 0 28px rgba(255, 210, 122, 0.42); }
+}
 
 /* Action progress bar (recover fill / fade countdown) */
 #action-bar {
@@ -2212,6 +2228,41 @@ body.tv-on #tv-overlay { display: block; }
 #shooter-reticle::before { left: 50%; top: -8px; width: 2px; height: 10px; margin-left: -1px; }
 #shooter-reticle::after { top: 50%; left: -8px; height: 2px; width: 10px; margin-top: -1px; }
 #shooter-reticle.hidden { display: none; }
+/* Reticle reacts to what the crosshair is over, so the player learns what's
+   shootable without reading instructions. */
+#shooter-reticle {
+  transition: width 0.12s ease, height 0.12s ease, border-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+/* Over a valid record: the reticle LOCKS — bright gold, larger, glowing. */
+#shooter-reticle.is-locked {
+  width: 50px;
+  height: 50px;
+  border-color: rgba(255, 226, 150, 1);
+  box-shadow: 0 0 20px rgba(255, 210, 122, 0.95), inset 0 0 12px rgba(255, 210, 122, 0.55);
+  animation: reticle-lock-pulse 0.9s ease-in-out infinite;
+}
+#shooter-reticle.is-locked::before,
+#shooter-reticle.is-locked::after {
+  background: rgba(255, 244, 200, 1);
+  box-shadow: 0 0 8px rgba(255, 226, 150, 1);
+}
+@keyframes reticle-lock-pulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(255, 210, 122, 0.85), inset 0 0 10px rgba(255, 210, 122, 0.45); }
+  50%      { box-shadow: 0 0 28px rgba(255, 226, 150, 1),    inset 0 0 16px rgba(255, 210, 122, 0.7); }
+}
+/* Over dark wreckage: the reticle DENIES — muted, dim red, slightly smaller. */
+#shooter-reticle.is-deny {
+  width: 30px;
+  height: 30px;
+  border-color: rgba(255, 96, 72, 0.55);
+  box-shadow: 0 0 6px rgba(255, 70, 50, 0.35);
+}
+#shooter-reticle.is-deny::before,
+#shooter-reticle.is-deny::after {
+  background: rgba(255, 130, 110, 0.55);
+  box-shadow: none;
+}
 
 /* Red wash when you shoot wreckage */
 body.hit-flash::after {
