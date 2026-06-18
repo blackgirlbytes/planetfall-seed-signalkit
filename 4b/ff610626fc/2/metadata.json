@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "4bff610626fc",
+  "session_id": "019ed6d6-ef92-7bc1-91e1-eb148c3140a6",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-18T14:18:38.170324Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "PLAN.md",
+    "README.md"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "fee52dc3cd8f",
+  "checkpoint_transcript_start": 1365,
+  "transcript_lines_at_start": 1365,
+  "initial_attribution": {
+    "calculated_at": "2026-06-18T14:18:38.051719Z",
+    "agent_lines": 350,
+    "agent_removed": 624,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 350,
+    "total_lines_changed": 974,
+    "agent_percentage": 100,
+    "metric_version": 2
+  }
+}
