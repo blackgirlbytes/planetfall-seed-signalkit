@@ -1,0 +1,49 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "4bff610626fc",
+  "session_id": "019ed942-4ed9-7c21-860b-c4e15f3b0e85",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-18T14:19:40.495554Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "7a05efa9ce38",
+  "token_usage": {
+    "input_tokens": 87174,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 735488,
+    "output_tokens": 9874,
+    "api_call_count": 18
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1345,
+      "user_lines_removed": 5,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        ".gitignore": 2,
+        "api/leaderboard.js": 346,
+        "package-lock.json": 10,
+        "package.json": 2,
+        "src/droneBayView.js": 39,
+        "src/islandView.js": 33,
+        "src/launchView.js": 46,
+        "src/leaderboard.js": 160,
+        "src/leaderboardPanel.js": 205,
+        "src/style.css": 403,
+        "vite.config.js": 12
+      },
+      "user_removed_per_file": {
+        "src/droneBayView.js": 1,
+        "src/launchView.js": 3,
+        "src/style.css": 1
+      }
+    }
+  ]
+}
