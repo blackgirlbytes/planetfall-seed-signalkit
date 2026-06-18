@@ -1,0 +1,34 @@
+are these performance or ux bugs
+
+---
+
+why is this bad All scenes built eagerly on startup.
+
+---
+
+okay lets open up issues in the repo for the following 
+
+- i had some trouble with level 2. there's multiple* boxes for battery, engine, etc and sometimes when i drag to the box, it's the right box but it doesn't register. 
+- ashtom  [3:02 AM]
+It's cool, but stutters a bit on my MacBook Air
+[3:03 AM]Is it using WebGL for rendering?
+Rizèl Scarlett  [3:03 AM]
+oh what does stutters mean ..like it's slow
+ashtom  [3:03 AM]
+When the terminal shows, the falling pieces no longer fall in a fluid motion
+- All scenes built eagerly on startup.
+- Removed Three.js objects are not consistently disposed
+
+make sure to point out why these are problems
+
+---
+
+oh one thing I wanted to do is add an icon for entire/marvin ..if we could..like the logo
+
+---
+
+nooo i dont want you to add that. i want you to open an issue for that
+
+---
+
+There was another suggestion of adding marvin as a character in general as a like an npc or representing the player itself..we right now have a first person point of view..like you cant see yourself..but maybe if you wanted to get out of that view..it could be marvin..idk
