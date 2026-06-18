@@ -3,7 +3,7 @@
   "checkpoint_id": "31c7d9687bd2",
   "strategy": "manual-commit",
   "branch": "preview",
-  "checkpoints_count": 9,
+  "checkpoints_count": 10,
   "files_touched": [
     "CONTRIBUTING.md"
   ],
@@ -61,6 +61,12 @@
       "transcript": "/31/c7d9687bd2/8/full.jsonl",
       "content_hash": "/31/c7d9687bd2/8/content_hash.txt",
       "prompt": "/31/c7d9687bd2/8/prompt.txt"
+    },
+    {
+      "metadata": "/31/c7d9687bd2/9/metadata.json",
+      "transcript": "/31/c7d9687bd2/9/full.jsonl",
+      "content_hash": "/31/c7d9687bd2/9/content_hash.txt",
+      "prompt": "/31/c7d9687bd2/9/prompt.txt"
     }
   ],
   "token_usage": {
