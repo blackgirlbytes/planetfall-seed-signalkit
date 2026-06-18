@@ -665,6 +665,21 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 }
 #db-countdown #db-countdown-time { color: #e5ddff; }
 
+/* Narrow + short viewports (e.g. ~887x718 small laptops): the Level 2 repair
+   grid widens to fill the canvas and its two upper-left ship squares/labels rise
+   under the default top-left clock, overlapping them. On these sizes the dark
+   band between the grid and the conveyor belt sits around mid-height, so drop
+   ONLY the Drone Bay clock into that clear zone. Gated above the 680px mobile
+   breakpoint (which already relocates every clock) and below desktop widths
+   where the centered grid clears the top-left clock — so Level 1 (#countdown)
+   and Level 3 (#lc-countdown) are untouched. */
+@media (min-width: 681px) and (max-width: 1180px) and (max-height: 900px) {
+  #db-countdown {
+    top: calc(50vh - 6px);
+    left: 32px;
+  }
+}
+
 /* Urgent state — the clock is running low */
 #countdown.is-low,
 #l2-countdown.is-low,
