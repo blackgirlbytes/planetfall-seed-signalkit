@@ -3,7 +3,7 @@
   "checkpoint_id": "4bff610626fc",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 4,
+  "checkpoints_count": 5,
   "files_touched": [
     "PLAN.md",
     "README.md"
@@ -31,6 +31,12 @@
       "metadata": "/4b/ff610626fc/3/metadata.json",
       "transcript": "/4b/ff610626fc/3/full.jsonl",
       "content_hash": "/4b/ff610626fc/3/content_hash.txt",
+      "prompt": ""
+    },
+    {
+      "metadata": "/4b/ff610626fc/4/metadata.json",
+      "transcript": "/4b/ff610626fc/4/full.jsonl",
+      "content_hash": "/4b/ff610626fc/4/content_hash.txt",
       "prompt": ""
     }
   ]
