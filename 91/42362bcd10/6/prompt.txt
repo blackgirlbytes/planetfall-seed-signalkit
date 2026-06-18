@@ -1,0 +1,13 @@
+i want to add a license to this repo. my rule though is that..like i want people to be able to contribute..and it be public but i dont want anyone to copy the project..or reuse it for their own purposes..what license would be the best fit
+
+---
+
+ok whats the tightest open source license
+
+---
+
+can you add this licesense to my repo GPLv3
+
+---
+
+commit and push
