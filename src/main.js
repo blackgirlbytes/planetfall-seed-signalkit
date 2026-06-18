@@ -168,41 +168,56 @@ function startNewGame() {
   window.location.assign(cleanUrl.href);
 }
 
+// The planet/orbit view is the initial paint and the attract backdrop behind
+// the title, so it is built eagerly. Every other view allocates a heavy
+// Three.js scene in its constructor, so we defer that work behind memoized
+// getters: a view is only constructed the first time it is entered (or a dev
+// shortcut requests it directly). The Archive in particular never gets built
+// during normal Level 1 -> 2 -> 3 progression — only via ?view=archive.
 const planetView = createPlanetView(renderer, {
   onIslandClick: () => switchTo(
-    level2Done ? launchView : level1Done ? droneBayView : islandView
+    level2Done ? getLaunchView() : level1Done ? getDroneBayView() : getIslandView()
   ),
 });
 // Success carries you forward (onNext); failure only ever offers R to retry.
-const islandView = createIslandView(renderer, {
-  onExit: () => switchTo(planetView),
-  onComplete: () => { level1Done = true; },
-  onNext: () => switchTo(droneBayView),
-  onNewGame: startNewGame,
-});
-const droneBayView = createDroneBayView(renderer, {
-  onExit: () => switchTo(planetView),
-  onComplete: () => { level2Done = true; },
-  onNext: () => switchTo(launchView),
-  onNewGame: startNewGame,
-});
-const archiveView = createArchiveView(renderer, {
-  onExit: () => switchTo(planetView),
-  onNewGame: startNewGame,
-});
-const launchView = createLaunchView(renderer, {
-  onExit: () => switchTo(planetView),
-  onNewGame: startNewGame,
-});
+let islandView, droneBayView, archiveView, launchView;
+function getIslandView() {
+  return islandView ??= createIslandView(renderer, {
+    onExit: () => switchTo(planetView),
+    onComplete: () => { level1Done = true; },
+    onNext: () => switchTo(getDroneBayView()),
+    onNewGame: startNewGame,
+  });
+}
+function getDroneBayView() {
+  return droneBayView ??= createDroneBayView(renderer, {
+    onExit: () => switchTo(planetView),
+    onComplete: () => { level2Done = true; },
+    onNext: () => switchTo(getLaunchView()),
+    onNewGame: startNewGame,
+  });
+}
+function getArchiveView() {
+  return archiveView ??= createArchiveView(renderer, {
+    onExit: () => switchTo(planetView),
+    onNewGame: startNewGame,
+  });
+}
+function getLaunchView() {
+  return launchView ??= createLaunchView(renderer, {
+    onExit: () => switchTo(planetView),
+    onNewGame: startNewGame,
+  });
+}
 
 // Default to the orbit view; ?view=island jumps straight to Level 1,
 // ?view=level2 (or ?level=2) to Level 2, ?view=level3 (or ?level=3) to the
 // finale, ?view=archive to the shelved search level — handy for development.
-let current = requestedView === "island" ? islandView
-  : endShortcut?.level === 1 ? islandView
-  : requestedView === "archive" ? archiveView
-  : jumpToLevel3 ? launchView
-  : jumpToLevel2 ? droneBayView : planetView;
+let current = requestedView === "island" ? getIslandView()
+  : endShortcut?.level === 1 ? getIslandView()
+  : requestedView === "archive" ? getArchiveView()
+  : jumpToLevel3 ? getLaunchView()
+  : jumpToLevel2 ? getDroneBayView() : planetView;
 current.enter();
 endShortcut && current.skipToEnd?.(endShortcut.outcome);
 
@@ -289,11 +304,11 @@ function switchTo(view) {
 // ---------- resize ----------
 window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
-  planetView.resize();
-  islandView.resize();
-  droneBayView.resize();
-  archiveView.resize();
-  launchView.resize();
+  // Resize only views that have actually been constructed — never force-build a
+  // deferred view just to resize it.
+  for (const view of [planetView, islandView, droneBayView, archiveView, launchView]) {
+    view?.resize();
+  }
 });
 
 // ---------- loop ----------
