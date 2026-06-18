@@ -1,0 +1,46 @@
+# Files mentioned by the user:
+
+## codex-clipboard-a51f4e61-8142-4748-8a9e-76d7388ef7e2.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-a51f4e61-8142-4748-8a9e-76d7388ef7e2.png
+
+## codex-clipboard-eefd45b1-d8f8-46ac-98ed-cdb5eb3a158c.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-eefd45b1-d8f8-46ac-98ed-cdb5eb3a158c.png
+
+## My request for Codex:
+way too much is on the page here for the leaderboard: like its a little crowded imo ..like we do want it to look like how the second image looks ..but the second image has more spacing and balance
+
+---
+
+i dont think thats part of the overcrowding to be honest..i think the letters might be a little too big and the the section where it says i got to level 1 2/5 20..thats way too much
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-b1b53473-39b7-444b-a4c6-ffd38c245bd1.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-b1b53473-39b7-444b-a4c6-ffd38c245bd1.png
+
+## My request for Codex:
+this is terrible..there's things off centered..such as the your saved score..there's no breathing room for the saved score vs the leaderboard itself..we can use different colors to help distinctify certain parts..idk if youre seeing what im seeing. before you make any changes..confirm with me what changes you will be making..be specific in terms of font sizes and more
+
+---
+
+yeah im even thinking get rid of the your saved score stuff. we dont want that..go ahead and implement
+
+---
+
+okay you know where at the beginning of the game it says start..options..there should be a section that says leaderboard..and leads you there
+
+---
+
+we dont need the icons next to their name..like if the name is rizel..i dont need the icon r
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-3caf2483-f759-479f-bc5b-b8faf1dc85b7.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-3caf2483-f759-479f-bc5b-b8faf1dc85b7.png
+
+## My request for Codex:
+maybe more opacity is needed because i can see a lot of words form planet fall and all that ...or maybe when you click leaderboard we hide the start game title stuff..like we hide the parts that say planetfall the rebellion is waiting etc etc
+
+---
+
+commit and push changes

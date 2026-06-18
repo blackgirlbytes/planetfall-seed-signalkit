@@ -3,7 +3,7 @@
   "checkpoint_id": "9142362bcd10",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 3,
+  "checkpoints_count": 4,
   "files_touched": [
     "package.json"
   ],
@@ -25,6 +25,12 @@
       "transcript": "/91/42362bcd10/2/full.jsonl",
       "content_hash": "/91/42362bcd10/2/content_hash.txt",
       "prompt": "/91/42362bcd10/2/prompt.txt"
+    },
+    {
+      "metadata": "/91/42362bcd10/3/metadata.json",
+      "transcript": "/91/42362bcd10/3/full.jsonl",
+      "content_hash": "/91/42362bcd10/3/content_hash.txt",
+      "prompt": "/91/42362bcd10/3/prompt.txt"
     }
   ],
   "token_usage": {
