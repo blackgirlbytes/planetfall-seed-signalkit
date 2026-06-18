@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vite",
     "dev:vercel": "VITE_USE_REMOTE_LEADERBOARD=1 npx vercel@latest dev",
+    "test": "node --test",
     "build": "vite build",
     "preview": "vite preview"
   },

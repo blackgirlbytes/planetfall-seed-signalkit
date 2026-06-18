@@ -52,6 +52,7 @@ async function ensureSchema() {
         CREATE TABLE IF NOT EXISTS leaderboard_entries (
           id uuid PRIMARY KEY,
           username text NOT NULL CHECK (char_length(username) BETWEEN 2 AND 18),
+          username_key text NOT NULL,
           level integer NOT NULL DEFAULT 3,
           outcome text NOT NULL CHECK (outcome IN ('win', 'loss')),
           completed_game boolean NOT NULL DEFAULT false,
@@ -65,6 +66,7 @@ async function ensureSchema() {
           created_at timestamptz NOT NULL DEFAULT now()
         )
       `;
+      await sql`ALTER TABLE leaderboard_entries ADD COLUMN IF NOT EXISTS username_key text`;
       await sql`ALTER TABLE leaderboard_entries ADD COLUMN IF NOT EXISTS completed_game boolean NOT NULL DEFAULT false`;
       await sql`ALTER TABLE leaderboard_entries ADD COLUMN IF NOT EXISTS progress_completed integer NOT NULL DEFAULT 0 CHECK (progress_completed >= 0)`;
       await sql`ALTER TABLE leaderboard_entries ADD COLUMN IF NOT EXISTS progress_total integer NOT NULL DEFAULT 1 CHECK (progress_total >= 1)`;
@@ -90,6 +92,7 @@ async function ensureSchema() {
       await sql`
         UPDATE leaderboard_entries
         SET
+          username_key = lower(regexp_replace(btrim(username), '[[:space:]]+', ' ', 'g')),
           progress_completed = CASE
             WHEN progress_completed = 0 AND questions_completed > 0 THEN questions_completed
             ELSE progress_completed
@@ -102,6 +105,35 @@ async function ensureSchema() {
             WHEN outcome = 'win' AND level = 3 THEN true
             ELSE completed_game
           END
+      `;
+      await sql`
+        DELETE FROM leaderboard_entries
+        WHERE id IN (
+          SELECT id
+          FROM (
+            SELECT
+              id,
+              row_number() OVER (
+                PARTITION BY username_key
+                ORDER BY
+                  score DESC,
+                  level DESC,
+                  completed_game DESC,
+                  progress_completed DESC,
+                  time_remaining DESC,
+                  duration_seconds ASC,
+                  created_at ASC,
+                  id ASC
+              ) AS duplicate_rank
+            FROM leaderboard_entries
+          ) ranked_entries
+          WHERE duplicate_rank > 1
+        )
+      `;
+      await sql`ALTER TABLE leaderboard_entries ALTER COLUMN username_key SET NOT NULL`;
+      await sql`
+        CREATE UNIQUE INDEX IF NOT EXISTS leaderboard_entries_username_key_idx
+        ON leaderboard_entries (username_key)
       `;
       await sql`
         CREATE INDEX IF NOT EXISTS leaderboard_entries_rank_idx
@@ -148,6 +180,10 @@ function normalizeUsername(value) {
     .trim()
     .replace(/\s+/g, " ")
     .slice(0, 18);
+}
+
+export function normalizeUsernameKey(value) {
+  return normalizeUsername(value).toLowerCase();
 }
 
 function readInteger(value, fallback = 0) {
@@ -204,6 +240,35 @@ function computeScore(entry) {
   );
 }
 
+export function shouldReplaceLeaderboardEntry(candidate, current) {
+  if (!current) return true;
+
+  const rankChecks = [
+    ["score", "desc"],
+    ["level", "desc"],
+    ["completedGame", "desc"],
+    ["progressCompleted", "desc"],
+    ["timeRemaining", "desc"],
+    ["durationSeconds", "asc"],
+  ];
+
+  for (const [field, direction] of rankChecks) {
+    const candidateValue = field === "completedGame"
+      ? Number(Boolean(candidate[field]))
+      : readInteger(candidate[field]);
+    const currentValue = field === "completedGame"
+      ? Number(Boolean(current[field]))
+      : readInteger(current[field]);
+
+    if (candidateValue === currentValue) continue;
+    return direction === "desc"
+      ? candidateValue > currentValue
+      : candidateValue < currentValue;
+  }
+
+  return false;
+}
+
 function validateEntry(body) {
   const username = normalizeUsername(body.username);
   if (!/^[a-zA-Z0-9 ._-]{2,18}$/.test(username)) {
@@ -244,6 +309,7 @@ function validateEntry(body) {
   const entry = {
     id: crypto.randomUUID(),
     username,
+    usernameKey: normalizeUsernameKey(username),
     level,
     outcome,
     completedGame,
@@ -276,6 +342,7 @@ async function listEntries(sql, limit) {
     SELECT
       id,
       username,
+      username_key AS "usernameKey",
       level,
       outcome,
       completed_game AS "completedGame",
@@ -318,6 +385,7 @@ export default async function handler(req, res) {
         INSERT INTO leaderboard_entries (
           id,
           username,
+          username_key,
           level,
           outcome,
           completed_game,
@@ -332,6 +400,7 @@ export default async function handler(req, res) {
         VALUES (
           ${entry.id},
           ${entry.username},
+          ${entry.usernameKey},
           ${entry.level},
           ${entry.outcome},
           ${entry.completedGame},
@@ -343,9 +412,32 @@ export default async function handler(req, res) {
           ${entry.mistakes},
           ${entry.level === 3 ? entry.progressCompleted : 0}
         )
+        ON CONFLICT (username_key) DO UPDATE
+        SET
+          id = EXCLUDED.id,
+          username = EXCLUDED.username,
+          level = EXCLUDED.level,
+          outcome = EXCLUDED.outcome,
+          completed_game = EXCLUDED.completed_game,
+          score = EXCLUDED.score,
+          time_remaining = EXCLUDED.time_remaining,
+          duration_seconds = EXCLUDED.duration_seconds,
+          progress_completed = EXCLUDED.progress_completed,
+          progress_total = EXCLUDED.progress_total,
+          mistakes = EXCLUDED.mistakes,
+          questions_completed = EXCLUDED.questions_completed,
+          created_at = now()
+        WHERE
+          EXCLUDED.score > leaderboard_entries.score
+          OR (EXCLUDED.score = leaderboard_entries.score AND EXCLUDED.level > leaderboard_entries.level)
+          OR (EXCLUDED.score = leaderboard_entries.score AND EXCLUDED.level = leaderboard_entries.level AND EXCLUDED.completed_game AND NOT leaderboard_entries.completed_game)
+          OR (EXCLUDED.score = leaderboard_entries.score AND EXCLUDED.level = leaderboard_entries.level AND EXCLUDED.completed_game = leaderboard_entries.completed_game AND EXCLUDED.progress_completed > leaderboard_entries.progress_completed)
+          OR (EXCLUDED.score = leaderboard_entries.score AND EXCLUDED.level = leaderboard_entries.level AND EXCLUDED.completed_game = leaderboard_entries.completed_game AND EXCLUDED.progress_completed = leaderboard_entries.progress_completed AND EXCLUDED.time_remaining > leaderboard_entries.time_remaining)
+          OR (EXCLUDED.score = leaderboard_entries.score AND EXCLUDED.level = leaderboard_entries.level AND EXCLUDED.completed_game = leaderboard_entries.completed_game AND EXCLUDED.progress_completed = leaderboard_entries.progress_completed AND EXCLUDED.time_remaining = leaderboard_entries.time_remaining AND EXCLUDED.duration_seconds < leaderboard_entries.duration_seconds)
         RETURNING
           id,
           username,
+          username_key AS "usernameKey",
           level,
           outcome,
           completed_game AS "completedGame",
@@ -358,8 +450,28 @@ export default async function handler(req, res) {
           questions_completed AS "questionsCompleted",
           created_at AS "createdAt"
       `;
+      const savedEntry = inserted[0] || (await sql`
+        SELECT
+          id,
+          username,
+          username_key AS "usernameKey",
+          level,
+          outcome,
+          completed_game AS "completedGame",
+          score,
+          time_remaining AS "timeRemaining",
+          duration_seconds AS "durationSeconds",
+          progress_completed AS "progressCompleted",
+          progress_total AS "progressTotal",
+          mistakes,
+          questions_completed AS "questionsCompleted",
+          created_at AS "createdAt"
+        FROM leaderboard_entries
+        WHERE username_key = ${entry.usernameKey}
+        LIMIT 1
+      `)[0];
       const entries = await listEntries(sql, DEFAULT_LIMIT);
-      sendJson(res, 201, { entry: inserted[0], entries, source: "database" });
+      sendJson(res, inserted[0] ? 201 : 200, { entry: savedEntry, entries, source: "database" });
       return;
     }
 
