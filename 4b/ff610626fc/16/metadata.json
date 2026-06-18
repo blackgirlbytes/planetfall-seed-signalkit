@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "4bff610626fc",
+  "session_id": "019edb14-5c03-7b62-9c55-5fd2ea99a5c6",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-18T14:21:06.3097Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "PLAN.md",
+    "README.md"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "827594b32e8b",
+  "token_usage": {
+    "input_tokens": 274155,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 2492288,
+    "output_tokens": 15975,
+    "api_call_count": 29
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-18T14:21:06.290288Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 624,
+    "total_committed": 0,
+    "total_lines_changed": 624,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 437,
+      "user_lines_removed": 624,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        "PLAN.md": 242,
+        "README.md": 108
+      },
+      "user_removed_per_file": {
+        "PLAN.md": 533,
+        "README.md": 91
+      }
+    }
+  ]
+}
