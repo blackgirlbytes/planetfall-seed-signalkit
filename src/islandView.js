@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { disposeObject3D } from "./three-utils.js";
 import { createTerrain } from "./terrain.js";
 import { genCheckpointId, makeIceBlock } from "./memoryProps.js";
 import { makeRecord, makeWreck } from "./fallingProps.js";
@@ -435,7 +436,13 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
 
   // ---------- spawning / falling ----------
   function clearFalling() {
-    for (const f of falling) fallGroup.remove(f.group);
+    // Permanent removal: detach AND free each falling prop's GPU resources.
+    // Records/wreckage each own fresh geometry + materials (memoryProps /
+    // fallingProps build new ones per instance), so nothing is shared here.
+    for (const f of falling) {
+      fallGroup.remove(f.group);
+      disposeObject3D(f.group);
+    }
     falling.length = 0;
   }
   // How far into the run we are: 0 at the start, 1 at 0:00.
@@ -502,6 +509,10 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
   }
   function removeFalling(entry) {
     fallGroup.remove(entry.group);
+    // Permanent removal (despawned off-screen or shot wreckage) — free its GPU
+    // resources. A record pulled out for banking is spliced from `falling`
+    // directly in fire() and kept alive as bankTarget, so it never reaches here.
+    disposeObject3D(entry.group);
     const i = falling.indexOf(entry);
     if (i >= 0) falling.splice(i, 1);
   }
@@ -541,7 +552,9 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
       const k = Math.max(0, e.life / e.max);
       if (e.kind === "bolt") e.obj.material.opacity = 0.9 * k;
       else { e.obj.material.opacity = 0.95 * k; e.obj.scale.setScalar(1 + (1 - k) * 1.8); }
-      if (e.life <= 0) { scene.remove(e.obj); e.obj.geometry.dispose(); effects.splice(i, 1); }
+      // Free BOTH geometry and material — the old code only disposed geometry,
+      // leaking a fresh MeshBasicMaterial per bolt/spark.
+      if (e.life <= 0) { scene.remove(e.obj); disposeObject3D(e.obj); effects.splice(i, 1); }
     }
   }
   function flashScreen() {
@@ -575,8 +588,11 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     spawnSpark(bankTarget.position.clone(), 0xbfe9ff);
   }
   function clearBankPiece() {
-    if (bankTarget) { fallGroup.remove(bankTarget); bankTarget = null; }
-    if (bankIce) { fallGroup.remove(bankIce); bankIce = null; }
+    // The captured record and the ice that froze it are permanently retired here
+    // (checkpoint linked / declined / run ended). Both own their own geometry +
+    // materials, so free them outright.
+    if (bankTarget) { fallGroup.remove(bankTarget); disposeObject3D(bankTarget); bankTarget = null; }
+    if (bankIce) { fallGroup.remove(bankIce); disposeObject3D(bankIce); bankIce = null; }
   }
   function currentStep() {
     if (reviewMode) return REVIEW_STEP;

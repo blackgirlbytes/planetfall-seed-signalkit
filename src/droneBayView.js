@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { disposeObject3D } from "./three-utils.js";
 import { makeBeamTexture, makeIceBlock } from "./memoryProps.js";
 import { createLeaderboardEntry } from "./leaderboard.js";
 import { createLeaderboardPanel } from "./leaderboardPanel.js";
@@ -992,6 +993,10 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   floor.rotation.x = -Math.PI / 2; scene.add(floor);
 
   const beamTex = makeBeamTexture();
+  // Resources SHARED across many live objects — never dispose these when retiring
+  // a single transient slate. beamTex is one module-level CanvasTexture mapped
+  // onto EVERY signal-spire beam material, so disposing a spire slate must keep it.
+  const SHARED_KEEP = new Set([beamTex]);
   const BUILD = {
     buildBrokenCoils, buildBrokenNav, buildBrokenDish, buildBrokenVent, buildBrokenStrut,
     buildPlasmaRing, buildStarDome, buildGardenPod, buildGravSkid,
@@ -1414,8 +1419,14 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     });
     parts.forEach((p) => {
       if (p.slateMesh) {
+        // Reset: detach the slate from wherever it lives (belt = scene, or a
+        // slot holder group) and recursively free its GPU resources — the child
+        // upgrade model, the ice mesh, the slab/rim/hit meshes and all their
+        // materials + generated canvas textures. The shared beam texture (mapped
+        // onto every signal-spire beam) is preserved via SHARED_KEEP.
         p.slateMesh.parent?.remove(p.slateMesh);
         scene.remove(p.slateMesh);
+        disposeObject3D(p.slateMesh, { keep: SHARED_KEEP });
         p.slateMesh = null;
       }
       p.state = "queued"; p.placedIn = null; p.explained = false; p.fixT = 0; p.installT = 0;
@@ -1570,7 +1581,13 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   function spoilPart(p) {
     const i = belted.indexOf(p.idx); if (i >= 0) belted.splice(i, 1);
     spawnSpark(new THREE.Vector3(p.beltX, BELT_Y, 2), 0xe45572, 20);
-    if (p.slateMesh) { scene.remove(p.slateMesh); p.slateMesh = null; }
+    if (p.slateMesh) {
+      // Block spoiled — recursively free the slate, its child upgrade model, the
+      // ice mesh and all their materials/geometries. Keep the shared beam texture.
+      scene.remove(p.slateMesh);
+      disposeObject3D(p.slateMesh, { keep: SHARED_KEEP });
+      p.slateMesh = null;
+    }
     if (reviewPart === p) closePanel();
     p.state = "broken"; p.explained = false; p.placedIn = null; p.patience = 0; p.beltX = ENTRANCE_X;
     if (!practiceMode) mistakes += 1;
