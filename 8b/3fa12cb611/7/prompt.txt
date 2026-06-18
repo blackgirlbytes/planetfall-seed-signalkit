@@ -1,0 +1,203 @@
+okay we need to make the terminal  questions and the responses easier..more legible..like how level 1 and level 2 are..dont make the changes yet..lets go step by step..question 1
+
+---
+
+How many attempts did it take to repair the antenna? 
+
+this wouldnt be accurate to how level entire checkpoint list actually goes..and it's too much words..we want it to be legible and easy to find..maybe we do like Intent and outcome or something
+
+system    long-range antenna
+repair    signal spire
+subagent  subagent-3
+attempts  3
+note      first two fell over
+
+these could alphabet multiple choice instead cuz numbers maybe confusing if the answer is a number
+A  2
+B 3
+C  5
+
+---
+
+i want more like sentence ish..kinda like with level 2..like you can do 
+
+Prompt: Repair the long range atnenna
+Subagent: Repaired the attenta after 3 attempts..
+
+or it could be in Intent and outcome format..but thats what i mean
+
+---
+
+Intent: Repair the long-range antenna.
+Outcome: Rebuilt the antenna after 3 attempts. The first 2 fell over. 
+
+more like this
+
+---
+
+okay do that then
+
+---
+
+it doesnt need to say crash log..just do the dollar sign
+
+---
+
+remove ship pre flight 1/5
+
+---
+
+remove the words that say ask in plain language for the skill..we dont need to describe the skill
+
+---
+
+the font is still not legible enough. it's super cluttered and small for the question and answer in my opinion..make font bbigger and terminal bigger
+
+---
+
+okay the commands to run should be bigger too.make them a little bit bigger again please
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-218c8dfc-e11c-42b9-a13b-7bafbe3235e0.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-218c8dfc-e11c-42b9-a13b-7bafbe3235e0.png
+
+## My request for Codex:
+i think this part is too small..and it's not balanced
+
+---
+
+but even the intent and outcome is too small in my opinion
+
+---
+
+the buttons are wayyyyy too big..thats not what i wanted..i wanted the intent and out come to be bigger
+
+---
+
+for what happened..the result wouldnt look like intent and outcome..that would be the answer for entire checkpoint explain
+
+---
+
+dont need to have the preface of answer
+
+---
+
+the second question on hull plates is too hard..like the word hull plate is just unfamiliar..can we do something else
+
+---
+
+eh something else..not about engines..keep giving me different options
+
+---
+
+remember lets use more of the plaiin spoken language..not nav core and life support and stuff
+
+---
+
+well search wouldnt give intent and outcome format though
+
+---
+
+didnt we already do a radio antenna question
+
+---
+
+1 match found
+Steering drifted off course, but subagent-2 rebuilt the steering controls.
+
+okay what would we want for skill recall and stuff..i think you should run the commands in this repo..to just see what the results looklike..obviously it wouldnt show anything for steer..but use something relevant to help you get to the answer
+
+---
+
+okay lets implement that
+
+---
+
+the question on the ship not having legs is too confusing
+
+---
+
+skids and all those words are too hard
+
+---
+
+well this doesnt make sense because the ship never took off..but i do like the answers to the questions What helped the ship land safely?
+
+---
+
+let's do something where the answer is fuel leak
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-3d5f78af-8e1f-4215-9493-80264846cb1e.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-3d5f78af-8e1f-4215-9493-80264846cb1e.png
+
+## My request for Codex:
+actually this one doesnt make sense at all
+
+---
+
+i dont like that either
+
+---
+
+i just dont like how the answer for the air not cycling is air or the answer for steering not working is steering
+
+---
+
+living filter is a weird answer..like huh
+
+---
+
+but then the answer is just filters..meh
+
+---
+
+lets try option a
+
+---
+
+okay next question
+
+---
+
+for the third question i like it. but i dont want to have any up and down scroll
+
+---
+
+well no i still wanted to see the list
+
+---
+
+no because thats not how it would look with entire checkpoint list..it would list out all the check pointss
+
+---
+
+entire checkpoints list doesnt need an income out come
+
+---
+
+it still has a scroll overflow..i think for the list you can put 4 on one side and 4 on the other side
+
+---
+
+okay lets just do 3 questions and end it there. this would also mean 3 launch codes
+
+---
+
+maybe we can make the time a little shorter then. idk
+
+---
+
+okay lets do 1:30
+
+---
+
+all the answers are b. they shouldnt be b all the time.
+
+---
+
+commit and push
