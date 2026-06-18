@@ -1,0 +1,21 @@
+at the end of this game whether they win or lose for level 3..i want to have a leaderboard..ask for their username type of leaderboard and save it in a db..this is hosted and vercel..what can we do..do we have a vercel plugin
+
+---
+
+wait i want to find the right database..because this is hosted on vercel.
+
+---
+
+can you login to the vercel cli
+
+---
+
+idk it didnt really work for me are you sure
+
+---
+
+oh nvm i guess it did okay so this project is planetfall which is hosted on the vercel cli..im thinking we can setup a db for it
+
+---
+
+do it
