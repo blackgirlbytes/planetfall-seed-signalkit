@@ -1,0 +1,5 @@
+kill local host 5173
+
+---
+
+i dont like the ui..i think it should just say something normal not like callsign or anything space like or transmit. and then the next page would render the leaderboard
