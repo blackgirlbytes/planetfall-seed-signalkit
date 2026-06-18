@@ -465,10 +465,11 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  background: rgba(6, 11, 22, 0.7);
+  /* Opaque fill instead of backdrop blur — this panel sits over the live
+     canvas during Level 1, so blur here also stutters the falling field. */
+  background: rgba(6, 11, 22, 0.92);
   border: 1px solid rgba(111, 227, 255, 0.32);
   border-radius: 12px;
-  backdrop-filter: blur(8px);
 }
 
 .meter-label {
@@ -548,10 +549,11 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   align-items: center;
   gap: 11px;
   padding: 8px 16px;
-  background: rgba(6, 11, 22, 0.78);
+  /* Opaque fill, no backdrop blur — the clock stays over the live canvas
+     throughout the run (incl. while typing at the terminal). */
+  background: rgba(6, 11, 22, 0.94);
   border: 1px solid rgba(111, 227, 255, 0.4);
   border-radius: 9px;
-  backdrop-filter: blur(8px);
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 
@@ -573,10 +575,11 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   flex-direction: column;
   gap: 7px;
   padding: 9px 16px 11px;
-  background: rgba(6, 11, 22, 0.78);
+  /* Opaque fill, no backdrop blur — the records tally sits over the live
+     canvas during the Level 1 run alongside the terminal. */
+  background: rgba(6, 11, 22, 0.94);
   border: 1px solid rgba(255, 210, 122, 0.4);
   border-radius: 9px;
-  backdrop-filter: blur(8px);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 #shooter-tally.hidden { display: none; }
@@ -1666,11 +1669,14 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   transform: translateX(-50%);
   width: min(560px, calc(100vw - 40px));
   padding: 14px 16px;
-  background: rgba(4, 10, 18, 0.88);
-  border: 1px solid rgba(111, 227, 255, 0.42);
+  /* Near-opaque panel — keeps the terminal readable without a per-frame
+     backdrop blur, which is brutally expensive composited over the live
+     WebGL canvas on integrated GPUs (the falling field keeps animating
+     behind it). Solid dark fill + a thin glow border carry the look. */
+  background: rgba(4, 10, 18, 0.97);
+  border: 1px solid rgba(111, 227, 255, 0.5);
   border-radius: 8px;
-  box-shadow: 0 14px 40px rgba(2, 4, 10, 0.55), 0 0 24px rgba(111, 227, 255, 0.12);
-  backdrop-filter: blur(6px);
+  box-shadow: 0 0 0 1px rgba(111, 227, 255, 0.12);
   text-align: left;
   overflow-wrap: anywhere;
 }
