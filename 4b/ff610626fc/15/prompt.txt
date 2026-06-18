@@ -1,0 +1,29 @@
+rate everything about this game..mechanics etc..im kinda nervous that it's bad
+
+---
+
+sounds like my ceo doesnt think it's that good
+
+ashtom  [3:02 AM]
+It's cool, but stutters a bit on my MacBook Air
+[3:03 AM]Is it using WebGL for rendering?
+Rizèl Scarlett  [3:03 AM]
+oh what does stutters mean ..like it's slow
+ashtom  [3:03 AM]
+When the terminal shows, the falling pieces no longer fall in a fluid motion
+Rizèl Scarlett  [3:04 AM]
+ohh let me seee if i can improve that! yeah it's using webgl/threejs
+[3:04 AM]I should double check what laptop Lisa is using at WAD
+ashtom  [3:04 AM]
+Suhaan signed last night
+[3:04 AM]So could also have him have a look
+Rizèl Scarlett  [3:04 AM]
+oh great! that would be amazing
+[3:04 AM]im spending too much time on this anyways
+ashtom  [3:06 AM]
+He can make it 10x better :smile:
+[3:06 AM]It's cool though, love the music
+Rizèl Scarlett  [3:07 AM]
+lol im totally down for him to make it 10x better.
+[3:08 AM]im no game dev :rolling_on_the_floor_laughing: i realized when i started making this..im like wait..i dont even play video games
+Message ashtom, Cole
