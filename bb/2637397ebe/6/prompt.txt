@@ -1,0 +1,13 @@
+there will be people running a booth where other people play this game..let's create a simple guide for them..it shouldnt be anything too crazy. 
+
+, if you can hand off to someone tech on the booth so they know how to set up the leaderboard and the game on the day
+https://play-planetfall.vercel.app
+https://play-planetfall.vercel.app/leaderboard
+
+---
+
+i think all i may need to say is
+
+on the arcade screen ..go to https://play-planetfall.vercel.app
+
+on the leaderboard screen go to https://play-planetfall.vercel.app/leaderboard
