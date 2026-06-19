@@ -212,7 +212,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
   const leaderboardPanel = createLeaderboardPanel({ mount: islandHud, onClose: hideLeaderboard });
 
   let active = false;
-  let tutorialTimer = null, msgTimer = null, shakeT = 0;
+  let tutorialTimer = null, msgTimer = null, shakeT = 0, onboardingReTimer = null;
 
   // Banking state — the terminal flow after recovering a record.
   let terminalOpen = false;
@@ -242,6 +242,14 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
   let briefingIndex = 0;
   let modePromptState = null;
 
+  // Onboarding beat: the first valid record to appear is flagged so it glows
+  // extra-bright and wears a "SHOOT THIS" tag, until the player shoots their
+  // first record. Then the hint retires for the rest of the session.
+  let onboardingTarget = null;
+  let onboardingDone = false;
+  // Reticle hover state — which kind of thing the crosshair is currently over.
+  let aimOverKind = null;       // "record" | "wreck" | null
+
   // ---------- HUD helpers ----------
   function setPrompt(text) {
     if (!promptEl) return;
@@ -252,7 +260,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     if (!tutorialEl) return;
     clearTimeout(tutorialTimer);
     tutorialEl.textContent = text;
-    tutorialEl.classList.remove("hidden");
+    tutorialEl.classList.remove("hidden", "is-onboarding");
     if (ms > 0) tutorialTimer = setTimeout(() => tutorialEl.classList.add("hidden"), ms);
   }
   // Score readout: recovered / minimum (e.g. 0/5 → 5/5 → 7/5). Goes green +
@@ -444,6 +452,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
       disposeObject3D(f.group);
     }
     falling.length = 0;
+    onboardingTarget = null;
   }
   // How far into the run we are: 0 at the start, 1 at 0:00.
   function difficulty() {
@@ -463,7 +472,13 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     group.userData.kind = isRecord ? "record" : "wreck";
     fallGroup.add(group);
     const vy = (FALL_BASE + Math.random() * FALL_VAR) * (1 + FALL_RAMP * d);
-    falling.push({ group, kind: isRecord ? "record" : "wreck", vy });
+    const entry = { group, kind: isRecord ? "record" : "wreck", vy };
+    falling.push(entry);
+    // Tag the very first valid record of the session as the onboarding target.
+    if (isRecord && !onboardingDone && !onboardingTarget) {
+      onboardingTarget = entry;
+      showOnboardingTag();
+    }
   }
 
   // ---------- shooting ----------
@@ -487,13 +502,16 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     const entry = falling.find((f) => f.group === hitObj);
     if (!entry) return;
     if (entry.kind === "record") {
+      // First valid record shot retires the onboarding hint.
+      if (entry === onboardingTarget || !onboardingDone) clearOnboarding();
       // Pull it out of the falling list but keep it in the scene — it becomes
       // the captured record we bank, hovering in view until it's checkpointed.
       const i = falling.indexOf(entry);
       if (i >= 0) falling.splice(i, 1);
       startBank(entry.group);
     } else {
-      // wrong target — costs time
+      // wrong target — dark wreckage, costs time. A distinct negative cue
+      // (red flash + shake + buzzer + explicit label) teaches by doing.
       removeFalling(entry);
       spawnSpark(hitObj.position.clone(), 0xff5a3c);
       sfx.wrong();
@@ -501,8 +519,18 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
         mistakes += 1;
         timeLeft = Math.max(0, timeLeft - WRECK_PENALTY);
         updateClock();
+        showTutorial(`Wreckage — not a record. Costs ${WRECK_PENALTY}s. Shoot the gold ones.`, 1900);
+      } else {
+        showTutorial("Wreckage — not a record. Shoot the gold ones.", 1900);
       }
-      showTutorial("wreckage hit", 1400);
+      // If the player still hasn't shot their first record, bring the onboarding
+      // hint back once this correction fades.
+      if (!onboardingDone && onboardingTarget) {
+        clearTimeout(onboardingReTimer);
+        onboardingReTimer = setTimeout(() => {
+          if (!onboardingDone && onboardingTarget) showOnboardingTag();
+        }, 2000);
+      }
       flashScreen();
       shakeT = 0.25;
     }
@@ -825,6 +853,9 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     lastBankedAt = 0;
     timedRunStarted = false;
     timerRunning = false;
+    onboardingTarget = null;
+    aimOverKind = null;
+    reticle?.classList.remove("is-locked", "is-deny");
     updateClock();
     hideBankLesson();
     hideModePrompt();
@@ -1004,6 +1035,44 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     if (e.code === "KeyB") { onExit?.(); }
   }
 
+  // What kind of falling thing is the crosshair currently over? Drives the
+  // reticle's lock/deny reaction so the player learns "this is shootable"
+  // without reading instructions.
+  function aimTargetKind() {
+    raycaster.setFromCamera(ndc, camera);
+    const hits = raycaster.intersectObjects(fallGroup.children, true);
+    for (const hit of hits) {
+      let o = hit.object;
+      while (o.parent && o.parent !== fallGroup) o = o.parent;
+      const entry = falling.find((f) => f.group === o);
+      if (entry) return entry.kind;
+    }
+    return null;
+  }
+  function updateAimReticle() {
+    const aiming = started && !terminalOpen && !failed && !lessonPaused &&
+      !visibleModePromptKind() && !banking && !reviewMode && !listShown;
+    const kind = aiming ? aimTargetKind() : null;
+    if (kind === aimOverKind) return;
+    aimOverKind = kind;
+    reticle?.classList.toggle("is-locked", kind === "record");
+    reticle?.classList.toggle("is-deny", kind === "wreck");
+  }
+
+  // ---------- onboarding hint ----------
+  function showOnboardingTag() {
+    if (onboardingDone) return;
+    showTutorial("Shoot the glowing gold record — skip the dark junk", 0);
+    tutorialEl?.classList.add("is-onboarding");
+  }
+  function clearOnboarding() {
+    onboardingDone = true;
+    onboardingTarget = null;
+    clearTimeout(onboardingReTimer);
+    tutorialEl?.classList.remove("is-onboarding");
+    tutorialEl?.classList.add("hidden");
+  }
+
   // ---------- per-frame ----------
   function refreshHud() {
     const promptMode = visibleModePromptKind();
@@ -1054,10 +1123,26 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
         spinTarget.rotation.z += spin.z * dt;
       }
       if (f.kind === "record") {
-        const pulse = 0.5 + 0.5 * Math.sin(t * 5 + f.group.position.x * 0.13);
+        const phase = t * 5 + f.group.position.x * 0.13;
+        const pulse = 0.5 + 0.5 * Math.sin(phase);
         if (f.group.userData.beacon) f.group.userData.beacon.intensity = 2.2 + pulse * 1.3;
+        // Soft breathing halo + a gentle attract bob so valid targets feel alive
+        // and inviting next to the inert wreckage.
+        const halo = f.group.userData.halo;
+        if (halo) {
+          const onboard = f === onboardingTarget;
+          const base = onboard ? 4.0 : 3.2;
+          const swell = (onboard ? 0.9 : 0.55) + 0.25 * Math.sin(phase * 0.9);
+          halo.scale.setScalar(base + swell);
+          halo.material.opacity = (onboard ? 0.7 : 0.5) + 0.32 * pulse;
+        }
+        const outerRim = f.group.userData.outerRim;
+        if (outerRim) outerRim.material.opacity = 0.7 + 0.3 * pulse;
       }
-      if (f.group.position.y <= DESPAWN_Y) removeFalling(f);
+      if (f.group.position.y <= DESPAWN_Y) {
+        if (f === onboardingTarget) onboardingTarget = null;
+        removeFalling(f);
+      }
     }
 
     // The shot record hangs frozen in ice while you bank it — a slow turn
@@ -1080,7 +1165,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
       camera.position.y = 24;
     }
 
-    if (active) refreshHud();
+    if (active) { refreshHud(); updateAimReticle(); }
   }
 
   // ---------- lifecycle ----------
@@ -1131,8 +1216,12 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     window.removeEventListener("keydown", onKeyDown);
     setPrompt(null);
     reticle?.classList.add("hidden");
+    reticle?.classList.remove("is-locked", "is-deny");
+    aimOverKind = null;
     tallyEl?.classList.add("hidden");
     tutorialEl?.classList.add("hidden");
+    tutorialEl?.classList.remove("is-onboarding");
+    clearTimeout(onboardingReTimer);
     hideBankLesson();
     modePrompt?.classList.add("hidden");
     termEl?.classList.add("hidden");

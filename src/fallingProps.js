@@ -44,6 +44,42 @@ function add(group, geo, mat) {
   return m;
 }
 
+// A soft radial gold glow, drawn as a camera-facing sprite behind the part. This
+// is the at-a-glance "this one is valuable" affordance: every valid record wears
+// a warm halo, wreckage never does. Cached so all records share one texture.
+let _haloTexture = null;
+function haloTexture() {
+  if (_haloTexture) return _haloTexture;
+  const size = 128;
+  const cv = document.createElement("canvas");
+  cv.width = cv.height = size;
+  const cx = cv.getContext("2d");
+  const grd = cx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  grd.addColorStop(0.0, "rgba(255, 226, 158, 0.95)");
+  grd.addColorStop(0.35, "rgba(255, 198, 110, 0.45)");
+  grd.addColorStop(0.7, "rgba(255, 176, 80, 0.12)");
+  grd.addColorStop(1.0, "rgba(255, 176, 80, 0)");
+  cx.fillStyle = grd;
+  cx.fillRect(0, 0, size, size);
+  _haloTexture = new THREE.CanvasTexture(cv);
+  _haloTexture.colorSpace = THREE.SRGBColorSpace;
+  return _haloTexture;
+}
+function buildHalo() {
+  const mat = new THREE.SpriteMaterial({
+    map: haloTexture(),
+    color: 0xffd27a,
+    transparent: true,
+    opacity: 0.85,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    fog: false,
+  });
+  const sprite = new THREE.Sprite(mat);
+  sprite.scale.setScalar(3.4);
+  return sprite;
+}
+
 function partMaterials() {
   return {
     shell: shellMaterial(),
@@ -215,15 +251,18 @@ const PART_BUILDERS = {
   beacon: buildBeacon,
 };
 
+// Wreckage stays deliberately dark, muddy and inert — no gold, no glow — so it
+// reads as junk at a glance next to the haloed records. Colours are pulled down
+// and roughness pushed up so it never catches a flattering highlight.
 function wreckMaterials() {
   return {
-    cardboard: new THREE.MeshStandardMaterial({ color: 0xb9864f, roughness: 0.92, metalness: 0.02 }),
-    cardboardDark: new THREE.MeshStandardMaterial({ color: 0x7a5130, roughness: 0.95, metalness: 0.02 }),
-    tape: new THREE.MeshStandardMaterial({ color: 0xd2b27a, roughness: 0.88, metalness: 0.01 }),
-    rust: new THREE.MeshStandardMaterial({ color: 0x9a4f2b, roughness: 0.86, metalness: 0.18 }),
-    rustDark: new THREE.MeshStandardMaterial({ color: 0x4a2f28, roughness: 0.9, metalness: 0.25 }),
-    pipe: new THREE.MeshStandardMaterial({ color: 0x77726a, roughness: 0.78, metalness: 0.38 }),
-    pipeDark: new THREE.MeshStandardMaterial({ color: 0x333638, roughness: 0.86, metalness: 0.32 }),
+    cardboard: new THREE.MeshStandardMaterial({ color: 0x6e4f31, roughness: 0.97, metalness: 0.0 }),
+    cardboardDark: new THREE.MeshStandardMaterial({ color: 0x49301d, roughness: 0.98, metalness: 0.0 }),
+    tape: new THREE.MeshStandardMaterial({ color: 0x7d6647, roughness: 0.95, metalness: 0.0 }),
+    rust: new THREE.MeshStandardMaterial({ color: 0x5e3320, roughness: 0.93, metalness: 0.12 }),
+    rustDark: new THREE.MeshStandardMaterial({ color: 0x301e1a, roughness: 0.95, metalness: 0.2 }),
+    pipe: new THREE.MeshStandardMaterial({ color: 0x4b4843, roughness: 0.85, metalness: 0.3 }),
+    pipeDark: new THREE.MeshStandardMaterial({ color: 0x232527, roughness: 0.9, metalness: 0.28 }),
   };
 }
 
@@ -302,6 +341,15 @@ function buildRecordCore(recordType) {
   // The gold ring is the shared "safe to catch" language across all part shapes.
   const ring = add(body, new THREE.TorusGeometry(0.78, 0.055, 12, 36), mats.brass);
   ring.rotation.y = Math.PI / 2;
+  // A second, brighter rim sits just outside the spinning ring (added to the
+  // non-spinning group so it always reads as a clean gold outline edge-on).
+  const rimMat = new THREE.MeshBasicMaterial({ color: 0xffd27a, transparent: true, opacity: 0.9, fog: false });
+  const outerRim = add(g, new THREE.TorusGeometry(0.92, 0.03, 10, 40), rimMat);
+  outerRim.rotation.y = Math.PI / 2;
+
+  // The warm halo — the at-a-glance "valuable" cue. Animated by islandView.
+  const halo = buildHalo();
+  g.add(halo);
 
   const beacon = new THREE.PointLight(0x8fe3ff, 2.8, 18, 2);
   beacon.position.y = 0.25;
@@ -310,6 +358,8 @@ function buildRecordCore(recordType) {
   g.userData.spinTarget = body;
   g.userData.recordSummary = recordType.summary;
   g.userData.beacon = beacon;
+  g.userData.halo = halo;
+  g.userData.outerRim = outerRim;
   g.userData.spin = randomSpin(1.0);
   return g;
 }
