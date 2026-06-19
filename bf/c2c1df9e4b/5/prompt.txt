@@ -1,0 +1,9 @@
+create a trail. we want to be able to go the route /leaderboard and it renders the leaderboard there
+
+---
+
+link me to the trail please
+
+---
+
+can you work on that trail like execute it
