@@ -1,0 +1,73 @@
+are these performance or ux bugs
+
+---
+
+why is this bad All scenes built eagerly on startup.
+
+---
+
+okay lets open up issues in the repo for the following 
+
+- i had some trouble with level 2. there's multiple* boxes for battery, engine, etc and sometimes when i drag to the box, it's the right box but it doesn't register. 
+- ashtom  [3:02 AM]
+It's cool, but stutters a bit on my MacBook Air
+[3:03 AM]Is it using WebGL for rendering?
+Rizèl Scarlett  [3:03 AM]
+oh what does stutters mean ..like it's slow
+ashtom  [3:03 AM]
+When the terminal shows, the falling pieces no longer fall in a fluid motion
+- All scenes built eagerly on startup.
+- Removed Three.js objects are not consistently disposed
+
+make sure to point out why these are problems
+
+---
+
+oh one thing I wanted to do is add an icon for entire/marvin ..if we could..like the logo
+
+---
+
+nooo i dont want you to add that. i want you to open an issue for that
+
+---
+
+There was another suggestion of adding marvin as a character in general as a like an npc or representing the player itself..we right now have a first person point of view..like you cant see yourself..but maybe if you wanted to get out of that view..it could be marvin..idk
+
+---
+
+here's another thing that came up..lets see if we can open an issue to make sure something like this isnt possible..one of the labels should be p1
+user tried this
+i wanted to see if I could reverse engineer it and get 1234567890 for my score
+BestCodes [HONK],  — 11:33 AM
+Interestingly, it's not as easy as just sending score: 1234567890 in the JSON... I made two requests first to guess what formula it used to calculate the score (I could have just looked at the source code but why not overcomplicate things) and wound up sending this JSON:
+
+{"id":"removed","username":"BestCodes","level":3,"outcome":"win","completedGame":true,"score":1234567890,"timeRemaining":0,"durationSeconds":26,"progressCompleted":411522573,"progressTotal":3,"mistakes":0,"createdAt":"removed"}
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-5012faad-23ba-4c8c-8fb0-823aa49946ab.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-5012faad-23ba-4c8c-8fb0-823aa49946ab.png
+
+## My request for Codex:
+timer overlays some of the squares in level 2 for user with i was 887x718 .... screen pixel size..lets open an issue for that
+
+---
+
+level 1 is unclear of which things to shoot..if you dont read instructions..which most people dont..lets open an issue for that
+
+---
+
+give me a list of the hyperlinked issues all of them
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-3f1a4ce5-2250-4f70-8149-990932b858fc.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-3f1a4ce5-2250-4f70-8149-990932b858fc.png
+
+## My request for Codex:
+someone pointed out this..we should open an issue and  include the screenshot..
+
+shouldn't we update the personal best over time instead of duplicating the record over and over again 
+the database might forever expand
