@@ -3,7 +3,7 @@
   "checkpoint_id": "bb2637397ebe",
   "strategy": "manual-commit",
   "branch": "codex/leaderboard-route",
-  "checkpoints_count": 1,
+  "checkpoints_count": 2,
   "files_touched": [
     "src/leaderboardPanel.js",
     "src/style.css"
@@ -14,6 +14,19 @@
       "transcript": "/bb/2637397ebe/0/full.jsonl",
       "content_hash": "/bb/2637397ebe/0/content_hash.txt",
       "prompt": ""
+    },
+    {
+      "metadata": "/bb/2637397ebe/1/metadata.json",
+      "transcript": "/bb/2637397ebe/1/full.jsonl",
+      "content_hash": "/bb/2637397ebe/1/content_hash.txt",
+      "prompt": "/bb/2637397ebe/1/prompt.txt"
     }
-  ]
+  ],
+  "token_usage": {
+    "input_tokens": 59816,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 209280,
+    "output_tokens": 5644,
+    "api_call_count": 9
+  }
 }
