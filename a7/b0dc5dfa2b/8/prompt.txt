@@ -1,0 +1,6 @@
+# Files mentioned by the user:
+
+## --- name: trail description: Use when a discovery cycle has converged on a spec…: /Users/goose-guest/.codex/attachments/a9d6a026-753b-42e9-bc5d-ace5ea882f50/pasted-text.txt
+
+## My request for Codex:
+add this skill please to this repo locally for now
