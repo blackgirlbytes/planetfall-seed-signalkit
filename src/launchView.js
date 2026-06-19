@@ -173,7 +173,7 @@ const QUESTIONS = [
   },
 ];
 
-export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
+export function createLaunchView(renderer, { onExit, onComplete, onNext, onNewGame } = {}) {
   // ---------- scene & sky ----------
   const scene = new THREE.Scene();
   scene.background = SKY_CALM.clone();
@@ -351,6 +351,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   const flashEl = document.getElementById("lc-flash");
   const winEl = document.getElementById("lc-win");
   const winSub = document.getElementById("lc-win-sub");
+  const winNext = document.getElementById("lc-win-next");
   const failEl = document.getElementById("lc-fail");
   const leaderboardPanel = createLeaderboardPanel({ mount: hud, onClose: hideLeaderboard });
 
@@ -375,6 +376,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   let msgTimer = null;
   let timeLeft = TOTAL_TIME;
   let timerRunning = false;
+  let completionNotified = false;
 
   // Launch-code segments: one per question, showing the first hex of the
   // checkpoint that answered it.
@@ -650,6 +652,17 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
     failEl?.classList.remove("hidden");
     showLeaderboard("loss");
   }
+  function revealWin() {
+    if (!completionNotified) {
+      completionNotified = true;
+      onComplete?.();
+    }
+    if (winSub) winSub.textContent =
+      `homeward — ${RECORD_TOTAL} checkpoints · ${QUESTIONS.length} questions · ${mistakes} ${mistakes === 1 ? "miss" : "misses"}`;
+    winEl?.classList.remove("hidden");
+    if (onNext) hideLeaderboard();
+    else showLeaderboard("win");
+  }
   function resetLevel() {
     failed = false;
     igniting = false;
@@ -659,6 +672,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
     won = false;
     liftT = 0;
     burstTimer = 0;
+    completionNotified = false;
     resetBursts();
     ignitionEl?.classList.add("hidden");
     flashEl?.classList.remove("show");
@@ -722,8 +736,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
     ignitionEl?.classList.add("hidden");
     if (winSub) winSub.textContent =
       `homeward — ${RECORD_TOTAL} checkpoints · ${QUESTIONS.length} questions · ${mistakes} ${mistakes === 1 ? "miss" : "misses"}`;
-    winEl?.classList.remove("hidden");
-    showLeaderboard("win");
+    revealWin();
     renderCode();
   }
 
@@ -792,6 +805,10 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
       return;
     }
     if (won || launched || igniting) {
+      if (won && (e.code === "Enter" || e.code === "Space")) {
+        onNext?.();
+        e.preventDefault();
+      }
       if (won && e.code === "KeyB") onExit?.();
       return;
     }
@@ -820,6 +837,9 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
     if (!active || failed || launched) return;
     const btn = e.target.closest?.("[data-chip]");
     if (btn) pickChip(Number(btn.dataset.chip));
+  });
+  winNext?.addEventListener("click", () => {
+    if (active && won) onNext?.();
   });
   // ---------- per-frame ----------
   function update(dt, t) {
@@ -885,10 +905,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
       }
       if (liftT >= LIFT_DUR) {
         won = true;
-        if (winSub) winSub.textContent =
-          `homeward — ${RECORD_TOTAL} checkpoints · ${QUESTIONS.length} questions · ${mistakes} ${mistakes === 1 ? "miss" : "misses"}`;
-        winEl?.classList.remove("hidden");
-        showLeaderboard("win");
+        revealWin();
       }
     } else if (!failed && !won) {
       // Idle cockpit sway — alive, not nauseating.
@@ -907,7 +924,8 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
       showBriefing();
     } else if (won) {
       winEl?.classList.remove("hidden");
-      showLeaderboard("win");
+      if (onNext) hideLeaderboard();
+      else showLeaderboard("win");
     } else if (failed) {
       resetLevel();                 // came back after a miss → fresh window
     } else if (!launched) {

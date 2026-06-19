@@ -16,9 +16,12 @@ Current arc:
 3. **Launch Clearance** - from the cockpit, answer pre-flight questions only
    the record can answer. Choose a command or skill, confirm the answer, lock
    the launch code, and lift off.
+4. **Trail Relay** - in orbit, package the work into a reviewable trail by
+   locking its branch, intent, evidence rule, and PR handoff.
 
-The thread through all three: work you did not watch is not a mystery if it was
-checkpointed. You were not there; the record was.
+The thread through all four: work you did not watch is not a mystery if it was
+checkpointed, and a trail turns that work into a route other people can review.
+You were not there; the record was.
 
 ## Run
 
@@ -53,10 +56,12 @@ Development shortcuts:
 - `?view=island` - straight to Level 1.
 - `?view=level2` or `?level=2` - Level 2.
 - `?view=level3` or `?level=3` - Level 3.
+- `?view=level4` or `?level=4` - Level 4.
 - `?view=archive` - the shelved search level, still playable.
 - `?level=1&end=success` / `?level=1&end=fail` - jump to Level 1's end state.
 - `?level=2&end=success` / `?level=2&end=fail` - jump to Level 2's end state.
 - `?level=3&end=success` / `?level=3&end=fail` - jump to Level 3's end state.
+- `?level=4&end=success` / `?level=4&end=fail` - jump to Level 4's end state.
 - `?skip=level2-fail` also works; `end`, `result`, or `outcome` can be
   `success`, `win`, `pass`, `fail`, or `failure`.
 
@@ -96,10 +101,16 @@ launch computer asks three questions from the ship record. Pick a lookup tool
 with `1`-`3` or a click, then confirm the answer with `A`/`B`/`C` or a click.
 Some tools are valid commands, some are skills that run the right command for
 you, and occasional dead ends cost time without ending the run. Three correct
-answers complete the launch code, trigger the 3-2-1 ignition, and end with
-liftoff.
+answers complete the launch code, trigger the 3-2-1 ignition, and hand you off
+to the orbital relay.
 
-Failures and the final Level 3 completion open the leaderboard panel. Saving
+**Level 4 - Trail Relay.** The rebellion needs the trip packaged for review.
+Read the trail packet, choose the correct branch, intent, evidence, and PR
+handoff answers with `1`-`3` or a click, and transmit the route before the relay
+window closes. Wrong packets cost time; the completed relay opens the final
+leaderboard.
+
+Failures and the final Level 4 completion open the leaderboard panel. Saving
 scores requires the Vercel/Neon API path described above; without it, the panel
 falls back to an unavailable message.
 
@@ -115,8 +126,10 @@ falls back to an unavailable message.
 - Level 2 command-pass rush with six drones, 12 repair jobs, dispatch pips,
   explain reports, drag-to-match ship squares, melting sealed work, and final
   dispatch.
-- Level 3 cockpit finale with command/skill tool choices, answer chips, launch
-  code segments, ignition, fireworks, and liftoff.
+- Level 3 cockpit launch with command/skill tool choices, answer chips, launch
+  code segments, ignition, fireworks, and liftoff handoff.
+- Level 4 orbital trail relay with branch/intent/evidence/handoff packets and
+  final leaderboard completion.
 - Shared countdown grammar across levels: urgent/critical clock states and a
   panic-red sky.
 - Leaderboard scoring, save panel, title-screen board, and Vercel serverless
@@ -142,7 +155,9 @@ falls back to an unavailable message.
   sealed repair blocks, explain reports, ship squares, dispatch report, and
   exported hero repair data for Level 3.
 - `src/launchView.js` is Level 3: cockpit rig, question/tool/answer console,
-  launch-code state, liftoff sequence, and final leaderboard entry.
+  launch-code state, and liftoff handoff.
+- `src/trailRelayView.js` is Level 4: orbital relay scene, trail packet
+  questions, final win/fail flow, and leaderboard entry.
 - `src/archiveView.js` is the shelved search level, kept playable.
 - `src/leaderboard.js`, `src/leaderboardPanel.js`, and `api/leaderboard.js`
   implement local score calculation, the score UI, and the remote API.

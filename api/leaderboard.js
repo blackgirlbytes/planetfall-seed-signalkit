@@ -1,6 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 
-const MAX_LEVEL = 3;
+const MAX_LEVEL = 4;
 const MAX_LIMIT = 10;
 const DEFAULT_LIMIT = 10;
 const OUTCOMES = new Set(["win", "loss"]);
@@ -9,12 +9,14 @@ const LEVEL_BASE = {
   1: 0,
   2: 50,
   3: 100,
+  4: 150,
 };
 
 const LEVEL_LIMITS = {
   1: { totalTime: 48, progressTotal: 5, maxProgress: 30, maxMistakes: 40 },
   2: { totalTime: 195, progressTotal: 12, maxProgress: 12, maxMistakes: 60 },
   3: { totalTime: 90, progressTotal: 3, maxProgress: 3, maxMistakes: 40 },
+  4: { totalTime: 120, progressTotal: 4, maxProgress: 4, maxMistakes: 40 },
 };
 
 const PROGRESS_POINTS = 10;
@@ -73,6 +75,7 @@ async function ensureSchema() {
       await sql`ALTER TABLE leaderboard_entries ADD COLUMN IF NOT EXISTS mistakes integer NOT NULL DEFAULT 0 CHECK (mistakes >= 0)`;
       await sql`ALTER TABLE leaderboard_entries ADD COLUMN IF NOT EXISTS questions_completed integer NOT NULL DEFAULT 0 CHECK (questions_completed >= 0)`;
       await sql`ALTER TABLE leaderboard_entries DROP CONSTRAINT IF EXISTS leaderboard_entries_level_check`;
+      await sql`ALTER TABLE leaderboard_entries DROP CONSTRAINT IF EXISTS leaderboard_entries_level_range_check`;
       await sql`
         DO $$
         BEGIN
@@ -84,7 +87,7 @@ async function ensureSchema() {
           ) THEN
             ALTER TABLE leaderboard_entries
             ADD CONSTRAINT leaderboard_entries_level_range_check
-            CHECK (level BETWEEN 1 AND 3);
+            CHECK (level BETWEEN 1 AND 4);
           END IF;
         END
         $$;
@@ -102,7 +105,7 @@ async function ensureSchema() {
             ELSE GREATEST(progress_total, 1)
           END,
           completed_game = CASE
-            WHEN outcome = 'win' AND level = 3 THEN true
+            WHEN outcome = 'win' AND level IN (3, 4) THEN true
             ELSE completed_game
           END
       `;
@@ -208,7 +211,7 @@ function readLimit(value) {
 function readLevel(value) {
   const level = readInteger(value, MAX_LEVEL);
   if (level < 1 || level > MAX_LEVEL) {
-    const err = new Error("Level must be 1, 2, or 3");
+    const err = new Error("Level must be 1, 2, 3, or 4");
     err.statusCode = 400;
     throw err;
   }
@@ -286,7 +289,7 @@ function validateEntry(body) {
 
   const level = readLevel(body.level ?? body.levelReached);
   if (outcome === "win" && level !== MAX_LEVEL) {
-    const err = new Error("Only completing Level 3 is recorded as a win");
+    const err = new Error("Only completing Level 4 is recorded as a win");
     err.statusCode = 400;
     throw err;
   }

@@ -4,6 +4,7 @@ import { createIslandView } from "./islandView.js";
 import { createDroneBayView } from "./droneBayView.js";
 import { createArchiveView } from "./archiveView.js";
 import { createLaunchView } from "./launchView.js";
+import { createTrailRelayView } from "./trailRelayView.js";
 import { createTitleScreen } from "./titleScreen.js";
 import { loadLeaderboard } from "./leaderboard.js";
 import { createLeaderboardPanel } from "./leaderboardPanel.js";
@@ -130,14 +131,15 @@ function parseEndShortcut() {
   const explicitLevel = Number(params.get("level"));
   const viewLevel = requestedView === "island" ? 1
     : requestedView === "level2" ? 2
-    : requestedView === "level3" ? 3 : null;
-  let level = [1, 2, 3].includes(explicitLevel) ? explicitLevel : viewLevel;
+    : requestedView === "level3" ? 3
+    : requestedView === "level4" ? 4 : null;
+  let level = [1, 2, 3, 4].includes(explicitLevel) ? explicitLevel : viewLevel;
   let outcome = directOutcome;
 
   const skip = params.get("skip") || params.get("shortcut");
   if (skip) {
     const compact = skip.toLowerCase().replace(/[^a-z0-9]+/g, "");
-    const levelMatch = compact.match(/(?:level|lvl|l)?([123])/);
+    const levelMatch = compact.match(/(?:level|lvl|l)?([1234])/);
     const outcomeMatch = compact.match(/success|succeed|succeeded|win|won|pass|passed|fail|failed|failure|miss|missed|loss|lose|lost/);
     if (!level && levelMatch) level = Number(levelMatch[1]);
     if (!outcome && outcomeMatch) outcome = normalizeEndOutcome(outcomeMatch[0]);
@@ -151,15 +153,18 @@ function parseEndShortcut() {
 const endShortcut = parseEndShortcut();
 const jumpToLevel2 = endShortcut?.level === 2 || requestedView === "level2" || params.get("level") === "2";
 const jumpToLevel3 = endShortcut?.level === 3 || requestedView === "level3" || params.get("level") === "3";
+const jumpToLevel4 = endShortcut?.level === 4 || requestedView === "level4" || params.get("level") === "4";
 
 // ---------- views ----------
 // After Level 1's `entire checkpoint list`, the ship wakes its drone bay:
 // the orbit pin glitches and landing again enters Level 2 ("The Drone Bay").
 // After Level 2's `entire dispatch`, the launch window opens: landing again
-// enters Level 3 ("Launch Clearance") — the finale.
+// enters Level 3 ("Launch Clearance"). After liftoff, the relay asks the
+// player to package the work as a trail for review.
 // The shelved search level ("The Archive") stays reachable at ?view=archive.
-let level1Done = jumpToLevel2 || jumpToLevel3;
-let level2Done = jumpToLevel3;
+let level1Done = jumpToLevel2 || jumpToLevel3 || jumpToLevel4;
+let level2Done = jumpToLevel3 || jumpToLevel4;
+let level3Done = jumpToLevel4;
 
 function startNewGame() {
   const cleanUrl = new URL(window.location.href);
@@ -176,11 +181,14 @@ function startNewGame() {
 // during normal Level 1 -> 2 -> 3 progression — only via ?view=archive.
 const planetView = createPlanetView(renderer, {
   onIslandClick: () => switchTo(
-    level2Done ? getLaunchView() : level1Done ? getDroneBayView() : getIslandView()
+    level3Done ? getTrailRelayView()
+      : level2Done ? getLaunchView()
+      : level1Done ? getDroneBayView()
+      : getIslandView()
   ),
 });
 // Success carries you forward (onNext); failure only ever offers R to retry.
-let islandView, droneBayView, archiveView, launchView;
+let islandView, droneBayView, archiveView, launchView, trailRelayView;
 function getIslandView() {
   return islandView ??= createIslandView(renderer, {
     onExit: () => switchTo(planetView),
@@ -206,16 +214,26 @@ function getArchiveView() {
 function getLaunchView() {
   return launchView ??= createLaunchView(renderer, {
     onExit: () => switchTo(planetView),
+    onComplete: () => { level3Done = true; },
+    onNext: () => switchTo(getTrailRelayView()),
+    onNewGame: startNewGame,
+  });
+}
+function getTrailRelayView() {
+  return trailRelayView ??= createTrailRelayView(renderer, {
+    onExit: () => switchTo(planetView),
     onNewGame: startNewGame,
   });
 }
 
 // Default to the orbit view; ?view=island jumps straight to Level 1,
 // ?view=level2 (or ?level=2) to Level 2, ?view=level3 (or ?level=3) to the
-// finale, ?view=archive to the shelved search level — handy for development.
+// cockpit, ?view=level4 (or ?level=4) to Trail Relay, and ?view=archive to the
+// shelved search level — handy for development.
 let current = requestedView === "island" ? getIslandView()
   : endShortcut?.level === 1 ? getIslandView()
   : requestedView === "archive" ? getArchiveView()
+  : jumpToLevel4 ? getTrailRelayView()
   : jumpToLevel3 ? getLaunchView()
   : jumpToLevel2 ? getDroneBayView() : planetView;
 current.enter();
@@ -278,12 +296,14 @@ let transitioning = false;
 
 function refreshOrbitHud() {
   hint.classList.toggle("hidden", current !== planetView);
-  hint.textContent = level2Done
+  hint.textContent = level3Done
+    ? "The trail relay is open — click the pin to transmit the review path"
+    : level2Done
     ? "The launch window is open — the ship is asking for you. Click the pin to board"
     : level1Done
     ? "A new signal — the ship's drone bay just woke up. Click the pin to land"
     : "Drag to orbit · Scroll to zoom · Click the pin to land";
-  pin?.classList.toggle("is-corrupted", level1Done && !level2Done);
+  pin?.classList.toggle("is-corrupted", (level1Done && !level2Done) || level3Done);
 }
 refreshOrbitHud();
 
@@ -306,7 +326,7 @@ window.addEventListener("resize", () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   // Resize only views that have actually been constructed — never force-build a
   // deferred view just to resize it.
-  for (const view of [planetView, islandView, droneBayView, archiveView, launchView]) {
+  for (const view of [planetView, islandView, droneBayView, archiveView, launchView, trailRelayView]) {
     view?.resize();
   }
 });

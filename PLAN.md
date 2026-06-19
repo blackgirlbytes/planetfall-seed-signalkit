@@ -1,10 +1,10 @@
 # Planetfall - Plan & Status
 
-_Last updated: 2026-06-18_
+_Last updated: 2026-06-19_
 
 ## Current Status
 
-Planetfall is now a playable three-level browser game, plus a shelved archive
+Planetfall is now a playable four-level browser game, plus a shelved archive
 level and a Vercel/Neon leaderboard path.
 
 The current game is no longer the early "walk around one island collecting
@@ -15,8 +15,10 @@ artifacts" prototype. The shipped arc is:
 2. **Level 2 - The Drone Bay:** command-pass/order-ticket rush with dispatch
    pips, drones, conveyor blocks, `entire checkpoint explain`, drag-to-match,
    and `entire dispatch`.
-3. **Level 3 - Launch Clearance:** cockpit finale with command/skill tool
+3. **Level 3 - Launch Clearance:** cockpit launch with command/skill tool
    choices, record-backed answers, launch code, ignition, and liftoff.
+4. **Level 4 - Trail Relay:** orbital relay that packages the work into a
+   reviewable trail by locking branch, intent, evidence, and PR handoff packets.
 
 The title screen, rebellion intro, TV effect, music/SFX options, score saving
 UI, and top-10 leaderboard screen are also built.
@@ -34,6 +36,8 @@ Teaching arc:
 - **Level 2:** agents can work while you do not watch. `explain` lets you
   account for what each one did, and `dispatch` summarizes the day.
 - **Level 3:** someone asks about work you did not witness. The record answers.
+- **Level 4:** someone needs to review the whole trip. The trail carries the
+  intent and evidence together.
 
 Core line to preserve: **You were not there; the record was.**
 
@@ -51,7 +55,8 @@ Core line to preserve: **You were not there; the record was.**
   crash survived, records scattered, click the landing marker, "rebel" signoff.
 - Dev URLs with `?view=` or `?level=` skip the title screen.
 - Orbit stays the hub: drag/scroll/click pin. The pin routes to Level 1, then
-  Level 2 after L1 completion, then Level 3 after L2 completion.
+  Level 2 after L1 completion, Level 3 after L2 completion, and Level 4 after
+  liftoff.
 
 ### Level 1 - First Memories
 
@@ -149,7 +154,8 @@ Loop:
    valid lenses on the same record.
 5. Confirm the answer with `A`/`B`/`C` or click.
 6. Correct answer locks one launch-code segment.
-7. Three segments trigger 3-2-1 ignition, fireworks, and liftoff.
+7. Three segments trigger 3-2-1 ignition, fireworks, liftoff, and the Level 4
+   relay handoff.
 
 Current tuning:
 
@@ -160,7 +166,7 @@ Current tuning:
   - total records recovered: answer 8.
 - Dead-end tools do not fail the level; they cost time and count as mistakes.
 - Wrong answer chips stay marked wrong; the player can reread and try again.
-- Final win shows the leaderboard panel.
+- Success opens the Level 4 trail relay instead of the final leaderboard.
 
 Teaching:
 
@@ -174,6 +180,33 @@ repair records from the earlier Drone Bay model plus three Level 1 records
 dispatch report says 12. This is playable, but the story/math should be
 standardized before treating the game as demo-ready.
 
+### Level 4 - Trail Relay
+
+Current implementation: `src/trailRelayView.js`.
+
+Loop:
+
+1. The player reaches orbit and opens a relay packet.
+2. Each packet prints a trail/workflow command and a small output record.
+3. Pick the correct answer with `1`-`3` or a click.
+4. Correct packets lock one relay node: Branch, Intent, Evidence, Handoff.
+5. Wrong packets cost time and count as mistakes.
+6. Four locked packets transmit the trail and open the final leaderboard.
+
+Current tuning:
+
+- `TOTAL_TIME = 120`.
+- Four packets, one answer each.
+- Wrong answers cost 8 seconds.
+- The completed Level 4 run is the only new `completedGame` win.
+
+Teaching:
+
+- A trail is keyed to one branch.
+- The description should carry why/what, not raw transcripts.
+- Checkpoints attach by branch evidence, not manual paste.
+- A PR from the same branch reuses the trail and provides the review handoff.
+
 ### Archive - Shelved Search Level
 
 Current implementation: `src/archiveView.js`, reachable at `?view=archive`.
@@ -181,7 +214,7 @@ Current implementation: `src/archiveView.js`, reachable at `?view=archive`.
 This was once Level 2 and is intentionally shelved. It teaches
 `entire checkpoint search` with a field of dark archive blocks and keyword
 requests. It remains playable for later use, but it is not in the main
-three-level path.
+four-level path.
 
 Reason shelved: search is a "history has outgrown your memory" pain, and the
 game did not yet have enough accumulated history for search to feel necessary.
@@ -201,7 +234,8 @@ Behavior:
 
 - Level 1 and Level 2 failures can be saved as loss scores.
 - Level 3 failure can be saved as a loss score.
-- Level 3 success is the only `completedGame` win.
+- Level 4 failure can be saved as a loss score.
+- Level 4 success is the only new `completedGame` win.
 - Scores use level base points, progress points, extra progress, final clear
   bonus, final speed bonus, mistake penalties, and duration penalties for
   incomplete runs.
@@ -264,6 +298,7 @@ src/fallingProps.js     # Level 1 falling record and wreckage meshes
 src/levelOneRecords.js  # Level 1 record summaries and archive continuity rows
 src/droneBayView.js     # Level 2 command pass, drones, explain, matching
 src/launchView.js       # Level 3 cockpit questions, launch code, liftoff
+src/trailRelayView.js   # Level 4 trail relay packets and final leaderboard
 src/archiveView.js      # shelved checkpoint search level
 src/leaderboard.js      # score calculation and client API helpers
 src/leaderboardPanel.js # save-score and top-10 UI

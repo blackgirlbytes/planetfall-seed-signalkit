@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planetfall</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2302040a'/%3E%3Ccircle cx='32' cy='32' r='18' fill='%23d79e3a'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
@@ -407,11 +408,13 @@
         <div id="lc-ignition" class="hidden"></div>
         <div id="lc-flash"></div>
 
-        <!-- Liftoff — the game's ending -->
+        <!-- Liftoff — the handoff into the trail relay -->
         <div id="lc-win" class="hidden">
-          <div class="lw-title">LIFTOFF</div>
+          <div class="lw-title">ORBIT ACHIEVED</div>
           <div class="lw-sub" id="lc-win-sub"></div>
-          <div class="lw-reveal">Every question had an answer in the record. You weren't there — your checkpoints were. Take the workflow home: <code>npx skills add https://github.com/entireio/skills</code></div>
+          <div class="lw-reveal">Every question had an answer in the record. Now package the route home so the rebellion can review the whole run.</div>
+          <button id="lc-win-next" class="db-win-next" type="button">START LEVEL 4</button>
+          <div class="lf-hint">or press <span class="lf-key">Enter</span></div>
           <div class="lf-hint">press <span class="lf-key">B</span> to return to orbit</div>
         </div>
 
@@ -419,6 +422,51 @@
         <div id="lc-fail" class="hidden">
           <div class="lf-title">LAUNCH WINDOW MISSED</div>
           <div class="lf-sub">The window closed before every system was confirmed. Every answer was already in the record — trust it faster.</div>
+          <div class="lf-hint">press <span class="lf-key">R</span> to try again</div>
+          <div class="lf-hint">press <span class="lf-key">N</span> to start over</div>
+        </div>
+      </div>
+
+      <!-- Level 4 HUD ("Trail Relay") -->
+      <div id="tr-hud" class="hidden">
+        <div id="tr-briefing" class="mission-banner hidden">
+          <div class="mission-banner-box">
+            <div class="mission-kicker">TRAIL RELAY ONLINE · LEVEL 4</div>
+            <div id="tr-briefing-text" class="mission-banner-text"></div>
+            <div class="mission-banner-cue">
+              <span class="bf-key">Space</span>
+              <span id="tr-briefing-next">to continue</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="tr-countdown">
+          <span class="cd-label">RELAY</span>
+          <span id="tr-countdown-time">2:00</span>
+        </div>
+
+        <div id="tr-progress" aria-label="Trail relay progress"></div>
+
+        <div id="tr-console" class="hidden">
+          <div class="tr-stage-head">
+            <span id="tr-stage-kicker">PACKET 1 / 4</span>
+            <span id="tr-stage-lock">BRANCH</span>
+          </div>
+          <div id="tr-question"></div>
+          <div id="tr-output"></div>
+          <div id="tr-options"></div>
+          <div id="tr-msg"></div>
+        </div>
+
+        <div id="tr-win" class="hidden">
+          <div class="lw-title">TRAIL TRANSMITTED</div>
+          <div class="lw-sub" id="tr-win-sub"></div>
+          <div class="lw-reveal">The reviewers get the intent, the branch, and the evidence in one line of flight. Take the workflow home: <code>npx skills add https://github.com/entireio/skills</code></div>
+        </div>
+
+        <div id="tr-fail" class="hidden">
+          <div class="lf-title">RELAY WINDOW CLOSED</div>
+          <div class="lf-sub" id="tr-fail-sub">The trail never reached reviewable shape.</div>
           <div class="lf-hint">press <span class="lf-key">R</span> to try again</div>
           <div class="lf-hint">press <span class="lf-key">N</span> to start over</div>
         </div>

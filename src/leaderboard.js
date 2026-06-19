@@ -1,11 +1,12 @@
 const API_PATH = "/api/leaderboard";
 const DISPLAY_LIMIT = 10;
-const MAX_LEVEL = 3;
+const MAX_LEVEL = 4;
 
 const LEVEL_BASE = {
   1: 0,
   2: 50,
   3: 100,
+  4: 150,
 };
 const PROGRESS_POINTS = 10;
 const EXTRA_PROGRESS_POINTS = 3;
