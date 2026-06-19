@@ -1,0 +1,21 @@
+the deployment previews are broken for vercel for this app..I feel like it's basing it off of the checkpoints branch but it shouldnt be..hmm
+
+---
+
+entire/checkpoints/v1 is supposed to be divergent..it's supposed to just store the checkpoints ..and we shouldnt touch it.. this shouldnt be where previews are coming from
+
+---
+
+well i want a preview and a preview branch
+
+---
+
+okay so anytime someone open a PR will it do this branch preview thing?
+
+---
+
+are there any files u need to commit and push..if so go for it
+
+---
+
+i didnt want contributing.md on preview. i only wanted to make sure we had a preview branch that everyone canuse
