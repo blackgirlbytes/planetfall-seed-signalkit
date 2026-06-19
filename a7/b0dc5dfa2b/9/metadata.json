@@ -1,0 +1,76 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "a7b0dc5dfa2b",
+  "session_id": "019edfb1-47e4-7933-acbc-2c230b84fe33",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-19T12:16:23.036395Z",
+  "branch": "create-a-level-4",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "index.html",
+    "src/trailRelayView.js",
+    "src/main.js",
+    "src/launchView.js",
+    "src/style.css",
+    "src/leaderboard.js",
+    "api/leaderboard.js",
+    "README.md",
+    "PLAN.md"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "0208e2668708",
+  "token_usage": {
+    "input_tokens": 469087,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 7627776,
+    "output_tokens": 41811,
+    "api_call_count": 76
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-19T12:16:23.012008Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 64,
+    "total_committed": 0,
+    "total_lines_changed": 64,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 1361,
+      "user_lines_removed": 64,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".codex/agents/entire-search.toml": 21,
+        ".codex/hooks.json": 66,
+        ".codex/skills/trail/SKILL.md": 88,
+        ".codex/skills/trail/agents/openai.yaml": 4,
+        "PLAN.md": 43,
+        "README.md": 23,
+        "api/leaderboard.js": 8,
+        "index.html": 51,
+        "src/launchView.js": 26,
+        "src/leaderboard.js": 2,
+        "src/main.js": 32,
+        "src/style.css": 303,
+        "src/trailRelayView.js": 694
+      },
+      "user_removed_per_file": {
+        "PLAN.md": 8,
+        "README.md": 8,
+        "api/leaderboard.js": 5,
+        "index.html": 3,
+        "src/launchView.js": 8,
+        "src/leaderboard.js": 1,
+        "src/main.js": 12,
+        "src/style.css": 19
+      }
+    }
+  ]
+}
