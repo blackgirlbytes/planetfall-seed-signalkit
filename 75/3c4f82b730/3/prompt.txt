@@ -1,0 +1,28 @@
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/leaderboard
+
+## My request for Codex:
+can you run the site again so i can see it
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+it says leaderboard unavailable so we may have to run it differently
+
+---
+
+# Files mentioned by the user:
+
+## codex-clipboard-5f689072-08eb-4040-8599-40b6d21ca37d.png: /var/folders/by/vrz0dw_92td_x76r9b6n4r5r0000gn/T/codex-clipboard-5f689072-08eb-4040-8599-40b6d21ca37d.png
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/leaderboard
+
+## My request for Codex:
+one of the leaderboard scores has an overlap with it
