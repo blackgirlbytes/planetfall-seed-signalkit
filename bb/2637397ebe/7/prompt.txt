@@ -1,0 +1,18 @@
+hmm does the leaderboard screen automatically refresh
+
+---
+
+we should have it automatically refresh i think.
+
+---
+
+we should add a button too that forces a refresh i think
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5174/
+
+## My request for Codex:
+okay lets commit and push these changes to main. however, do not commit and push the booth setup guide
