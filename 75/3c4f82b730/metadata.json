@@ -3,7 +3,7 @@
   "checkpoint_id": "753c4f82b730",
   "strategy": "manual-commit",
   "branch": "codex/leaderboard-route",
-  "checkpoints_count": 1,
+  "checkpoints_count": 2,
   "files_touched": [
     "src/leaderboardPanel.js"
   ],
@@ -13,6 +13,12 @@
       "transcript": "/75/3c4f82b730/0/full.jsonl",
       "content_hash": "/75/3c4f82b730/0/content_hash.txt",
       "prompt": "/75/3c4f82b730/0/prompt.txt"
+    },
+    {
+      "metadata": "/75/3c4f82b730/1/metadata.json",
+      "transcript": "/75/3c4f82b730/1/full.jsonl",
+      "content_hash": "/75/3c4f82b730/1/content_hash.txt",
+      "prompt": "/75/3c4f82b730/1/prompt.txt"
     }
   ],
   "token_usage": {
