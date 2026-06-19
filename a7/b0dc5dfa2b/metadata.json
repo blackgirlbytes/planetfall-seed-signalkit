@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "a7b0dc5dfa2b",
+  "strategy": "manual-commit",
+  "branch": "create-a-level-4",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "api/leaderboard.js",
+    "index.html",
+    "src/launchView.js",
+    "src/leaderboard.js",
+    "src/style.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/a7/b0dc5dfa2b/0/metadata.json",
+      "transcript": "/a7/b0dc5dfa2b/0/full.jsonl",
+      "content_hash": "/a7/b0dc5dfa2b/0/content_hash.txt",
+      "prompt": "/a7/b0dc5dfa2b/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 419069,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 5298688,
+    "output_tokens": 34331,
+    "api_call_count": 66
+  }
+}
