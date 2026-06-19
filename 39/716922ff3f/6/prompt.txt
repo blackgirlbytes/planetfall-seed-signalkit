@@ -1,0 +1,5 @@
+okay we made some changes to this repo..especially that this could auto refresh and theres a refresh button..pull the latest from main to check out how that works then update the booth guide
+
+---
+
+okay let's push this booth guide up to main please
