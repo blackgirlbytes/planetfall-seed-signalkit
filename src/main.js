@@ -114,6 +114,8 @@ if (bgm && audioPanel && audioToggle && audioMute && audioVolume) {
 
 const params = new URLSearchParams(location.search);
 const requestedView = params.get("view");
+const normalizedPath = location.pathname.replace(/\/+$/, "") || "/";
+const isLeaderboardRoute = normalizedPath === "/leaderboard";
 
 function normalizeEndOutcome(value) {
   const v = String(value || "").trim().toLowerCase();
@@ -163,6 +165,7 @@ let level2Done = jumpToLevel3;
 
 function startNewGame() {
   const cleanUrl = new URL(window.location.href);
+  cleanUrl.pathname = "/";
   cleanUrl.search = "";
   cleanUrl.hash = "";
   window.location.assign(cleanUrl.href);
@@ -231,6 +234,10 @@ const titleLeaderboardPanel = createLeaderboardPanel({
 function closeTitleLeaderboard() {
   titleLeaderboardRequest += 1;
   titleLeaderboardPanel.hide();
+  if (isLeaderboardRoute) {
+    startNewGame();
+    return;
+  }
   const resume = resumeTitleAfterLeaderboard;
   resumeTitleAfterLeaderboard = null;
   resume?.();
@@ -268,7 +275,12 @@ const titleScreen = createTitleScreen({
   },
   onStart: () => planetView.setLandingMarkerHold(false),
 });
-if (!requestedView && !params.get("level") && !endShortcut) titleScreen.show();
+if (isLeaderboardRoute) {
+  document.body.classList.add("leaderboard-route");
+  showTitleLeaderboard();
+} else if (!requestedView && !params.get("level") && !endShortcut) {
+  titleScreen.show();
+}
 
 // ---------- fade transition ----------
 const fade = document.getElementById("fade");

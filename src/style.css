@@ -98,6 +98,10 @@ body.title-up #hud,
 body.title-up #hint,
 body.title-up #audio-panel,
 body.title-up #island-pin { display: none !important; }
+body.leaderboard-route #hud,
+body.leaderboard-route #hint,
+body.leaderboard-route #audio-panel,
+body.leaderboard-route #island-pin { display: none !important; }
 body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   display: block !important;
 }
@@ -3004,6 +3008,7 @@ body.hit-flash::after {
 }
 
 .leaderboard {
+  --lb-score-col: clamp(180px, 15vw, 320px);
   position: fixed;
   inset: 0;
   z-index: 38;
@@ -3199,7 +3204,7 @@ body.hit-flash::after {
 }
 .lb-table-head {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 124px 48px minmax(0, 1fr) 124px;
+  grid-template-columns: 48px minmax(0, 1fr) var(--lb-score-col) 48px minmax(0, 1fr) var(--lb-score-col);
   gap: 0 clamp(26px, 4.6vw, 72px);
   align-items: end;
   margin-bottom: 16px;
@@ -3214,7 +3219,7 @@ body.hit-flash::after {
   text-shadow: 0 3px 0 #02040a;
 }
 .lb-board.is-short .lb-table-head {
-  grid-template-columns: 48px minmax(0, 1fr) 124px;
+  grid-template-columns: 48px minmax(0, 1fr) var(--lb-score-col);
 }
 .lb-board.is-short .lb-table-head span:nth-child(n + 4) {
   display: none;
@@ -3241,7 +3246,7 @@ body.hit-flash::after {
 }
 .lb-row {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 124px;
+  grid-template-columns: 48px minmax(0, 1fr) var(--lb-score-col);
   align-items: center;
   column-gap: clamp(10px, 1.3vw, 18px);
   min-height: clamp(38px, 4.8vh, 54px);
@@ -3280,8 +3285,16 @@ body.hit-flash::after {
   white-space: nowrap;
 }
 .lb-points {
+  min-width: 0;
   color: #7cffb0;
   text-align: right;
+  white-space: nowrap;
+}
+.lb-points.is-long-score {
+  font-size: clamp(24px, 2.1vw, 31px);
+}
+.lb-points.is-huge-score {
+  font-size: clamp(21px, 1.8vw, 27px);
 }
 .lb-empty {
   grid-column: 1 / -1;
@@ -3317,6 +3330,7 @@ body.hit-flash::after {
   #lc-ignition { font-size: 72px; }
   #lc-ignition.is-go { font-size: 38px; }
   .leaderboard {
+    --lb-score-col: minmax(120px, 34vw);
     overflow-y: auto;
     padding: 26px 16px 20px;
   }
@@ -3343,7 +3357,7 @@ body.hit-flash::after {
     width: 100%;
   }
   .lb-table-head {
-    grid-template-columns: 40px minmax(0, 1fr) 104px;
+    grid-template-columns: 40px minmax(0, 1fr) var(--lb-score-col);
     gap: 8px;
   }
   .lb-table-head span:nth-child(n + 4) {
@@ -3356,9 +3370,15 @@ body.hit-flash::after {
     gap: 8px;
   }
   .lb-row {
-    grid-template-columns: 40px minmax(0, 1fr) 104px;
+    grid-template-columns: 40px minmax(0, 1fr) var(--lb-score-col);
     min-height: 42px;
     font-size: clamp(21px, 6vw, 31px);
+  }
+  .lb-points.is-long-score {
+    font-size: clamp(16px, 4.8vw, 24px);
+  }
+  .lb-points.is-huge-score {
+    font-size: clamp(14px, 4.2vw, 22px);
   }
   .lb-back {
     margin-top: 36px;

@@ -74,15 +74,18 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
       listEl.innerHTML = `<li class="lb-empty">${escapeHtml(emptyText)}</li>`;
       return;
     }
-    listEl.innerHTML = entries.map((entry, i) => (
-      `<li class="lb-row">` +
+    listEl.innerHTML = entries.map((entry, i) => {
+      const scoreText = entry.score.toLocaleString();
+      const scoreClass = scoreText.length > 10 ? " is-huge-score"
+        : scoreText.length > 7 ? " is-long-score" : "";
+      return `<li class="lb-row">` +
         `<span class="lb-rank">${String(i + 1).padStart(2, "0")}</span>` +
         `<span class="lb-player">` +
           `<span class="lb-name">${escapeHtml(entry.username)}</span>` +
         `</span>` +
-        `<span class="lb-points">${entry.score.toLocaleString()}</span>` +
-      `</li>`
-    )).join("");
+        `<span class="lb-points${scoreClass}">${scoreText}</span>` +
+      `</li>`;
+    }).join("");
   }
 
   function showEntryPage() {
