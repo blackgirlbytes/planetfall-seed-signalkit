@@ -98,6 +98,10 @@ body.title-up #hud,
 body.title-up #hint,
 body.title-up #audio-panel,
 body.title-up #island-pin { display: none !important; }
+body.leaderboard-route #hud,
+body.leaderboard-route #hint,
+body.leaderboard-route #audio-panel,
+body.leaderboard-route #island-pin { display: none !important; }
 body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   display: block !important;
 }
