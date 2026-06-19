@@ -1,6 +1,7 @@
-import { saveLeaderboardEntry } from "./leaderboard.js";
+import { loadLeaderboard, saveLeaderboardEntry } from "./leaderboard.js";
 
 let panelCount = 0;
+const REFRESH_INTERVAL_MS = 15000;
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (ch) => ({
@@ -41,7 +42,10 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
         <span>#</span><span>Name</span><span>Score</span>
       </div>
       <ol class="lb-list" data-lb-list></ol>
-      <button class="lb-back" type="button" data-lb-back>Back</button>
+      <div class="lb-actions">
+        <button class="lb-refresh" type="button" data-lb-refresh aria-label="Refresh leaderboard" title="Refresh leaderboard">&#8635;</button>
+        <button class="lb-back" type="button" data-lb-back>Back</button>
+      </div>
     </div>
     <div class="lb-status" data-lb-status></div>
   `;
@@ -56,12 +60,16 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
   const formEl = panel.querySelector("[data-lb-form]");
   const inputEl = panel.querySelector("input");
   const submitEl = panel.querySelector("button[type='submit']");
+  const refreshEl = panel.querySelector("[data-lb-refresh]");
   const backEl = panel.querySelector("[data-lb-back]");
   const statusEl = panel.querySelector("[data-lb-status]");
   const listEl = panel.querySelector("[data-lb-list]");
 
   let currentRun = null;
   let saved = false;
+  let refreshTimer = null;
+  let refreshGeneration = 0;
+  let refreshInFlight = false;
 
   function setStatus(text, tone = "") {
     statusEl.textContent = text;
@@ -88,7 +96,51 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
     }).join("");
   }
 
+  function isBoardVisible() {
+    return !panel.classList.contains("hidden") && !boardEl.classList.contains("hidden");
+  }
+
+  function setRefreshBusy(busy) {
+    refreshEl.disabled = busy;
+    refreshEl.classList.toggle("is-refreshing", busy);
+    refreshEl.setAttribute("aria-busy", busy ? "true" : "false");
+  }
+
+  function stopAutoRefresh() {
+    refreshGeneration += 1;
+    refreshInFlight = false;
+    setRefreshBusy(false);
+    if (refreshTimer) {
+      clearInterval(refreshTimer);
+      refreshTimer = null;
+    }
+  }
+
+  async function refreshBoard() {
+    if (refreshInFlight || !isBoardVisible()) return;
+
+    refreshInFlight = true;
+    setRefreshBusy(true);
+    const generation = refreshGeneration;
+    try {
+      const result = await loadLeaderboard();
+      if (generation !== refreshGeneration || !isBoardVisible() || result.error) return;
+      renderRows(result.entries);
+    } finally {
+      if (generation === refreshGeneration) {
+        refreshInFlight = false;
+        setRefreshBusy(false);
+      }
+    }
+  }
+
+  function startAutoRefresh() {
+    if (refreshTimer) return;
+    refreshTimer = setInterval(refreshBoard, REFRESH_INTERVAL_MS);
+  }
+
   function showEntryPage() {
+    stopAutoRefresh();
     entryEl.classList.remove("hidden");
     boardEl.classList.add("hidden");
     panel.classList.add("is-entry");
@@ -100,6 +152,7 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
     boardEl.classList.remove("hidden");
     panel.classList.add("is-board");
     panel.classList.remove("is-entry");
+    startAutoRefresh();
   }
 
   function show(run, { title } = {}) {
@@ -183,6 +236,8 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
     if (onClose) onClose();
     else hide();
   });
+
+  refreshEl.addEventListener("click", refreshBoard);
 
   return {
     focusInput: () => (inputEl.disabled ? backEl : inputEl).focus({ preventScroll: true }),

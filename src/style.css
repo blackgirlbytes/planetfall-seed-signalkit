@@ -3258,6 +3258,7 @@ body.hit-flash::after {
 .lb-rank,
 .lb-name,
 .lb-points,
+.lb-refresh,
 .lb-back {
   -webkit-text-stroke: 1.8px #02040a;
   paint-order: stroke fill;
@@ -3308,9 +3309,15 @@ body.hit-flash::after {
   paint-order: stroke fill;
   text-shadow: 0 4px 0 #02040a;
 }
-.lb-back {
-  display: block;
+.lb-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
   margin: clamp(72px, 12vh, 150px) auto 0;
+}
+.lb-refresh,
+.lb-back {
   padding: 4px 22px;
   color: #fff;
   background: transparent;
@@ -3321,9 +3328,27 @@ body.hit-flash::after {
   font-weight: 950;
   cursor: pointer;
 }
+.lb-refresh {
+  width: 70px;
+  height: 58px;
+  padding: 0;
+  font-size: 50px;
+  line-height: 1;
+}
+.lb-refresh:disabled {
+  cursor: default;
+  opacity: 0.62;
+}
+.lb-refresh.is-refreshing {
+  animation: lb-refresh-spin 0.85s linear infinite;
+}
+.lb-refresh:focus-visible,
 .lb-back:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 7px;
+}
+@keyframes lb-refresh-spin {
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 760px) {
@@ -3380,7 +3405,16 @@ body.hit-flash::after {
   .lb-points.is-huge-score {
     font-size: clamp(14px, 4.2vw, 22px);
   }
-  .lb-back {
+  .lb-actions {
     margin-top: 36px;
+    gap: 18px;
+  }
+  .lb-refresh {
+    width: 54px;
+    height: 50px;
+    font-size: 40px;
+  }
+  .lb-back {
+    font-size: 38px;
   }
 }
