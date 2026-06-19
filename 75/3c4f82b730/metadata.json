@@ -3,7 +3,7 @@
   "checkpoint_id": "753c4f82b730",
   "strategy": "manual-commit",
   "branch": "codex/leaderboard-route",
-  "checkpoints_count": 2,
+  "checkpoints_count": 3,
   "files_touched": [
     "src/leaderboardPanel.js"
   ],
@@ -19,13 +19,19 @@
       "transcript": "/75/3c4f82b730/1/full.jsonl",
       "content_hash": "/75/3c4f82b730/1/content_hash.txt",
       "prompt": "/75/3c4f82b730/1/prompt.txt"
+    },
+    {
+      "metadata": "/75/3c4f82b730/2/metadata.json",
+      "transcript": "/75/3c4f82b730/2/full.jsonl",
+      "content_hash": "/75/3c4f82b730/2/content_hash.txt",
+      "prompt": "/75/3c4f82b730/2/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 1441319,
+    "input_tokens": 1501135,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 29780608,
-    "output_tokens": 124455,
-    "api_call_count": 234
+    "cache_read_tokens": 29989888,
+    "output_tokens": 130099,
+    "api_call_count": 243
   }
 }
