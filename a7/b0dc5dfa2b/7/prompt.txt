@@ -1,0 +1,37 @@
+can you create a contributors guidelines for this repo
+
+---
+
+i think this is a little much..we want to focus on:
+
+- how to contribute as in what git commands they would run such as fork, git push all that..do they need to fork? 
+- then a how to run section
+- then how to run the leaderboard if improving it
+
+
+-do What is the story supposed to be
+-
+
+---
+
+okay commit and push
+
+---
+
+oh we should probably mention this is an entire enabled repo and allow people to see the sessions here: https://entire.io/gh/blackgirlbytes/planetfall-seed-signalkit/sessions
+
+---
+
+we made a mistake..contributing guidelines ended up on the preview branch..i wanted that to go straight to main
+
+---
+
+how come i dont see the contributing gudelines when i go on my remote repo
+
+---
+
+can you add it to main..commit and push
+
+---
+
+use the gh cli to make sure im the only one that can approve and merge PRs please and thank you
