@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "753c4f82b730",
+  "strategy": "manual-commit",
+  "branch": "codex/leaderboard-route",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/leaderboardPanel.js"
+  ],
+  "sessions": [
+    {
+      "metadata": "/75/3c4f82b730/0/metadata.json",
+      "transcript": "/75/3c4f82b730/0/full.jsonl",
+      "content_hash": "/75/3c4f82b730/0/content_hash.txt",
+      "prompt": "/75/3c4f82b730/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 1441319,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 29780608,
+    "output_tokens": 124455,
+    "api_call_count": 234
+  }
+}
