@@ -1,0 +1,50 @@
+check out main..and be on the main worktree i guess
+
+---
+
+next in Downloads/entire-brand-kit..we have some symbols that can show up in the title bar like on the tab..like of marvin..i wonder if you can add that for this..like planetfall..will we neeed to do dark mode/light mode or no? idk
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+oh no..whats with the css changes?
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+i dont want those css changes at all
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+okay lets open a trail and have the changes we made included..where we say okay we have the marvin logo icon on the tab
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+give me the link to the trail please
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+you didnt put the file changes with it
