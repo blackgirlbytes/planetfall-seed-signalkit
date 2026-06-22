@@ -671,6 +671,21 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
 }
 #db-countdown #db-countdown-time { color: #e5ddff; }
 
+/* Narrow + short viewports (e.g. ~887x718 small laptops): the Level 2 repair
+   grid widens to fill the canvas and its two upper-left ship squares/labels rise
+   under the default top-left clock, overlapping them. On these sizes the dark
+   band between the grid and the conveyor belt sits around mid-height, so drop
+   ONLY the Drone Bay clock into that clear zone. Gated above the 680px mobile
+   breakpoint (which already relocates every clock) and below desktop widths
+   where the centered grid clears the top-left clock — so Level 1 (#countdown)
+   and Level 3 (#lc-countdown) are untouched. */
+@media (min-width: 681px) and (max-width: 1180px) and (max-height: 900px) {
+  #db-countdown {
+    top: calc(50vh - 6px);
+    left: 32px;
+  }
+}
+
 /* Urgent state — the clock is running low */
 #countdown.is-low,
 #l2-countdown.is-low,
@@ -2590,8 +2605,9 @@ body.hit-flash::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  background: #02040a;
+  gap: 18px;
+  padding: 28px;
+  background: #000;
   z-index: 50;
   transition: opacity 0.8s ease;
 }
@@ -2601,9 +2617,15 @@ body.hit-flash::after {
   pointer-events: none;
 }
 
+.loader-marvin {
+  display: block;
+  width: clamp(136px, 18vmin, 184px);
+  height: auto;
+}
+
 .loader-ring {
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   border: 2px solid rgba(111, 227, 255, 0.2);
   border-top-color: var(--accent);
   border-radius: 50%;
@@ -2614,6 +2636,7 @@ body.hit-flash::after {
   font-size: 12px;
   letter-spacing: 0.35em;
   opacity: 0.7;
+  text-align: center;
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
