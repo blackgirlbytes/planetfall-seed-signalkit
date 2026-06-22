@@ -1,0 +1,38 @@
+are the colors in this game ..themed? like css etc..like do we have all this would be this color..do they have variable names
+
+---
+
+yeah lets make something that's easier to reason about
+
+---
+
+okay next..can we look into the color themes from Documents/work/entire.io and identify..dont change yet..what colors can be changed in the game..to match entire.io's color branding
+
+---
+
+i wouldnt look at the homepage..look at the colors used on like entire.io/overview pages and stuff like that..the app itself..to understand what colors they use..identify the actual hex codes
+
+---
+
+eh we shouldnt keep cyan if there's no cyan you know what i mean
+
+---
+
+im wondering..should the color of the planet also change..what about the storycards?
+
+---
+
+lets try rebranding the planet
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5174/
+
+## My request for Codex:
+eh changing the planet looks terrifying
+
+---
+
+i dont really like the words like start game being orange..any other choices
