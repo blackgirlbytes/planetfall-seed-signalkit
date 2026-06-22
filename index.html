@@ -434,8 +434,14 @@
     <!-- Crossfade between the orbit view and the island -->
     <div id="fade"></div>
 
-    <div id="loader">
-      <div class="loader-ring"></div>
+    <div id="loader" role="status" aria-live="polite" aria-label="Entering orbit">
+      <img
+        class="loader-marvin"
+        src="/images/slack-entire-marvin-darkmode-success.gif"
+        alt=""
+        aria-hidden="true"
+      />
+      <div class="loader-ring" aria-hidden="true"></div>
       <div class="loader-text">ENTERING ORBIT…</div>
     </div>
 
