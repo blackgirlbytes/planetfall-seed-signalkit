@@ -1,0 +1,77 @@
+on a separate worktree..so we dont interact with the current work tree..can we take this 
+
+Downloads/Slack Gifs/Slack_Entire_Marvin_DarkMode_Success
+
+and add it to the loading screen for any page that has loading..is it possible also to make it bigger-ish
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+the black background from marvin is kinda weird..wonder if we can take that away??
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+oh wow it looks awful..let's revert those particular changes..
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+i wonder if we can make that whole loading screen background be as black as the gifs black background so it wouldnt be obvious
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+okay let's open a trail to make this change
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+give me the link
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+it says 0 files changed..lets included the changed files that we did here
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+okay that trail got merged..but maybe instead of the loading spinner..we would show marvin..so maybe we remove the loading spinner
+
+---
+
+# In app browser:
+- The user has the in-app browser open.
+- Current URL: http://127.0.0.1:5173/
+
+## My request for Codex:
+ok lets open a trail with these changed files
