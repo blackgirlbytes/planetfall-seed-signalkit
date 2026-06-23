@@ -1614,6 +1614,84 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   outline: none;
 }
 
+/* ── Marvin icon ───────────────────────────────────────── */
+
+/* Shared base */
+.marvin-icon {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* Terminal variant: fixed 24 px to sit flush inside the 21 px line */
+.marvin-icon--terminal {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+/* Success-card variant: clamp-scaled to track the heading font */
+.marvin-icon--card {
+  width: clamp(28px, 4vw, 44px);
+  height: clamp(28px, 4vw, 44px);
+  margin-right: 10px;
+}
+
+/* Terminal avatar states */
+.marvin-icon--idle {
+  opacity: 0.6;
+}
+.marvin-icon--active {
+  opacity: 1;
+  animation: marvin-pulse 1.2s ease-in-out infinite;
+}
+.marvin-icon--error {
+  filter: hue-rotate(-30deg) saturate(1.2);
+}
+
+@keyframes marvin-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.term-marvin-response {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+}
+
+/* Make the is-marvin terminal row flex so icon + text sit on one line */
+#terminal.is-drone-bay-terminal .term-dispatch-report-line.is-marvin {
+  display: flex;
+  align-items: center;
+}
+
+/* Make the win-marvin heading flex so icon + text centre together */
+.db-win-marvin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: clamp(25px, 3.8vw, 38px);
+  line-height: 1.1;
+  font-weight: 800;
+  color: #7cffb0;
+  text-shadow: 0 0 22px rgba(92, 255, 176, 0.28);
+}
+
+/* Reduced-motion: dim rather than hide — keeps Marvin visible as a mark
+   without triggering motion (matches the game's dim-don't-remove pattern) */
+@media (prefers-reduced-motion: reduce) {
+  .marvin-icon {
+    opacity: 0.55;
+  }
+  .marvin-icon--active {
+    animation: none;
+  }
+}
+
 #db-win .lf-hint {
   text-align: center;
   font-size: 16px;

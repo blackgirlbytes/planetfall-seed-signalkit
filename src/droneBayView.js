@@ -3,6 +3,7 @@ import { disposeObject3D } from "./three-utils.js";
 import { makeBeamTexture, makeIceBlock } from "./memoryProps.js";
 import { createLeaderboardEntry } from "./leaderboard.js";
 import { createLeaderboardPanel } from "./leaderboardPanel.js";
+import { marvinLine, randomResponse } from "./marvin.js";
 
 // LEVEL 2 ("The Drone Bay") — a COMMAND PASS / order-ticket rush.
 // (Full design notes live above createDroneBayView, further down this file.)
@@ -1673,7 +1674,16 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   function renderDispatchReportList() {
     if (!termList) return;
     termList.innerHTML = dispatchReportLines()
-      .map((line, i) => `<div class="term-list-row term-dispatch-report-line${i === 0 ? " is-marvin" : ""}"><span class="tl-title">${line}</span></div>`)
+      .map((line, i) => {
+  const marvinIcon = i === 0
+    ? `<img class="marvin-icon marvin-icon--terminal"
+            src="/images/slack-entire-marvin-darkmode-success.gif"
+            alt="" aria-hidden="true" />`
+    : '';
+  return `<div class="term-list-row term-dispatch-report-line${i === 0 ? " is-marvin" : ""}">` +
+    marvinIcon +
+    `<span class="tl-title">${line}</span></div>`;
+})
       .join("");
     termList.classList.remove("hidden");
   }
@@ -1697,7 +1707,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
         const practiceReview = practiceMode && reviewPart.idx === PRACTICE_PART_IDX;
         const prompt = renderReportText(d.prompt, d.name, practiceReview);
         const subagent = renderReportText(d.subagent, d.name, practiceReview && !prompt.matched);
-        termList.innerHTML =
+        termList.innerHTML = marvinLine(randomResponse("explainReport")) +
           `<div class="term-list-row term-report-row"><span class="tl-key tl-exp-key">Prompt:</span><span class="tl-title">${prompt.html}</span></div>` +
           `<div class="term-list-row term-report-row"><span class="tl-key tl-exp-key">Subagent:</span><span class="tl-title">${subagent.html}</span></div>`;
         termList.classList.remove("hidden");
@@ -1767,6 +1777,12 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     slate.position.copy(MATCHED_SLATE_POS); slate.scale.setScalar(MATCHED_SLATE_SCALE);
     if (reviewPart === p) closePanel();
     updateSystems();
+    // Marvin reacts to a correct placement
+    if (termList && !practiceMode) {
+      const marvinDiv = document.createElement("div");
+      marvinDiv.innerHTML = marvinLine(randomResponse("blockPlaced"));
+      termList.appendChild(marvinDiv.firstElementChild);
+    }
     if (practiceMode && p.idx === PRACTICE_PART_IDX) {
       finishPractice();
       return;

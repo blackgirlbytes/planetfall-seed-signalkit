@@ -5,6 +5,7 @@ import { genCheckpointId, makeIceBlock } from "./memoryProps.js";
 import { makeRecord, makeWreck } from "./fallingProps.js";
 import { levelOneRecordSummary } from "./levelOneRecords.js";
 import { sfx } from "./sfx.js";
+import { marvinLine, randomResponse } from "./marvin.js";
 import { createLeaderboardEntry } from "./leaderboard.js";
 import { createLeaderboardPanel } from "./leaderboardPanel.js";
 
@@ -759,6 +760,11 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
       tutorialBankRecord = record;
       finishBankLesson();
       showModePrompt("level");
+    } else if (termList) {
+      // Marvin reacts to a successful bank
+      const marvinDiv = document.createElement("div");
+      marvinDiv.innerHTML = marvinLine(randomResponse("recordBanked"));
+      termList.appendChild(marvinDiv.firstElementChild);
     }
   }
   function showCheckpointList() {
@@ -767,7 +773,8 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     countdownEl?.classList.remove("is-low", "is-critical");
     if (termList) {
       const ids = bankedRecords.map(({ id }) => id);
-      termList.innerHTML = bankedRecords.map(({ id, summary }) =>
+      termList.innerHTML = marvinLine(randomResponse("checkpointList")) +
+        bankedRecords.map(({ id, summary }) =>
         `<div class="term-list-row"><span class="tl-id tl-id-short">${shortCheckpointId(id, ids)}</span>` +
         `<span class="tl-title">${summary}</span></div>`
       ).join("");
