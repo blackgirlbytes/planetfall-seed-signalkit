@@ -5,6 +5,7 @@ import { SYSTEMS, UPGRADE_BUILDERS } from "./droneBayView.js";
 import { LEVEL_ONE_ARCHIVE_ROWS } from "./levelOneRecords.js";
 import { createLeaderboardEntry } from "./leaderboard.js";
 import { createLeaderboardPanel } from "./leaderboardPanel.js";
+import { marvinLine, randomResponse } from "./marvin.js";
 
 // LEVEL 3 ("Launch Clearance") — the finale. The ship is rebuilt; now it has
 // to fly. The player sits in the pilot's chair for the first time, and the
@@ -430,7 +431,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
     if (questionEl) questionEl.textContent = Q.q;
     outputEl?.classList.add("hidden");
     outputEl?.classList.remove("is-dense");
-    if (outputEl) outputEl.innerHTML = "";
+    if (outputEl) outputEl.innerHTML = marvinLine(randomResponse("questionAppears"));
     answersEl?.classList.add("hidden");
     if (answersEl) answersEl.innerHTML = "";
     phase = "menu";
@@ -490,6 +491,12 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
       wrongChips.add(i);
       mistakes += 1;
       flashMsg("not what the record says — read it again", false);
+      // Marvin reacts to a wrong answer
+      if (outputEl) {
+        const marvinDiv = document.createElement("div");
+        marvinDiv.innerHTML = marvinLine(randomResponse("wrongAnswer"), "error");
+        outputEl.appendChild(marvinDiv.firstElementChild);
+      }
       renderAnswers();
       return;
     }
@@ -507,6 +514,12 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
       flashMsg(`confirmed — ${SYSTEMS[Q.site].became} accounted for, segment locked`, true);
     } else {
       flashMsg("confirmed — segment locked", true);
+    }
+    // Marvin reacts to a correct answer
+    if (outputEl) {
+      const marvinDiv = document.createElement("div");
+      marvinDiv.innerHTML = marvinLine(randomResponse("correctAnswer"));
+      outputEl.appendChild(marvinDiv.firstElementChild);
     }
     renderCode();
     answersEl?.classList.add("hidden");
