@@ -21,6 +21,50 @@
     "output_tokens": 13205,
     "api_call_count": 29
   },
+  "summary": {
+    "intent": "Add a direct browser route /leaderboard that renders the existing leaderboard experience without requiring navigation through the title menu.",
+    "outcome": "Successfully implemented the /leaderboard route by patching main.js to detect the path and boot directly into leaderboard mode, adding CSS for standalone overlay behavior, and adding vercel.json with SPA rewrite rules. The change was committed and pushed to the codex/leaderboard-route branch, verified via Chrome headless.",
+    "learnings": {
+      "repo": [
+        "The app is a Vite SPA (no framework router); routing is handled manually by reading window.location.pathname at boot time in main.js.",
+        "Leaderboard rendering is already encapsulated in src/leaderboard.js and src/leaderboardPanel.js and was reused without duplication.",
+        "The title screen, HUD, and leaderboard panel are independent DOM layers toggled via CSS classes (hidden, lb-) rather than component mounting.",
+        "The project uses Vercel for hosting; a vercel.json rewrite rule is needed for direct navigation to SPA sub-routes to work on refresh.",
+        "The trail CLI tool is 'entire'; trails are created with 'entire trail create' and associated with feature branches."
+      ],
+      "code": [
+        {
+          "path": "src/main.js",
+          "finding": "Boot path was patched to check window.location.pathname and enter leaderboard-only mode when path is /leaderboard, skipping title screen initialization."
+        },
+        {
+          "path": "src/style.css",
+          "finding": "Added standalone leaderboard CSS to hide title/HUD chrome and apply the correct overlay behavior when entering via the direct route."
+        },
+        {
+          "path": "vercel.json",
+          "finding": "New file created with SPA rewrite rule so /leaderboard serves index.html on direct navigation/refresh in production."
+        }
+      ],
+      "workflow": [
+        "The 'entire trail' CLI creates feature branches, pushes them, and links work items — trail create with --checkout handles branch setup atomically.",
+        "Playwright was available via npm but its bundled browser binaries were absent; system Chrome at /Applications was used instead as a fallback for headless verification.",
+        "curl confirmed the SPA HTML was served before attempting browser-level verification, providing a fast pre-check.",
+        "Staging only specific files (src/main.js, src/style.css, vercel.json) kept .codex/ tooling files out of the commit."
+      ]
+    },
+    "friction": [
+      "The 'entire' CLI has no 'trail open' or 'trail url' command, requiring manual URL construction from the JSON output to produce the web link.",
+      "Playwright bundled browser binaries were missing, requiring fallback to system Chrome for headless verification — added friction to the browser testing step.",
+      "A generic 404 appeared in the browser console on the first verification pass, requiring a second pass to confirm it was transient and not a route bug."
+    ],
+    "open_items": [
+      "The 404 observed on the first browser pass was not fully root-caused — worth investigating what asset or API call produced it.",
+      "The Back button on the standalone /leaderboard page navigates to / but this relies on client-side history; behavior in browsers without JS history support was not tested.",
+      "No analytics or tracking was added for the new entry point — if leaderboard direct-link traffic matters, instrumentation is deferred.",
+      "The Vite large-chunk warning flagged during build was pre-existing and not addressed as part of this trail."
+    ]
+  },
   "initial_attribution": {
     "calculated_at": "2026-06-19T18:57:21.968763Z",
     "agent_lines": 23,
