@@ -239,15 +239,18 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   font-size: clamp(14px, 1.2vw, 16px);
   font-weight: 700;
   letter-spacing: var(--tracking-wide);
-  color: var(--color-text-primary);
+  color: #fff;
   background: var(--color-purple);
   border-radius: var(--radius-sm);
   opacity: 1;
 }
+/* Selection brightens the *frame*, not the fill — a lighter purple fill drops
+   the label below readable contrast (the button boots selected). */
 .ts-item.ts-cta-primary:hover,
 .ts-item.ts-cta-primary.is-selected {
-  color: var(--color-text-primary);
-  background: var(--color-purple-bright);
+  color: #fff;
+  background: var(--color-purple);
+  box-shadow: 0 0 0 2px var(--color-purple-bright), 0 0 18px rgba(139, 127, 232, 0.45);
 }
 .ts-item.ts-cta-primary:active { background: var(--color-purple-dim); }
 .ts-item.ts-cta-primary.is-selected::before { content: none; }
