@@ -1,0 +1,186 @@
+{
+  "cli_version": "0.7.8",
+  "checkpoint_id": "421f72ddbf5e",
+  "session_id": "6ab53bef-1a4d-4ace-b010-559ff38ef51f",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-06T19:08:05.653328Z",
+  "branch": "main",
+  "checkpoints_count": 11,
+  "save_step_count": 11,
+  "files_touched": [
+    "index.html",
+    "src/style.css",
+    "src/titleScreen.js"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "c026937efd94",
+  "token_usage": {
+    "input_tokens": 36775,
+    "cache_creation_tokens": 684523,
+    "cache_read_tokens": 17248553,
+    "output_tokens": 73226,
+    "api_call_count": 135
+  },
+  "session_metrics": {
+    "turn_count": 11
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-06T19:08:05.532076Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 4,
+    "human_modified": 1827,
+    "human_removed": 0,
+    "total_committed": 4,
+    "total_lines_changed": 1831,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 777,
+      "user_lines_removed": 622,
+      "agent_lines_added": 1660,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "index.html": 25,
+        "src/archiveView.js": 13,
+        "src/atmosphere.js": 1,
+        "src/debris.js": 4,
+        "src/droneBayView.js": 74,
+        "src/fallingProps.js": 19,
+        "src/islandView.js": 11,
+        "src/launchView.js": 14,
+        "src/memoryProps.js": 9,
+        "src/overhead.js": 2,
+        "src/planet.js": 9,
+        "src/planetView.js": 9,
+        "src/ring.js": 6,
+        "src/style.css": 576,
+        "src/terrain.js": 5
+      },
+      "user_removed_per_file": {
+        "index.html": 5,
+        "src/archiveView.js": 13,
+        "src/atmosphere.js": 1,
+        "src/debris.js": 4,
+        "src/droneBayView.js": 74,
+        "src/fallingProps.js": 19,
+        "src/islandView.js": 11,
+        "src/launchView.js": 14,
+        "src/memoryProps.js": 7,
+        "src/overhead.js": 2,
+        "src/planet.js": 9,
+        "src/planetView.js": 8,
+        "src/ring.js": 6,
+        "src/style.css": 444,
+        "src/terrain.js": 5
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 31,
+      "user_lines_removed": 36,
+      "agent_lines_added": 2444,
+      "agent_lines_removed": 635,
+      "user_added_per_file": {
+        "src/droneBayView.js": 5,
+        "src/style.css": 26
+      },
+      "user_removed_per_file": {
+        "src/droneBayView.js": 5,
+        "src/style.css": 31
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 463,
+      "user_lines_removed": 474,
+      "agent_lines_added": 2468,
+      "agent_lines_removed": 666,
+      "user_added_per_file": {
+        ".claude/launch.json": 11,
+        "src/leaderboardPanel.js": 71,
+        "src/style.css": 381
+      },
+      "user_removed_per_file": {
+        "src/leaderboardPanel.js": 37,
+        "src/style.css": 437
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 11,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2822,
+      "agent_lines_removed": 1042,
+      "user_added_per_file": {
+        ".claude/launch.json": 11
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 11,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2854,
+      "agent_lines_removed": 1084,
+      "user_added_per_file": {
+        ".claude/launch.json": 11
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 11,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2854,
+      "agent_lines_removed": 1084,
+      "user_added_per_file": {
+        ".claude/launch.json": 11
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 11,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2857,
+      "agent_lines_removed": 1084,
+      "user_added_per_file": {
+        ".claude/launch.json": 11
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 13,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2902,
+      "agent_lines_removed": 1085,
+      "user_added_per_file": {
+        ".claude/launch.json": 11,
+        "vite.config.js": 2
+      }
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2918,
+      "agent_lines_removed": 1085
+    },
+    {
+      "checkpoint_number": 11,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2888,
+      "agent_lines_removed": 1148
+    }
+  ]
+}
