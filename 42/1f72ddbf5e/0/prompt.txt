@@ -3,3 +3,7 @@ there's a tv effect on this that's just lines and makes readability..legibility 
 ---
 
 i dont like it..especially the random flashing i think it can make someone have a seizure. lets remove the whole tv lines crt static effect alogther
+
+---
+
+commit and push these changes in particular
