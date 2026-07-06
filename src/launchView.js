@@ -429,9 +429,13 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   function renderQuestion() {
     const Q = QUESTIONS[qIndex];
     if (questionEl) questionEl.textContent = Q.q;
-    outputEl?.classList.add("hidden");
     outputEl?.classList.remove("is-dense");
-    if (outputEl) outputEl.innerHTML = marvinLine(randomResponse("questionAppears"));
+    if (outputEl) {
+      // Marvin flags the new question in the output panel; the tool output
+      // replaces the line when the player runs something.
+      outputEl.innerHTML = marvinLine(randomResponse("questionAppears"));
+      outputEl.classList.remove("hidden");
+    }
     answersEl?.classList.add("hidden");
     if (answersEl) answersEl.innerHTML = "";
     phase = "menu";
