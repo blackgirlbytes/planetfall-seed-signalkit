@@ -20,13 +20,11 @@ export function createTitleScreen({ onLeaderboard, onStoryStart, onStart } = {})
     main: document.getElementById("ts-main"),
     options: document.getElementById("ts-options"),
     controls: document.getElementById("ts-controls"),
-    display: document.getElementById("ts-display"),
     sound: document.getElementById("ts-sound"),
   };
   const parentOf = {
     options: "main",
     controls: "options",
-    display: "options",
     sound: "options",
   };
   const story = document.getElementById("ts-story");
@@ -39,31 +37,12 @@ export function createTitleScreen({ onLeaderboard, onStoryStart, onStart } = {})
   const musicState = document.getElementById("ts-music-state");
   const volume = document.getElementById("ts-volume");
   const volumePct = document.getElementById("ts-volume-pct");
-  const tvState = document.getElementById("ts-tv-state");
   const sfxState = document.getElementById("ts-sfx-state");
-
-  // The TV effect (scanlines + vignette) is on by default; the choice is
-  // remembered between visits.
-  const TV_KEY = "pf-tv-effect";
-  document.body.classList.toggle("tv-on", localStorage.getItem(TV_KEY) !== "off");
 
   // Sound effects are on by default; the choice is remembered between visits.
   const SFX_KEY = "pf-sfx";
   let sfxOn = localStorage.getItem(SFX_KEY) !== "off";
   sfx.setMuted(!sfxOn);
-
-  function syncDisplay() {
-    const on = document.body.classList.contains("tv-on");
-    tvState.textContent = on ? "ON" : "OFF";
-    tvState.classList.toggle("is-off", !on);
-  }
-
-  function toggleTv() {
-    const on = !document.body.classList.contains("tv-on");
-    document.body.classList.toggle("tv-on", on);
-    localStorage.setItem(TV_KEY, on ? "on" : "off");
-    syncDisplay();
-  }
 
   function syncSfx() {
     if (!sfxState) return;
@@ -130,7 +109,6 @@ export function createTitleScreen({ onLeaderboard, onStoryStart, onStart } = {})
     items = [...screens[name].querySelectorAll(".ts-item")];
     setSel(0);
     if (name === "sound") { syncSound(); syncSfx(); }
-    if (name === "display") syncDisplay();
   }
 
   function back() {
@@ -186,11 +164,9 @@ export function createTitleScreen({ onLeaderboard, onStoryStart, onStart } = {})
         break;
       case "options": setScreen("options"); break;
       case "controls": setScreen("controls"); break;
-      case "display": setScreen("display"); break;
       case "sound": setScreen("sound"); break;
       case "music-toggle": toggleMusic(); break;
       case "sfx-toggle": toggleSfx(); break;
-      case "tv-toggle": toggleTv(); break;
       case "back": back(); break;
     }
   }

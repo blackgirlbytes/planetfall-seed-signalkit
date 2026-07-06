@@ -2170,33 +2170,6 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   97%, 100% { transform: translate(-50%, -100%); }
 }
 
-/* ---------- the TV look: scanlines + vignette ---------- */
-
-/* Full-bleed glass over the whole game — on by default, toggled in
-   Options > Display. Pointer-events stay off; the game plays identically. */
-#tv-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 48;
-  pointer-events: none;
-  display: none;
-}
-body.tv-on #tv-overlay { display: block; }
-#tv-overlay > div { position: absolute; inset: 0; }
-
-/* Curved-glass shading: darkened edges, soft center */
-.tv-vignette {
-  background: radial-gradient(ellipse at 50% 50%,
-    transparent 56%, rgba(2, 4, 10, 0.34) 86%, rgba(2, 4, 10, 0.6));
-}
-
-/* Horizontal scanlines */
-.tv-scanlines {
-  background: repeating-linear-gradient(0deg,
-    rgba(4, 8, 14, 0.26) 0px, rgba(4, 8, 14, 0.26) 1px,
-    transparent 1px, transparent 3px);
-}
-
 /* Crossfade overlay between views */
 #fade {
   position: fixed;

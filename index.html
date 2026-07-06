@@ -31,7 +31,6 @@
         <div id="ts-options" class="ts-menu hidden">
           <button class="ts-item" type="button" data-action="controls">CONTROLS</button>
           <button class="ts-item" type="button" data-action="sound">SOUND</button>
-          <button class="ts-item" type="button" data-action="display">DISPLAY</button>
           <button class="ts-item" type="button" data-action="back">BACK</button>
         </div>
 
@@ -56,14 +55,6 @@
             <div class="ts-ctrl"><span class="bf-keys"><span class="bf-key">1</span><span class="bf-key">2</span><span class="bf-key">3</span></span> pick a tool <span class="bf-dim">(or click)</span></div>
             <div class="ts-ctrl"><span class="bf-key">Enter</span> confirm</div>
           </div>
-          <button class="ts-item ts-panel-back" type="button" data-action="back">BACK</button>
-        </div>
-
-        <div id="ts-display" class="ts-panel hidden">
-          <div class="ts-group-head">DISPLAY</div>
-          <button class="ts-item ts-row" type="button" data-action="tv-toggle">
-            TV EFFECT <span id="ts-tv-state" class="ts-value">ON</span>
-          </button>
           <button class="ts-item ts-panel-back" type="button" data-action="back">BACK</button>
         </div>
 
@@ -424,12 +415,6 @@
           <div class="lf-hint">press <span class="lf-key">N</span> to start over</div>
         </div>
       </div>
-    </div>
-
-    <!-- The TV look: scanlines + vignette, on by default (Options > Display) -->
-    <div id="tv-overlay" aria-hidden="true">
-      <div class="tv-vignette"></div>
-      <div class="tv-scanlines"></div>
     </div>
 
     <!-- Crossfade between the orbit view and the island -->
