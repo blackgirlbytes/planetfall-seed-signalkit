@@ -1824,17 +1824,12 @@ body.title-up #title-screen.is-story ~ #island-pin:not(.hidden) {
   align-items: center;
 }
 
-/* Make the win-marvin heading flex so icon + text centre together */
+/* Make the win-marvin heading flex so icon + text centre together;
+   font/color come from the base .db-win-marvin rule (brand tokens) */
 .db-win-marvin {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: clamp(25px, 3.8vw, 38px);
-  line-height: 1.1;
-  font-weight: 800;
-  color: #7cffb0;
-  text-shadow: 0 0 22px rgba(92, 255, 176, 0.28);
 }
 
 /* Reduced-motion: dim rather than hide — keeps Marvin visible as a mark

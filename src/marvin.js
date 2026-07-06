@@ -15,7 +15,7 @@ export const marvinResponses = {
 
 export function marvinLine(text, state = "active") {
   return `<div class="term-marvin-response">` +
-    `<img class="marvin-icon marvin-icon--${state}"` +
+    `<img class="marvin-icon marvin-icon--terminal marvin-icon--${state}"` +
     ` src="/images/slack-entire-marvin-darkmode-success.gif"` +
     ` alt="" aria-hidden="true" />` +
     `<span class="tl-title">${text}</span>` +
