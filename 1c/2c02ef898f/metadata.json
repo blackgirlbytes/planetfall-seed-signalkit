@@ -1,0 +1,43 @@
+{
+  "cli_version": "0.7.8",
+  "checkpoint_version": "branch-v1",
+  "checkpoint_id": "1c2c02ef898f",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "index.html",
+    "src/archiveView.js",
+    "src/atmosphere.js",
+    "src/debris.js",
+    "src/droneBayView.js",
+    "src/fallingProps.js",
+    "src/islandView.js",
+    "src/launchView.js",
+    "src/leaderboardPanel.js",
+    "src/memoryProps.js",
+    "src/overhead.js",
+    "src/planet.js",
+    "src/planetView.js",
+    "src/ring.js",
+    "src/style.css",
+    "src/terrain.js",
+    "vite.config.js"
+  ],
+  "sessions": [
+    {
+      "metadata": "/1c/2c02ef898f/0/metadata.json",
+      "transcript": "/1c/2c02ef898f/0/full.jsonl",
+      "compact_transcript": "/1c/2c02ef898f/0/transcript.jsonl",
+      "content_hash": "/1c/2c02ef898f/0/content_hash.txt",
+      "prompt": "/1c/2c02ef898f/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 6801,
+    "cache_creation_tokens": 44825,
+    "cache_read_tokens": 836261,
+    "output_tokens": 9479,
+    "api_call_count": 17
+  }
+}
