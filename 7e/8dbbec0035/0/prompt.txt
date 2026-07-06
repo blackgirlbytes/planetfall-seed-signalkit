@@ -1,0 +1,5 @@
+In /Users/goose-guest/Documents/work/planetfall-seed-signalkit, PR #24 added Marvin reaction lines via src/marvin.js. In src/launchView.js, renderQuestion() sets `outputEl.innerHTML = marvinLine(randomResponse("questionAppears"))` while #lc-output still has the `hidden` class, and pickTool() overwrites outputEl.innerHTML with the record text before the output is ever revealed — so the "The ship needs to know this." line never appears on screen. Either surface that line somewhere visible when a new question appears (e.g. prepend it to the tool output, or show it in the question area) or remove the dead write. Keep the one-dialogue-channel simplicity bar; don't add new UI panels. Verify in the browser via ?level=3 (click #lc-briefing to advance the intro, then pick a tool).
+
+---
+
+how can i see what you referencing
