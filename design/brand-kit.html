@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --entire-navy: #1A1B3E;
+    --entire-purple: #6B5FD4;
+    --entire-purple-bright: #8B7FE8;
+    --entire-purple-glow: #534AB7;
+    --entire-white: #F0EEF8;
+    --entire-accent: #00E5C4;
+    --entire-dim: #2B2D6E;
+    --entire-surface: #12132A;
+  }
+
+  body {
+    background: #0d0e1f;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--entire-white);
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    background: #0d0e1f;
+    border-bottom: 1px solid rgba(107,95,212,0.25);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab {
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,238,248,0.4);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: 'Space Mono', monospace;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .tab.active {
+    color: var(--entire-accent);
+    border-bottom-color: var(--entire-accent);
+  }
+  .tab:hover { color: var(--entire-white); }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── SPLASH SCREEN ── */
+  .splash {
+    min-height: 520px;
+    background: #0d0e1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 24px;
+  }
+
+  .star-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .star {
+    position: absolute;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+  }
+
+  .planet {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #534AB7, #1A1B3E 60%, #0d0e1f);
+    position: relative;
+    flex-shrink: 0;
+    animation: planet-rotate 20s linear infinite;
+  }
+  .planet::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(107,95,212,0.25);
+    animation: ring-tilt 20s linear infinite;
+  }
+  .planet::after {
+    content: '';
+    position: absolute;
+    width: 240px;
+    height: 30px;
+    background: rgba(107,95,212,0.12);
+    border-radius: 50%;
+    top: 65px;
+    left: -40px;
+    border: 1px solid rgba(139,127,232,0.2);
+    transform: rotateX(70deg);
+  }
+
+  @keyframes planet-rotate {
+    0% { box-shadow: inset -15px -10px 30px rgba(0,0,0,0.6), inset 5px 5px 20px rgba(107,95,212,0.3); }
+    50% { box-shadow: inset -5px -10px 30px rgba(0,0,0,0.6), inset 15px 5px 20px rgba(107,95,212,0.4); }
+    100% { box-shadow: inset -15px -10px 30px rgba(0,0,0,0.6), inset 5px 5px 20px rgba(107,95,212,0.3); }
+  }
+
+  .game-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--entire-white);
+    text-align: center;
+    margin: 28px 0 4px;
+    position: relative;
+    z-index: 2;
+  }
+  .game-title span { color: var(--entire-accent); }
+
+  .game-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--entire-purple-bright);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand-line {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: rgba(240,238,248,0.35);
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .brand-line strong { color: rgba(240,238,248,0.65); }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-primary {
+    background: var(--entire-purple);
+    color: white;
+    border: none;
+    padding: 14px 36px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--entire-purple-bright); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--entire-accent);
+    border: 1px solid var(--entire-accent);
+    padding: 13px 28px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(0,229,196,0.08); }
+
+  .scan-line {
+    position: absolute;
+    bottom: 20px;
+    left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    opacity: 0.4;
+    z-index: 2;
+  }
+  .scan-line::before, .scan-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(107,95,212,0.4);
+  }
+  .scan-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--entire-purple-bright);
+    white-space: nowrap;
+  }
+
+  /* ── HUD ELEMENTS ── */
+  .hud-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 24px;
+    max-width: 680px;
+  }
+
+  .hud-card {
+    background: var(--entire-surface);
+    border: 1px solid rgba(107,95,212,0.3);
+    border-radius: 4px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hud-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--entire-purple);
+  }
+  .hud-card.accent::before { background: var(--entire-accent); }
+
+  .hud-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--entire-purple-bright);
+    margin-bottom: 8px;
+  }
+
+  .hud-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--entire-white);
+    line-height: 1;
+  }
+  .hud-value.cyan { color: var(--entire-accent); }
+
+  .hud-bar-track {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .hud-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--entire-purple-bright);
+    transition: width 1s ease;
+  }
+  .hud-bar-fill.cyan-fill { background: var(--entire-accent); }
+
+  .mission-block {
+    background: var(--entire-surface);
+    border: 1px solid rgba(107,95,212,0.3);
+    border-left: 3px solid var(--entire-purple);
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    margin: 0 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+    color: rgba(240,238,248,0.8);
+    max-width: calc(680px - 48px);
+  }
+  .mission-keyword {
+    color: var(--entire-accent);
+    font-weight: 700;
+  }
+  .mission-dim { color: rgba(240,238,248,0.35); }
+
+  /* ── LEADERBOARD ── */
+  .leaderboard-panel { padding: 24px; max-width: 680px; }
+
+  .lb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .lb-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--entire-accent);
+  }
+  .lb-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: rgba(240,238,248,0.35);
+    letter-spacing: 0.15em;
+  }
+  .lb-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--entire-accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  .lb-row {
+    display: grid;
+    grid-template-columns: 32px 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(107,95,212,0.12);
+  }
+  .lb-rank {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: rgba(240,238,248,0.3);
+    text-align: center;
+  }
+  .lb-rank.gold { color: #F5C440; }
+  .lb-rank.silver { color: #A0A4B0; }
+  .lb-rank.bronze { color: #CD8B5A; }
+
+  .lb-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--entire-white);
+  }
+  .lb-level {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--entire-purple-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .lb-score {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--entire-accent);
+    text-align: right;
+  }
+  .lb-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: rgba(240,238,248,0.3);
+    text-align: right;
+  }
+  .lb-you { background: rgba(107,95,212,0.12); border-radius: 4px; padding: 10px 8px; }
+
+  /* ── COLOR TOKENS ── */
+  .tokens-panel { padding: 24px; max-width: 680px; }
+  .token-row {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(107,95,212,0.1);
+  }
+  .token-swatch {
+    width: 32px; height: 32px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .token-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--entire-white);
+  }
+  .token-role {
+    font-size: 11px;
+    color: rgba(240,238,248,0.4);
+    margin-top: 2px;
+    font-family: 'Space Mono', monospace;
+  }
+  .token-hex {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--entire-purple-bright);
+    letter-spacing: 0.05em;
+  }
+
+  .type-sample {
+    margin: 20px 0;
+    border: 1px solid rgba(107,95,212,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .type-row {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(107,95,212,0.1);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .type-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: rgba(240,238,248,0.3);
+    width: 100px;
+    flex-shrink: 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(240,238,248,0.3);
+    margin: 24px 24px 12px;
+  }
+
+  /* ── TERMINAL WIDGET ── */
+  .terminal {
+    background: #080910;
+    border: 1px solid rgba(107,95,212,0.35);
+    border-radius: 4px;
+    margin: 0 24px;
+    max-width: calc(680px - 48px);
+    overflow: hidden;
+  }
+  .term-bar {
+    background: rgba(107,95,212,0.15);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .term-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .term-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: rgba(240,238,248,0.35);
+    text-transform: uppercase;
+    margin-left: 4px;
+  }
+  .term-body {
+    padding: 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .term-prompt { color: var(--entire-purple-bright); }
+  .term-cmd { color: var(--entire-accent); }
+  .term-output { color: rgba(240,238,248,0.6); }
+  .term-success { color: #6EE7B7; }
+  .term-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--entire-accent);
+    vertical-align: -2px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity:0; } }
+
+  .marvin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(107,95,212,0.15);
+    border: 1px solid rgba(107,95,212,0.3);
+    border-radius: 20px;
+    padding: 4px 10px 4px 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--entire-purple-bright);
+    letter-spacing: 0.08em;
+  }
+  .marvin-avatar {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3C3489, #6B5FD4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+  }
+
+  /* ── BOTTOM CTA ── */
+  .bottom-cta {
+    margin: 0 24px 24px;
+    padding: 16px;
+    background: rgba(107,95,212,0.08);
+    border: 1px solid rgba(107,95,212,0.2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: calc(680px - 48px);
+    flex-wrap: wrap;
+  }
+  .cta-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: rgba(240,238,248,0.5);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+  .cta-text strong {
+    color: var(--entire-white);
+    display: block;
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .cta-btn {
+    background: var(--entire-accent);
+    color: #0d0e1f;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    position: absolute;
+    width: 12px; height: 12px;
+    pointer-events: none;
+  }
+  .corner-tl { top: 8px; left: 8px; border-top: 1px solid var(--entire-accent); border-left: 1px solid var(--entire-accent); }
+  .corner-tr { top: 8px; right: 8px; border-top: 1px solid var(--entire-accent); border-right: 1px solid var(--entire-accent); }
+  .corner-bl { bottom: 8px; left: 8px; border-bottom: 1px solid var(--entire-accent); border-left: 1px solid var(--entire-accent); }
+  .corner-br { bottom: 8px; right: 8px; border-bottom: 1px solid var(--entire-accent); border-right: 1px solid var(--entire-accent); }
+
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Planetfall x entire.io brand kit — splash screen, HUD components, leaderboard, and design tokens</h2>
+
+<div class="tabs">
+  <button class="tab active" onclick="showPanel('splash')">Splash Screen</button>
+  <button class="tab" onclick="showPanel('hud')">In-Game HUD</button>
+  <button class="tab" onclick="showPanel('leaderboard')">Leaderboard</button>
+  <button class="tab" onclick="showPanel('tokens')">Design Tokens</button>
+</div>
+
+<!-- SPLASH SCREEN -->
+<div id="panel-splash" class="panel active">
+  <div class="splash">
+    <div class="corner-tl"></div>
+    <div class="corner-tr"></div>
+    <div class="corner-bl"></div>
+    <div class="corner-br"></div>
+
+    <div class="star-field" id="stars"></div>
+
+    <div class="planet"></div>
+
+    <p class="game-subtitle">entire.io presents</p>
+    <h1 class="game-title">PLANET<span>FALL</span></h1>
+    <p class="brand-line"><strong>WAD Berlin 2025</strong> · Arcade Area · Booth entire.io</p>
+
+    <div class="cta-row">
+      <button class="btn-primary">▶ Start Mission</button>
+      <button class="btn-secondary">Leaderboard</button>
+    </div>
+
+    <div class="scan-line">
+      <span class="scan-text">SIGNAL DETECTED · ENTIRE.IO NETWORK · WAD BERLIN</span>
+    </div>
+  </div>
+
+  <div class="section-label">In-game mission prompt style</div>
+  <div class="mission-block">
+    <span class="mission-dim">// SHIP REQUEST · 1 / 3</span><br>
+    The archive is fractured. Run <span class="mission-keyword">entire checkpoint search "orbit"</span><br>
+    at the gold terminal to surface the first memory.<br>
+    <span class="mission-dim">Time remaining: </span><span class="mission-keyword">1:30</span>
+  </div>
+
+  <br>
+  <div class="section-label">Marvin companion badge</div>
+  <div style="padding: 0 24px 4px;">
+    <span class="marvin-badge">
+      <span class="marvin-avatar">🤖</span>
+      MARVIN · ONLINE
+    </span>
+    <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: rgba(240,238,248,0.35); margin-left: 12px;">Against several reasonable projections, the pilot made it.</span>
+  </div>
+
+  <br>
+  <div class="bottom-cta">
+    <div class="cta-text">
+      <strong>Take the workflow home</strong>
+      npx skills add https://github.com/entireio/skills
+    </div>
+    <button class="cta-btn" onclick="sendPrompt('Can you help me implement the Planetfall splash screen in the actual game?')">Implement this ↗</button>
+  </div>
+</div>
+
+<!-- HUD -->
+<div id="panel-hud" class="panel">
+  <div style="padding: 24px 24px 0;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+      <span style="font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: var(--entire-purple-bright); text-transform: uppercase;">LEVEL 2 · ARCHIVE SURFACED</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(240,238,248,0.3);">WAD / BOOTH ENTIRE</span>
+    </div>
+  </div>
+
+  <div class="hud-grid">
+    <div class="hud-card accent">
+      <div class="hud-label">Time Remaining</div>
+      <div class="hud-value cyan">1:30</div>
+      <div class="hud-bar-track">
+        <div class="hud-bar-fill cyan-fill" style="width: 72%;"></div>
+      </div>
+    </div>
+    <div class="hud-card">
+      <div class="hud-label">Memories Recovered</div>
+      <div class="hud-value">1 <span style="font-size: 16px; color: rgba(240,238,248,0.3);">/ 3</span></div>
+      <div class="hud-bar-track">
+        <div class="hud-bar-fill" style="width: 33%;"></div>
+      </div>
+    </div>
+    <div class="hud-card">
+      <div class="hud-label">Signal Strength</div>
+      <div class="hud-value">84<span style="font-size: 16px; color: rgba(240,238,248,0.4);">%</span></div>
+      <div class="hud-bar-track">
+        <div class="hud-bar-fill" style="width: 84%;"></div>
+      </div>
+    </div>
+    <div class="hud-card">
+      <div class="hud-label">Marvin Status</div>
+      <div class="hud-value" style="font-size: 16px; padding-top: 6px;">
+        <span style="color: var(--entire-accent);">●</span> Active
+      </div>
+      <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(240,238,248,0.3); margin-top: 8px;">Subagents: 6/6 free</div>
+    </div>
+  </div>
+
+  <div class="section-label">Terminal block</div>
+  <div class="terminal">
+    <div class="term-bar">
+      <div class="term-dot" style="background: #E24B4A;"></div>
+      <div class="term-dot" style="background: #F5C440;"></div>
+      <div class="term-dot" style="background: #6EE7B7;"></div>
+      <span class="term-title">ENTIRE SHIP TERMINAL</span>
+    </div>
+    <div class="term-body">
+      <div><span class="term-prompt">$</span> <span class="term-cmd">entire checkpoint search "orbit"</span></div>
+      <div class="term-output">Scanning 2,847 checkpoints…</div>
+      <div class="term-output">Found 1 matching block: <span style="color: var(--entire-white);">#checkpoint-047</span></div>
+      <div class="term-success">✓ Beam activated · run to gold marker</div>
+      <div><span class="term-prompt">$</span> <span class="term-cursor"></span></div>
+    </div>
+  </div>
+
+  <br>
+  <div class="bottom-cta" style="margin-top: 0;">
+    <div class="cta-text">
+      <strong>Need the CSS variables?</strong>
+      Ask me to generate a theme file for your game's stylesheet.
+    </div>
+    <button class="cta-btn" onclick="sendPrompt('Generate the CSS theme variables file for Planetfall based on the entire.io brand kit')">Get theme file ↗</button>
+  </div>
+</div>
+
+<!-- LEADERBOARD -->
+<div id="panel-leaderboard" class="panel">
+  <div class="leaderboard-panel">
+    <div class="lb-header">
+      <span class="lb-title">// Leaderboard · WAD Berlin</span>
+      <span class="lb-live"><span class="lb-dot"></span> LIVE</span>
+    </div>
+
+    <div class="lb-row">
+      <span class="lb-rank gold">01</span>
+      <div>
+        <div class="lb-name">Maxi K.</div>
+        <div class="lb-level">Level 3 complete</div>
+      </div>
+      <div>
+        <div class="lb-score">3:47</div>
+        <div class="lb-time">fastest</div>
+      </div>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank silver">02</span>
+      <div>
+        <div class="lb-name">Priya R.</div>
+        <div class="lb-level">Level 3 complete</div>
+      </div>
+      <div>
+        <div class="lb-score">4:12</div>
+      </div>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank bronze">03</span>
+      <div>
+        <div class="lb-name">Tom W.</div>
+        <div class="lb-level">Level 2 · 3/3</div>
+      </div>
+      <div>
+        <div class="lb-score">1:58</div>
+      </div>
+    </div>
+    <div class="lb-row lb-you">
+      <span class="lb-rank" style="color: var(--entire-purple-bright);">—</span>
+      <div>
+        <div class="lb-name" style="color: var(--entire-accent);">You</div>
+        <div class="lb-level">Level 1 · in progress</div>
+      </div>
+      <div>
+        <div class="lb-score" style="color: var(--entire-purple-bright);">—:—</div>
+      </div>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank">04</span>
+      <div>
+        <div class="lb-name">Lena B.</div>
+        <div class="lb-level">Level 1 complete</div>
+      </div>
+      <div>
+        <div class="lb-score" style="color: rgba(240,238,248,0.5);">0:38</div>
+      </div>
+    </div>
+
+    <br>
+    <div style="font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(240,238,248,0.2); letter-spacing: 0.12em; text-align: center; padding-top: 8px;">
+      ENTIRE.IO · BOOTH DEMO · WAD BERLIN 2025
+    </div>
+  </div>
+</div>
+
+<!-- TOKENS -->
+<div id="panel-tokens" class="panel">
+  <div class="tokens-panel">
+
+    <div class="section-label" style="margin: 0 0 12px;">Color palette</div>
+    <div class="token-row">
+      <div class="token-swatch" style="background: #1A1B3E;"></div>
+      <div><div class="token-name">Navy</div><div class="token-role">--entire-navy · backgrounds, wells</div></div>
+      <div class="token-hex">#1A1B3E</div>
+    </div>
+    <div class="token-row">
+      <div class="token-swatch" style="background: #6B5FD4;"></div>
+      <div><div class="token-name">Purple</div><div class="token-role">--entire-purple · primary action, borders</div></div>
+      <div class="token-hex">#6B5FD4</div>
+    </div>
+    <div class="token-row">
+      <div class="token-swatch" style="background: #8B7FE8;"></div>
+      <div><div class="token-name">Purple bright</div><div class="token-role">--entire-purple-bright · labels, secondary</div></div>
+      <div class="token-hex">#8B7FE8</div>
+    </div>
+    <div class="token-row">
+      <div class="token-swatch" style="background: #00E5C4; border: 1px solid rgba(255,255,255,0.1);"></div>
+      <div><div class="token-name">Signal teal</div><div class="token-role">--entire-accent · highlights, CTAs, timers</div></div>
+      <div class="token-hex">#00E5C4</div>
+    </div>
+    <div class="token-row">
+      <div class="token-swatch" style="background: #12132A;"></div>
+      <div><div class="token-name">Surface</div><div class="token-role">--entire-surface · cards, HUD panels</div></div>
+      <div class="token-hex">#12132A</div>
+    </div>
+    <div class="token-row">
+      <div class="token-swatch" style="background: #F0EEF8; border: 1px solid rgba(255,255,255,0.1);"></div>
+      <div><div class="token-name">White</div><div class="token-role">--entire-white · body text</div></div>
+      <div class="token-hex">#F0EEF8</div>
+    </div>
+
+    <div class="section-label" style="margin: 24px 0 12px;">Typography</div>
+    <div class="type-sample">
+      <div class="type-row">
+        <span class="type-meta">Display / UI</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; letter-spacing: 0.08em; color: var(--entire-white);">PLANETFALL</span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">HUD labels</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--entire-purple-bright);">TIME REMAINING</span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">Body / names</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--entire-white);">Marvin dispatched 4 repair jobs</span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">Terminal</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: var(--entire-accent);">entire checkpoint search "orbit"</span>
+      </div>
+    </div>
+
+    <div class="bottom-cta" style="margin: 0;">
+      <div class="cta-text">
+        <strong>Want a ready-to-paste CSS theme?</strong>
+        I can generate the full variables file for your game.
+      </div>
+      <button class="cta-btn" onclick="sendPrompt('Generate the full CSS theme file for Planetfall using the entire.io brand tokens shown in the design kit')">Generate CSS ↗</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function showPanel(name) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  const stars = document.getElementById('stars');
+  if (stars) {
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2 + 0.5;
+      s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;opacity:${Math.random()*0.5+0.1}`;
+      stars.appendChild(s);
+    }
+  }
+</script>

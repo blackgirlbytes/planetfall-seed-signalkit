@@ -18,36 +18,42 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
   const panel = document.createElement("div");
   panel.className = "leaderboard hidden";
   panel.innerHTML = `
-    <div class="lb-head">
-      <div>
-        <div class="lb-kicker" data-lb-kicker>Your result</div>
-        <div class="lb-title" data-lb-title>Game over</div>
+    <div class="lb-card">
+      <div class="lb-brand-row" aria-hidden="true">
+        <span class="lb-brand-title">// LEADERBOARD · WAD BERLIN</span>
+        <span class="lb-live"><span class="lb-live-dot"></span> LIVE</span>
       </div>
-      <div class="lb-score" data-lb-score>Score 0</div>
-    </div>
-    <div class="lb-entry" data-lb-entry>
-      <p class="lb-copy">Enter a username to save your score.</p>
-      <form class="lb-form" data-lb-form>
-        <label for="${id}-name">Username</label>
-        <div class="lb-submit-row">
-          <input id="${id}-name" name="username" type="text" maxlength="18" autocomplete="nickname" spellcheck="false" placeholder="username" />
-          <button type="submit">Save score</button>
+      <div class="lb-head">
+        <div>
+          <div class="lb-kicker" data-lb-kicker>Your result</div>
+          <div class="lb-title" data-lb-title>Game over</div>
         </div>
-      </form>
-    </div>
-    <div class="lb-board hidden" data-lb-board>
-      <div class="lb-board-label">Top 10 overall</div>
-      <div class="lb-table-head" aria-hidden="true">
-        <span>#</span><span>Name</span><span>Score</span>
-        <span>#</span><span>Name</span><span>Score</span>
+        <div class="lb-score" data-lb-score>Score 0</div>
       </div>
-      <ol class="lb-list" data-lb-list></ol>
-      <div class="lb-actions">
-        <button class="lb-refresh" type="button" data-lb-refresh aria-label="Refresh leaderboard" title="Refresh leaderboard">&#8635;</button>
-        <button class="lb-back" type="button" data-lb-back>Back</button>
+      <div class="lb-entry" data-lb-entry>
+        <p class="lb-copy">Enter a username to save your score.</p>
+        <form class="lb-form" data-lb-form>
+          <label for="${id}-name">Username</label>
+          <div class="lb-submit-row">
+            <input id="${id}-name" name="username" type="text" maxlength="18" autocomplete="nickname" spellcheck="false" placeholder="username" />
+            <button type="submit">Save score</button>
+          </div>
+        </form>
       </div>
+      <div class="lb-board hidden" data-lb-board>
+        <div class="lb-board-label">Top 10 overall</div>
+        <div class="lb-table-head" aria-hidden="true">
+          <span>#</span><span>Name</span><span>Score</span>
+          <span>#</span><span>Name</span><span>Score</span>
+        </div>
+        <ol class="lb-list" data-lb-list></ol>
+        <div class="lb-actions">
+          <button class="lb-refresh" type="button" data-lb-refresh aria-label="Refresh leaderboard" title="Refresh leaderboard">&#8635;</button>
+          <button class="lb-back" type="button" data-lb-back>Back</button>
+        </div>
+      </div>
+      <div class="lb-status" data-lb-status></div>
     </div>
-    <div class="lb-status" data-lb-status></div>
   `;
   mount?.appendChild(panel);
 
@@ -70,30 +76,54 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
   let refreshTimer = null;
   let refreshGeneration = 0;
   let refreshInFlight = false;
+  let youEntry = null; // the just-saved run, highlighted as the "You" row
 
   function setStatus(text, tone = "") {
     statusEl.textContent = text;
     statusEl.classList.toggle("is-error", tone === "error");
   }
 
+  function rowSub(entry) {
+    if (entry.completedGame) return "LEVEL 3 COMPLETE";
+    const done = entry.progressCompleted ?? 0;
+    const total = entry.progressTotal ?? 1;
+    return `LEVEL ${entry.level || 1} · ${done}/${total}`;
+  }
+
+  function rowHtml(entry, { rank = "—", tone = "", isYou = false } = {}) {
+    const scoreText = entry.score.toLocaleString();
+    const scoreClass = scoreText.length > 10 ? " is-huge-score"
+      : scoreText.length > 7 ? " is-long-score" : "";
+    return `<li class="lb-row${isYou ? " is-you" : ""}">` +
+      `<span class="lb-rank${tone}">${rank}</span>` +
+      `<span class="lb-player">` +
+        `<span class="lb-name">${escapeHtml(entry.username)}</span>` +
+        `<span class="lb-sub">${escapeHtml(rowSub(entry))}</span>` +
+      `</span>` +
+      `<span class="lb-points${scoreClass}">${scoreText}</span>` +
+    `</li>`;
+  }
+
   function renderRows(entries, emptyText = "No scores yet") {
     boardEl.classList.toggle("is-short", entries.length <= 5);
-    if (!entries.length) {
+    if (!entries.length && !youEntry) {
       listEl.innerHTML = `<li class="lb-empty">${escapeHtml(emptyText)}</li>`;
       return;
     }
-    listEl.innerHTML = entries.map((entry, i) => {
-      const scoreText = entry.score.toLocaleString();
-      const scoreClass = scoreText.length > 10 ? " is-huge-score"
-        : scoreText.length > 7 ? " is-long-score" : "";
-      return `<li class="lb-row">` +
-        `<span class="lb-rank">${String(i + 1).padStart(2, "0")}</span>` +
-        `<span class="lb-player">` +
-          `<span class="lb-name">${escapeHtml(entry.username)}</span>` +
-        `</span>` +
-        `<span class="lb-points${scoreClass}">${scoreText}</span>` +
-      `</li>`;
+    const tones = [" is-gold", " is-silver", " is-bronze"];
+    let youRanked = false;
+    let html = entries.map((entry, i) => {
+      const isYou = Boolean(youEntry && entry.id === youEntry.id);
+      if (isYou) youRanked = true;
+      return rowHtml(entry, {
+        rank: String(i + 1).padStart(2, "0"),
+        tone: tones[i] || "",
+        isYou,
+      });
     }).join("");
+    // Your run missed the top 10 — pin it below with an unranked em-dash row.
+    if (youEntry && !youRanked) html += rowHtml(youEntry, { isYou: true });
+    listEl.innerHTML = html;
   }
 
   function isBoardVisible() {
@@ -158,6 +188,7 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
   function show(run, { title } = {}) {
     currentRun = run;
     saved = false;
+    youEntry = null;
     kickerEl.textContent = run.completedGame ? "Final score" : `Level ${run.level}`;
     titleEl.textContent = title || (run.completedGame ? "Game complete" : "Game over");
     scoreEl.textContent = `Score ${run.score.toLocaleString()}`;
@@ -175,6 +206,7 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
   function showBoard(entries = [], { title = "Leaderboard", label = "Top 10 overall", emptyText } = {}) {
     currentRun = null;
     saved = false;
+    youEntry = null;
     titleEl.textContent = title;
     boardLabelEl.textContent = label;
     scoreEl.textContent = "";
@@ -189,6 +221,7 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
   function hide() {
     currentRun = null;
     saved = false;
+    youEntry = null;
     panel.classList.add("hidden");
     showEntryPage();
     setStatus("");
@@ -214,6 +247,7 @@ export function createLeaderboardPanel({ mount, onClose } = {}) {
     setStatus("Saving score...");
     try {
       const result = await saveLeaderboardEntry({ ...currentRun, username });
+      youEntry = result.entry;
       showBoardPage();
       kickerEl.textContent = "Score saved";
       titleEl.textContent = "Leaderboard";

@@ -14,9 +14,9 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
   const canvas = renderer.domElement;
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x07050f); // soft deep-violet void
+  scene.background = new THREE.Color(0x0d0e1f); // brand space backdrop (--color-bg)
 
-  // Image-based lighting so the gold islands have something to reflect.
+  // Soft image-based fill so the matte orb keeps a little shape in shadow.
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
@@ -35,12 +35,14 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
   controls.autoRotate = false;
 
   // ---------- lighting ----------
-  const sun = new THREE.DirectionalLight(0xfff4e8, 1.8);
-  sun.position.set(5, 2.5, 4);
+  // Cool white-lavender key from the upper-left, per the brand-kit planet's
+  // highlight; the limb falls off into the navy backdrop.
+  const sun = new THREE.DirectionalLight(0xf2efff, 1.1);
+  sun.position.set(-4.5, 3, 4.5);
   scene.add(sun);
-  scene.add(new THREE.AmbientLight(0x6a5a92, 0.25));
-  const rim = new THREE.DirectionalLight(0x8a7ab8, 0.6);
-  rim.position.set(-5, -1, -4);
+  scene.add(new THREE.AmbientLight(0x534ab7, 0.25));
+  const rim = new THREE.DirectionalLight(0x8b7fe8, 0.4);
+  rim.position.set(5, -1, -4);
   scene.add(rim);
 
   // ---------- starfield ----------
@@ -59,12 +61,12 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
     new THREE.MeshStandardMaterial({
       map: colorMap,
       bumpMap,
-      bumpScale: 0.015,
+      bumpScale: 0.006,
       roughnessMap,
       roughness: 1.0,
       metalnessMap,
       metalness: 1.0,
-      envMapIntensity: 0.3,
+      envMapIntensity: 0.08,
     })
   );
   planetGroup.add(planet);
@@ -73,20 +75,20 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
     new THREE.SphereGeometry(PLANET_RADIUS * 1.012, 96, 96),
     new THREE.MeshStandardMaterial({
       map: cloudMap, transparent: true, depthWrite: false,
-      color: 0xf2ecff, opacity: 0.4, roughness: 1.0,
+      color: 0xf0eef8, opacity: 0.0, roughness: 1.0,
     })
   );
   planetGroup.add(clouds);
 
   planetGroup.add(makeAtmosphere(PLANET_RADIUS * 1.09, {
-    color: new THREE.Color(0xc9a6ff), power: 2.2, intensity: 0.9,
+    color: new THREE.Color(0x8b7fe8), power: 2.6, intensity: 0.55,
   }));
 
   planetGroup.add(makeRing(PLANET_RADIUS));
 
   // ---------- the landable island ----------
-  // Find a guaranteed patch of gold land, then anchor a marker on the texel
-  // that paints it (geometry UV convention) so the pin sits on visible land.
+  // Find a guaranteed patch of land, then anchor a marker on the texel that
+  // paints it (geometry UV convention) so the pin sits on the island region.
   const sampler = createElevationSampler({ seed: PLANET_SEED });
   const spot = sampler.findLandSpots({ latLimit: 55, step: 3 })[0]
     || { lat: 20, lon: 40 };
@@ -105,7 +107,7 @@ export function createPlanetView(renderer, { onIslandClick } = {}) {
   const outline = new THREE.Mesh(
     new THREE.RingGeometry(ringRadius * 0.94, ringRadius, 64),
     new THREE.MeshBasicMaterial({
-      color: 0xfff4e8, transparent: true, opacity: 0,
+      color: 0x00e5c4, transparent: true, opacity: 0,
       side: THREE.DoubleSide, depthTest: false, depthWrite: false,
     })
   );
@@ -257,8 +259,9 @@ function makeStars() {
     positions[i * 3] = r * s * Math.cos(a);
     positions[i * 3 + 1] = r * u;
     positions[i * 3 + 2] = r * s * Math.sin(a);
+    // Near-white stars, barely tinted — the dark brand backdrop does the work.
     const warm = Math.random();
-    tint.setHSL(0.62 + warm * 0.18, 0.35, 0.62 + Math.random() * 0.3);
+    tint.setHSL(0.66 + warm * 0.12, 0.12, 0.62 + Math.random() * 0.3);
     colors[i * 3] = tint.r; colors[i * 3 + 1] = tint.g; colors[i * 3 + 2] = tint.b;
   }
   const geo = new THREE.BufferGeometry();
@@ -266,7 +269,7 @@ function makeStars() {
   geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
   const mat = new THREE.PointsMaterial({
     size: 1.1, sizeAttenuation: true, vertexColors: true,
-    transparent: true, opacity: 0.9, depthWrite: false,
+    transparent: true, opacity: 0.75, depthWrite: false,
   });
   return new THREE.Points(geo, mat);
 }

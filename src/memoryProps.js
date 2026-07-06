@@ -8,9 +8,11 @@ export function makeBeamTexture() {
   const c = document.createElement("canvas");
   c.width = 8; c.height = 128;
   const ctx = c.getContext("2d");
+  // Neutral white gradient — each beam's material color supplies the hue
+  // (signal teal for search hits, brand gold for the console/confirm beams).
   const g = ctx.createLinearGradient(0, 0, 0, 128);
-  g.addColorStop(0, "rgba(255,210,122,0)");
-  g.addColorStop(1, "rgba(255,210,122,0.9)");
+  g.addColorStop(0, "rgba(255,255,255,0)");
+  g.addColorStop(1, "rgba(255,255,255,0.9)");
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, 8, 128);
   const t = new THREE.CanvasTexture(c);
@@ -22,7 +24,7 @@ export function makeBeamTexture() {
 export function makeIceBlock() {
   const geo = new THREE.IcosahedronGeometry(3.4, 0);
   const mat = new THREE.MeshPhysicalMaterial({
-    color: 0xbfe9ff,
+    color: 0xc7c1f2,
     metalness: 0,
     roughness: 0.06,
     transmission: 0.5,
@@ -30,7 +32,7 @@ export function makeIceBlock() {
     ior: 1.3,
     transparent: true,
     opacity: 0.62,
-    emissive: 0x0a2230,
+    emissive: 0x1a1b3e,
     emissiveIntensity: 0.35,
     flatShading: true,
   });
@@ -45,7 +47,7 @@ export function makeIdSprite(id) {
   const ctx = c.getContext("2d");
   ctx.font = "bold 28px ui-monospace, monospace";
   ctx.textBaseline = "middle";
-  ctx.shadowColor = "rgba(111,227,255,0.9)";
+  ctx.shadowColor = "rgba(0,229,196,0.85)";
   ctx.shadowBlur = 14;
 
   const key = "Entire-Checkpoint: ";
@@ -53,9 +55,9 @@ export function makeIdSprite(id) {
   const idW = ctx.measureText(id).width;
   let x = (c.width - (keyW + idW)) / 2;       // center the whole trailer
   ctx.textAlign = "left";
-  ctx.fillStyle = "#8fc4dc";                    // dim trailer key
+  ctx.fillStyle = "#8b7fe8";                    // dim trailer key (purple-bright)
   ctx.fillText(key, x, 34);
-  ctx.fillStyle = "#dff3ff";                    // bright hash
+  ctx.fillStyle = "#f0eef8";                    // bright hash (text-primary)
   ctx.fillText(id, x + keyW, 34);
 
   const tex = new THREE.CanvasTexture(c);

@@ -11,16 +11,14 @@ function mix(c1, c2, t) {
   ];
 }
 
-// A dreamy lavender ocean world with a few GOLD islands. These are rendered as
-// real metal (high metalness, low roughness) so they shimmer — the albedo here
-// is gold's warm reflectance tint, richer/more saturated than a painted yellow.
+// A smooth brand-purple orb, per the brand-kit splash: the whole surface stays
+// in the purple family and land reads as a slightly brighter tonal patch, not a
+// contrasting continent. The landing island is marked by the pin + teal hover
+// outline, so it doesn't need its own loud color.
 // [height, rgb].
 const LAND_STOPS = [
-  [0.00, [214, 158, 58]],  // deep gold shore
-  [0.30, [236, 180, 70]],  // gold
-  [0.60, [248, 200, 96]],  // bright gold
-  [0.85, [255, 222, 140]], // pale gold highland
-  [1.00, [255, 240, 205]], // cream frost cap
+  [0.00, [83, 74, 183]],   // shore — purple-dim (#534AB7)
+  [1.00, [104, 93, 206]],  // gentle highland, barely brighter than the sea
 ];
 
 function rampLand(t) {
@@ -35,9 +33,9 @@ function rampLand(t) {
   return LAND_STOPS[LAND_STOPS.length - 1][1];
 }
 
-const DEEP = [64, 46, 130];      // deep saturated lavender
-const SHALLOW = [112, 92, 178];   // mid lilac shallows
-const SNOW = [232, 224, 244];     // cream-lilac frost
+const DEEP = [26, 27, 62];        // deep navy-purple (--color-surface-raised)
+const SHALLOW = [83, 74, 183];    // purple-dim shallows (--color-purple-dim)
+const SNOW = [240, 238, 248];     // frost (--color-text-primary)
 
 // Shared landform constants so the texture bake and the elevation sampler below
 // agree on exactly where land is.
@@ -145,32 +143,31 @@ export function generatePlanetTextures({
       // Gentle low-freq variation to keep the sea from looking flat.
       const tide = fbm2(sx * 1.6 + 11, sy * 1.6, sz * 1.6 - 7) * 0.5 + 0.5;
 
-      // Soft polar frost; subtle so it reads as haze, not a hard cap.
-      const iceEdge = 0.78;
-      const ice = Math.max(0, (latAbs - iceEdge) / (1 - iceEdge)) * 0.7;
+      // Soft polar frost; very subtle so the orb stays a smooth purple.
+      const iceEdge = 0.82;
+      const ice = Math.max(0, (latAbs - iceEdge) / (1 - iceEdge)) * 0.35;
 
       let r, g, b, elev, roughness, metalness;
 
       if (h < seaLevel) {
-        // Lavender sea, gently depth-graded; smooth for a soft specular sheen.
+        // Purple sea, gently depth-graded; low contrast so the orb stays smooth.
         const depth = h / seaLevel; // 0 deep .. 1 coast
-        const col = mix(DEEP, SHALLOW, Math.pow(depth, 1.2) * (0.85 + tide * 0.3));
+        const col = mix(DEEP, SHALLOW, Math.pow(depth, 1.2) * (0.92 + tide * 0.12));
         r = col[0]; g = col[1]; b = col[2];
         elev = 0.45;
-        roughness = lerp(0.55, 0.8, depth); // matte → no white env sheen
+        roughness = 0.8; // uniform matte → no shifting specular patches
         metalness = 0.0; // water is not metal
       } else {
-        // Gold island, rendered as polished metal so it shimmers in the light.
+        // Land: a soft, slightly brighter purple patch — matte, in-family with
+        // the sea so the orb reads as one smooth brand-purple sphere.
         const t = (h - seaLevel) / (1 - seaLevel); // 0 coast .. 1 peak
         let col = rampLand(t);
-        const coast = Math.min(1, t / 0.12); // fade in over the first sliver
+        const coast = Math.min(1, t / 0.18); // wide fade → soft tonal coastline
         col = mix([SHALLOW[0], SHALLOW[1], SHALLOW[2]], col, coast);
         r = col[0]; g = col[1]; b = col[2];
-        elev = 0.5 + t * 0.4;
-        // Low roughness + a little micro-variation = bright, shifting glints.
-        roughness = lerp(0.34, 0.18, t) + (tide - 0.5) * 0.08;
-        roughness = Math.max(0.1, Math.min(0.6, roughness));
-        metalness = 0.92 * coast; // misty shoreline eases out of full metal
+        elev = 0.5 + t * 0.2;
+        roughness = 0.8; // flat and matte, no glints
+        metalness = 0.0;
       }
 
       // Soft frost haze near the poles (matte, non-metallic).

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 // Radial-gradient sprite used as the attention halo under each debris item.
-function makeHaloTexture(color = "#6fe3ff") {
+function makeHaloTexture(color = "#00e5c4") {
   const s = 128;
   const c = document.createElement("canvas");
   c.width = c.height = s;
@@ -28,7 +28,7 @@ function buildHelmet() {
   const g = new THREE.Group();
   const glass = new THREE.Mesh(
     new THREE.SphereGeometry(0.06, 24, 24),
-    new THREE.MeshStandardMaterial({ color: 0x223344, metalness: 0.3, roughness: 0.15 })
+    new THREE.MeshStandardMaterial({ color: 0x1a1b3e, metalness: 0.3, roughness: 0.15 })
   );
   const ring = new THREE.Mesh(
     new THREE.TorusGeometry(0.06, 0.015, 12, 24),
@@ -65,7 +65,7 @@ function buildPanel() {
   const screen = new THREE.Mesh(
     new THREE.PlaneGeometry(0.09, 0.05),
     new THREE.MeshStandardMaterial({
-      color: 0x0c2030, emissive: 0x123a4a, emissiveIntensity: 0.8, roughness: 0.3,
+      color: 0x080910, emissive: 0x0e5a4e, emissiveIntensity: 0.8, roughness: 0.3,
     })
   );
   screen.rotation.x = -Math.PI / 2;
@@ -83,7 +83,7 @@ function buildBeacon() {
   const light = new THREE.Mesh(
     new THREE.SphereGeometry(0.025, 16, 16),
     new THREE.MeshStandardMaterial({
-      color: 0xffb86b, emissive: 0xffb86b, emissiveIntensity: 1.4,
+      color: 0xf5c440, emissive: 0xf5c440, emissiveIntensity: 1.4,
     })
   );
   light.position.y = 0.07;

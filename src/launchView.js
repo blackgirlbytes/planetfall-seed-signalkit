@@ -35,15 +35,15 @@ const LIFT_DUR = 9;          // seconds of liftoff before the win screen
 const ANSWER_KEYS = ["A", "B", "C"];
 
 // Sky palette — calm/panic as in L1/L2, plus the space we lift into.
-const SKY_CALM  = new THREE.Color(0x2a2350);
+const SKY_CALM  = new THREE.Color(0x1e204e);
 const SKY_PANIC = new THREE.Color(0x6e0f16);
 const FOG_PANIC = new THREE.Color(0x4a0a0e);
-const DOME_CALM = new THREE.Color(0x3a3168);
+const DOME_CALM = new THREE.Color(0x2b2d6e);
 const DOME_PANIC = new THREE.Color(0x7a141c);
 const SUN_CALM  = new THREE.Color(0xfff1dc);
 const SUN_PANIC = new THREE.Color(0xff5a3c);
-const SKY_SPACE = new THREE.Color(0x040310);
-const DOME_SPACE = new THREE.Color(0x070518);
+const SKY_SPACE = new THREE.Color(0x080910);
+const DOME_SPACE = new THREE.Color(0x0d0e1f);
 
 // Where the ship sits — the cockpit looks out over the island from here.
 // Eye height node-verified: at 19 all five upgrades clear the dunes.
@@ -184,11 +184,11 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   );
 
   // ---------- lighting ----------
-  scene.add(new THREE.HemisphereLight(0xcdbcff, 0x3a2f5e, 0.7));
+  scene.add(new THREE.HemisphereLight(0xcdbcff, 0x2b2d6e, 0.7));
   const sun = new THREE.DirectionalLight(SUN_CALM, 1.5);
   sun.position.set(60, 90, 40);
   scene.add(sun);
-  scene.add(new THREE.AmbientLight(0x6a5a92, 0.3));
+  scene.add(new THREE.AmbientLight(0x534ab7, 0.3));
 
   const dome = new THREE.Mesh(
     new THREE.SphereGeometry(1100, 32, 16),
@@ -217,7 +217,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
     const beam = new THREE.Mesh(
       new THREE.CylinderGeometry(0.7, 0.7, 70, 12, 1, true),
       new THREE.MeshBasicMaterial({
-        map: beamTex, color: 0xffd27a, transparent: true, opacity: 0,
+        map: beamTex, color: 0xf5c440, transparent: true, opacity: 0,
         blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
         fog: false,
       })
@@ -242,14 +242,14 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   const baseRotX = camera.rotation.x;
   const baseRotY = camera.rotation.y;
 
-  const HULL = new THREE.MeshStandardMaterial({ color: 0x141826, metalness: 0.55, roughness: 0.5 });
+  const HULL = new THREE.MeshStandardMaterial({ color: 0x12132a, metalness: 0.55, roughness: 0.5 });
   const cockpit = new THREE.Group();
   const dash = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.5, 0.8), HULL);
   dash.position.set(0, -1.06, -1.55);
   dash.rotation.x = 0.22;
   const dashGlow = new THREE.Mesh(
     new THREE.BoxGeometry(3.0, 0.05, 0.05),
-    new THREE.MeshBasicMaterial({ color: 0x6fe3ff, transparent: true, opacity: 0.85 })
+    new THREE.MeshBasicMaterial({ color: 0x00e5c4, transparent: true, opacity: 0.85 })
   );
   dashGlow.position.set(0, -0.82, -1.42);
   const header = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.42, 0.12), HULL);
@@ -262,18 +262,18 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   pillarR.rotation.z = -0.1;
   cockpit.add(dash, dashGlow, header, pillarL, pillarR);
   camera.add(cockpit);
-  const cabinLight = new THREE.PointLight(0x6fe3ff, 1.4, 7, 2);
+  const cabinLight = new THREE.PointLight(0x00e5c4, 1.4, 7, 2);
   cabinLight.position.set(0, 0.2, -0.6);
   camera.add(cabinLight);
 
-  // Fireworks for the climb out — gold and lavender bursts the island sends
+  // Fireworks for the climb out — gold and purple bursts the island sends
   // up past the window. A small recycled pool of Points clouds.
   const bursts = Array.from({ length: 6 }, () => {
     const n = 70;
     const geo = new THREE.BufferGeometry();
     geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(n * 3), 3));
     const mat = new THREE.PointsMaterial({
-      color: 0xffd27a, size: 1.7, transparent: true, opacity: 0,
+      color: 0xf5c440, size: 1.7, transparent: true, opacity: 0,
       blending: THREE.AdditiveBlending, depthWrite: false, fog: false,
     });
     const pts = new THREE.Points(geo, mat);
@@ -284,7 +284,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   function fireBurst(b) {
     b.active = true;
     b.t = 0;
-    b.pts.material.color.setHex(Math.random() < 0.55 ? 0xffd27a : 0xcdbcff);
+    b.pts.material.color.setHex(Math.random() < 0.55 ? 0xf5c440 : 0x8b7fe8);
     // Scatter around / below the window so they whoosh past as the ship climbs.
     const cx = rig.position.x + (Math.random() - 0.5) * 140;
     const cy = rig.position.y - 8 + (Math.random() - 0.5) * 60;
@@ -326,7 +326,7 @@ export function createLaunchView(renderer, { onExit, onNewGame } = {}) {
   }
   starGeo.setAttribute("position", new THREE.BufferAttribute(starPts, 3));
   const starMat = new THREE.PointsMaterial({
-    color: 0xdfe9ff, size: 2.2, transparent: true, opacity: 0,
+    color: 0xf0eef8, size: 2.2, transparent: true, opacity: 0,
     blending: THREE.AdditiveBlending, depthWrite: false, fog: false,
     sizeAttenuation: true,
   });

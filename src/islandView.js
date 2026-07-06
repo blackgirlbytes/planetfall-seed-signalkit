@@ -55,10 +55,10 @@ const FALL_RAMP = 1.4;       // top speed = base * (1 + FALL_RAMP) near the end
 function lerp(a, b, t) { return a + (b - a) * t; }
 
 // Sky panic palette — the whole world reddens as the clock runs out.
-const SKY_CALM  = new THREE.Color(0x2a2350);
+const SKY_CALM  = new THREE.Color(0x1e204e);
 const SKY_PANIC = new THREE.Color(0x6e0f16);
 const FOG_PANIC = new THREE.Color(0x4a0a0e);
-const DOME_CALM = new THREE.Color(0x3a3168);
+const DOME_CALM = new THREE.Color(0x2b2d6e);
 const DOME_PANIC = new THREE.Color(0x7a141c);
 const SUN_CALM  = new THREE.Color(0xfff1dc);
 const SUN_PANIC = new THREE.Color(0xff5a3c);
@@ -131,12 +131,12 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
   camera.lookAt(0, 22, 0);
 
   // ---------- lighting ----------
-  scene.add(new THREE.HemisphereLight(0xcdbcff, 0x3a2f5e, 0.7));
+  scene.add(new THREE.HemisphereLight(0xcdbcff, 0x2b2d6e, 0.7));
   const sun = new THREE.DirectionalLight(0xfff1dc, 1.6);
   sun.position.set(40, 70, 60);
   scene.add(sun);
-  scene.add(new THREE.AmbientLight(0x6a5a92, 0.35));
-  const fill = new THREE.DirectionalLight(0x88c0ff, 0.5);
+  scene.add(new THREE.AmbientLight(0x534ab7, 0.35));
+  const fill = new THREE.DirectionalLight(0x8b7fe8, 0.5);
   fill.position.set(-30, 20, 40);
   scene.add(fill);
 
@@ -552,7 +552,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     const geo = new THREE.CylinderGeometry(0.18, 0.18, len, 8);
     geo.translate(0, len / 2, 0);
     const mat = new THREE.MeshBasicMaterial({
-      color: 0x9bf0ff, transparent: true, opacity: 0.9,
+      color: 0x00e5c4, transparent: true, opacity: 0.9,
       blending: THREE.AdditiveBlending, depthWrite: false, fog: false,
     });
     const bolt = new THREE.Mesh(geo, mat);
@@ -600,7 +600,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     // while you bank it — NO ice yet. The rain keeps falling around you (records
     // you can't grab while your hands are on the keyboard slip past). It only
     // freezes into ice once you `git commit` it (see advanceBank).
-    spawnSpark(recordGroup.position.clone(), 0xffd27a);
+    spawnSpark(recordGroup.position.clone(), 0xf5c440);
     sfx.recover();
     if (!bankLessonComplete) pauseForBankLesson();
     else openTerminal();
@@ -613,7 +613,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     ice.scale.setScalar(1.5);
     fallGroup.add(ice);
     bankIce = ice;
-    spawnSpark(bankTarget.position.clone(), 0xbfe9ff);
+    spawnSpark(bankTarget.position.clone(), 0xc7c1f2);
   }
   function clearBankPiece() {
     // The captured record and the ice that froze it are permanently retired here
@@ -749,7 +749,7 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
     updateTally();
 
     // shatter the ice + dismiss the banked record with a little sparkle
-    if (bankTarget) spawnSpark(bankTarget.position.clone(), 0x8fe3ff);
+    if (bankTarget) spawnSpark(bankTarget.position.clone(), 0x00e5c4);
     sfx.checkpoint();
     clearBankPiece();
     banking = false;
@@ -1244,8 +1244,8 @@ export function createIslandView(renderer, { onExit, onComplete, onNext, onNewGa
 // The salvage cannon: a swivel base + a barrel that points down its local +Z.
 function buildCannon() {
   const g = new THREE.Group();
-  const body = new THREE.MeshStandardMaterial({ color: 0x3a4049, metalness: 0.8, roughness: 0.4, flatShading: true });
-  const accent = new THREE.MeshStandardMaterial({ color: 0xffb86b, emissive: 0x6a4310, emissiveIntensity: 0.6, metalness: 0.9, roughness: 0.3 });
+  const body = new THREE.MeshStandardMaterial({ color: 0x30334c, metalness: 0.8, roughness: 0.4, flatShading: true });
+  const accent = new THREE.MeshStandardMaterial({ color: 0x8b7fe8, emissive: 0x342c86, emissiveIntensity: 0.6, metalness: 0.9, roughness: 0.3 });
 
   const base = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 3.2, 2, 18), body);
   g.add(base);

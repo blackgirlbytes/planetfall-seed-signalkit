@@ -20,14 +20,14 @@ export function createOverhead(scene, terrain, playerCamera) {
   const marker = new THREE.Group();
   const arrow = new THREE.Mesh(
     new THREE.ConeGeometry(2.0, 5.5, 4),
-    new THREE.MeshBasicMaterial({ color: 0xffd27a, fog: false })
+    new THREE.MeshBasicMaterial({ color: 0xf5c440, fog: false })
   );
   arrow.rotation.x = Math.PI / 2;          // cone +Y → +Z (points "forward")
   arrow.position.y = 0.5;
   const ring = new THREE.Mesh(
     new THREE.RingGeometry(3.6, 4.4, 28),
     new THREE.MeshBasicMaterial({
-      color: 0xffd27a, transparent: true, opacity: 0.55,
+      color: 0xf5c440, transparent: true, opacity: 0.55,
       side: THREE.DoubleSide, fog: false,
     })
   );

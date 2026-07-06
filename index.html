@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planetfall</title>
     <link rel="icon" type="image/svg+xml" href="/planetfall-favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    />
+    <link rel="stylesheet" href="/src/theme.css" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
@@ -12,20 +19,29 @@
 
     <div id="ui">
       <header id="hud">
-        <div class="hud-title">PLANETFALL</div>
+        <div class="hud-title">PLANET<span class="hud-title-accent">FALL</span></div>
       </header>
 
       <div id="hint">Drag to orbit · Scroll to zoom · Click the pin to land</div>
 
       <!-- Title screen — the arcade boot menu over the orbit view -->
       <div id="title-screen" class="hidden">
-        <div class="ts-logo">PLANETFALL</div>
+        <span class="ts-corner ts-corner-tl" aria-hidden="true"></span>
+        <span class="ts-corner ts-corner-tr" aria-hidden="true"></span>
+        <span class="ts-corner ts-corner-bl" aria-hidden="true"></span>
+        <span class="ts-corner ts-corner-br" aria-hidden="true"></span>
+
+        <div class="ts-eyebrow">ENTIRE.IO PRESENTS</div>
+        <div class="ts-logo">PLANET<span class="ts-logo-accent">FALL</span></div>
         <div class="ts-tag">THE REBELLION IS WAITING</div>
+        <div class="ts-brand-line"><strong>WAD BERLIN 2025</strong> · ARCADE AREA · BOOTH ENTIRE.IO</div>
 
         <div id="ts-main" class="ts-menu">
-          <button class="ts-item" type="button" data-action="start">START GAME</button>
-          <button class="ts-item" type="button" data-action="leaderboard">LEADERBOARD</button>
-          <button class="ts-item" type="button" data-action="options">OPTIONS</button>
+          <div class="ts-cta-row">
+            <button class="ts-item ts-cta-primary" type="button" data-action="start">▶ START MISSION</button>
+            <button class="ts-item ts-cta-ghost" type="button" data-action="leaderboard">LEADERBOARD</button>
+          </div>
+          <button class="ts-item ts-tertiary" type="button" data-action="options">OPTIONS</button>
         </div>
 
         <div id="ts-options" class="ts-menu hidden">
@@ -80,6 +96,10 @@
             <div id="ts-story-text"></div>
             <div class="ts-story-cue"><span class="bf-key">Space</span> <span id="ts-story-next">to continue</span></div>
           </div>
+        </div>
+
+        <div class="ts-scanline" aria-hidden="true">
+          <span class="ts-scanline-text">SIGNAL DETECTED · ENTIRE.IO NETWORK · WAD BERLIN</span>
         </div>
       </div>
 

@@ -2,11 +2,11 @@ import * as THREE from "three";
 import { makeNoise3D, makeFbm } from "./noise.js";
 
 // A walkable island: a displaced plane with a radial falloff so the land rises
-// out of a lavender sea and tapers back into it at the edges. Palette matches
-// the planet — gold highlands, pale-gold shore, lavender shallows.
+// out of a brand-purple sea and tapers back into it at the edges. Palette
+// matches the planet — gold highlands, pale-gold shore, purple shallows.
 
 // Colors as 0..1 rgb triples (vertex colors are linear-ish; kept soft).
-const C_DEEP = [0.27, 0.21, 0.46];    // lavender lowland near water
+const C_DEEP = [0.17, 0.18, 0.43];    // navy-purple lowland (--color-purple-glow)
 const C_SHORE = [0.78, 0.66, 0.42];   // pale gold sand
 const C_GOLD = [0.86, 0.66, 0.27];    // gold midland
 const C_PEAK = [0.96, 0.86, 0.62];    // bright gold / cream highland
@@ -94,7 +94,7 @@ export function createTerrain({
       Math.round((z + half) / step) * n + Math.round((x + half) / step)
     ];
     pos.setY(v, y);
-    // Color by height above sea; underwater fringe stays lavender.
+    // Color by height above sea; underwater fringe stays navy-purple.
     const t = THREE.MathUtils.clamp(y / maxHeight + 0.18, 0, 1);
     const c = ramp(t);
     colors[v * 3] = c[0]; colors[v * 3 + 1] = c[1]; colors[v * 3 + 2] = c[2];
@@ -117,7 +117,7 @@ export function createTerrain({
   const water = new THREE.Mesh(
     new THREE.PlaneGeometry(size * 4, size * 4),
     new THREE.MeshStandardMaterial({
-      color: 0x4a3a86,        // lavender sea, matching the planet's DEEP tone
+      color: 0x534ab7,        // brand purple sea, matching the planet's shallows
       transparent: true,
       opacity: 0.86,
       roughness: 0.25,

@@ -1,7 +1,8 @@
 import * as THREE from "three";
 
-// Procedural radial band texture for the ring: cream-gold and pale-lavender
-// bands with varying opacity and a couple of clear gaps (à la Cassini).
+// Procedural radial texture for the ring, matching the brand-kit splash: one
+// faint translucent purple band with a single thin brighter line — quiet and
+// flat, not a busy Cassini stack.
 function makeRingTexture() {
   const w = 1024, h = 2;
   const c = document.createElement("canvas");
@@ -10,40 +11,30 @@ function makeRingTexture() {
   const img = ctx.createImageData(w, h);
   const d = img.data;
 
-  const GOLD = [236, 222, 176];
-  const LILAC = [202, 190, 226];
+  const FILL = [107, 95, 212];    // brand purple (#6B5FD4), soft fill
+  const LINE = [139, 127, 232];   // purple-bright (#8B7FE8), thin edge line
 
   for (let x = 0; x < w; x++) {
     const u = x / w; // 0 inner .. 1 outer
 
-    // Layered bands.
-    let a =
-      0.55 +
-      0.25 * Math.sin(u * 90) +
-      0.15 * Math.sin(u * 230 + 1.3) +
-      0.12 * Math.sin(u * 37 + 0.6);
-    a = Math.max(0, Math.min(1, a));
+    // Soft fill that eases in and out across the band.
+    const fill = 0.14 * Math.sin(Math.PI * Math.min(1, Math.max(0, u))) ** 0.8;
 
-    // Clear gaps (divisions).
-    const gap = (center, width) =>
-      Math.max(0, 1 - Math.exp(-((u - center) ** 2) / (2 * width * width)));
-    a *= gap(0.42, 0.012);
-    a *= gap(0.68, 0.018);
+    // One thin crisp line near the outer edge (the mockup's ellipse stroke).
+    const line = 0.4 * Math.exp(-((u - 0.82) ** 2) / (2 * 0.008 ** 2));
 
-    // Fade the very inner and outer edges to nothing.
-    a *= Math.min(1, u / 0.06) * Math.min(1, (1 - u) / 0.12);
-
-    const tint = 0.5 + 0.5 * Math.sin(u * 60 + 2.0);
+    const a = Math.min(1, fill + line);
+    const k = line / (fill + line + 1e-6); // blend toward LINE where the line is
     const col = [
-      GOLD[0] * (1 - tint) + LILAC[0] * tint,
-      GOLD[1] * (1 - tint) + LILAC[1] * tint,
-      GOLD[2] * (1 - tint) + LILAC[2] * tint,
+      FILL[0] * (1 - k) + LINE[0] * k,
+      FILL[1] * (1 - k) + LINE[1] * k,
+      FILL[2] * (1 - k) + LINE[2] * k,
     ];
 
     for (let y = 0; y < h; y++) {
       const i = (y * w + x) * 4;
       d[i] = col[0]; d[i + 1] = col[1]; d[i + 2] = col[2];
-      d[i + 3] = a * 235;
+      d[i + 3] = a * 255;
     }
   }
   ctx.putImageData(img, 0, 0);
@@ -59,7 +50,7 @@ function makeRingTexture() {
  */
 export function makeRing(planetRadius, {
   inner = planetRadius * 1.35,
-  outer = planetRadius * 2.25,
+  outer = planetRadius * 1.95,
 } = {}) {
   const geo = new THREE.RingGeometry(inner, outer, 256, 1);
 

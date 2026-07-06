@@ -28,10 +28,10 @@ const PANIC_TIME = 35;       // the SKY starts shifting toward panic-red under t
 const SPRITE_DIST = 18;      // walk this close to a dark block to read its id
 
 // Sky panic palette — same island, same dread as Level 1's clock.
-const SKY_CALM  = new THREE.Color(0x2a2350);
+const SKY_CALM  = new THREE.Color(0x1e204e);
 const SKY_PANIC = new THREE.Color(0x6e0f16);
 const FOG_PANIC = new THREE.Color(0x4a0a0e);
-const DOME_CALM = new THREE.Color(0x3a3168);
+const DOME_CALM = new THREE.Color(0x2b2d6e);
 const DOME_PANIC = new THREE.Color(0x7a141c);
 const SUN_CALM  = new THREE.Color(0xfff1dc);
 const SUN_PANIC = new THREE.Color(0xff5a3c);
@@ -102,13 +102,13 @@ function makeConsole() {
   const g = new THREE.Group();
   const pedestal = new THREE.Mesh(
     new THREE.BoxGeometry(2.6, 4.6, 1.6),
-    new THREE.MeshStandardMaterial({ color: 0x1c2230, metalness: 0.6, roughness: 0.35 })
+    new THREE.MeshStandardMaterial({ color: 0x1a1b3e, metalness: 0.6, roughness: 0.35 })
   );
   pedestal.position.y = 2.3;
   const screen = new THREE.Mesh(
     new THREE.PlaneGeometry(2.1, 1.3),
     new THREE.MeshStandardMaterial({
-      color: 0x0c2030, emissive: 0x2a8aa6, emissiveIntensity: 1.4, roughness: 0.3,
+      color: 0x080910, emissive: 0x00b39a, emissiveIntensity: 1.4, roughness: 0.3,
     })
   );
   screen.position.set(0, 4.0, 0.82);
@@ -120,7 +120,7 @@ function makeConsole() {
 export function createArchiveView(renderer, { onExit, onNewGame } = {}) {
   const canvas = renderer.domElement;
 
-  // ---------- scene & sky (Level 1's calm lavender, healed) ----------
+  // ---------- scene & sky (Level 1's calm navy-purple, healed) ----------
   const scene = new THREE.Scene();
   scene.background = SKY_CALM.clone();
   scene.fog = new THREE.Fog(SKY_CALM.clone(), 90, 320);
@@ -130,11 +130,11 @@ export function createArchiveView(renderer, { onExit, onNewGame } = {}) {
   );
 
   // ---------- lighting ----------
-  scene.add(new THREE.HemisphereLight(0xcdbcff, 0x3a2f5e, 0.7));
+  scene.add(new THREE.HemisphereLight(0xcdbcff, 0x2b2d6e, 0.7));
   const sun = new THREE.DirectionalLight(SUN_CALM, 1.5);
   sun.position.set(60, 90, 40);
   scene.add(sun);
-  scene.add(new THREE.AmbientLight(0x6a5a92, 0.3));
+  scene.add(new THREE.AmbientLight(0x534ab7, 0.3));
 
   const dome = new THREE.Mesh(
     new THREE.SphereGeometry(900, 32, 16),
@@ -182,7 +182,7 @@ export function createArchiveView(renderer, { onExit, onNewGame } = {}) {
     const beam = new THREE.Mesh(
       new THREE.CylinderGeometry(0.6, 0.6, 60, 12, 1, true),
       new THREE.MeshBasicMaterial({
-        map: beamTex, color: 0x6fe3ff, transparent: true, opacity: 0.5,
+        map: beamTex, color: 0x00e5c4, transparent: true, opacity: 0.5,
         blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
         fog: false,
       })
@@ -197,17 +197,17 @@ export function createArchiveView(renderer, { onExit, onNewGame } = {}) {
 
   function applyBlockVisuals(b) {
     if (b.grabbed) {
-      b.ice.material.emissive.setHex(0x8a5a16);   // transmitted — warm gold
+      b.ice.material.emissive.setHex(0x7a6220);   // transmitted — brand gold
       b.ice.material.emissiveIntensity = 1.2;
       b.beam.visible = false;
       b.sprite.visible = true;
     } else if (b.lit) {
-      b.ice.material.emissive.setHex(0x2a6c8a);   // found — checkpoint cyan
+      b.ice.material.emissive.setHex(0x007262);   // found — signal teal
       b.ice.material.emissiveIntensity = 1.5;
       b.beam.visible = true;
       b.sprite.visible = true;
     } else {
-      b.ice.material.emissive.setHex(0x0a2230);   // dark archive block
+      b.ice.material.emissive.setHex(0x1a1b3e);   // dark archive block
       b.ice.material.emissiveIntensity = 0.35;
       b.beam.visible = false;
     }
@@ -223,14 +223,14 @@ export function createArchiveView(renderer, { onExit, onNewGame } = {}) {
   const consoleBeam = new THREE.Mesh(
     new THREE.CylinderGeometry(0.6, 0.6, 60, 12, 1, true),
     new THREE.MeshBasicMaterial({
-      map: beamTex, color: 0xffd27a, transparent: true, opacity: 0.4,
+      map: beamTex, color: 0xf5c440, transparent: true, opacity: 0.4,
       blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
       fog: false,
     })
   );
   consoleBeam.position.y = 30;
   consoleAnchor.add(consoleBeam);
-  const consoleGlow = new THREE.PointLight(0xffd27a, 6, 30, 2);
+  const consoleGlow = new THREE.PointLight(0xf5c440, 6, 30, 2);
   consoleGlow.position.y = 5;
   consoleAnchor.add(consoleGlow);
   scene.add(consoleAnchor);

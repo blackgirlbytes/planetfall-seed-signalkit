@@ -3,7 +3,7 @@ import * as THREE from "three";
 // Fresnel limb-glow shell rendered on the back faces of a slightly larger
 // sphere, additively blended — reads as a thin atmosphere around the planet.
 export function makeAtmosphere(radius, {
-  color = new THREE.Color(0x5aa9ff),
+  color = new THREE.Color(0x6b5fd4),
   power = 3.2,
   intensity = 1.15,
 } = {}) {

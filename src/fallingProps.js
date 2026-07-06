@@ -9,7 +9,7 @@ const PART_IN_RING_SCALE = 1.35;
 
 function shellMaterial() {
   return new THREE.MeshStandardMaterial({
-    color: 0x171f27,
+    color: 0x12132a,
     metalness: 0.75,
     roughness: 0.42,
     flatShading: true,
@@ -18,8 +18,8 @@ function shellMaterial() {
 
 function brassMaterial() {
   return new THREE.MeshStandardMaterial({
-    color: 0xe0a838,
-    emissive: 0x6a4310,
+    color: 0xf5c440,
+    emissive: 0x7a5f14,
     emissiveIntensity: 0.5,
     metalness: 0.95,
     roughness: 0.28,
@@ -28,8 +28,8 @@ function brassMaterial() {
 
 function glassMaterial() {
   return new THREE.MeshStandardMaterial({
-    color: 0x7feaff,
-    emissive: 0x1ca7c7,
+    color: 0x66f0dc,
+    emissive: 0x00b39a,
     emissiveIntensity: 1.25,
     metalness: 0.1,
     roughness: 0.18,
@@ -55,10 +55,10 @@ function haloTexture() {
   cv.width = cv.height = size;
   const cx = cv.getContext("2d");
   const grd = cx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  grd.addColorStop(0.0, "rgba(255, 226, 158, 0.95)");
-  grd.addColorStop(0.35, "rgba(255, 198, 110, 0.45)");
-  grd.addColorStop(0.7, "rgba(255, 176, 80, 0.12)");
-  grd.addColorStop(1.0, "rgba(255, 176, 80, 0)");
+  grd.addColorStop(0.0, "rgba(255, 236, 170, 0.95)");
+  grd.addColorStop(0.35, "rgba(245, 196, 64, 0.45)");
+  grd.addColorStop(0.7, "rgba(245, 196, 64, 0.12)");
+  grd.addColorStop(1.0, "rgba(245, 196, 64, 0)");
   cx.fillStyle = grd;
   cx.fillRect(0, 0, size, size);
   _haloTexture = new THREE.CanvasTexture(cv);
@@ -68,7 +68,7 @@ function haloTexture() {
 function buildHalo() {
   const mat = new THREE.SpriteMaterial({
     map: haloTexture(),
-    color: 0xffd27a,
+    color: 0xf5c440,
     transparent: true,
     opacity: 0.85,
     depthWrite: false,
@@ -85,11 +85,11 @@ function partMaterials() {
     shell: shellMaterial(),
     brass: brassMaterial(),
     glass: glassMaterial(),
-    pale: new THREE.MeshStandardMaterial({ color: 0xdfe8ec, metalness: 0.25, roughness: 0.38 }),
-    dark: new THREE.MeshStandardMaterial({ color: 0x17202a, metalness: 0.55, roughness: 0.45 }),
-    red: new THREE.MeshStandardMaterial({ color: 0xff5a3c, emissive: 0x7a1410, emissiveIntensity: 0.45, roughness: 0.42 }),
-    green: new THREE.MeshStandardMaterial({ color: 0x7fb069, emissive: 0x1c4a2c, emissiveIntensity: 0.25, roughness: 0.5 }),
-    blue: new THREE.MeshStandardMaterial({ color: 0x5fb8ff, emissive: 0x0c4f7a, emissiveIntensity: 0.45, roughness: 0.32 }),
+    pale: new THREE.MeshStandardMaterial({ color: 0xf0eef8, metalness: 0.25, roughness: 0.38 }),
+    dark: new THREE.MeshStandardMaterial({ color: 0x12132a, metalness: 0.55, roughness: 0.45 }),
+    red: new THREE.MeshStandardMaterial({ color: 0xe24b4a, emissive: 0x7a1410, emissiveIntensity: 0.45, roughness: 0.42 }),
+    green: new THREE.MeshStandardMaterial({ color: 0x6ee7b7, emissive: 0x1c4a2c, emissiveIntensity: 0.25, roughness: 0.5 }),
+    blue: new THREE.MeshStandardMaterial({ color: 0x8b7fe8, emissive: 0x2b2d6e, emissiveIntensity: 0.45, roughness: 0.32 }),
   };
 }
 
@@ -155,7 +155,7 @@ function buildBulb(m) {
   const base = add(g, new THREE.CylinderGeometry(0.16, 0.16, 0.22, 18), m.dark);
   base.position.y = -0.36;
 
-  const glow = new THREE.PointLight(0x9af0ff, 1.4, 8, 2);
+  const glow = new THREE.PointLight(0x66f0dc, 1.4, 8, 2);
   glow.position.y = 0.18;
   g.add(glow);
   return g;
@@ -233,7 +233,7 @@ function buildBeacon(m) {
   const cap = add(g, new THREE.ConeGeometry(0.2, 0.24, 18), m.brass);
   cap.position.y = 0.42;
 
-  const glow = new THREE.PointLight(0x9af0ff, 1.8, 8, 2);
+  const glow = new THREE.PointLight(0x66f0dc, 1.8, 8, 2);
   glow.position.y = 0.16;
   g.add(glow);
   return g;
@@ -343,7 +343,7 @@ function buildRecordCore(recordType) {
   ring.rotation.y = Math.PI / 2;
   // A second, brighter rim sits just outside the spinning ring (added to the
   // non-spinning group so it always reads as a clean gold outline edge-on).
-  const rimMat = new THREE.MeshBasicMaterial({ color: 0xffd27a, transparent: true, opacity: 0.9, fog: false });
+  const rimMat = new THREE.MeshBasicMaterial({ color: 0xf5c440, transparent: true, opacity: 0.9, fog: false });
   const outerRim = add(g, new THREE.TorusGeometry(0.92, 0.03, 10, 40), rimMat);
   outerRim.rotation.y = Math.PI / 2;
 
@@ -351,7 +351,7 @@ function buildRecordCore(recordType) {
   const halo = buildHalo();
   g.add(halo);
 
-  const beacon = new THREE.PointLight(0x8fe3ff, 2.8, 18, 2);
+  const beacon = new THREE.PointLight(0x66f0dc, 2.8, 18, 2);
   beacon.position.y = 0.25;
   g.add(beacon);
 

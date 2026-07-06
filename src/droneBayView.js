@@ -95,25 +95,25 @@ const REPAIR_LESSONS = {
 };
 
 // Sky panic palette — same dread as Level 1's clock.
-const SKY_CALM  = new THREE.Color(0x2a2350);
+const SKY_CALM  = new THREE.Color(0x1a1b3e);
 const SKY_PANIC = new THREE.Color(0x6e0f16);
 const FOG_PANIC = new THREE.Color(0x4a0a0e);
-const DOME_CALM = new THREE.Color(0x3a3168);
+const DOME_CALM = new THREE.Color(0x2b2d6e);
 const DOME_PANIC = new THREE.Color(0x7a141c);
-const SUN_CALM  = new THREE.Color(0xfff1dc);
-const SUN_PANIC = new THREE.Color(0xff5a3c);
-const GOLD = 0xffde8c;
-const GOLD_TEXT = "#fff3cf";
+const SUN_CALM  = new THREE.Color(0xf0eef8);
+const SUN_PANIC = new THREE.Color(0xe24b4a);
+const ACCENT = 0x00e5c4;       // signal teal — active beams, highlights, status trim
+const ACCENT_TEXT = "#00e5c4";
 
-// A block's ice as its patience runs out: fresh lavender glass → amber → rose.
+// A block's ice as its patience runs out: fresh lavender glass → gold → red.
 const ICE_FRESH = new THREE.Color(0xd8ccff);
-const ICE_WARM_C = new THREE.Color(0xffc24a);
-const ICE_HOT_C = new THREE.Color(0xe45572);
-const ICE_MATCHED = 0x65f29a;
+const ICE_WARM_C = new THREE.Color(0xf5c440);
+const ICE_HOT_C = new THREE.Color(0xe24b4a);
+const ICE_MATCHED = 0x6ee7b7;
 const ICE_MATCHED_C = new THREE.Color(ICE_MATCHED);
-const DOT_COOL_C = new THREE.Color(0xf3efff);
-const DOT_WARM_C = new THREE.Color(0xffc24a);
-const DOT_HOT_C = new THREE.Color(0xe45572);
+const DOT_COOL_C = new THREE.Color(0xf0eef8);
+const DOT_WARM_C = new THREE.Color(0xf5c440);
+const DOT_HOT_C = new THREE.Color(0xe24b4a);
 
 // The five HERO systems — rich cards, fixed ids. Exported and FROZEN: Level 3
 // quizzes the player on this exact record (and uses sys.pos on its own island).
@@ -261,7 +261,7 @@ const SCORCH = () => new THREE.MeshStandardMaterial({ color: 0x3a3f4a, roughness
 function withWarnLight(g) {
   const bulb = new THREE.Mesh(
     new THREE.SphereGeometry(0.22, 10, 10),
-    new THREE.MeshStandardMaterial({ color: 0x401512, emissive: 0xff3b2e, emissiveIntensity: 1.6 })
+    new THREE.MeshStandardMaterial({ color: 0x401512, emissive: 0xe24b4a, emissiveIntensity: 1.6 })
   );
   bulb.position.y = g.userData.warnY ?? 3.2;
   g.add(bulb);
@@ -335,7 +335,7 @@ function buildPlasmaRing() {
   base.position.y = 0.35;
   const ring = new THREE.Mesh(
     new THREE.TorusGeometry(1.8, 0.3, 12, 36),
-    new THREE.MeshStandardMaterial({ color: 0x6b4a16, emissive: 0xffb86b, emissiveIntensity: 1.4, roughness: 0.4 })
+    new THREE.MeshStandardMaterial({ color: 0x0b4a40, emissive: 0x00e5c4, emissiveIntensity: 1.4, roughness: 0.4 })
   );
   ring.position.y = 3.4;
   g.add(base, ring);
@@ -363,7 +363,7 @@ function buildStarDome() {
   }));
   const orbit = new THREE.Mesh(
     new THREE.TorusGeometry(2.0, 0.05, 8, 40),
-    new THREE.MeshBasicMaterial({ color: 0xb9a7ff, transparent: true, opacity: 0.7 })
+    new THREE.MeshBasicMaterial({ color: 0x8b7fe8, transparent: true, opacity: 0.7 })
   );
   orbit.position.y = 3.6;
   orbit.rotation.x = Math.PI / 2.4;
@@ -375,13 +375,13 @@ function buildSignalSpire(beamTex) {
   const g = new THREE.Group();
   const spire = new THREE.Mesh(
     new THREE.ConeGeometry(0.5, 7.5, 8),
-    new THREE.MeshStandardMaterial({ color: 0x3a3150, metalness: 0.7, roughness: 0.3, emissive: 0x2e1f5e, emissiveIntensity: 0.8 })
+    new THREE.MeshStandardMaterial({ color: 0x2b2d6e, metalness: 0.7, roughness: 0.3, emissive: 0x2b2d6e, emissiveIntensity: 0.8 })
   );
   spire.position.y = 3.75;
   const beam = new THREE.Mesh(
     new THREE.CylinderGeometry(0.4, 0.4, 70, 10, 1, true),
     new THREE.MeshBasicMaterial({
-      map: beamTex, color: 0xc8b6ff, transparent: true, opacity: 0.55,
+      map: beamTex, color: 0x00e5c4, transparent: true, opacity: 0.55,
       blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false,
     })
   );
@@ -398,7 +398,7 @@ function buildGardenPod() {
   for (let i = 0; i < 5; i++) {
     const plant = new THREE.Mesh(
       new THREE.ConeGeometry(0.28, 0.9 + (i % 3) * 0.35, 6),
-      new THREE.MeshStandardMaterial({ color: 0x1d4a2c, emissive: 0x35d97a, emissiveIntensity: 0.7, roughness: 0.7 })
+      new THREE.MeshStandardMaterial({ color: 0x1d4a2c, emissive: 0x6ee7b7, emissiveIntensity: 0.7, roughness: 0.7 })
     );
     const a = (i / 5) * Math.PI * 2;
     plant.position.set(Math.cos(a) * 1.0, 1.0, Math.sin(a) * 1.0);
@@ -407,7 +407,7 @@ function buildGardenPod() {
   const domeGlass = new THREE.Mesh(
     new THREE.SphereGeometry(2.1, 18, 12, 0, Math.PI * 2, 0, Math.PI / 2),
     new THREE.MeshPhysicalMaterial({
-      color: 0xd8ffe9, metalness: 0, roughness: 0.05, transmission: 0.7,
+      color: 0xd9f9f2, metalness: 0, roughness: 0.05, transmission: 0.7,
       thickness: 1.2, transparent: true, opacity: 0.4,
     })
   );
@@ -420,12 +420,12 @@ function buildGravSkid() {
   const g = new THREE.Group();
   const pad = new THREE.Mesh(
     new THREE.CylinderGeometry(1.7, 1.9, 0.5, 12),
-    new THREE.MeshStandardMaterial({ color: 0x2c2840, metalness: 0.6, roughness: 0.35, emissive: 0x2e1f5e, emissiveIntensity: 0.7 })
+    new THREE.MeshStandardMaterial({ color: 0x1a1b3e, metalness: 0.6, roughness: 0.35, emissive: 0x2b2d6e, emissiveIntensity: 0.7 })
   );
   pad.position.y = 1.6;
   const glow = new THREE.Mesh(
     new THREE.TorusGeometry(1.5, 0.12, 8, 32),
-    new THREE.MeshBasicMaterial({ color: 0xb9a7ff, transparent: true, opacity: 0.65 })
+    new THREE.MeshBasicMaterial({ color: 0x8b7fe8, transparent: true, opacity: 0.65 })
   );
   glow.rotation.x = Math.PI / 2;
   glow.position.y = 0.5;
@@ -461,15 +461,15 @@ export const UPGRADE_BUILDERS = {
 // ====================================================================
 
 // ---------- canvas-texture text label ----------
-function makeLabelSprite(text, { color = "#dff1ff", weight = 700, px = 52 } = {}) {
+function makeLabelSprite(text, { color = "#f0eef8", weight = 700, px = 52 } = {}) {
   const pad = 24;
   const c = document.createElement("canvas");
   const ctx = c.getContext("2d");
-  ctx.font = `${weight} ${px}px "Segoe UI", system-ui, sans-serif`;
+  ctx.font = `${weight} ${px}px "Space Mono", "Courier New", monospace`;
   const w = Math.ceil(ctx.measureText(text).width) + pad * 2;
   const h = px + pad * 2;
   c.width = w; c.height = h;
-  ctx.font = `${weight} ${px}px "Segoe UI", system-ui, sans-serif`;
+  ctx.font = `${weight} ${px}px "Space Mono", "Courier New", monospace`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.shadowColor = "rgba(0,0,0,0.85)";
@@ -488,9 +488,9 @@ function makeBeltTexture() {
   const c = document.createElement("canvas");
   c.width = 128; c.height = 64;
   const ctx = c.getContext("2d");
-  ctx.fillStyle = "#10151f";
+  ctx.fillStyle = "#12132A";
   ctx.fillRect(0, 0, 128, 64);
-  ctx.strokeStyle = "rgba(185,167,255,0.5)";
+  ctx.strokeStyle = "rgba(139,127,232,0.5)";
   ctx.lineWidth = 9;
   for (let x = -64; x < 128; x += 48) {
     ctx.beginPath();
@@ -508,12 +508,12 @@ function buildSlate(upgradeModel) {
   const g = new THREE.Group();
   const slab = new THREE.Mesh(
     new THREE.BoxGeometry(3.3, 0.42, 3.3),
-    new THREE.MeshStandardMaterial({ color: 0x211b32, metalness: 0.6, roughness: 0.4, emissive: 0x25154f, emissiveIntensity: 0.5 })
+    new THREE.MeshStandardMaterial({ color: 0x1a1b3e, metalness: 0.6, roughness: 0.4, emissive: 0x2b2d6e, emissiveIntensity: 0.5 })
   );
   slab.position.y = 0.25;
   const rim = new THREE.Mesh(
     new THREE.BoxGeometry(3.6, 0.14, 3.6),
-    new THREE.MeshBasicMaterial({ color: 0xb9a7ff, transparent: true, opacity: 0.55 })
+    new THREE.MeshBasicMaterial({ color: 0x8b7fe8, transparent: true, opacity: 0.55 })
   );
   rim.position.y = 0.02;
   g.add(slab, rim);
@@ -566,13 +566,13 @@ function buildDrone() {
   craft.position.y = 2.6;                  // resting hover height above the pad
 
   const bodyMat = new THREE.MeshStandardMaterial({
-    color: 0x2d2842, metalness: 0.6, roughness: 0.3, emissive: 0x735ce0, emissiveIntensity: 1.0,
+    color: 0x1a1b3e, metalness: 0.6, roughness: 0.3, emissive: 0x6b5fd4, emissiveIntensity: 1.0,
   });
   const body = new THREE.Mesh(new THREE.OctahedronGeometry(0.9, 0), bodyMat);
   const halo = new THREE.Mesh(
     new THREE.TorusGeometry(1.25, 0.11, 8, 24),
     new THREE.MeshBasicMaterial({
-      color: GOLD, transparent: true, opacity: 0.96,
+      color: ACCENT, transparent: true, opacity: 0.96,
       blending: THREE.AdditiveBlending, depthWrite: false,
     })
   );
@@ -582,7 +582,7 @@ function buildDrone() {
   // hover underglow
   const glow = new THREE.Mesh(
     new THREE.PlaneGeometry(2.6, 2.6),
-    new THREE.MeshBasicMaterial({ color: 0xb9a7ff, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false })
+    new THREE.MeshBasicMaterial({ color: 0x8b7fe8, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false })
   );
   glow.rotation.x = -Math.PI / 2;
   glow.position.y = 0.05;
@@ -591,7 +591,7 @@ function buildDrone() {
   // landing pad
   const pad = new THREE.Mesh(
     new THREE.CylinderGeometry(1.2, 1.4, 0.3, 12),
-    new THREE.MeshStandardMaterial({ color: 0x191320, metalness: 0.5, roughness: 0.7 })
+    new THREE.MeshStandardMaterial({ color: 0x12132a, metalness: 0.5, roughness: 0.7 })
   );
   pad.position.y = 0.15;
   group.add(pad);
@@ -600,7 +600,7 @@ function buildDrone() {
   const ring = new THREE.Mesh(
     new THREE.TorusGeometry(1.7, 0.12, 8, 28),
     new THREE.MeshBasicMaterial({
-      color: GOLD, transparent: true, opacity: 0.92,
+      color: ACCENT, transparent: true, opacity: 0.92,
       blending: THREE.AdditiveBlending, depthWrite: false,
     })
   );
@@ -625,8 +625,8 @@ function buildDroneRack(homes) {
   const depth = Math.max(7.0, maxZ - minZ + 6.0);
 
   const deckMat = new THREE.MeshStandardMaterial({
-    color: 0x151126, metalness: 0.55, roughness: 0.68,
-    emissive: 0x25154f, emissiveIntensity: 0.45,
+    color: 0x12132a, metalness: 0.55, roughness: 0.68,
+    emissive: 0x2b2d6e, emissiveIntensity: 0.45,
   });
   const deck = new THREE.Mesh(new THREE.BoxGeometry(width, 0.32, depth), deckMat);
   deck.position.set(centerX, 0.08, centerZ);
@@ -635,8 +635,8 @@ function buildDroneRack(homes) {
   const rearWall = new THREE.Mesh(
     new THREE.BoxGeometry(width + 1.2, 1.3, 0.28),
     new THREE.MeshStandardMaterial({
-      color: 0x18132c, metalness: 0.45, roughness: 0.62,
-      emissive: 0x2a1856, emissiveIntensity: 0.55,
+      color: 0x1a1b3e, metalness: 0.45, roughness: 0.62,
+      emissive: 0x2b2d6e, emissiveIntensity: 0.55,
     })
   );
   rearWall.position.set(centerX, 0.82, minZ - 2.65);
@@ -644,7 +644,7 @@ function buildDroneRack(homes) {
 
   const rail = new THREE.Mesh(
     new THREE.BoxGeometry(width + 1.8, 0.16, 0.18),
-    new THREE.MeshBasicMaterial({ color: 0xb9a7ff, transparent: true, opacity: 0.62 })
+    new THREE.MeshBasicMaterial({ color: 0x8b7fe8, transparent: true, opacity: 0.62 })
   );
   rail.position.set(centerX, 1.62, minZ - 2.46);
   group.add(rail);
@@ -659,7 +659,7 @@ function buildDroneRack(homes) {
     const h = homes[i];
     const dockBase = new THREE.Mesh(
       new THREE.CylinderGeometry(1.55, 1.75, 0.18, 18),
-      new THREE.MeshStandardMaterial({ color: 0x0b1018, metalness: 0.5, roughness: 0.7 })
+      new THREE.MeshStandardMaterial({ color: 0x080910, metalness: 0.5, roughness: 0.7 })
     );
     dockBase.position.set(h.x, 0.22, h.z);
     group.add(dockBase);
@@ -667,7 +667,7 @@ function buildDroneRack(homes) {
     const dockRim = new THREE.Mesh(
       new THREE.TorusGeometry(1.85, 0.055, 8, 30),
       new THREE.MeshBasicMaterial({
-        color: GOLD, transparent: true, opacity: 0.7,
+        color: ACCENT, transparent: true, opacity: 0.7,
         blending: THREE.AdditiveBlending, depthWrite: false,
       })
     );
@@ -679,7 +679,7 @@ function buildDroneRack(homes) {
       laneXs.add(h.x);
       const lane = new THREE.Mesh(
         new THREE.BoxGeometry(0.12, 0.08, Math.max(2.8, depth - 2.6)),
-        new THREE.MeshBasicMaterial({ color: 0xb9a7ff, transparent: true, opacity: 0.12 })
+        new THREE.MeshBasicMaterial({ color: 0x8b7fe8, transparent: true, opacity: 0.12 })
       );
       lane.position.set(h.x, 0.38, centerZ);
       group.add(lane);
@@ -802,23 +802,23 @@ const PART_DATA = [
     prompt: "Landing markers went dark.", subagent: "Lights are stable after wiring a beacon strip." },
 ];
 
-const RING = { broken: GOLD, working: GOLD, target: GOLD, online: GOLD };
+const RING = { broken: ACCENT, working: ACCENT, target: ACCENT, online: ACCENT };
 
 // ---------- a little waiting pip on the dispatch board (a failure a subagent flies to) ----------
 function buildDispatchDot() {
   const g = new THREE.Group();
   const alarmRing = new THREE.Mesh(
     new THREE.TorusGeometry(0.78, 0.045, 6, 28),
-    new THREE.MeshBasicMaterial({ color: 0xf3efff, transparent: true, opacity: 0.24, blending: THREE.AdditiveBlending, depthWrite: false })
+    new THREE.MeshBasicMaterial({ color: 0xf0eef8, transparent: true, opacity: 0.24, blending: THREE.AdditiveBlending, depthWrite: false })
   );
   alarmRing.position.z = 0.02;
   g.add(alarmRing);
-  const coreMat = new THREE.MeshStandardMaterial({ color: 0xf3efff, emissive: 0xf3efff, emissiveIntensity: 0.9, roughness: 0.35 });
+  const coreMat = new THREE.MeshStandardMaterial({ color: 0xf0eef8, emissive: 0xf0eef8, emissiveIntensity: 0.9, roughness: 0.35 });
   const core = new THREE.Mesh(new THREE.SphereGeometry(0.34, 14, 14), coreMat);
   g.add(core);
   const halo = new THREE.Mesh(
     new THREE.CircleGeometry(0.62, 20),
-    new THREE.MeshBasicMaterial({ color: 0xf3efff, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending, depthWrite: false })
+    new THREE.MeshBasicMaterial({ color: 0xf0eef8, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending, depthWrite: false })
   );
   halo.position.z = -0.25;
   g.add(halo);
@@ -826,7 +826,7 @@ function buildDispatchDot() {
   for (let i = 0; i < 3; i++) {
     const tick = new THREE.Mesh(
       new THREE.BoxGeometry(0.08, 0.32 + i * 0.06, 0.04),
-      new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false })
+      new THREE.MeshBasicMaterial({ color: 0xf5c440, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false })
     );
     tick.position.set((i - 1) * 0.28, 0.92, 0.08);
     tick.visible = false;
@@ -842,16 +842,16 @@ function buildDispatchDot() {
 // ---------- a labeled slot on the ship hull (drag destination) ----------
 function buildShipSlot(data) {
   const group = new THREE.Group();
-  const frameMat = new THREE.MeshStandardMaterial({ color: 0x141a26, emissive: 0x000000, metalness: 0.5, roughness: 0.55, transparent: true, opacity: 0.92 });
+  const frameMat = new THREE.MeshStandardMaterial({ color: 0x12132a, emissive: 0x000000, metalness: 0.5, roughness: 0.55, transparent: true, opacity: 0.92 });
   const frame = new THREE.Mesh(new THREE.BoxGeometry(4.15, 3.3, 0.5), frameMat);
   group.add(frame);
   // a recessed back so an empty slot reads as a hole
-  const back = new THREE.Mesh(new THREE.BoxGeometry(3.35, 2.55, 0.26), new THREE.MeshStandardMaterial({ color: 0x0a0e16, roughness: 0.9 }));
+  const back = new THREE.Mesh(new THREE.BoxGeometry(3.35, 2.55, 0.26), new THREE.MeshStandardMaterial({ color: 0x080910, roughness: 0.9 }));
   back.position.z = -0.18;
   group.add(back);
   // glowing edge (status)
   const edgeMat = new THREE.MeshBasicMaterial({
-    color: GOLD,
+    color: ACCENT,
   });
   const edge = new THREE.Group();
   const edgeZ = 0.28;
@@ -871,7 +871,7 @@ function buildShipSlot(data) {
   const label = makeLabelSprite(`${data.icon} ${data.name}`, { px: 38 });
   label.position.y = 2.55;
   group.add(label);
-  const hint = makeLabelSprite("", { px: 34, color: "#f09aa8" });
+  const hint = makeLabelSprite("", { px: 34, color: "#f09392" });
   hint.position.y = -2.35; hint.visible = false;
   group.add(hint);
   const hit = new THREE.Mesh(new THREE.BoxGeometry(4.9, 4.0, 1.4), new THREE.MeshBasicMaterial({ visible: false }));
@@ -887,10 +887,10 @@ function makeTutorialGlowTexture() {
   c.width = 256; c.height = 256;
   const ctx = c.getContext("2d");
   const g = ctx.createRadialGradient(128, 128, 0, 128, 128, 126);
-  g.addColorStop(0, "rgba(255, 243, 207, 0.95)");
-  g.addColorStop(0.22, "rgba(255, 222, 140, 0.72)");
-  g.addColorStop(0.52, "rgba(255, 194, 74, 0.32)");
-  g.addColorStop(1, "rgba(255, 194, 74, 0)");
+  g.addColorStop(0, "rgba(214, 251, 244, 0.95)");
+  g.addColorStop(0.22, "rgba(122, 240, 220, 0.72)");
+  g.addColorStop(0.52, "rgba(0, 229, 196, 0.32)");
+  g.addColorStop(1, "rgba(0, 229, 196, 0)");
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, 256, 256);
   const tex = new THREE.CanvasTexture(c);
@@ -902,7 +902,7 @@ function makeTutorialGlowTexture() {
 function buildTutorialFocusGlow(texture) {
   const glow = new THREE.Sprite(new THREE.SpriteMaterial({
     map: texture,
-    color: GOLD,
+    color: ACCENT,
     transparent: true,
     opacity: 0,
     blending: THREE.AdditiveBlending,
@@ -932,8 +932,8 @@ function buildShipGridPanel() {
   const base = new THREE.Mesh(
     new THREE.BoxGeometry(panelW, panelH, 0.36),
     new THREE.MeshStandardMaterial({
-      color: 0x090712,
-      emissive: 0x130f28,
+      color: 0x080910,
+      emissive: 0x1a1b3e,
       emissiveIntensity: 0.18,
       metalness: 0.52,
       roughness: 0.72,
@@ -943,8 +943,8 @@ function buildShipGridPanel() {
   );
   group.add(base);
 
-  const borderMat = new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.42 });
-  const gridMat = new THREE.MeshBasicMaterial({ color: 0xd8ccff, transparent: true, opacity: 0.11 });
+  const borderMat = new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.42 });
+  const gridMat = new THREE.MeshBasicMaterial({ color: 0x2b2d6e, transparent: true, opacity: 0.45 });
   const z = 0.22;
 
   const addBar = (x, y, w, h, mat = borderMat) => {
@@ -970,7 +970,7 @@ function buildShipGridPanel() {
   const dispatchDividerX = slotRight + 0.55;
   addWorldBar(dispatchDividerX, 0, 0.12, panelH - 0.7, borderMat);
 
-  const boltMat = new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.5 });
+  const boltMat = new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.5 });
   for (const sx of [-1, 1]) {
     for (const sy of [-1, 1]) {
       const bolt = new THREE.Mesh(new THREE.CircleGeometry(0.16, 14), boltMat);
@@ -1000,7 +1000,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   scene.add(new THREE.AmbientLight(0x6a5a92, 0.35));
   const dome = new THREE.Mesh(new THREE.SphereGeometry(900, 32, 16), new THREE.MeshBasicMaterial({ color: DOME_CALM.clone(), side: THREE.BackSide, fog: false }));
   scene.add(dome);
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(240, 240), new THREE.MeshStandardMaterial({ color: 0x171420, metalness: 0.4, roughness: 0.85 }));
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(240, 240), new THREE.MeshStandardMaterial({ color: 0x12132a, metalness: 0.4, roughness: 0.85 }));
   floor.rotation.x = -Math.PI / 2; scene.add(floor);
 
   const beamTex = makeBeamTexture();
@@ -1016,9 +1016,9 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
 
   // ---------- conveyor belt ----------
   const beltTex = makeBeltTexture();
-  const belt = new THREE.Mesh(new THREE.BoxGeometry(54, 0.9, 6.4), new THREE.MeshStandardMaterial({ map: beltTex, color: 0x9180c8, metalness: 0.3, roughness: 0.6, emissive: 0x2a1f55, emissiveIntensity: 0.5 }));
+  const belt = new THREE.Mesh(new THREE.BoxGeometry(54, 0.9, 6.4), new THREE.MeshStandardMaterial({ map: beltTex, color: 0x6b5fd4, metalness: 0.3, roughness: 0.6, emissive: 0x2b2d6e, emissiveIntensity: 0.5 }));
   belt.position.set(0, BELT_Y - 1.0, 2); scene.add(belt);
-  const lip = new THREE.Mesh(new THREE.BoxGeometry(54, 0.2, 0.4), new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.72 }));
+  const lip = new THREE.Mesh(new THREE.BoxGeometry(54, 0.2, 0.4), new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.72 }));
   lip.position.set(0, BELT_Y - 0.5, 5.2); scene.add(lip);
 
   // ---------- twelve labeled ship squares (two per bay), in two rows of six ----------
@@ -1051,7 +1051,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   // Dots are GENERIC job markers: a white dot means "new work waiting"; if it
   // sits, it warms toward red. The dot never tells you which bay the work belongs to.
   const boardH = SHIP_PANEL_H;
-  const dispatchLabel = makeLabelSprite("DISPATCH", { px: 28, color: GOLD_TEXT });
+  const dispatchLabel = makeLabelSprite("DISPATCH", { px: 28, color: ACCENT_TEXT });
   dispatchLabel.position.set(boardX(DISPATCH_BOARD_X), DISPATCH_BOARD_Y + boardH / 2 - DISPATCH_LABEL_TOP_PAD, DISPATCH_BOARD_Z + 0.3); scene.add(dispatchLabel);
   const dotXForCol = (col) => boardX(DISPATCH_BOARD_X + (col - (DISPATCH_BOARD_COLS - 1) / 2) * DISPATCH_DOT_DX);
   const dotPosFor = (i) => {
@@ -1067,7 +1067,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   // the little pips — future sockets stay dark; active jobs arrive white
   const jobDots = [];
   for (let i = 0; i < TOTAL_JOBS; i++) {
-    const socket = new THREE.Mesh(new THREE.CircleGeometry(0.5, 18), new THREE.MeshBasicMaterial({ color: 0x07050a }));
+    const socket = new THREE.Mesh(new THREE.CircleGeometry(0.5, 18), new THREE.MeshBasicMaterial({ color: 0x080910 }));
     socket.position.copy(dotPosFor(i).clone().setZ(DISPATCH_BOARD_Z + 0.28)); scene.add(socket);
     const pos = dotPosFor(i);
     const group = buildDispatchDot();
@@ -1130,7 +1130,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
 
   // ---------- sparks ----------
   const sparks = [];
-  function spawnSpark(pos, color = 0xc8b6ff, n = 14) {
+  function spawnSpark(pos, color = 0x8b7fe8, n = 14) {
     const arr = new Float32Array(n * 3); const vel = [];
     for (let i = 0; i < n; i++) { arr[i * 3] = pos.x; arr[i * 3 + 1] = pos.y; arr[i * 3 + 2] = pos.z; vel.push(new THREE.Vector3((Math.random() - 0.5) * 9, Math.random() * 7, (Math.random() - 0.5) * 9)); }
     const geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.BufferAttribute(arr, 3));
@@ -1150,7 +1150,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     dot.heat = DOT_START_HEAT; dot.wait = 0; dot.group.visible = true;
     p.state = "broken"; p.dotIdx = dot.idx;
     jobsSpawned += 1;
-    spawnSpark(dot.pos.clone(), 0xf3efff, 10);
+    spawnSpark(dot.pos.clone(), 0xf0eef8, 10);
     return true;
   }
   function spawnNextDot() {
@@ -1611,7 +1611,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     jd.taken = true; jd.group.visible = false;
     p.state = "working";
     d.busy = true; d.part = p; d.phase = "out"; d.flyProg = 0; d.weldAt = jd.pos.clone();
-    spawnSpark(jd.pos.clone(), 0xc8b6ff, 12);
+    spawnSpark(jd.pos.clone(), 0x8b7fe8, 12);
     if (practiceMode && p.idx === PRACTICE_PART_IDX) renderRepairLesson("working");
     updateSystems();
   }
@@ -1631,7 +1631,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
   // pip returns to the dispatch board, so the whole job has to be re-dispatched.
   function spoilPart(p) {
     const i = belted.indexOf(p.idx); if (i >= 0) belted.splice(i, 1);
-    spawnSpark(new THREE.Vector3(p.beltX, BELT_Y, 2), 0xe45572, 20);
+    spawnSpark(new THREE.Vector3(p.beltX, BELT_Y, 2), 0xe24b4a, 20);
     if (p.slateMesh) {
       // Block spoiled — recursively free the slate, its child upgrade model, the
       // ice mesh and all their materials/geometries. Keep the shared beam texture.
@@ -1733,7 +1733,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
       // The block STAYS sealed — explain only opens the report. You read what the
       // subagent did and DEDUCE which bay it belongs to; the block never says.
       p.explained = true; p.state = "review";
-      spawnSpark(p.slateMesh.position.clone().setY(BELT_Y + 2), 0xc8b6ff, 12);
+      spawnSpark(p.slateMesh.position.clone().setY(BELT_Y + 2), 0x8b7fe8, 12);
       updateSystems();
     }
     renderPanel();
@@ -1749,7 +1749,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     if (sl.bayIdx !== p.targetSlot) {             // wrong bay → bounce it back (don't reveal what it was)
       if (!practiceMode) mistakes += 1;
       p.slateMesh.position.set(p.beltX, BELT_Y, 2);
-      spawnSpark(sl.slotPos.clone(), 0xe45572, 12);
+      spawnSpark(sl.slotPos.clone(), 0xe24b4a, 12);
       flashTerminal(`✗ that's not the ${sl.data.name.toLowerCase()} fix — re-read the report and try the bay it really belongs to`, false);
       return;
     }
@@ -1969,7 +1969,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
         placePart(picked, sl);                                  // (a) success
       } else if (kind === "full") {                             // (b) right system, every square taken
         picked.slateMesh.position.set(picked.beltX, BELT_Y, 2);
-        spawnSpark(sl.slotPos.clone(), 0xffc24a, 10);
+        spawnSpark(sl.slotPos.clone(), 0xf5c440, 10);
         flashTerminal(`both ${sl.data.name.toLowerCase()} squares are full — wait for one to free up`, false);
       } else if (kind === "wrong") {                            // (c) a square of the wrong system
         placePart(picked, sl);                                  // placePart bounces + grades the wrong bay
@@ -2061,7 +2061,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
     applyPanicSky();
     beltTex.offset.x = (beltTex.offset.x - dt * 0.6) % 1;
 
-    // dispatch dots: newly arrived jobs start pale, then heat toward rose as they wait
+    // dispatch dots: newly arrived jobs start pale, then heat toward red as they wait
     for (let i = 0; i < jobDots.length; i++) {
       const j = jobDots[i]; if (!j.spawned || j.taken) continue;
       const heat = Math.max(0, Math.min(1, j.heat));
@@ -2101,7 +2101,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
       let emis = 0x000000;
       if (dragging && picked && hoverSlot === sl) {
         const good = hoverKind === "correct" && hoverDirect;
-        col = good ? ICE_MATCHED : 0xe45572;
+        col = good ? ICE_MATCHED : 0xe24b4a;
         op = 1.0;
         emis = good ? 0x1d4a2c : 0x401512;
       }
@@ -2128,8 +2128,8 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
       const bob = Math.sin((t + slot) * 2) * 0.08;
       p.slateMesh.position.set(p.beltX, BELT_Y + bob, 2);
       p.slateMesh.visible = onScreen || p.beltX < ENTRANCE_X + 0.5;
-      // the ICE is the patience meter — it stays sealed, but ages lavender → amber →
-      // rose and then visibly melts (shrinks + flickers) as the block runs out of time.
+      // the ICE is the patience meter — it stays sealed, but ages lavender → gold →
+      // red and then visibly melts (shrinks + flickers) as the block runs out of time.
       const ice = p.slateMesh.userData.ice;
       const u = urgencyOf(p);
       const c = u < ICE_WARM_AT
@@ -2143,17 +2143,17 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
       ice.position.y = SLATE_ICE_Y - (1 - melt) * 0.55;
       ice.material.opacity = u > ICE_MELT_AT ? 0.5 + 0.25 * Math.sin(t * 9) : 0.62;
       const rim = p.slateMesh.userData.rim;
-      rim.material.color.setHex(0xb9a7ff);
+      rim.material.color.setHex(0x8b7fe8);
       rim.material.opacity = 0.45 + 0.3 * u;
       slot++;
     }
 
-    // rack lamps: lavender means the subagent is docked/free, amber means out working
+    // rack lamps: lavender means the subagent is docked/free, teal means out working
     for (let i = 0; i < droneRack.dockLights.length; i++) {
       const lamp = droneRack.dockLights[i];
       const busy = !!drones[i]?.busy;
       const pulse = 0.5 + 0.5 * Math.sin(t * (busy ? 7.0 : 2.4) + i);
-      const color = busy ? GOLD : 0xd8ccff;
+      const color = busy ? ACCENT : 0xd8ccff;
       lamp.material.color.setHex(color);
       lamp.material.emissive.setHex(color);
       lamp.material.emissiveIntensity = busy ? 0.9 + pulse * 0.85 : 1.0 + pulse * 0.28;
@@ -2187,7 +2187,7 @@ export function createDroneBayView(renderer, { onExit, onComplete, onNext, onNew
       } else if (d.phase === "work") {
         d.part.fixT = Math.max(0, d.part.fixT - dt);
         ud.bodyMat.emissiveIntensity = 1.2 + 0.6 * Math.sin(t * 10);
-        if (Math.random() < dt * 14) { const tip = ud.craft.getWorldPosition(new THREE.Vector3()); tip.y -= 0.8; spawnSpark(tip, GOLD, 4); }
+        if (Math.random() < dt * 14) { const tip = ud.craft.getWorldPosition(new THREE.Vector3()); tip.y -= 0.8; spawnSpark(tip, ACCENT, 4); }
         if (d.part.fixT <= 0) { partToBelt(d.part); d.phase = "back"; d.flyProg = 0; }
       } else { ud.bodyMat.emissiveIntensity = 0.7 + 0.2 * Math.sin(t * 2 + d.home.x); ud.glow.material.opacity = 0.12; }
     }
