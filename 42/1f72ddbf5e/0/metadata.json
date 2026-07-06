@@ -1,0 +1,102 @@
+{
+  "cli_version": "0.7.8",
+  "checkpoint_id": "421f72ddbf5e",
+  "session_id": "319e87bb-dc10-41c4-97b7-5ca286de3732",
+  "strategy": "manual-commit",
+  "created_at": "2026-07-06T19:08:05.243775Z",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "save_step_count": 2,
+  "files_touched": [
+    "index.html",
+    "src/style.css",
+    "src/titleScreen.js"
+  ],
+  "agent": "Claude Code",
+  "model": "",
+  "turn_id": "2bb5b0d48904",
+  "token_usage": {
+    "input_tokens": 7530,
+    "cache_creation_tokens": 136152,
+    "cache_read_tokens": 2948268,
+    "output_tokens": 26631,
+    "api_call_count": 59
+  },
+  "session_metrics": {
+    "turn_count": 2
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-07-06T19:08:05.215937Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 823,
+    "human_removed": 912,
+    "total_committed": 0,
+    "total_lines_changed": 1735,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 2868,
+      "user_lines_removed": 1084,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/launch.json": 11,
+        "design/brand-kit.html": 856,
+        "index.html": 25,
+        "src/archiveView.js": 13,
+        "src/atmosphere.js": 1,
+        "src/debris.js": 4,
+        "src/droneBayView.js": 81,
+        "src/fallingProps.js": 19,
+        "src/islandView.js": 11,
+        "src/launchView.js": 14,
+        "src/leaderboardPanel.js": 71,
+        "src/memoryProps.js": 9,
+        "src/overhead.js": 2,
+        "src/planet.js": 21,
+        "src/planetView.js": 19,
+        "src/ring.js": 16,
+        "src/style.css": 886,
+        "src/terrain.js": 5,
+        "src/theme.css": 804
+      },
+      "user_removed_per_file": {
+        "index.html": 5,
+        "src/archiveView.js": 13,
+        "src/atmosphere.js": 1,
+        "src/debris.js": 4,
+        "src/droneBayView.js": 81,
+        "src/fallingProps.js": 19,
+        "src/islandView.js": 11,
+        "src/launchView.js": 14,
+        "src/leaderboardPanel.js": 37,
+        "src/memoryProps.js": 7,
+        "src/overhead.js": 2,
+        "src/planet.js": 24,
+        "src/planetView.js": 16,
+        "src/ring.js": 25,
+        "src/style.css": 820,
+        "src/terrain.js": 5
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2918,
+      "agent_lines_removed": 1085
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 2888,
+      "agent_lines_removed": 1148
+    }
+  ]
+}
